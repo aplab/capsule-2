@@ -1,0 +1,39 @@
+# apache22+ htaccess
+# Запретить просмотр содержимого директории, следовать символическим ссылкам
+Options -indexes +FollowSymLinks
+
+# Включить mod rewrite
+RewriteEngine on
+
+# файл .htaccess лежит в корне
+RewriteBase /
+
+# Редирект на страницу с www, если запрашивается без www
+# или если запрашивается неверный заголовок HTTP_HOST,
+# а также точка в конце доменного имени.
+# Здесь надо настраивать под конкретный домен, потому что 
+# в заголовке HTTP_HOST можно передать что угодно.
+# поэтому не рекомендуется использовать универсльное решение 
+# и подставлять HTTP_HOST вместо прямого указания имени.
+# Не забывайте экранировать точки.
+RewriteCond %{HTTP_HOST} !^www\.c1\.aplab\.ru$ [NC]
+RewriteRule ^(.*)$ http://www.c1.aplab.ru/$1 [L,R=301]
+
+# Добавление слеша в конце к "директории" без слеша 
+# У директории путь не содержит точек (соглашение, используемое в системе)
+RewriteRule ^([^\.]*[^/])$ $1/ [R=301,L]
+
+# Удаление слеша у "файла"
+# У файла путь содержит точку (соглашение, используемое в системе)
+RewriteCond %{REQUEST_URI} \.
+RewriteRule ^(.*)/$ $1 [R=301,L]
+
+# disable .htaccess file
+RewriteRule ^.htaccess$ - [F]
+
+# всё остальное отправляем скрипту
+RewriteCond %{REQUEST_URI} !=/favicon.ico
+RewriteCond %{REQUEST_URI} !=/robots.txt
+RewriteCond %{REQUEST_URI} !^/capsule/
+RewriteCond %{REQUEST_URI} !^/share42/
+RewriteRule ^ index.php [QSA]
