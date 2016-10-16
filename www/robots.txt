@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow:
+Host: www.capsule2.aplab.ru
