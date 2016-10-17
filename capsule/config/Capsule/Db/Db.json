@@ -1,0 +1,26 @@
+{
+  "default": {
+    "host": "localhost",
+    "port": 3306,
+    "dbname": "capsule1",
+    "username": "root",
+    "_username": "root",
+    "passwd": "eo7ykVdt7wLcAZzN9WeU",
+    "_passwd": "immortal",
+    "charset": "utf8",
+    "persistent": true,
+    "socket": null
+  },
+  "hosting": {
+    "host": "localhost",
+    "port": 3306,
+    "dbname": "c1a5",
+    "username": "u6291",
+    "_username": "root",
+    "passwd": "wonac3doraz",
+    "_passwd": "immortal",
+    "charset": "utf8",
+    "persistent": true,
+    "socket": "/var/run/mysqld/mysqld.sock"
+  }
+}
