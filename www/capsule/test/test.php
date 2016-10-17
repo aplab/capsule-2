@@ -5,5 +5,5 @@
  * Date: 16.10.2016
  * Time: 14:34
  */
-# phpinfo();
-echo 'test';
+
+print_r(json_decode('      '));
