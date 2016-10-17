@@ -64,6 +64,9 @@ class Capsule implements \Serializable
         ini_set('error_reporting', E_ALL);
         ini_set('display_errors', true);
         $this->systemRoot = dirname(__DIR__, 2);
+        require_once __DIR__ . '/Core/Singleton.php';
+        require_once __DIR__ . '/Core/Autoload.php';
+        require_once __DIR__ . '/Core/global_functions.php';
         return;
 
         $this->data['alreadyRunning'] = false;
