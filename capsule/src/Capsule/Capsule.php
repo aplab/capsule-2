@@ -1,9 +1,14 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: polyanin
- * Date: 16.10.2016
- * Time: 15:13
+ * This file is part of the Capsule package.
+ *
+ * (c) Alexander Polyanin <polyanin@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Date: 18.10.2016
+ * Time: 0:18
  */
 
 namespace Capsule;
@@ -12,20 +17,27 @@ namespace Capsule;
 class Capsule implements \Serializable
 {
     /**
-     * @param void
-     * @return void
-     * @throws \BadFunctionCallException
+     * @var Capsule
      */
-    public function serialize() {
-        throw new \BadFunctionCallException('You cannot serialize this object.');
-    }
+    private $instance;
+
+
 
     /**
      * @param void
      * @return void
      * @throws \BadFunctionCallException
      */
-    public function unserialize($serialized) {
+    public function serialize()
+    {
+        throw new \BadFunctionCallException('You cannot serialize this object.');
+    }
+
+    /**
+     * @param string $serialized
+     */
+    public function unserialize($serialized)
+    {
         throw new \BadFunctionCallException('You cannot unserialize this object.');
     }
 
@@ -36,7 +48,8 @@ class Capsule implements \Serializable
      * @param void
      * @return void
      */
-    public function __clone() {
+    public function __clone()
+    {
         throw new \BadFunctionCallException('Clone is not allowed.');
     }
 }
