@@ -14,6 +14,9 @@
 namespace Capsule;
 
 
+use Capsule\Component\Utf8String;
+use Capsule\Core\Autoload;
+
 class Capsule implements \Serializable
 {
     /**
@@ -63,6 +66,10 @@ class Capsule implements \Serializable
         $this->startTime = microtime();
         ini_set('error_reporting', E_ALL);
         ini_set('display_errors', true);
+        if (PHP_MAJOR_VERSION < 7) {
+            $msg = 'Supported php version 7+';
+            throw new \RuntimeException($msg);
+        }
         $this->systemRoot = dirname(__DIR__, 2);
         require_once __DIR__ . '/Core/Singleton.php';
         require_once __DIR__ . '/Core/Autoload.php';
@@ -80,10 +87,6 @@ class Capsule implements \Serializable
         $this->data[self::DIR_TPL] = $this->systemRoot . '/' . self::DIR_TPL;
         include 'Exception.php';
         include $this->{self::DIR_LIB} . '/Capsule/Core/Exception.php';
-        if (PHP_MAJOR_VERSION < 5 or PHP_MINOR_VERSION < 4 or PHP_RELEASE_VERSION < 3) {
-            $msg = 'Supported php version 5.4.3+';
-            throw new Core\Exception($msg);
-        }
         include $this->{self::DIR_LIB} . '/Capsule/Core/Singleton.php';
         include $this->{self::DIR_LIB} . '/Capsule/Core/Autoload.php';
         include $this->{self::DIR_LIB} . '/Capsule/Core/global_functions.php';
@@ -138,5 +141,18 @@ class Capsule implements \Serializable
     private function _normalizePath($path)
     {
         return rtrim(preg_replace('|/{2,}|', '/', str_replace('\\', '/', $path)), '/');
+    }
+
+    /**
+     * Дополнительные инициализации модулей
+     *
+     * @param void
+     * @return void
+     */
+    private function init()
+    {
+        Autoload::getInstance();
+        Utf8String::initialize();
+        date_default_timezone_set($this->config->timezoneId);
     }
 }

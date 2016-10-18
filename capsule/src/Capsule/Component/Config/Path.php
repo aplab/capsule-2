@@ -7,16 +7,23 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Date: 17.10.2016
- * Time: 23:57
+ * Date: 18.10.2016
+ * Time: 22:18
  */
 
-namespace Capsule\Config\Json;
+namespace Capsule\Config;
 
 
-class Config implements Iterator, Countable
+class Path
 {
-    public function __construct($path)
+    const SUFFIX = '.json';
+
+    /**
+     * Path constructor.
+     *
+     * @param object|string $class
+     */
+    public function __construct($class)
     {
 
     }
