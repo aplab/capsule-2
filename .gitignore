@@ -1,0 +1,10 @@
+/.project
+/.gitignore
+/.buildpath
+/.git/
+/.settings/
+.idea
+/fd
+
+/www/capsule/storage/files
+!readme
