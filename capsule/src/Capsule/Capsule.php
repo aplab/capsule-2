@@ -21,19 +21,27 @@ use PHP\Exceptionizer\Exceptionizer;
 /**
  * Class Capsule
  * @package Capsule
- * @property string $cache
+ * @property string $systemRoot
+ * @property string $documentRoot
+ * @property string $startTime
  */
 class Capsule implements \Serializable
 {
     /**
+     * Directories relatively systemRoot
+     */
+    const DIR_CACHE = 'cache';
+    const DIR_CONFIG = 'config';
+    const DIR_CRON = 'cron';
+    const DIR_SCRIPTS = 'scripts';
+    const DIR_SRC = 'src';
+    const DIR_TEMPLATES = 'templates';
+    const DIR_VENDOR = 'vendor';
+
+    /**
      * @var Capsule
      */
     private static $instance;
-
-    /**
-     * @var string
-     */
-    private $systemRoot;
 
     /**
      * Internal data
@@ -41,6 +49,13 @@ class Capsule implements \Serializable
      * @var array
      */
     private $data = array();
+
+    /**
+     * Internal cache
+     *
+     * @var array
+     */
+    private $cache = array();
 
     /**
      * @var Exceptionizer
@@ -64,7 +79,7 @@ class Capsule implements \Serializable
 
     /**
      * @param string $document_root
-     * @throws Exception
+     * @throws \Exception
      */
     private function __construct($document_root)
     {
@@ -75,8 +90,7 @@ class Capsule implements \Serializable
             $msg = 'Supported php version 7+';
             throw new \RuntimeException($msg);
         }
-        $this->systemRoot = dirname(__DIR__, 2);
-        $this->data[self::DIR_SRC] =
+        $this->data['systemRoot'] = dirname(__DIR__, 2);
         require_once __DIR__ . '/Core/Singleton.php';
         require_once __DIR__ . '/Core/Autoload.php';
         require_once __DIR__ . '/Core/global_functions.php';
@@ -85,7 +99,7 @@ class Capsule implements \Serializable
                 $this->data['documentRoot'] = $_SERVER['DOCUMENT_ROOT'];
             } else {
                 $msg = 'Cannot be determined DOCUMENT_ROOT';
-                throw new Core\Exception($msg);
+                throw new \Exception($msg);
             }
         } else {
             $this->data['documentRoot'] = $document_root;
@@ -155,40 +169,48 @@ class Capsule implements \Serializable
     {
         Autoload::getInstance();
         Utf8String::initialize();
-        date_default_timezone_set($this->config->timezoneId);
+//        date_default_timezone_set($this->config->timezoneId);
         $this->exceptionizer = new Exceptionizer;
+        $vendor = $this->buildPath($this->data['systemRoot'], self::DIR_VENDOR, 'autoload.php');
+        var_dump($vendor);
+        require_once $vendor;
     }
 
     /**
-     * Возвращает значение свойства.
-     *
      * @param $name
-     * @throws \Exception
+     * @param null $default
      * @return mixed
+     * @throws \Exception
+     */
+    public function get($name, $default = null)
+    {
+        $getter = 'get' . ucfirst($name);
+        $methods = get_class_methods($this);
+        if (in_array($getter, $methods)) {
+            return $getter($name);
+        }
+        if (array_key_exists($name, $this->data)) {
+            return $this->data[$name];
+        }
+        return $default;
+    }
+
+    /**
+     * @param $name
+     * @return mixed
+     * @throws \Exception
      */
     public function __get($name)
     {
         $getter = 'get' . ucfirst($name);
-        $methods = $this->methods();
+        $methods = get_class_methods($this);
         if (in_array($getter, $methods)) {
-            return $this->$getter($name);
+            return $getter($name);
         }
         if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
         }
         $msg = 'Unknown property: ' . get_class($this) . '::$' . $name;
         throw new \Exception($msg);
-    }
-
-    /**
-     * Get class methods
-     */
-    private function methods()
-    {
-        $k = __FUNCTION__;
-        if (!array_key_exists($k, $this->cache)) {
-            $this->cache[$k] = get_class_methods($this);
-        }
-        return $this->cache[$k];
     }
 }

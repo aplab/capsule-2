@@ -33,47 +33,44 @@ class Autoload extends Singleton
     protected $rootDir;
 
     /**
-     * constructor
-     *
-     * @param void
-     * @return this
+     * Autoload constructor.
      */
-    protected function __construct() {
-        $this->rootDir = Capsule::getInstance()->lib;
+    protected function __construct()
+    {
+        $this->rootDir = Capsule::getInstance()->systemRoot . '/' . Capsule::DIR_SRC;
         spl_autoload_register(array($this, 'autoload'));
     }
 
     /**
      * Автозагрузчик
      *
-     * @param string $classname
-     * @throws Exception
+     * @param string $class_name
      * @return boolean
      */
-    public function autoload($classname) {
-        if ($this->load($classname)) {
-            if (class_exists($classname, false)) {
+    public function autoload($class_name)
+    {
+        if ($this->load($class_name)) {
+            if (class_exists($class_name, false)) {
                 return true;
             }
-            if (interface_exists($classname, false)) {
+            if (interface_exists($class_name, false)) {
                 return true;
             }
-            if (trait_exists($classname, false)) {
+            if (trait_exists($class_name, false)) {
                 return true;
             }
         }
-        $msg = 'Class ' . $classname . ' not found';
-        #throw new Exception($msg);
     }
 
     /**
      * Загружает класс
      *
-     * @param string $classname
+     * @param string $class_name
      * @return boolean
      */
-    protected function load($classname) {
-        $path = $this->normalizePath($this->rootDir . '/' . $classname . '.php');
+    protected function load($class_name)
+    {
+        $path = $this->normalizePath($this->rootDir . '/' . $class_name . '.php');
         if (file_exists($path)) {
             include $path;
             return true;
@@ -87,7 +84,8 @@ class Autoload extends Singleton
      * @param string $path
      * @return string
      */
-    private function normalizePath($path) {
+    private function normalizePath($path)
+    {
         return rtrim(preg_replace('|/{2,}|', '/', str_replace('\\', '/', trim($path))), '/');
     }
 }
