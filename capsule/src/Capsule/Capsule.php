@@ -16,7 +16,13 @@ namespace Capsule;
 
 use Capsule\Component\Utf8String;
 use Capsule\Core\Autoload;
+use PHP\Exceptionizer\Exceptionizer;
 
+/**
+ * Class Capsule
+ * @package Capsule
+ * @property string $cache
+ */
 class Capsule implements \Serializable
 {
     /**
@@ -30,17 +36,16 @@ class Capsule implements \Serializable
     private $systemRoot;
 
     /**
-     * @return string
+     * Internal data
+     *
+     * @var array
      */
-    public function getSystemRoot()
-    {
-        return $this->systemRoot;
-    }
+    private $data = array();
 
     /**
-     * @var string
+     * @var Exceptionizer
      */
-    private $startTime;
+    private $exceptionizer;
 
     /**
      * @param string|null $document_root
@@ -63,7 +68,7 @@ class Capsule implements \Serializable
      */
     private function __construct($document_root)
     {
-        $this->startTime = microtime();
+        $this->data['startTime'] = microtime();
         ini_set('error_reporting', E_ALL);
         ini_set('display_errors', true);
         if (PHP_MAJOR_VERSION < 7) {
@@ -71,25 +76,10 @@ class Capsule implements \Serializable
             throw new \RuntimeException($msg);
         }
         $this->systemRoot = dirname(__DIR__, 2);
+        $this->data[self::DIR_SRC] =
         require_once __DIR__ . '/Core/Singleton.php';
         require_once __DIR__ . '/Core/Autoload.php';
         require_once __DIR__ . '/Core/global_functions.php';
-        return;
-
-        $this->data['alreadyRunning'] = false;
-        $this->data[self::DIR_LIB] = $this->_normalizePath(dirname(__DIR__));
-        $this->data['systemRoot'] = dirname($this->lib);
-        $this->data[self::DIR_CFG] = $this->systemRoot . '/' . self::DIR_CFG;
-        $this->data[self::DIR_EXT] = $this->systemRoot . '/' . self::DIR_EXT;
-        $this->data[self::DIR_TMP] = $this->systemRoot . '/' . self::DIR_TMP;
-        $this->data[self::DIR_VAR] = $this->systemRoot . '/' . self::DIR_VAR;
-        $this->data[self::DIR_BIN] = $this->systemRoot . '/' . self::DIR_BIN;
-        $this->data[self::DIR_TPL] = $this->systemRoot . '/' . self::DIR_TPL;
-        include 'Exception.php';
-        include $this->{self::DIR_LIB} . '/Capsule/Core/Exception.php';
-        include $this->{self::DIR_LIB} . '/Capsule/Core/Singleton.php';
-        include $this->{self::DIR_LIB} . '/Capsule/Core/Autoload.php';
-        include $this->{self::DIR_LIB} . '/Capsule/Core/global_functions.php';
         if (is_null($document_root)) {
             if (isset($_SERVER['DOCUMENT_ROOT'])) {
                 $this->data['documentRoot'] = $_SERVER['DOCUMENT_ROOT'];
@@ -100,6 +90,7 @@ class Capsule implements \Serializable
         } else {
             $this->data['documentRoot'] = $document_root;
         }
+        var_dump($this);
     }
 
     /**
@@ -138,9 +129,20 @@ class Capsule implements \Serializable
      * @param string $path
      * @return string
      */
-    private function _normalizePath($path)
+    private function normalizePath($path)
     {
         return rtrim(preg_replace('|/{2,}|', '/', str_replace('\\', '/', $path)), '/');
+    }
+
+    /**
+     * Build path
+     *
+     * @return string
+     */
+    private function buildPath()
+    {
+        $tmp = func_get_args();
+        return $this->normalizePath(join('/', $tmp));
     }
 
     /**
@@ -154,5 +156,39 @@ class Capsule implements \Serializable
         Autoload::getInstance();
         Utf8String::initialize();
         date_default_timezone_set($this->config->timezoneId);
+        $this->exceptionizer = new Exceptionizer;
+    }
+
+    /**
+     * Возвращает значение свойства.
+     *
+     * @param $name
+     * @throws \Exception
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        $getter = 'get' . ucfirst($name);
+        $methods = $this->methods();
+        if (in_array($getter, $methods)) {
+            return $this->$getter($name);
+        }
+        if (array_key_exists($name, $this->data)) {
+            return $this->data[$name];
+        }
+        $msg = 'Unknown property: ' . get_class($this) . '::$' . $name;
+        throw new \Exception($msg);
+    }
+
+    /**
+     * Get class methods
+     */
+    private function methods()
+    {
+        $k = __FUNCTION__;
+        if (!array_key_exists($k, $this->cache)) {
+            $this->cache[$k] = get_class_methods($this);
+        }
+        return $this->cache[$k];
     }
 }
