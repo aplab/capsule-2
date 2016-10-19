@@ -103,7 +103,6 @@ class Capsule implements \Serializable
         } else {
             $this->data['documentRoot'] = $document_root;
         }
-        var_dump($this);
     }
 
     /**

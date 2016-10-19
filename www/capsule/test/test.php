@@ -9,5 +9,13 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 include dirname(__DIR__, 3) . '/capsule/src/Capsule/Capsule.php';
 $system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2));
-Capsule\Tools\Tools::dump($system);
-Capsule\Tools\Tools::dump(json_decode('      '));
+$storage = \Capsule\Component\DataStorage\DataStorage::getInstance();
+\Capsule\Tools\Tools::dump($storage);
+//$c = new \stdClass;
+//$c->jkj = 1234123;
+//$storage->set('test', [
+//    'field1' => 'val1',
+//    'f2' => $c
+//]);
+$storage->destroy();
+\Capsule\Tools\Tools::dump($storage->get('test'));

@@ -178,10 +178,6 @@ class DataStorage extends Singleton
      */
     public function flush()
     {
-        if (!Capsule::$silent) {
-            $msg = __METHOD__ . ' called';
-            trigger_error($msg, E_USER_WARNING);
-        }
         return $this->emptyDir($this->path);
     }
 
