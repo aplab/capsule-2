@@ -29,6 +29,8 @@ class Capsule implements \Serializable
 {
     /**
      * Directories relatively systemRoot
+     *
+     * @var string
      */
     const DIR_CACHE = 'cache';
     const DIR_CONFIG = 'config';
@@ -39,6 +41,8 @@ class Capsule implements \Serializable
     const DIR_VENDOR = 'vendor';
 
     /**
+     * Instance
+     *
      * @var Capsule
      */
     private static $instance;
@@ -51,13 +55,8 @@ class Capsule implements \Serializable
     private $data = array();
 
     /**
-     * Internal cache
+     * Exceptionizer
      *
-     * @var array
-     */
-    private $cache = array();
-
-    /**
      * @var Exceptionizer
      */
     private $exceptionizer;
