@@ -1,27 +1,24 @@
 <?php
-/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4: */
-// +---------------------------------------------------------------------------+
-// | PHP version 5.4.7                                                         |
-// +---------------------------------------------------------------------------+
-// | Copyright (c) 2006-2013                                                   |
-// +---------------------------------------------------------------------------+
-// | 19.11.2013 0:41:29 YEKT 2013                                             |
-// | Класс - type_description_here                                             |
-// +---------------------------------------------------------------------------+
-// | Author: Alexander Polyanin <polyanin@gmail.com>                           |
-// +---------------------------------------------------------------------------+
-//
-// $Id$
+/**
+ * This file is part of the Capsule package.
+ *
+ * (c) Alexander Polyanin <polyanin@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Date: 18.10.2016
+ * Time: 0:18
+ */
 /**
  * @package Capsule
  */
 
-namespace Capsule\DataStorage;
+namespace Capsule\Component\DataStorage;
 
+use Capsule\Component\Path;
 use Capsule\Core\Singleton;
-use Capsule\Common\Path;
 use Capsule\Capsule;
-use Capsule\Tools\Tools;
 
 /**
  * DataStorage.php
@@ -69,19 +66,14 @@ class DataStorage extends Singleton
      */
     protected $keyCache = array();
 
+
     /**
-     * constructor
-     *
-     * @param void
-     * @return self
+     * DataStorage constructor.
      */
     protected function __construct()
     {
         self::$registry[] = $this;
         $this->initPath();
-        if (Capsule::$dev) {
-            $this->flush();
-        }
     }
 
     /**
@@ -91,8 +83,10 @@ class DataStorage extends Singleton
     protected function initPath()
     {
         $class = get_class($this);
-        $path = Capsule::getInstance()->var;
-        $path = new Path($path, 'lib', $class);
+        $path = new Path(
+            Capsule::getInstance()->systemRoot,
+            Capsule::DIR_CACHE,
+            $class);
         $this->path = $path->toString();
     }
 
@@ -171,8 +165,7 @@ class DataStorage extends Singleton
     {
         if (!isset($this->keyCache[$key])) {
             $hash = md5($key);
-            $this->keyCache[$key] = $this->path . '/' .
-                join('/', array_slice(str_split($hash, 3), 0, 3)) . '/' . $hash;
+            $this->keyCache[$key] = $this->path . '/' . join('/', array_slice(str_split($hash, 3), 0, 3)) . '/' . $hash;
         }
         return $this->keyCache[$key];
     }
