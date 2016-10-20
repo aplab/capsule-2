@@ -19,3 +19,9 @@ $storage = \Capsule\Component\DataStorage\DataStorage::getInstance();
 //]);
 $storage->destroy();
 \Capsule\Tools\Tools::dump($storage->get('test'));
+
+$a = array('a', 'b', 'c');
+$a[100] = 'd';
+$a[''] = 'd3';
+\Capsule\Tools\Tools::dump($a);
+\Capsule\Tools\Tools::dump(\Capsule\Tools\ArrayTools::isNumericKeys($a));

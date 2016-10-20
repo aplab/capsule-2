@@ -110,7 +110,7 @@ class Result extends mysqli_result
      * Возвращает первую строку результата
      *
      * @param void
-     * @return multitype:
+     * @return array
      */
     public function fetch_assoc_first()
     {
@@ -125,7 +125,7 @@ class Result extends mysqli_result
      *
      * @param string $key
      * @param string $value
-     * @param string $key_present
+     * @param bool $key_present
      * @return array
      */
     public function fetch_all_index($key = null, $value = null, $key_present = true)
