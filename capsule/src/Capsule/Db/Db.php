@@ -18,15 +18,11 @@
 
 namespace Capsule\Db;
 
+use Capsule\Component\DataStorage\DataStorage;
+use Capsule\Component\Json\Loader\Loader;
+use Capsule\Component\Path\ComponentConfigPath;
 use mysqli_sql_exception, mysqli_driver, mysqli;
 use Capsule\Tools\Tools;
-use Capsule\Core\Fn;
-use Capsule\DataStorage\DataStorage;
-use Capsule\Common\Path;
-use Capsule\DataStruct\Loader;
-use Capsule\Capsule;
-use Capsule\Exception;
-use Capsule\Loader\GeSHi;
 
 /**
  * Db.php
@@ -93,7 +89,7 @@ class Db extends mysqli
      * Retrieve config
      *
      * @return mixed
-     * @throws \Capsule\DataStruct\Exception
+     * @throws Exception
      */
     protected static function config()
     {
@@ -105,9 +101,10 @@ class Db extends mysqli
                 self::$$name = $storage->get($class);
                 $storage->get($class);
             } else {
-                $path = new Path(Capsule::getInstance()->{Capsule::DIR_CFG}, $class . '.json');
-                $loader = new Loader();
-                $data = $loader->loadJson($path);
+                $path = new ComponentConfigPath($class);
+                $loader = new Loader($path);
+                $data = $loader->loadToArray();
+                Tools::dump($data);
                 $$name = new Config($data);
                 $storage->set($class, $$name);
                 self::$$name = $$name;
@@ -133,7 +130,7 @@ class Db extends mysqli
                 $this->real_connect(
                     ($config->persistent ? 'p:' : '') . $config->host,
                     $config->username,
-                    $config->passwd,
+                    $config->password,
                     $config->dbname,
                     $config->port,
                     $config->socket
@@ -142,7 +139,7 @@ class Db extends mysqli
                 $this->real_connect(
                     ($config->persistent ? 'p:' : '') . $config->host,
                     $config->username,
-                    $config->passwd,
+                    $config->password,
                     $config->dbname,
                     $config->port
                 );
@@ -192,7 +189,6 @@ class Db extends mysqli
                     $break = true;
                 }
             }
-            GeSHi::getInstance();
             $geshi = new \GeSHi($sql, 'sql');
             $geshi->enable_classes(false);
             echo $geshi->parse_code();

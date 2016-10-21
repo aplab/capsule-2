@@ -14,12 +14,9 @@ namespace Capsule\Db;
  * @property boolean $persistent
  * @property string $host
  * @property string $username
- * @property string $passwd
+ * @property string $password
  * @property string $dbname
  * @property string $port
  * @property string $socket
  */
-class Config extends \Capsule\DataStruct\Config
-{
-
-}
+class Config extends \Capsule\Component\Config\Config {}

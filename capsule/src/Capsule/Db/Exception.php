@@ -24,4 +24,4 @@ namespace Capsule\Db;
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
-class Exception extends \Capsule\Core\Exception {}
+class Exception extends \Exception {}

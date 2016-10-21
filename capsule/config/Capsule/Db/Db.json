@@ -2,23 +2,19 @@
   "default": {
     "host": "localhost",
     "port": 3306,
-    "dbname": "capsule1",
+    "dbname": "capsule2",
     "username": "root",
-    "_username": "root",
-    "passwd": "eo7ykVdt7wLcAZzN9WeU",
-    "_passwd": "immortal",
+    "password": "T65BkWBmG8bBd0PR1NwH",
     "charset": "utf8",
     "persistent": true,
-    "socket": null
+    "socket": "/var/run/mysqld/mysqld.sock"
   },
   "hosting": {
     "host": "localhost",
     "port": 3306,
-    "dbname": "c1a5",
-    "username": "u6291",
-    "_username": "root",
-    "passwd": "wonac3doraz",
-    "_passwd": "immortal",
+    "dbname": "capsule2",
+    "username": "root",
+    "password": "T65BkWBmG8bBd0PR1NwH",
     "charset": "utf8",
     "persistent": true,
     "socket": "/var/run/mysqld/mysqld.sock"

@@ -14,7 +14,7 @@
  * @package Capsule
  */
 
-namespace Capsule\Component;
+namespace Capsule\Component\Path;
 
 /**
  * Path.php

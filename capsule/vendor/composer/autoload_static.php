@@ -10,9 +10,14 @@ class ComposerStaticInitd56147756f67303f795fbcfd7ba19eaa
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
     );
 
+    public static $classMap = array (
+        'GeSHi' => __DIR__ . '/..' . '/easybook/geshi/geshi.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->classMap = ComposerStaticInitd56147756f67303f795fbcfd7ba19eaa::$classMap;
 
         }, null, ClassLoader::class);
     }

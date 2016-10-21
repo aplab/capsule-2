@@ -16,7 +16,7 @@
 
 namespace Capsule\Component\DataStorage;
 
-use Capsule\Component\Path;
+use Capsule\Component\Path\Path;
 use Capsule\Core\Singleton;
 use Capsule\Capsule;
 

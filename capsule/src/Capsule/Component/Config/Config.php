@@ -143,8 +143,8 @@ class Config implements Iterator, Countable
      * Возвращает значение свойства.
      *
      * @param string $name
-     * @throws Exception
      * @return mixed
+     * @throws \Exception
      */
     public function __get($name)
     {
@@ -152,7 +152,7 @@ class Config implements Iterator, Countable
             return $this->data[$name];
         }
         $msg = 'Undefined property: ' . get_class($this) . '::$' . $name;
-        throw new Exception($msg);
+        throw new \Exception($msg);
     }
 
     /**
@@ -160,7 +160,7 @@ class Config implements Iterator, Countable
      *
      * @param string $name
      * @param mixed $value
-     * @throws Exception
+     * @throws \Exception
      * @return void
      */
     public function __set($name, $value)
@@ -170,7 +170,7 @@ class Config implements Iterator, Countable
         } else {
             $msg = 'Unknown property: ' . get_class($this) . '::$' . $name;
         }
-        throw new Exception($msg);
+        throw new \Exception($msg);
     }
 
     /**
@@ -192,7 +192,10 @@ class Config implements Iterator, Countable
      */
     public function __toString()
     {
-        return $this->toString();
+        return json_encode(
+            $this->toArray(),
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+        );
     }
 
     /**
@@ -205,7 +208,7 @@ class Config implements Iterator, Countable
     {
         $ret = array();
         foreach ($this->data as $key => $value) {
-            if ($value instanceof self) {
+            if ($value instanceof static) {
                 $ret[$key] = $value->toArray();
             } else {
                 $ret[$key] = $value;
