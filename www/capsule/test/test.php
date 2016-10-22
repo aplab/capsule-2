@@ -14,4 +14,10 @@ $storage = \Capsule\Component\DataStorage\DataStorage::getInstance();
 //$storage->destroy();
 
 $db = \Capsule\Db\Db::getInstance();
-\Capsule\Tools\Tools::dump($db);
+\Capsule\Tools\Tools::dump($db->query('show databases')->fetch_col());
+\Capsule\Tools\Tools::dump($db->selectSchema());
+\Capsule\Tools\Tools::dump($db->query('show tables from mysql')->fetch_col());
+$sql = <<<SQL
+    SELECT * FROM mysql.user
+SQL;
+\Capsule\Tools\Tools::dump($db->query($sql)->fetch_assoc_all());
