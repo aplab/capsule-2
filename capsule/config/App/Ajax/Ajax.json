@@ -1,0 +1,19 @@
+{
+    "#": "Так пишутся комментарии",
+    "baseUrl": "/ajax/",
+    "cmd": "ajax",
+    "#": "Имя переменной, содержащей команду для вызова контроллера",
+    "action": "cmd",
+    "#": "где по умолчанию ищем контроллеры",
+    "controllerDefaultNs": "App/Ajax/Controller",
+    "#": "команда: контроллер_который_обрабарывает",
+    "controller": {
+        "toggleActive": "Active",
+        "loadNested": "Nested",
+        "uploadSingleImage": "UploadImage",
+        "toggleFavoritesImage": "UploadImage",
+        "addToFavoritesImage": "UploadImage",
+        "commentImage": "UploadImage",
+        "deleteImage": "UploadImage"
+    }
+}

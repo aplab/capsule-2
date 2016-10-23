@@ -8,14 +8,6 @@
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 include dirname(__DIR__, 3) . '/capsule/src/Capsule/Capsule.php';
-$system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2));
-\Capsule\Tools\Tools::dump(\Capsule\Unit\UnitTs::config());
-//$storages = \Capsule\DataModel\Config\Storage::getInstances();
-//\Capsule\Tools\Tools::dump($storages);
-//foreach ($storages as $storage) {
-//    $storage->destroy();
-//}
-$o = new \Capsule\Unit\UnitTs;
-\Capsule\Tools\Tools::dump($o);
-$o->store();
-\Capsule\Tools\Tools::dump($o);
+\Capsule\Capsule::getInstance(dirname(__DIR__, 2));
+\Capsule\Component\DataStorage\DataStorage::getInstance()->destroy();
+$app_manager = \App\AppManager::getInstance();

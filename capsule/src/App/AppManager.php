@@ -7,14 +7,58 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Date: 22.10.2016
- * Time: 10:22
+ * Date: 23.10.2016
+ * Time: 20:50
  */
 
 namespace App;
 
 
-class AppManager
+use Capsule\Capsule;
+use Capsule\Core\Singleton;
+use Capsule\Tools\Tools;
+
+class AppManager extends Singleton
 {
 
+
+    /**
+     * AppManager constructor.
+     */
+    protected function __construct()
+    {
+        $config = Capsule::getInstance()->config->app->toArray();
+        $tmp = array();
+        foreach ($config as $id => $app) {
+            $id = trim($id, '/');
+            $items = array_filter(explode('/', $id));
+            $tmp[$id] = [
+                'app' => $app,
+                'items' => $items
+            ];
+        }
+        Tools::dump($tmp);
+        uksort($tmp, function ($a, $b) {
+            return strlen($b) <=> strlen($a);
+        });
+        Tools::dump($tmp);
+        $request_uri = getenv('REQUEST_URI');
+        $path = trim(parse_url($request_uri, PHP_URL_PATH), '/');
+        if (false === $path) {
+            $msg = 'Seriously malformed URL';
+            throw new \Exception($msg);
+        }
+        $path = array_filter(explode('/', $path));
+        Tools::dump($path);
+        foreach ($tmp as $id => $data) {
+            $items = $data['items'];
+            $length = sizeof($items);
+            $slice = array_slice($path, 0, $length);
+            if ($slice === $items) {
+                echo 'match!';
+                Tools::dump($data);
+                break;
+            }
+        }
+    }
 }

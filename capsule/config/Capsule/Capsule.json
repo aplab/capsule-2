@@ -6,5 +6,10 @@
   "defaultUser": {
     "login": "root",
     "password": "capsule2"
+  },
+  "app": {
+    "admin": "/App/Cms/Cms",
+    "ajax": "/App/Ajax/Ajax",
+    "/": "/App/Website/Website"
   }
 }

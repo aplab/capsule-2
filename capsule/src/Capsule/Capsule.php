@@ -14,6 +14,10 @@
 namespace Capsule;
 
 
+use Capsule\Component\Config\Config;
+use Capsule\Component\DataStorage\DataStorage;
+use Capsule\Component\Json\Loader\Loader;
+use Capsule\Component\Path\ComponentConfigPath;
 use Capsule\Component\Utf8String;
 use Capsule\Core\Autoload;
 use PHP\Exceptionizer\Exceptionizer;
@@ -24,6 +28,7 @@ use PHP\Exceptionizer\Exceptionizer;
  * @property string $systemRoot
  * @property string $documentRoot
  * @property string $startTime
+ * @property Config $config
  */
 class Capsule implements \Serializable
 {
@@ -170,7 +175,6 @@ class Capsule implements \Serializable
 //        date_default_timezone_set($this->config->timezoneId);
         $this->exceptionizer = new Exceptionizer;
         $vendor = $this->buildPath($this->data['systemRoot'], self::DIR_VENDOR, 'autoload.php');
-        var_dump($vendor);
         require_once $vendor;
     }
 
@@ -185,7 +189,7 @@ class Capsule implements \Serializable
         $getter = 'get' . ucfirst($name);
         $methods = get_class_methods($this);
         if (in_array($getter, $methods)) {
-            return $getter($name);
+            return $this->$getter($name);
         }
         if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
@@ -203,12 +207,37 @@ class Capsule implements \Serializable
         $getter = 'get' . ucfirst($name);
         $methods = get_class_methods($this);
         if (in_array($getter, $methods)) {
-            return $getter($name);
+            return $this->$getter($name);
         }
         if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
         }
         $msg = 'Unknown property: ' . get_class($this) . '::$' . $name;
         throw new \Exception($msg);
+    }
+
+    /**
+     * Retrieve config
+     *
+     * @param string $name
+     * @return Config
+     */
+    protected function getConfig($name)
+    {
+        if (!isset($this->data[$name])) {
+            $class = get_called_class();
+            $storage = DataStorage::getInstance();
+            if ($storage->exists($class)) {
+                $this->data[$name] = $storage->get($class);
+            } else {
+                $path = new ComponentConfigPath($class);
+                $loader = new Loader($path);
+                $data = $loader->loadToArray();
+                $$name = new Config($data);
+                $storage->set($class, $$name);
+                $this->data[$name] = $$name;
+            }
+        }
+        return $this->data[$name];
     }
 }

@@ -1,0 +1,1 @@
+<div class="cell-active w<?=$cell->col->width?>"><div><input name="Active" type="checkbox"<?=$cell->val?' checked="checked"':''?> value="<?=get_class($cell->item).'::'.$cell->item->id?>"></div></div>

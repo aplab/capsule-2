@@ -99,7 +99,6 @@ class Db extends mysqli
             $storage = DataStorage::getInstance();
             if ($storage->exists($class)) {
                 self::$$name = $storage->get($class);
-                $storage->get($class);
             } else {
                 $path = new ComponentConfigPath($class);
                 $loader = new Loader($path);

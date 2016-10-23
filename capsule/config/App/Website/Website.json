@@ -1,0 +1,12 @@
+{
+    "backend": {
+        "baseUrl": "/admin/"
+    },
+    "path": {
+        "templates": "/var/www/templates/aplab.ru"
+    },
+    "controller": {
+        "defaultNamespace": "App/Website/Controller"
+    },
+    "error404": "error/404.php"
+}
