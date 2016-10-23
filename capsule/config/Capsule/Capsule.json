@@ -5,10 +5,6 @@
   "host": "www.capsule2.aplab.ru",
   "defaultUser": {
     "login": "root",
-    "password": "capsule1"
-  },
-  "path": {
-    "cache": "cache"
+    "password": "capsule2"
   }
-
 }

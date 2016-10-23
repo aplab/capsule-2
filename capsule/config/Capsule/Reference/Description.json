@@ -1,0 +1,38 @@
+{
+    "title": "Справочник с описанием",
+    "properties": {
+        "description": {
+            "title": "Description",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 16777215
+            },
+            "column": {
+                "c1": {
+                    "width": 400,
+                    "order": 2000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "TextareaDouble",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "description": {
+                "type": "mediumtext",
+                "comment": "Описание"
+            }
+        }
+    }
+}

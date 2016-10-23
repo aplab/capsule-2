@@ -1,0 +1,39 @@
+{
+    "title": "Юнит ts usr с заголовком",
+    "properties": {
+        "title": {
+            "title": "Title",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 3000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 3000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "title": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Заголовок"
+            }
+        }
+    }
+}

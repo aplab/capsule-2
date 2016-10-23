@@ -1,0 +1,66 @@
+{
+    "title": "Датированный расширенный",
+    "properties": {
+        "datetime": {
+            "title": "date time",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "MysqlDatetime",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "order": 4000,
+                    "type": "Rtext"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Datetime",
+                    "order": 4000,
+                    "tab": "General",
+                    "defaultNow": true
+                }
+            }
+        },
+        "date": {
+            "comment": "",
+            "title": "date",
+            "#": "Вспомогательное поле, зависит от datetime и равно дате"
+        }
+    },
+    "table": {
+        "columns": {
+            "datetime": {
+                "type": "DATETIME",
+                "comment": "Дата и время",
+                "default": "0000-00-00 00:00:00"
+            },
+            "date": {
+                "type": "DATE",
+                "comment": "Дата",
+                "default": "0000-00-00"
+            }
+        },
+        "indexes": {
+            "datetime": {
+                "fields": {
+                    "datetime": [
+                        
+                    ]
+                }
+            },
+            "date": {
+                "fields": {
+                    "date": [
+                        
+                    ]
+                }
+            }
+        }
+    }
+}

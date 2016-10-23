@@ -1,0 +1,52 @@
+{
+    "title": "Unit Ts Usr",
+    "properties": {
+        "created": {
+            "title": "created",
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "order": 100000000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Label",
+                    "order": 100000000,
+                    "tab": "Additional"
+                }
+            }
+        },
+        "lastModified": {
+            "title": "last modified",
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "order": 200000000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Label",
+                    "order": 200000000,
+                    "tab": "Additional"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "created": {
+                "type": "timestamp",
+                "default": 0,
+                "comment": "created"
+            },
+            "last_modified": {
+                "type": "timestamp",
+                "default": "CURRENT_TIMESTAMP",
+                "onUpdate": "CURRENT_TIMESTAMP",
+                "comment": "last modified"
+            }
+        }
+    }
+}

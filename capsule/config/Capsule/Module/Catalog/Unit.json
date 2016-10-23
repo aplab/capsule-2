@@ -1,0 +1,92 @@
+{
+    "title": "Единица измерения",
+    "properties": {
+        "notation": {
+            "title": "Notation",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 80,
+                    "order": 2000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        },
+        "description": {
+            "title": "Description",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 65000
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 2100,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Textarea",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        },
+        "help": {
+            "title": "Help",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 65000
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Textarea",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "notation": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "this.properties.notation.title"
+            },
+            "description": {
+                "type": "TEXT",
+                "length": 255,
+                "comment": "this.properties.description.title"
+            },
+            "help": {
+                "type": "text",
+                "length": 255,
+                "comment": "this.properties.help.title"
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Unit",
+    "properties": {
+        "id": {
+            "formElement": {
+                "f1": {
+                    "order": 1000000,
+                    "tab": "Additional"
+                }
+            }
+        }
+    }
+}

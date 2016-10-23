@@ -1,0 +1,160 @@
+{
+    "title": "Журнал разработки",
+    "properties": {
+        "datetime": {
+            "title": "date time",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "MysqlDatetime",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "order": 4000,
+                    "type": "Rtext"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Datetime",
+                    "order": 4000,
+                    "tab": "General",
+                    "defaultNow": true
+                }
+            }
+        },
+        "active": {
+            "title": "Active",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c1": {
+                    "width": 32,
+                    "order": 2000,
+                    "type": "Active"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Flag",
+                    "order": 10000,
+                    "tab": "General"
+                }
+            }
+        },
+        "preview": {
+            "title": "Preview",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 16777215
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Ckeditor",
+                    "order": 11000,
+                    "tab": "config.properties.preview.title"
+                }
+            }
+        },
+        "fully": {
+            "title": "Fully",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 16777215
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Ckeditor",
+                    "order": 12000,
+                    "tab": "config.properties.fully.title"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "datetime": {
+                "type": "DATETIME",
+                "comment": "Дата и время"
+            },
+            "active": {
+                "type": "tinyint",
+                "length": 1,
+                "unsigned": true,
+                "comment": "activity"
+            },
+            "preview": {
+                "type": "mediumtext",
+                "comment": "text 1"
+            },
+            "fully": {
+                "type": "mediumtext",
+                "comment": "text 2"
+            }
+        },
+        "indexes": {
+            "active": {
+                "fields": {
+                    "active": [
+                        
+                    ]
+                }
+            },
+            "datetime": {
+                "fields": {
+                    "datetime": [
+                        
+                    ]
+                }
+            },
+            "datetime_active": {
+                "fields": {
+                    "datetime": [
+                        
+                    ],
+                    "active": [
+                        
+                    ]
+                }
+            },
+            "active_datetime": {
+                "fields": {
+                    "active": [
+                        
+                    ],
+                    "datetime": [
+                        
+                    ]
+                }
+            },
+            "active_datetime_id": {
+                "fields": {
+                    "active": [
+                        
+                    ],
+                    "datetime": {
+                        "order": "desc"
+                    },
+                    "id": {
+                        "order": "desc"
+                    }
+                }
+            }
+        },
+        "comment": "dev log"
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "title": "nested tree item",
+    "container": "/Capsule/Unit/Nested/Tree/Container",
+    "properties": {
+        "name": {
+            "column": {
+                "c1": {
+                    "type": "Tree"
+                }
+            }
+        },
+        "containerId": {
+            "depend": "parentId",
+            "formElement": {
+                "f1": {
+                    "type": "Nested",
+                    "#": "depend property name",
+                    "bind": "config.container",
+                    "depend": "config.properties.containerId.depend"
+                }
+            }
+        },
+        "parentId": {
+            "depend": "containerId",
+            "title": "Parent",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "formElement": []
+        }
+    },
+    "table": {
+        "columns": {
+            "parent_id": {
+                "type": "bigint",
+                "unsigned": true,
+                "comment": "Уникальный идентификатор объекта родителя",
+                "default": 0
+            }
+        },
+        "indexes": {
+            "containerid_parentid_sortorder_id": {
+                "fields": {
+                    "container_id": [],
+                    "parent_id": [],
+                    "sort_order": [],
+                    "id": []
+                }
+            }
+        },
+        "comment": "nested tree item"
+    }
+}

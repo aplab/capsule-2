@@ -1,0 +1,39 @@
+{
+    "title": "Nested named item",
+    "properties": {
+        "name": {
+            "title": "Name",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 400,
+                    "order": 2000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "name": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Наименование"
+            }
+        }
+    }
+}

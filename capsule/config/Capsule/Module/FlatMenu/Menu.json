@@ -1,0 +1,47 @@
+{
+    "title": "Flat menu",
+    "properties": {
+        "token": {
+            "title": "Token",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 10000000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 10000000,
+                    "tab": "Additional"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "token": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Token"
+            }
+        },
+        "indexes": {
+            "token": {
+                "fields": {
+                    "token": []
+                }
+            }
+        },
+        "comment": "flat menu container"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "default": {
+        "#": "Comment",
+        "name": "Local storage",
+        "title": "Local storage title",
+        "driver": "Local",
+        "files": "%{CAPSULE_DOCUMENT_ROOT}/capsule/storage/files"
+    }, 
+    "test": {
+        "#": "Comment",
+        "name": "Local storage test",
+        "title": "Local storage test title",
+        "driver": "Local",
+        "files": "%{CAPSULE_DOCUMENT_ROOT}/capsule/storage/files"
+    }, 
+    "another test storage": {
+        "#": "Comment",
+        "name": "another test storage",
+        "title": "another test storage title",
+        "driver": "Local",
+        "files": "%{CAPSULE_DOCUMENT_ROOT}/capsule/storage/files"
+    }
+}

@@ -1,19 +1,14 @@
 <?php
-/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4: */
-// +---------------------------------------------------------------------------+
-// | PHP version 5.4.7                                                         |
-// +---------------------------------------------------------------------------+
-// | Copyright (c) 2006-2013                                                   |
-// +---------------------------------------------------------------------------+
-// | 14.12.2013 0:08:35 YEKT 2013                                              |
-// | Класс - type_description_here                                             |
-// +---------------------------------------------------------------------------+
-// | Author: Alexander Polyanin <polyanin@gmail.com>                           |
-// +---------------------------------------------------------------------------+
-//
-// $Id$
 /**
- * @package Capsule
+ * This file is part of the Capsule package.
+ *
+ * (c) Alexander Polyanin 2006 <polyanin@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Date: 18.10.2016
+ * Time: 0:18
  */
 
 namespace Capsule\DataModel\Config;

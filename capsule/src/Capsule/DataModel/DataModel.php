@@ -1,19 +1,14 @@
 <?php
-/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4: */
-// +---------------------------------------------------------------------------+
-// | PHP version 5.4.7                                                         |
-// +---------------------------------------------------------------------------+
-// | Copyright (c) 2006-2013                                                   |
-// +---------------------------------------------------------------------------+
-// | 28.12.2013 20:10:42 YEKT 2013                                              |
-// | Класс - type_description_here                                             |
-// +---------------------------------------------------------------------------+
-// | Author: Alexander Polyanin <polyanin@gmail.com>                           |
-// +---------------------------------------------------------------------------+
-//
-// $Id$
 /**
- * @package Capsule
+ * This file is part of the Capsule package.
+ *
+ * (c) Alexander Polyanin 2006 <polyanin@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Date: 18.10.2016
+ * Time: 0:18
  */
 
 namespace Capsule\DataModel;
@@ -239,7 +234,7 @@ abstract class DataModel
     /**
      * Собирает и возвращает данные конфига с учетом наследования.
      *
-     * @return void
+     * @return array
      */
     protected static function _buildConfigData()
     {
@@ -256,6 +251,9 @@ abstract class DataModel
         $parent_data = array();// родительский класс
         $parent_class = get_parent_class($class);
         if ($parent_class) {// данные родительского класса по такому же принципу
+            /**
+             * @var DataModel $parent_class
+             */
             $parent_data = $parent_class::_configData();
         }
 
@@ -272,7 +270,7 @@ abstract class DataModel
             // Если в фрагменте были не переопределенные параметры, они удалились.
             // Если получившийся в результате фрагмент изменился по сравнению с исходным, сохранить его.
             // Перезапись файла
-            self::_saveConfigfragment($diff);
+            self::_saveConfigFragment($diff);
         }
 
         if (isset($diff['table'])) {
@@ -305,7 +303,7 @@ abstract class DataModel
      */
     public static function _configSetEditMode()
     {
-        $data = self::_buildConfigData(get_called_class());
+        $data = self::_buildConfigData();
 
         $opt = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
         $json = json_encode($data, $opt);
@@ -326,7 +324,6 @@ abstract class DataModel
      * Применить измененный конфиг (удаляет старый кэш и перечитывает)
      *
      * @param void
-     * @return mixed|NULL
      */
     public static function _configApply()
     {
@@ -491,7 +488,10 @@ abstract class DataModel
         $c = get_called_class();
         $f = __FUNCTION__;
         if (!isset(self::$common[$c][$f])) {
-            self::$common[$c][$f] = new Path(Capsule::getInstance()->{Capsule::DIR_CFG}, $c . '.json');
+            self::$common[$c][$f] = new Path(
+                Capsule::getInstance()->systemRoot,
+                Capsule::DIR_CONFIG,
+                $c . '.json');
         }
         return self::$common[$c][$f];
     }

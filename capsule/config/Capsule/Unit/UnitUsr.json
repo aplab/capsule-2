@@ -1,0 +1,53 @@
+{
+    "title": "Unit Usr",
+    "properties": {
+        "createdBy": {
+            "title": "created by",
+            "formElement": {
+                "f1": {
+                    "type": "User",
+                    "order": 300000000,
+                    "tab": "Additional"
+                }
+            },
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "order": 300000000,
+                    "type": "User"
+                }
+            }
+        },
+        "lastModifiedBy": {
+            "title": "last modified by",
+            "formElement": {
+                "f1": {
+                    "type": "User",
+                    "order": 400000000,
+                    "tab": "Additional"
+                }
+            },
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "order": 400000000,
+                    "type": "User"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "created_by": {
+                "type": "smallint",
+                "unsigned": true,
+                "default": 0
+            },
+            "last_modified_by": {
+                "type": "smallint",
+                "unsigned": true,
+                "default": 0
+            }
+        }
+    }
+}
