@@ -104,7 +104,6 @@ class Db extends mysqli
                 $path = new ComponentConfigPath($class);
                 $loader = new Loader($path);
                 $data = $loader->loadToArray();
-                Tools::dump($data);
                 $$name = new Config($data);
                 $storage->set($class, $$name);
                 self::$$name = $$name;

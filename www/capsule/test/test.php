@@ -9,6 +9,13 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 include dirname(__DIR__, 3) . '/capsule/src/Capsule/Capsule.php';
 $system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2));
-$storage = \Capsule\Component\DataStorage\DataStorage::getInstance();
-\Capsule\Tools\Tools::dump($storage);
-\Capsule\Tools\Tools::dump(\Capsule\I18n\I18n::t(\Capsule\DataModel\DataModel::config()));
+\Capsule\Tools\Tools::dump(\Capsule\Unit\UnitTs::config());
+//$storages = \Capsule\DataModel\Config\Storage::getInstances();
+//\Capsule\Tools\Tools::dump($storages);
+//foreach ($storages as $storage) {
+//    $storage->destroy();
+//}
+$o = new \Capsule\Unit\UnitTs;
+\Capsule\Tools\Tools::dump($o);
+$o->store();
+\Capsule\Tools\Tools::dump($o);

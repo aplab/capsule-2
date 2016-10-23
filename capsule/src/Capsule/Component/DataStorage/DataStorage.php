@@ -38,7 +38,7 @@ class DataStorage extends Singleton
     /**
      * Возвращает массив производных объектов для групповых операций
      *
-     * @return array
+     * @return static[]
      */
     public static function getInstances()
     {
