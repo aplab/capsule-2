@@ -2,7 +2,7 @@
 /**
  * This file is part of the Capsule package.
  *
- * (c) Alexander Polyanin <polyanin@gmail.com>
+ * (c) Alexander Polyanin 2006 <polyanin@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,13 +16,12 @@
 
 namespace Capsule\I18n;
 
+use Capsule\Component\Json\Loader\Loader;
+use Capsule\Component\Path\Path;
+use Capsule\Component\Utf8String;
 use Capsule\Core\Singleton;
 use Capsule\Capsule;
-use Capsule\Common\Path;
 use Capsule\Core\Fn;
-use Capsule\DataStruct\Loader;
-use Capsule\DataStruct\Exception;
-use Capsule\Common\String;
 /**
  * I18n.php
  *
@@ -63,7 +62,11 @@ class I18n extends Singleton
      */
     protected function __construct()
     {
-        $path = new Path(Capsule::getInstance()->{Capsule::DIR_CFG}, Fn::get_namespace($this));
+        $path = new Path(
+            Capsule::getInstance()->systemRoot,
+            Capsule::DIR_CONFIG,
+            Fn::get_namespace($this)
+        );
         if (!is_scalar(self::$lang)) {
             return;
         }
@@ -71,10 +74,10 @@ class I18n extends Singleton
         if (!file_exists($path)) {
             return;
         }
-        $loader = new Loader;
+        $loader = new Loader($path);
         try {
-        	$this->data = array_change_key_case($loader->loadJson($path), CASE_LOWER);
-        } catch (Exception $e) {
+        	$this->data = array_change_key_case($loader->loadToArray(), CASE_LOWER);
+        } catch (\Exception $e) {
             $this->data = array();
         }
     }
@@ -89,11 +92,13 @@ class I18n extends Singleton
     {
         $text = trim($text);
         $u = false;
-        if (String::ucfirst($text) === $text) {
+        if (Utf8String::ucfirst($text) === $text) {
             $u = true;
         }
         $tmp = strtolower($text);
-        return array_key_exists($tmp, $this->data) ? ($u ? String::ucfirst($this->data[$tmp]) : $this->data[$tmp]) : $text;
+        return array_key_exists($tmp, $this->data)
+            ? ($u ? Utf8String::ucfirst($this->data[$tmp])
+                : $this->data[$tmp]) : $text;
     }
     
     /**
@@ -102,8 +107,12 @@ class I18n extends Singleton
      * @param string $text
      * @return string
      */
-    public static function t($text) {
+    public static function t($text)
+    {
         $t = self::getInstance();
+        /**
+         * @var I18n $t
+         */
         return $t($text);
     }
     
@@ -113,7 +122,11 @@ class I18n extends Singleton
      * @param string $text
      * @return string
      */
-    public static function _($text) {
+    public static function _($text)
+    {
+        /**
+         * @var I18n $t
+         */
         $t = self::getInstance();
         return $t($text);
     }

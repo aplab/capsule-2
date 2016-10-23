@@ -11,13 +11,4 @@ include dirname(__DIR__, 3) . '/capsule/src/Capsule/Capsule.php';
 $system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2));
 $storage = \Capsule\Component\DataStorage\DataStorage::getInstance();
 \Capsule\Tools\Tools::dump($storage);
-//$storage->destroy();
-
-$db = \Capsule\Db\Db::getInstance();
-\Capsule\Tools\Tools::dump($db->query('show databases')->fetch_col());
-\Capsule\Tools\Tools::dump($db->selectSchema());
-\Capsule\Tools\Tools::dump($db->query('show tables from mysql')->fetch_col());
-$sql = <<<SQL
-    SELECT * FROM mysql.user
-SQL;
-\Capsule\Tools\Tools::dump($db->query($sql)->fetch_assoc_all());
+\Capsule\Tools\Tools::dump(\Capsule\I18n\I18n::t(\Capsule\DataModel\DataModel::config()));
