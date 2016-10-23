@@ -17,12 +17,12 @@
  */
 
 namespace App\Website\Structure;
+use Capsule\Component\DataStorage\DataStorage;
 
-use Capsule\DataStorage\DataStorage;
 /**
  * Storage.php
  *
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
-class Storage extends DataStorage {}
+class Storage extends DataStorage  {}

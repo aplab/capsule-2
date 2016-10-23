@@ -8,8 +8,8 @@
     "password": "capsule2"
   },
   "app": {
-    "admin": "/App/Cms/Cms",
-    "ajax": "/App/Ajax/Ajax",
-    "/": "/App/Website/Website"
+    "admin": "\\App\\Cms\\Cms",
+    "ajax": "\\App\\Ajax\\Ajax",
+    "/": "\\App\\Website\\Website"
   }
 }

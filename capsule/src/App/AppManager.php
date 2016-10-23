@@ -20,7 +20,9 @@ use Capsule\Tools\Tools;
 
 class AppManager extends Singleton
 {
+    protected $appClass;
 
+    protected $id;
 
     /**
      * AppManager constructor.
@@ -37,11 +39,9 @@ class AppManager extends Singleton
                 'items' => $items
             ];
         }
-        Tools::dump($tmp);
         uksort($tmp, function ($a, $b) {
             return strlen($b) <=> strlen($a);
         });
-        Tools::dump($tmp);
         $request_uri = getenv('REQUEST_URI');
         $path = trim(parse_url($request_uri, PHP_URL_PATH), '/');
         if (false === $path) {
@@ -49,16 +49,17 @@ class AppManager extends Singleton
             throw new \Exception($msg);
         }
         $path = array_filter(explode('/', $path));
-        Tools::dump($path);
         foreach ($tmp as $id => $data) {
             $items = $data['items'];
             $length = sizeof($items);
             $slice = array_slice($path, 0, $length);
             if ($slice === $items) {
-                echo 'match!';
-                Tools::dump($data);
+                $this->id = $id;
+                $this->appClass = $data['app'];
                 break;
             }
         }
+        $app = $this->appClass;
+        $app = $app::getInstance();
     }
 }

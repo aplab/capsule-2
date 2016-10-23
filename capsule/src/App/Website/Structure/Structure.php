@@ -18,11 +18,10 @@
 
 namespace App\Website\Structure;
 
+use Capsule\Component\Json\Loader\Loader;
+use Capsule\Component\Path\Path;
 use Capsule\Core\Singleton;
-use Capsule\DataStruct\Loader;
-use Capsule\Common\Path;
 use Capsule\Capsule;
-use Capsule\Core\Fn;
 /**
  * Structure.php
  *
@@ -47,9 +46,6 @@ class Structure extends Singleton
     
     /**
      * Disable create object directly
-     *
-     * @param void
-     * @return self
      */
     protected function __construct() {
         $this->storage = Storage::getInstance();
@@ -71,11 +67,12 @@ class Structure extends Singleton
         }
         return null;
     }
-    
+
     /**
      * @param string $path
      * @param array $data
      * @return Page
+     * @throws \Exception
      */
     protected function _page($path, array $data) {
         $key = __METHOD__ . $path;
@@ -96,7 +93,7 @@ class Structure extends Singleton
      * Setter
      *
      * @param string $name
-     * @param unknown $value
+     * @param mixed $value
      * @throws \Exception
      */
     public function __set($name, $value) {
@@ -135,9 +132,12 @@ class Structure extends Singleton
      */
     protected function _load() {
         $class = get_class($this);
-        $path = new Path(Capsule::getInstance()->cfg, $class . '.json');
-        $loader = new Loader();
-        return $loader->loadJson($path);
+        $path = new Path(
+            Capsule::getInstance()->systemRoot,
+            Capsule::DIR_CONFIG,
+            $class . '.json');
+        $loader = new Loader($path);
+        return $loader->loadToArray();
     }
     
     /**
