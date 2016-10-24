@@ -8,7 +8,8 @@
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 include dirname(__DIR__, 3) . '/capsule/src/Capsule/Capsule.php';
-\Capsule\Capsule::getInstance(dirname(__DIR__, 2));
+$system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2));
 \Capsule\Component\DataStorage\DataStorage::getInstance()->destroy();
 $app_manager = \App\AppManager::getInstance();
-Capsule\Tools\Tools::dump($app_manager);
+$app = $app_manager->selectApp();
+\Capsule\Tools\Tools::dump($app);

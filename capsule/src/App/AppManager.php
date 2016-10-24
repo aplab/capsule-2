@@ -20,18 +20,42 @@ use Capsule\Tools\Tools;
 
 class AppManager extends Singleton
 {
+    /**
+     * Application classname
+     *
+     * @var string
+     */
     protected $appClass;
 
+    /**
+     * Application id
+     *
+     * @var string
+     */
     protected $id;
+
+    /**
+     * Configuration data
+     *
+     * @var array
+     */
+    protected $config;
 
     /**
      * AppManager constructor.
      */
     protected function __construct()
     {
-        $config = Capsule::getInstance()->config->app->toArray();
+        $this->config = Capsule::getInstance()->config->app->toArray();
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function selectApp()
+    {
         $tmp = array();
-        foreach ($config as $id => $app) {
+        foreach ($this->config as $id => $app) {
             $id = trim($id, '/');
             $items = array_filter(explode('/', $id));
             $tmp[$id] = [
@@ -60,6 +84,6 @@ class AppManager extends Singleton
             }
         }
         $app = $this->appClass;
-        $app = $app::getInstance();
+        return $app::getInstance();
     }
 }

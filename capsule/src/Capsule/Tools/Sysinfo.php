@@ -44,7 +44,7 @@ final class Sysinfo
     public static function host() {
         $k = __FUNCTION__;
         if (!array_key_exists($k, self::$data)) {
-            self::$data[$k] = Capsule::host();
+            self::$data[$k] = Capsule::getInstance()->config->host;
             if (false !== strpos(self::$data[$k], '/')) {
                 $msg = 'Wrong host definition';
                 throw new \UnexpectedValueException($msg);

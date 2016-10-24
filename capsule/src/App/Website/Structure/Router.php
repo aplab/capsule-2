@@ -18,10 +18,9 @@
 
 namespace App\Website\Structure;
 
+use Capsule\Component\Url\Path;
 use Capsule\Core\Singleton;
-use Capsule\Url\Path;
 use Capsule\Core\Fn;
-use PHP\Exceptionizer\Exceptionizer;
 /**
  * Router.php
  *
@@ -69,7 +68,7 @@ class Router extends Singleton
      * Возвращает текущую страницу
      *
      * @param void
-     * @return CSSiteStructurePage
+     * @return Page
      */
     public function getPage() {
         return $this->page;
@@ -119,11 +118,10 @@ class Router extends Singleton
      * Constructor
      *
      * @param void
-     * @return self
      */
     protected function __construct() {
         $data = Structure::getInstance()->getRoutesList();
-        array_walk($data, function ($value, $key) {
+        array_walk($data, function ($value) {
             $value = Structure::normalizePath($value);
             $parts = explode('/', trim($value, '/'));
             $this->data[$value]['parts'] = $parts;
@@ -148,7 +146,6 @@ class Router extends Singleton
     protected function route() {
         // @TODO костыль, придумать как быть в случае главной страницы когда пустой Path
         $this->parts = Path::getInstance()->data ?: array('');
-        $count = sizeof($this->parts);
         $current_page = null;
         foreach ($this->data as $data_item) {
             $intersect = array_intersect($data_item['parts'], $this->parts);
@@ -176,12 +173,14 @@ class Router extends Singleton
         $this->path = $intersect;
         $this->parameters = $parameters;
     }
-    
+
     /**
      * Проверяет соответствие количества параметров заданному в конфигурации
-     * 
+     *
      * @param mixed $config
      * @param array $parameters
+     * @return bool
+     * @throws \Exception
      */
     private function checkParam($config, array $parameters = array()) {
         $pn = sizeof($parameters);
@@ -199,8 +198,9 @@ class Router extends Singleton
             // Точно заданное количество параметров
             return $pn === $config;
         }
-        if (!is_array($config)) return false;
-        $e = new Exceptionizer;
+        if (!is_array($config)) {
+            return false;
+        }
         if (array_key_exists('min', $config) && array_key_exists('max', $config)) {
             $min = $config['min'];
             $max = $config['max'];

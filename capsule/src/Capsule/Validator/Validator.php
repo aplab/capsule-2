@@ -17,8 +17,7 @@
  */
 
 namespace Capsule\Validator;
-
-use Capsule\Common\String;
+use Capsule\Component\Utf8String;
 
 /**
  * ValidatorAbstract.php
@@ -386,7 +385,7 @@ abstract class Validator implements ValidatorInterface
             $this->message = str_replace('%' . $key . '%',
                 (string)$replacement, $this->message);
         }
-        $this->message = String::replace('  ', ' ', $this->message);
+        $this->message = Utf8String::replace('  ', ' ', $this->message);
     }
 
     /**

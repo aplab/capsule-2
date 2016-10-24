@@ -29,6 +29,7 @@ use PHP\Exceptionizer\Exceptionizer;
  * @property string $documentRoot
  * @property string $startTime
  * @property Config $config
+ * @property string $worktime
  */
 class Capsule implements \Serializable
 {
@@ -239,5 +240,24 @@ class Capsule implements \Serializable
             }
         }
         return $this->data[$name];
+    }
+
+    /**
+     * Возвращает время работы
+     *
+     * @param void
+     * @return void
+     */
+    private function getWorktime()
+    {
+        $work_time = microtime();
+        list($usec, $sec) = explode(' ', $work_time);
+        $work_time = bcadd((string)$usec, (string)$sec, 6);
+
+        $start_time = $this->startTime;
+        list($usec, $sec) = explode(' ', $start_time);
+        $start_time = bcadd((string)$usec, (string)$sec, 6);
+
+        return bcsub($work_time, $start_time, 6);
     }
 }

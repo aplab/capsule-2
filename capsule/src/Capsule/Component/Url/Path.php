@@ -16,7 +16,7 @@
  * @package Capsule
  */
 
-namespace Capsule\Url;
+namespace Capsule\Component\Url;
 
 use Countable, Iterator;
 use Capsule\Core\Singleton;
@@ -69,8 +69,8 @@ class Path extends Singleton implements Countable, Iterator
     /**
      * Возвращает части строки запроса в виде массива
      *
-     * @param void
      * @return array
+     * @throws Exception
      */
     protected function getData() {
         if (is_null($this->data)) {

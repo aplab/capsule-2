@@ -1,0 +1,228 @@
+@CHARSET "UTF-8";
+/* GENERAL */
+html {
+    background: #f2f1f0;
+    color: #000;
+    min-width: 930px;
+    width: 100%;
+}
+body {
+    color: #000;
+    background: #f2f1f0;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+    padding: 20px 0;
+}
+#wrapper {
+    background: none repeat scroll 0 0 #FFFFFF;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 930px;
+    box-shadow: 1px 1px 2px #777;
+    box-shadow: 0 0 5px rgba(1, 1, 1, 0.7);
+    border-radius: 3px;
+}
+.page-section {
+    width: 990px;
+    overflow: hidden;
+    display: block;
+    clear: both;
+}
+#header {
+    
+}
+#body {
+    min-height: 600px;
+}
+#footer {
+    height: 200px;
+    background: #3f4042;
+    color: #fff;
+}
+a {
+    color: #7099cc;
+    outline-style: none;
+}
+#footer a {
+    color: #fff;
+}
+#logo {
+    width: 240px;
+    height: 80px;
+    display: block;
+    padding: 20px;
+    overflow: hidden;
+    float: left;
+}
+#logo a {
+    width: 221px;
+    height: 80px;
+    display: block;
+    overflow: hidden;
+}
+#logo img {
+    width: 221px;
+    height: 80px;
+    display: block;
+}
+#cap {
+    float: left; 
+    width: 660px;
+    padding-top: 20px;
+}
+#content {
+    width: 670px;
+    float: left;
+    overflow: hidden;  
+}
+#right-col {
+    width: 240px;
+    float: left; 
+    overflow: hidden;
+}
+#counters-start {
+    float: left;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    font-size: 1px;
+}
+#f-col-one {
+    width: 760px;
+    float: left;
+    padding: 20px;
+    overflow: hidden;
+}
+#f-counters {
+    width: 110px;
+    float: left;
+    padding-top: 20px;
+    overflow: hidden;
+}
+#counter-li {
+    height: 40px;
+    width: 110px;
+    text-align: right;
+}
+#counter-ya {
+    height: 40px;
+    width: 110px;
+    text-align: right;
+}
+.wide-text-block {
+    width: 630px;
+    padding-left: 20px;
+    overflow: hidden;
+    clear: both;
+}
+.center {
+    text-align: center;
+}
+.clear {
+    clear: both;
+}
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+p {
+    margin-bottom: 10px;
+}
+b, strong {
+    font-weight: bold;
+}
+i, em {
+    font-style: italic;
+}
+ul {
+    margin-left: 20px;
+}
+ul li {
+    margin-bottom: 10px;
+    list-style-type: disc;
+    list-style-position: outside;
+}
+ol {
+    margin-left: 20px;
+}
+ol li {
+    margin-bottom: 10px;
+    list-style-type: decimal;
+    list-style-position: outside;
+}
+.intext-left {
+    float: left;
+    margin: 2px 20px 18px 0;
+}
+.big-text {
+    font-size: 14px;
+}
+.small-text {
+    font-size: 11px;
+}
+/* END OF GENERAL */
+/* DEV LOG */
+#dev-log-list {
+    clear: both;
+    overflow: hidden;
+    padding-left: 20px;
+    width: 630px;
+}
+#dev-log-list .post {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+#dev-log-list .index {
+    margin-bottom: 20px;
+    overflow: hidden;
+    clear: both;
+}
+#dev-log-list .index .page {
+    display: block;
+    float: left;
+    font-size: 11px;
+    padding: 1px 3px;
+    text-align: center;
+    margin-right: 4px;
+}
+#dev-log-list .index .current {
+    background-color: #7099cc;
+    border-radius: 2px;
+    color: #fff;
+}
+#dev-log-item {
+    clear: both;
+    overflow: hidden;
+    padding-left: 20px;
+    width: 630px;
+}
+#dev-log-item .post {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+#dev-log-item .nav {
+    margin-bottom: 20px;
+    overflow: hidden;
+    clear: both;
+}
+#dev-log-item .nav a {
+    display: block;
+    float: left;
+    font-size: 11px;
+    padding: 0;
+    text-align: center;
+    margin-right: 10px;
+}
+/* END OF DEV LOG */
+    

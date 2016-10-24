@@ -17,7 +17,7 @@
 namespace Capsule\Component;
 
 /**
- * String.php
+ * Utf8String.php
  *
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>

@@ -17,8 +17,7 @@
  */
 
 namespace Capsule\Validator;
-
-use Capsule\Common\String;
+use Capsule\Component\Utf8String;
 
 /**
  * StringLength.php
@@ -56,7 +55,7 @@ class StringLength extends Validator
             return $this->isValid = false;
         }
         $this->value = (string)$this->value;
-        $length = String::length($this->value);
+        $length = Utf8String::length($this->value);
         if (!is_null($this->min)) {
             if ($length < $this->min) {
                 $this->message(self::SHORTER_THAN);

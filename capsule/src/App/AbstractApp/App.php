@@ -18,14 +18,12 @@
 
 namespace App\AbstractApp;
 
+use Capsule\Component\Config\Config;
+use Capsule\Component\DataStorage\DataStorage;
+use Capsule\Component\Json\Loader\Loader;
+use Capsule\Component\Path\Path;
 use Capsule\Core\Singleton;
-use Capsule\Common\Exception;
-use Capsule\Core\Fn;
-use Capsule\DataStorage\DataStorage;
-use Capsule\Common\Path;
 use Capsule\Capsule;
-use Capsule\DataStruct\Loader;
-use Capsule\DataStruct\Config;
 /**
  * App.php
  *
@@ -84,8 +82,8 @@ abstract class App extends Singleton
     }
 
     /**
-     *
      * @param string $name
+     * @return mixed
      */
     protected function getConfig($name) {
         if (!array_key_exists($name, $this->data)) {
@@ -94,9 +92,13 @@ abstract class App extends Singleton
             if ($storage->exists($class)) {
                 $this->data[$name] = $storage->get($class);
             } else {
-                $path = new Path(Capsule::getInstance()->cfg, $class . '.json');
-                $loader = new Loader();
-                $data = $loader->loadJson($path);
+                $path = new Path(
+                    Capsule::getInstance()->systemRoot,
+                    Capsule::DIR_CONFIG,
+                    $class . '.json'
+                );
+                $loader = new Loader($path);
+                $data = $loader->loadToArray();
                 $$name = new Config($data);
                 $storage->set($class, $$name);
                 $this->data[$name] = $$name;

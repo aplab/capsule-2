@@ -21,11 +21,10 @@ namespace App\Website;
 use App\AbstractApp\App;
 use App\Website\Structure\Router;
 use Capsule\Capsule;
-use Capsule\Common\Path;
 use App\Website\Exception\Error404Exception;
 use App\Website\Structure\Page;
+use Capsule\Component\Path\Path;
 use Capsule\Tools\Seo\Nofollow;
-use Capsule\Tools\Seo\Seo;
 /**
  * Website.php
  *
