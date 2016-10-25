@@ -36,7 +36,8 @@ abstract class Ui extends Singleton
      * @param string $name
      * @return Section
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         return  Section::getElementById($name);
     }
 
@@ -44,10 +45,12 @@ abstract class Ui extends Singleton
      * Setter
      *
      * @param string $name
-     * @param multitype $value
+     * @param mixed $value
      * @return Section
+     * @throws Exception
      */
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         $msg = I18n::t('Object has no properties');
         throw new Exception($msg);
     }
@@ -59,7 +62,8 @@ abstract class Ui extends Singleton
      * @param Section $o
      * @return string;
      */
-    public function __invoke(Section $o) {
+    public function __invoke(Section $o)
+    {
         $template = $o->template;
         if ($template) {
             ob_start();

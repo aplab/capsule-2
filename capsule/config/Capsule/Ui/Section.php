@@ -56,7 +56,7 @@ abstract class Section implements Iterator, Countable
     /**
      * Element content with string index (was added with "as" parameter)
      * 
-     * @var unknown
+     * @var array
      */
     protected $index = array();
 
@@ -66,7 +66,8 @@ abstract class Section implements Iterator, Countable
      * @param void
      * @return int
      */
-    public function count() {
+    public function count()
+    {
         return sizeof($this->content);
     }
 
@@ -80,10 +81,11 @@ abstract class Section implements Iterator, Countable
     /**
      * Returns element with id
      *
-     * @param valid_index $id
-     * @return self
+     * @param string $id
+     * @return static
      */
-    public static function getElementById($id = null) {
+    public static function getElementById($id = null)
+    {
         Fn::is_key($id);
         $class = get_called_class();
         if (isset(static::$common[$class]['elements'][$id])) {
@@ -98,7 +100,8 @@ abstract class Section implements Iterator, Countable
      * @param void
      * @return array
      */
-    public static function all() {
+    public static function all()
+    {
         $class = get_called_class();
         if (!isset(static::$common[$class]['elements'])) {
             static::$common[$class]['elements'] = array();
@@ -110,10 +113,11 @@ abstract class Section implements Iterator, Countable
      * Setter
      *
      * @param string $name
-     * @param multitype $value
+     * @param mixed $value
      * @return Section
      */
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         $setter = 'set' . ucfirst($name);
         if (in_array($setter, get_class_methods($this))) {
             return $this->$setter($name, $value);
@@ -126,9 +130,10 @@ abstract class Section implements Iterator, Countable
      * setter
      *
      * @param string $name
-     * @return Ambigous <NULL, multitype:>
+     * @return mixed
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
         }
@@ -145,7 +150,8 @@ abstract class Section implements Iterator, Countable
      * @param  string $name
      * @return boolean
      */
-    public function __isset($name) {
+    public function __isset($name)
+    {
         return array_key_exists($name, $this->data);
     }
 
@@ -153,13 +159,14 @@ abstract class Section implements Iterator, Countable
      * unset() overloading
      *
      * @param  string $name
-     * @return void
+     * @return $this
      * @throws Exception
      */
-    public function __unset($name) {
-        $mutator = 'unset' . ucfirst($name);
-        if (in_array($mutator, get_class_methods($this))) {
-            return $this->$mutator($name);
+    public function __unset($name)
+    {
+        $method_name = 'unset' . ucfirst($name);
+        if (in_array($method_name, get_class_methods($this))) {
+            return $this->$method_name($name);
         }
         unset($this->data[$name]);
         return $this;
@@ -169,10 +176,12 @@ abstract class Section implements Iterator, Countable
      * Set id
      *
      * @param string $name
-     * @param valid_index $value
-     * @return self
+     * @param $id
+     * @return Section
+     * @throws Exception
      */
-    protected function setId($name, $id) {
+    protected function setId($name, $id)
+    {
         Fn::is_key($id);
         $class = get_class($this);
         if (isset($this->id)) {
@@ -183,16 +192,17 @@ abstract class Section implements Iterator, Countable
             $msg = I18n::t('Id already in use');
             throw new Exception($msg);
         }
-        $this->data['id'] = $id;
+        $this->data[$name] = $id;
         static::$common[$class]['elements'][$id] = $this;
         return $this;
     }
 
     /**
      * @param string $name
-     * @return self
+     * @return $this
      */
-    protected function unsetId($name) {
+    protected function unsetId($name)
+    {
         $class = get_class($this);
         unset(static::$common[$class]['elements'][$this->id]);
         unset($this->data[$name]);
@@ -207,7 +217,8 @@ abstract class Section implements Iterator, Countable
      * @throws Exception
      * @return \Capsule\Ui\Section
      */
-    public function append($content, $as = null) {
+    public function append($content, $as = null)
+    {
         if (is_null($as)) {
             $this->content[] = $content;
             return $this;
@@ -231,7 +242,8 @@ abstract class Section implements Iterator, Countable
      * @throws Exception
      * @return \Capsule\Ui\Section
      */
-    public function prepend($content, $as = null) {
+    public function prepend($content, $as = null)
+    {
         if (is_null($as)) {
             array_unshift($this->content, $content);
             return $this;
@@ -246,16 +258,19 @@ abstract class Section implements Iterator, Countable
         }
         return $this;
     }
-    
+
     /**
      * Insertion content part
-     * If position is negative, the insertion from the end of content. 
-     * 
+     * If position is negative, the insertion from the end of content.
+     *
      * @param mixed $content
-     * @param int $position
+     * @param null $position
      * @param string $as
+     * @return $this
+     * @throws Exception
      */
-    public function insert($content, $position = null, $as = null) {
+    public function insert($content, $position = null, $as = null)
+    {
         if (!is_null($as)) {
             Fn::is_key($as);
             if (array_key_exists($as, $this->index)) {
@@ -298,6 +313,7 @@ abstract class Section implements Iterator, Countable
             $this->content[] = $v;
             $c++;
         }
+        return $this;
     }
     
     /**
@@ -305,9 +321,10 @@ abstract class Section implements Iterator, Countable
      *
      * @param mixed $content
      * @param string $as
-     * @return void
+     * @return $this
      */
-    public function replace($content, $as = null) {
+    public function replace($content, $as = null)
+    {
         if (is_null($as)) {
             $this->content[] = $content;
             return $this;
@@ -333,7 +350,8 @@ abstract class Section implements Iterator, Countable
      * @param void
      * @return void
      */
-    public function clear() {
+    public function clear()
+    {
         $this->content = array();
         $this->index = array();
     }
@@ -344,7 +362,8 @@ abstract class Section implements Iterator, Countable
      * @param string $as
      * @return mixed|null
      */
-    public function find($as) {
+    public function find($as)
+    {
         Fn::is_key($as);
         return array_key_exists($as, $this->index) ? $this->index[$as] : null;
     }
@@ -352,10 +371,11 @@ abstract class Section implements Iterator, Countable
     /**
      * Существует ли фрагмент с таким ключом
      *
-     * @param unknown $alias
+     * @param string $as
      * @return boolean
      */
-    public function exists($as) {
+    public function exists($as)
+    {
         return array_key_exists($as, $this->index);
     }
 
@@ -363,9 +383,9 @@ abstract class Section implements Iterator, Countable
      * Cloning object
      *
      * @param void
-     * @return self
      */
-    public function __clone() {
+    public function __clone()
+    {
         unset($this->data['id']);
     }
 
@@ -379,7 +399,8 @@ abstract class Section implements Iterator, Countable
      * @param void
      * @return string
      */
-    final protected static function _class() {
+    final protected static function _class()
+    {
         $class = get_called_class();
         if (!isset(self::$common[$class][__FUNCTION__])) {
             self::$common[$class][__FUNCTION__] = $class;
@@ -393,7 +414,8 @@ abstract class Section implements Iterator, Countable
      * @param void
      * @return ReflectionClass
      */
-    final protected static function _reflectionClass() {
+    final protected static function _reflectionClass()
+    {
         $class = get_called_class();
         if (!isset(self::$common[$class][__FUNCTION__])) {
             self::$common[$class][__FUNCTION__] = new ReflectionClass($class);
@@ -407,7 +429,8 @@ abstract class Section implements Iterator, Countable
      * @param void
      * @return string
      */
-    final protected static function _rootDir() {
+    final protected static function _rootDir()
+    {
         $class = get_called_class();
         if (!isset(self::$common[$class][__FUNCTION__])) {
             self::$common[$class][__FUNCTION__] = str_replace('\\', '/',
@@ -422,7 +445,8 @@ abstract class Section implements Iterator, Countable
      * @param void
      * @return string
      */
-    final protected static function _classname() {
+    final protected static function _classname()
+    {
         $class = get_called_class();
         if (!isset(self::$common[$class][__FUNCTION__])) {
             $data = explode('\\', $class);
@@ -449,7 +473,8 @@ abstract class Section implements Iterator, Countable
      * @see    Iterator::current()
      * @return mixed
      */
-    public function current() {
+    public function current()
+    {
         return $this->content[$this->key()];
     }
 
@@ -459,7 +484,8 @@ abstract class Section implements Iterator, Countable
      * @see    Iterator::key()
      * @return mixed
      */
-    public function key() {
+    public function key()
+    {
         return key($this->content);
     }
 
@@ -469,17 +495,18 @@ abstract class Section implements Iterator, Countable
      * @see    Iterator::next()
      * @return void
      */
-    public function next() {
+    public function next()
+    {
         next($this->content);
     }
-
-    /**
+/**
      * rewind(): defined by Iterator interface.
      *
      * @see    Iterator::rewind()
      * @return void
      */
-    public function rewind() {
+    public function rewind()
+    {
         reset($this->content);
     }
 
@@ -489,18 +516,21 @@ abstract class Section implements Iterator, Countable
      * @see    Iterator::valid()
      * @return boolean
      */
-    public function valid() {
+    public function valid()
+    {
         return ($this->key() !== null);
     }
-    
+
     /**
      * assign element template
      *
      * @param string $name
      * @param string $path
-     * @return self
+     * @return Section
+     * @throws Exception
      */
-    protected function setTemplate($name, $path) {
+    protected function setTemplate($name, $path)
+    {
         $path = str_replace('\\', '/', $path);
         if (!preg_match('|/|', $path)) {
             $path = Fn::concat_ws('/', self::_rootDir() . static::$localTplDir, $path);

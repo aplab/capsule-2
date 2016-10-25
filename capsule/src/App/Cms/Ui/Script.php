@@ -26,14 +26,15 @@ namespace App\Cms\Ui;
  */
 class Script
 {
-    private $src, $type;
+    private $src;
 
-    public function __construct($src, $type = 'text/javascript') {
+    public function __construct($src)
+    {
         $this->src = $src;
-        $this->type = $type;
     }
 
-    public function __toString() {
-        return'<script type="' . $this->type . '" src="' . $this->src . '"></script>';
+    public function __toString()
+    {
+        return'<script src="' . $this->src . '"></script>';
     }
 }

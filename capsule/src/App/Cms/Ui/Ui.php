@@ -38,7 +38,8 @@ class Ui extends i
      * @param string $name
      * @return Section
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         return Section::getElementById($name);
     }
 }

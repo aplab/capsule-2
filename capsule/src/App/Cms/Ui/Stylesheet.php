@@ -28,13 +28,17 @@ class Stylesheet
 {
     private $href, $media;
 
-    public function __construct($href, $media = 'all') {
+    public function __construct($href, $media = null)
+    {
         $this->href = $href;
         $this->media = $media;
     }
 
-    public function __toString() {
-        return'<link rel="stylesheet" href="' . $this->href . '" media="' .
-            $this->media . '" />';
+    public function __toString()
+    {
+        if (is_null($this->media)) {
+            return'<link rel="stylesheet" href="' . $this->href . '">';
+        }
+        return'<link rel="stylesheet" href="' . $this->href . '" media="' . $this->media . '">';
     }
 }

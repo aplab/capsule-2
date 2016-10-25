@@ -237,7 +237,7 @@ class Fn
      * Возвращает true, если $key может быть ключом массива.
      * В противном случае возвращает false.
      *
-     * @param unknown $key
+     * @param string $key
      * @param bool|string $throw_exception
      * @return bool
      */

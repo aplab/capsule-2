@@ -37,7 +37,8 @@ class Fragment
      * @param boolean $static
      * @throws Exception
      */
-    public function __construct($path, $static = false) {
+    public function __construct($path, $static = false)
+    {
         $this->path = $path;
         if (!file_exists($path)) {
             $msg = 'File not found: ' . $path;
@@ -52,7 +53,8 @@ class Fragment
         }
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->data;
     }
 }

@@ -43,7 +43,8 @@ class Section extends s
      * @throws Exception
      * @return \Capsule\Section
      */
-    protected function getTemplate($name) {
+    protected function getTemplate($name)
+    {
         if ($this->id) {
             $path = new Path(
                 self::_rootDir(),
@@ -68,7 +69,8 @@ class Section extends s
      * @param void
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         $ui = Ui::getInstance();
         try {
             return $ui($this);
