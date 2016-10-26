@@ -13,6 +13,7 @@
 
 namespace Capsule\Ui;
 
+use Capsule\Component\Path\ComponentTemplatesDir;
 use ReflectionClass, Iterator, Countable;
 use Capsule\Exception;
 use Capsule\Core\Fn;
@@ -27,6 +28,11 @@ use Capsule\Validator\SignedDigits;
  */
 abstract class Section implements Iterator, Countable
 {
+    /**
+     * @var string
+     */
+    const TEMPLATE_DEFAULT_EXTENSION = 'php';
+
     /**
      * Common data
      *
@@ -67,11 +73,19 @@ abstract class Section implements Iterator, Countable
     }
 
     /**
-     * Local templates directory
+     * Возвращает путь к каталогу с шаблонами
      *
-     * @var string
+     * @return ComponentTemplatesDir
      */
-    protected static $localTplDir = '/tpl';
+    public static function templatesDir()
+    {
+        $c = get_called_class();
+        $f = __FUNCTION__;
+        if (!isset(static::$common[$c][$f])) {
+            static::$common[$c][$f] = new ComponentTemplatesDir($c);
+        }
+        return static::$common[$c][$f];
+    }
 
     /**
      * Returns element with id
