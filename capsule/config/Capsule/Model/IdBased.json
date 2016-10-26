@@ -47,9 +47,7 @@
             "primaryKey": {
                 "type": "primaryKey",
                 "fields": {
-                    "id": [
-                        
-                    ]
+                    "id": []
                 }
             }
         }

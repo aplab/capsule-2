@@ -43,7 +43,7 @@ abstract class Singleton implements \Serializable
     /**
      * @param $class_name
      * @param $parameters
-     * @return $this
+     * @return static
      */
     protected static function getInstanceOf($class_name, $parameters)
     {

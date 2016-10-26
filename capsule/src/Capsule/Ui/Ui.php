@@ -1,19 +1,14 @@
 <?php
-/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4: */
-// +---------------------------------------------------------------------------+
-// | PHP version 5.4.7                                                         |
-// +---------------------------------------------------------------------------+
-// | Copyright (c) 2006-2013                                                   |
-// +---------------------------------------------------------------------------+
-// | 09.07.2013 21:55:00 YEKT 2013                                             |
-// | Класс - type_description_here                                             |
-// +---------------------------------------------------------------------------+
-// | Author: Alexander Polyanin <polyanin@gmail.com>                           |
-// +---------------------------------------------------------------------------+
-//
-// $Id$
 /**
- * @package Capsule
+ * This file is part of the Capsule package.
+ *
+ * (c) Alexander Polyanin 2006 <polyanin@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Date: 18.10.2016
+ * Time: 0:18
  */
 
 namespace Capsule\Ui;
@@ -51,8 +46,7 @@ abstract class Ui extends Singleton
      */
     public function __set($name, $value)
     {
-        $msg = I18n::t('Object has no properties');
-        throw new Exception($msg);
+        throw new Exception('Object has no properties');
     }
 
     /**

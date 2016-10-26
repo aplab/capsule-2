@@ -1,19 +1,14 @@
 <?php
-/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4: */
-// +---------------------------------------------------------------------------+
-// | PHP version 5.4.7                                                         |
-// +---------------------------------------------------------------------------+
-// | Copyright (c) 2006-2013                                                   |
-// +---------------------------------------------------------------------------+
-// | 09.07.2013 21:55:36 YEKT 2013                                             |
-// | Класс - type_description_here                                             |
-// +---------------------------------------------------------------------------+
-// | Author: Alexander Polyanin <polyanin@gmail.com>                           |
-// +---------------------------------------------------------------------------+
-//
-// $Id$
 /**
- * @package Capsule
+ * This file is part of the Capsule package.
+ *
+ * (c) Alexander Polyanin 2006 <polyanin@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Date: 18.10.2016
+ * Time: 0:18
  */
 
 namespace Capsule\Ui;
@@ -86,7 +81,6 @@ abstract class Section implements Iterator, Countable
      */
     public static function getElementById($id = null)
     {
-        Fn::is_key($id);
         $class = get_called_class();
         if (isset(static::$common[$class]['elements'][$id])) {
             return static::$common[$class]['elements'][$id];
@@ -182,15 +176,13 @@ abstract class Section implements Iterator, Countable
      */
     protected function setId($name, $id)
     {
-        Fn::is_key($id);
         $class = get_class($this);
         if (isset($this->id)) {
             unset(static::$common[$class]['elements'][$this->id]);
         }
         if (isset(static::$common[$class]['elements'][$id])) {
             // Element with this id already exists
-            $msg = I18n::t('Id already in use');
-            throw new Exception($msg);
+            throw new Exception('Id already in use');
         }
         $this->data[$name] = $id;
         static::$common[$class]['elements'][$id] = $this;
@@ -223,10 +215,8 @@ abstract class Section implements Iterator, Countable
             $this->content[] = $content;
             return $this;
         } else {
-            Fn::is_key($as);
             if (array_key_exists($as, $this->index)) {
-                $msg = I18n::t('Key already exists: ') . $as;
-                throw new Exception($msg);
+                throw new Exception('Key already exists: ' . $as);
             }
             $this->content[] = $content;
             $this->index[$as] = $content;
@@ -248,10 +238,8 @@ abstract class Section implements Iterator, Countable
             array_unshift($this->content, $content);
             return $this;
         } else {
-            Fn::is_key($as);
             if (array_key_exists($as, $this->index)) {
-                $msg = I18n::t('Key already exists: ') . $as;
-                throw new Exception($msg);
+                throw new Exception('Key already exists: ' . $as);
             }
             array_unshift($this->content, $content);
             $this->index[$as] = $content;
@@ -272,10 +260,8 @@ abstract class Section implements Iterator, Countable
     public function insert($content, $position = null, $as = null)
     {
         if (!is_null($as)) {
-            Fn::is_key($as);
             if (array_key_exists($as, $this->index)) {
-                $msg = I18n::t('Key already exists: ') . $as;
-                throw new Exception($msg);
+                throw new Exception('Key already exists: ' . $as);
             }
             $this->index[$as] = $content;
         }
@@ -329,7 +315,6 @@ abstract class Section implements Iterator, Countable
             $this->content[] = $content;
             return $this;
         } else {
-            Fn::is_key($as);
             if (array_key_exists($as, $this->index)) {
                 $old = $this->index['$as'];
                 foreach ($this->content as $k => $v) {
@@ -364,7 +349,6 @@ abstract class Section implements Iterator, Countable
      */
     public function find($as)
     {
-        Fn::is_key($as);
         return array_key_exists($as, $this->index) ? $this->index[$as] : null;
     }
     
