@@ -13,6 +13,7 @@
 
 namespace App\Cms\Ui;
 
+use Capsule\Component\Path\ComponentTemplatePath;
 use Capsule\Ui\Section as s;
 use Capsule\Core\Fn as f;
 use Capsule\Common\Path;
@@ -25,13 +26,6 @@ use Capsule\Common\Path;
 class Section extends s
 {
     /**
-     * Default template file type for automatic generate template by id
-     *
-     * @var string
-     */
-    protected $defaultTplFileType = 'php';
-
-    /**
      * Возвращает путь к файлу шаблона
      *
      * @param unknown $name
@@ -41,10 +35,7 @@ class Section extends s
     protected function getTemplate($name)
     {
         if ($this->id) {
-            $path = new Path(
-                self::_rootDir(),
-                static::$localTplDir,
-                f::concat_ws('.', $this->id, $this->defaultTplFileType));
+            $path = new ComponentTemplatePath($this, $this->id);
         } else {
             return null;
         }

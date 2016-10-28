@@ -14,5 +14,6 @@ $app_manager = \App\AppManager::getInstance();
 $app = $app_manager->selectApp();
 \Capsule\Tools\Tools::dump($app);
 \Capsule\Tools\Tools::dump(\Capsule\Ui\Section::templatesDir()->createDir());
-$p = new \Capsule\Component\Path\ComponentTemplatePath('\Capsule\Ui\Section', 'abstract');
+\Capsule\Tools\Tools::dump(\App\Cms\Ui\Section::templatesDir()->createDir());
+$p = new \Capsule\Component\Path\ComponentTemplatePath('\App\Cms\Ui\Section', 'abstract');
 \Capsule\Tools\Tools::dump($p->createFile());

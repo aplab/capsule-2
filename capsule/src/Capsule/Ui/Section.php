@@ -41,7 +41,14 @@ abstract class Section implements Iterator, Countable
     protected static $common = array();
 
     /**
-     * Object data
+     * Object instances
+     *
+     * @var array
+     */
+    protected static $instances = array();
+
+    /**
+     * Object internal data
      *
      * @var array
      */
@@ -96,8 +103,8 @@ abstract class Section implements Iterator, Countable
     public static function getElementById($id = null)
     {
         $class = get_called_class();
-        if (isset(static::$common[$class]['elements'][$id])) {
-            return static::$common[$class]['elements'][$id];
+        if (isset(static::$instances[$class][$id])) {
+            return static::$instances[$class][$id];
         }
         return null;
     }
@@ -111,10 +118,10 @@ abstract class Section implements Iterator, Countable
     public static function all()
     {
         $class = get_called_class();
-        if (!isset(static::$common[$class]['elements'])) {
-            static::$common[$class]['elements'] = array();
+        if (!isset(static::$instances[$class])) {
+            static::$instances[$class] = array();
         }
-        return static::$common[$class]['elements'];
+        return static::$instances[$class];
     }
 
     /**
@@ -192,14 +199,14 @@ abstract class Section implements Iterator, Countable
     {
         $class = get_class($this);
         if (isset($this->id)) {
-            unset(static::$common[$class]['elements'][$this->id]);
+            unset(static::$instances[$class][$this->id]);
         }
-        if (isset(static::$common[$class]['elements'][$id])) {
+        if (isset(static::$instances[$class][$id])) {
             // Element with this id already exists
             throw new Exception('Id already in use');
         }
         $this->data[$name] = $id;
-        static::$common[$class]['elements'][$id] = $this;
+        static::$instances[$class][$id] = $this;
         return $this;
     }
 
@@ -210,7 +217,7 @@ abstract class Section implements Iterator, Countable
     protected function unsetId($name)
     {
         $class = get_class($this);
-        unset(static::$common[$class]['elements'][$this->id]);
+        unset(static::$instances[$class][$this->id]);
         unset($this->data[$name]);
         return $this;
     }
@@ -385,72 +392,6 @@ abstract class Section implements Iterator, Countable
     public function __clone()
     {
         unset($this->data['id']);
-    }
-
-    /**
-     * Common service functions
-     */
-
-    /**
-     * Returns full classname (with namespace)
-     *
-     * @param void
-     * @return string
-     */
-    final protected static function _class()
-    {
-        $class = get_called_class();
-        if (!isset(self::$common[$class][__FUNCTION__])) {
-            self::$common[$class][__FUNCTION__] = $class;
-        }
-        return self::$common[$class][__FUNCTION__];
-    }
-
-    /**
-     * Returns ReflectionClass for called class
-     *
-     * @param void
-     * @return ReflectionClass
-     */
-    final protected static function _reflectionClass()
-    {
-        $class = get_called_class();
-        if (!isset(self::$common[$class][__FUNCTION__])) {
-            self::$common[$class][__FUNCTION__] = new ReflectionClass($class);
-        }
-        return self::$common[$class][__FUNCTION__];
-    }
-
-    /**
-     * Returns class root directory
-     *
-     * @param void
-     * @return string
-     */
-    final protected static function _rootDir()
-    {
-        $class = get_called_class();
-        if (!isset(self::$common[$class][__FUNCTION__])) {
-            self::$common[$class][__FUNCTION__] = str_replace('\\', '/',
-                    dirname(self::_reflectionClass()->getFileName()));
-        }
-        return self::$common[$class][__FUNCTION__];
-    }
-
-    /**
-     * Returns classname without namespaces
-     *
-     * @param void
-     * @return string
-     */
-    final protected static function _classname()
-    {
-        $class = get_called_class();
-        if (!isset(self::$common[$class][__FUNCTION__])) {
-            $data = explode('\\', $class);
-            self::$common[$class][__FUNCTION__] = array_pop($data);
-        }
-        return self::$common[$class][__FUNCTION__];
     }
 
     /**
