@@ -16,7 +16,7 @@ namespace Capsule\Component\SectionManager;
 
 use Capsule\Core\Singleton;
 
-class SectionManager extends Singleton 
+class SectionsManager extends Singleton
 {
     /**
      * Getter
