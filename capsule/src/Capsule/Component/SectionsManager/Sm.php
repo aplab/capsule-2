@@ -16,7 +16,7 @@ namespace Capsule\Component\SectionsManager;
 
 use Capsule\Component\SectionManager\SectionsManager;
 
-class Sm extends SectionsManager 
+class Sm extends SectionsManager
 {
 
 }
