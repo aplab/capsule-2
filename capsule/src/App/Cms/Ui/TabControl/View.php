@@ -22,7 +22,7 @@ use Capsule\Ui\TabControl\TabControl as t;
 use App\Cms\Ui\Script;
 use App\Cms\Ui\Stylesheet;
 use App\Cms\Cms;
-use App\Cms\Ui\Ui;
+use App\Cms\Ui\SectionManager;
 use Capsule\I18n\I18n;
 /**
  * View.php
@@ -42,10 +42,10 @@ class View
         $this->tabControl = $tab_control;
         $this->instanceName = $this->tabControl->instanceName;
         if (!self::$assetsIncluded) {
-            Ui::getInstance()->css->append(
+            SectionManager::getInstance()->css->append(
                 new Stylesheet(Cms::getInstance()->config->ui->tabControl->css)
             );
-            Ui::getInstance()->js->append(
+            SectionManager::getInstance()->js->append(
                 new Script(Cms::getInstance()->config->ui->tabControl->js)
             );
         }
@@ -57,7 +57,7 @@ class View
         foreach($items as $key => $item) {
             $data['items'][] = $item->getData();
         }
-        Ui::getInstance()->onload->append(
+        SectionManager::getInstance()->onload->append(
             'new CapsuleUiTabControl(' . json_encode(
                 $data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE
             ) . ');'

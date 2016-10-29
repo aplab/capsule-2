@@ -21,7 +21,7 @@ namespace App\Cms;
 use App\AbstractApp\App;
 use Capsule\Url\Filter;
 use Capsule\Url\Path;
-use App\Cms\Ui\Ui;
+use App\Cms\Ui\SectionManager;
 use Capsule\DataStorage\DataStorage;
 use Capsule\I18n\I18n;
 use Capsule\User\User;
@@ -45,7 +45,7 @@ use Capsule\Tools\Sysinfo;
  * @property string $mod
  * @property string $cmd
  * @property string $param
- * @property Ui $ui
+ * @property SectionManager $ui
  */
 class Cms extends App
 {
@@ -59,7 +59,7 @@ class Cms extends App
         $this->data['mod'] = array_shift($data); // module (e.g. User, News etc) or mode (operation) (e.g. install, logout etc)
         $this->data['cmd'] = array_shift($data); // module command (e.g. module user, command: add, edit etc)
         $this->data['param'] = $data; // /user/edit/12/ 12 - parameter
-        $this->data['ui'] = Ui::getInstance();
+        $this->data['ui'] = SectionManager::getInstance();
     }
 
     protected function getUrlFilter($name) {

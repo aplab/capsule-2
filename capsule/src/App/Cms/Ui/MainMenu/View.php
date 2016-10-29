@@ -18,7 +18,7 @@
 
 namespace App\Cms\Ui\MainMenu;
 
-use App\Cms\Ui\Ui;
+use App\Cms\Ui\SectionManager;
 use Capsule\Ui\DropdownMenu\Menu;
 use Capsule\Ui\DropdownMenu\Delimiter;
 use Capsule\Ui\DropdownMenu\SubPunct;
@@ -38,7 +38,7 @@ class View
     public function __construct(Menu $menu) {
         $this->menu = $menu;
         $this->instanceName = $this->menu->getInstanceName();
-        Ui::getInstance()->onload->append(
+        SectionManager::getInstance()->onload->append(
             'this.system_menu = new CapsuleCmsMainMenu(\'' . $this->menu->getInstanceName() . '\');');
     }
 

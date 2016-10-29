@@ -13,7 +13,7 @@
 
 namespace App\Cms\Ui;
 
-use Capsule\Ui\Ui as i;
+use Capsule\Component\SectionManager\SectionManager as is;
 /**
  * Ui.php
  *
@@ -22,7 +22,7 @@ use Capsule\Ui\Ui as i;
  *
  * @property Section $section
  */
-class Ui extends i
+class SectionManager extends is
 {
     /**
      * Getter

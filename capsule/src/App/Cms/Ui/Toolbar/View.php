@@ -21,7 +21,7 @@ namespace App\Cms\Ui\Toolbar;
 use Capsule\Ui\Toolbar\Delimiter;
 use Capsule\Ui\Toolbar\Toolbar as t;
 use Capsule\I18n\I18n;
-use App\Cms\Ui\Ui;
+use App\Cms\Ui\SectionManager;
 
 /**
  * SysToolbarView.php
@@ -39,7 +39,7 @@ class View
         $this->toolbar = $toolbar;
         $this->instanceName = $this->toolbar->instanceName;
         $json = json_encode($toolbar, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
-        Ui::getInstance()->onload->append(
+        SectionManager::getInstance()->onload->append(
             'new CapsuleUiToolbar(' . $json . ');'
         );
     }

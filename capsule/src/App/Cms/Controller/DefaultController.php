@@ -22,7 +22,7 @@ use App\Cms\Controller\AbstractController;
 use Capsule\Ui\DropdownMenu\SubPunct;
 use Capsule\Ui\DropdownMenu\Punct;
 use Capsule\Ui\DropdownMenu\Menu;
-use App\Cms\Ui\Ui;
+use App\Cms\Ui\SectionManager;
 use App\Cms\Ui\Script;
 use App\Cms\Ui\Stylesheet;
 use Capsule\Ui\Toolbar\Toolbar;
@@ -40,7 +40,7 @@ use App\Cms\Ui\Dialog\Dialog;
 class DefaultController extends AbstractController
 {
     /**
-     * @var Ui
+     * @var SectionManager
      */
     protected $ui;
     
@@ -179,10 +179,10 @@ class DefaultController extends AbstractController
     protected function initToolbar() {
         $toolbar = new Toolbar('cms-toolbar');
         $this->app->registry->toolbar = $toolbar;
-        Ui::getInstance()->css->append(new Stylesheet(
+        SectionManager::getInstance()->css->append(new Stylesheet(
             $this->app->config->ui->toolbar->css
         ));
-        Ui::getInstance()->js->append(new Script(
+        SectionManager::getInstance()->js->append(new Script(
             $this->app->config->ui->toolbar->js
         ));
     }
@@ -194,11 +194,11 @@ class DefaultController extends AbstractController
      * @return void
      */
     protected function initMainMenu() {
-        Ui::getInstance()->css->append(
+        SectionManager::getInstance()->css->append(
             new Stylesheet($this->app->config->ui->mainMenu->css),
             'mainmenucss'
         );
-        Ui::getInstance()->js->append(
+        SectionManager::getInstance()->js->append(
             new Script($this->app->config->ui->mainMenu->js),
             'mainmenujs'
         );

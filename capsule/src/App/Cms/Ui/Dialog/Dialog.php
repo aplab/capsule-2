@@ -19,7 +19,7 @@
 namespace App\Cms\Ui\Dialog;
 
 use PHP\Exceptionizer\Exceptionizer;
-use App\Cms\Ui\Ui;
+use App\Cms\Ui\SectionManager;
 use App\Cms\Ui\Stylesheet;
 use App\Cms\Ui\Script;
 use App\Cms\Cms;
@@ -40,10 +40,10 @@ class Dialog
         $this->instanceName = $data['instanceName'];
         settype($this->instanceName, 'string');
         if (!is_array(self::$instances)) {
-            Ui::getInstance()->css->append(
+            SectionManager::getInstance()->css->append(
                 new Stylesheet(Cms::getInstance()->config->ui->dialog->css)
             );
-            Ui::getInstance()->js->append(
+            SectionManager::getInstance()->js->append(
                 new Script(Cms::getInstance()->config->ui->dialog->js)
             );
             self::$instances = array();
@@ -54,6 +54,6 @@ class Dialog
         }
         // Здесь -1 нужен потому что окно с контентом должно быть выведено до того, как 
         // будут вызваны обработчики контента окна. Иначе им нечего будет обрабатывать
-        Ui::getInstance()->onload->insert('new CapsuleUiDialog(' . json_encode($data) . ');', -1);
+        SectionManager::getInstance()->onload->insert('new CapsuleUiDialog(' . json_encode($data) . ');', -1);
     }
 }

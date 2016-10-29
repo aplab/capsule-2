@@ -11,27 +11,25 @@
  * Time: 0:18
  */
 
-namespace Capsule\Ui;
+namespace Capsule\Component\SectionManager;
 
 use Capsule\Component\Path\ComponentTemplatesDir;
-use ReflectionClass, Iterator, Countable;
-use Capsule\Exception;
+use Capsule\Tools\ClassTools\AccessorName;
+use Capsule\Tools\Tools;
+use Iterator, Countable;
 use Capsule\Core\Fn;
 use Capsule\I18n\I18n;
-use Capsule\Validator\SignedDigits;
 
 /**
  * Section.php
  *
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
+ * @property string $id
  */
 abstract class Section implements Iterator, Countable
 {
-    /**
-     * @var string
-     */
-    const TEMPLATE_DEFAULT_EXTENSION = 'php';
+    use AccessorName;
 
     /**
      * Common data
@@ -61,13 +59,6 @@ abstract class Section implements Iterator, Countable
      */
     protected $content = array();
     
-    /**
-     * Element content with string index (was added with "as" parameter)
-     * 
-     * @var array
-     */
-    protected $index = array();
-
     /**
      * defined by Countable interface.
      *
@@ -133,28 +124,29 @@ abstract class Section implements Iterator, Countable
      */
     public function __set($name, $value)
     {
-        $setter = 'set' . ucfirst($name);
-        if (in_array($setter, get_class_methods($this))) {
+        $setter = static::_setter($name);
+        if ($setter) {
             return $this->$setter($name, $value);
         }
+        echo 'setter ';
         $this->data[$name] = $value;
         return $this;
     }
 
     /**
-     * setter
+     * Getter
      *
      * @param string $name
      * @return mixed
      */
     public function __get($name)
     {
+        $getter = static::_getter($name);
+        if ($getter) {
+            return $this->$getter($name);
+        }
         if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
-        }
-        $getter = 'get' . ucfirst($name);
-        if (in_array($getter, get_class_methods($this))) {
-            return $this->$getter($name);
         }
         return null;
     }
@@ -179,9 +171,9 @@ abstract class Section implements Iterator, Countable
      */
     public function __unset($name)
     {
-        $method_name = 'unset' . ucfirst($name);
-        if (in_array($method_name, get_class_methods($this))) {
-            return $this->$method_name($name);
+        $unsetter = static::_unsetter($name);
+        if ($unsetter) {
+            return $this->$unsetter($name);
         }
         unset($this->data[$name]);
         return $this;
@@ -192,7 +184,7 @@ abstract class Section implements Iterator, Countable
      *
      * @param string $name
      * @param $id
-     * @return Section
+     * @return static
      * @throws Exception
      */
     protected function setId($name, $id)
@@ -207,6 +199,7 @@ abstract class Section implements Iterator, Countable
         }
         $this->data[$name] = $id;
         static::$instances[$class][$id] = $this;
+        Tools::dump(static::$instances);
         return $this;
     }
 
@@ -228,7 +221,7 @@ abstract class Section implements Iterator, Countable
      * @param mixed $content
      * @param string $as
      * @throws Exception
-     * @return \Capsule\Ui\Section
+     * @return $this
      */
     public function append($content, $as = null)
     {
@@ -236,22 +229,21 @@ abstract class Section implements Iterator, Countable
             $this->content[] = $content;
             return $this;
         } else {
-            if (array_key_exists($as, $this->index)) {
+            if (array_key_exists($as, $this->content)) {
                 throw new Exception('Key already exists: ' . $as);
             }
-            $this->content[] = $content;
-            $this->index[$as] = $content;
+            $this->content[$as] = $content;
         }
         return $this;
     }
-    
+
     /**
      * Prepend content part
      *
      * @param mixed $content
      * @param string $as
+     * @return $this
      * @throws Exception
-     * @return \Capsule\Ui\Section
      */
     public function prepend($content, $as = null)
     {
@@ -259,11 +251,10 @@ abstract class Section implements Iterator, Countable
             array_unshift($this->content, $content);
             return $this;
         } else {
-            if (array_key_exists($as, $this->index)) {
+            if (array_key_exists($as, $this->content)) {
                 throw new Exception('Key already exists: ' . $as);
             }
-            array_unshift($this->content, $content);
-            $this->index[$as] = $content;
+            $this->content = [$as => $content] + $this->content;
         }
         return $this;
     }
@@ -280,46 +271,34 @@ abstract class Section implements Iterator, Countable
      */
     public function insert($content, $position = null, $as = null)
     {
-        if (!is_null($as)) {
-            if (array_key_exists($as, $this->index)) {
-                throw new Exception('Key already exists: ' . $as);
-            }
-            $this->index[$as] = $content;
-        }
         if (is_null($position)) {
-            $this->content[] = $content;
+            $this->append($content, $as);
             return $this;
         }
-        $validator = new SignedDigits();
-        $validator->name = 'position';
-        if ($validator->isValid($position)) {
-            $position = $validator->getClean();
-        } else {
-            $msg = $validator->message;
-            throw new Exception($msg);
+        if (!preg_match('/^-?\\d+$/', $position)) {
+            throw new Exception('Wrong position');
         }
-        settype($position, 'int');
         $length = sizeof($this->content);
-        if ($position < 0) $position = $length + $position;
-        if ($position < 0) $position = 0;
+        if ($position < 0) {
+            $position = $length + $position;
+        }
+        if ($position < 0) {
+            $position = 0;
+        }
+        if ($position >= $length) {
+            $this->append($content, $as);
+            return $this;
+        }
         if ($position == 0) {
-            array_unshift($this->content, $content);
+            $this->prepend($content, $as);
             return $this;
         }
-        if ($position > $length) {
-            array_push($this->content, $content);
-            return $this;
-        }
-        $c = 0;
-        $tmp = $this->content;
-        $this->content = array();
-        foreach ($tmp as $v) {
-            if ($c == $position) {
-                $this->content[] = $content;
-            }
-            $this->content[] = $v;
-            $c++;
-        }
+        $this->append($content, $as);
+        $this->content = (
+            array_slice($this->content, 0, $position, true) +
+            array_slice($this->content, -1, 1, true) +
+            array_slice($this->content, $position, $length - $position, true)
+        );
         return $this;
     }
     
@@ -335,18 +314,8 @@ abstract class Section implements Iterator, Countable
         if (is_null($as)) {
             $this->content[] = $content;
             return $this;
-        } else {
-            if (array_key_exists($as, $this->index)) {
-                $old = $this->index['$as'];
-                foreach ($this->content as $k => $v) {
-                    if ($old === $v) $this->content[$k] = $content;
-                }
-                $this->index['$as'] = $content;
-            } else {
-                $this->index[$as] = $content;
-                $this->content[] = $content;
-            }
         }
+        $this->content[$as] = $content;
         return $this;
     }
     
@@ -359,7 +328,6 @@ abstract class Section implements Iterator, Countable
     public function clear()
     {
         $this->content = array();
-        $this->index = array();
     }
     
     /**
@@ -370,7 +338,7 @@ abstract class Section implements Iterator, Countable
      */
     public function find($as)
     {
-        return array_key_exists($as, $this->index) ? $this->index[$as] : null;
+        return array_key_exists($as, $this->content) ? $this->content[$as] : null;
     }
     
     /**

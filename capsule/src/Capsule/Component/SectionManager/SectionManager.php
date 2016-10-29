@@ -7,22 +7,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Date: 18.10.2016
- * Time: 0:18
+ * Date: 28.10.2016
+ * Time: 7:14
  */
 
-namespace Capsule\Ui;
+namespace Capsule\Component\SectionManager;
+
 
 use Capsule\Core\Singleton;
-use Capsule\Exception;
-use Capsule\I18n\I18n;
-/**
- * WebUi.php
- *
- * @package Capsule
- * @author Alexander Polyanin <polyanin@gmail.com>
- */
-abstract class Ui extends Singleton
+
+abstract class SectionManager extends Singleton
 {
     /**
      * Getter

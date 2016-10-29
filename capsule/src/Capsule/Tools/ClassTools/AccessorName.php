@@ -12,6 +12,7 @@
  */
 
 namespace Capsule\Tools\ClassTools;
+use Capsule\Tools\Tools;
 
 /**
  * Class Accessor
@@ -30,13 +31,11 @@ trait AccessorName
         static $names = [];
         $class = get_called_class();
         if (!isset($names[$class][$name][$type])) {
-            echo 'access';
             if (!isset($methods[$class])) {
-                echo 'load';
                 $methods[$class] = array_flip(get_class_methods($class));
             }
             $method = $type . ucfirst($name);
-            if (isset($methods[$method])) {
+            if (isset($methods[$class][$method])) {
                 $names[$class][$name][$type] = $method;
             } else {
                 $names[$class][$name][$type] = false;

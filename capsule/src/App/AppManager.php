@@ -16,7 +16,6 @@ namespace App;
 
 use Capsule\Capsule;
 use Capsule\Core\Singleton;
-use Capsule\Tools\Tools;
 
 class AppManager extends Singleton
 {

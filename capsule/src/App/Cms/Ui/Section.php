@@ -14,8 +14,7 @@
 namespace App\Cms\Ui;
 
 use Capsule\Component\Path\ComponentTemplatePath;
-use Capsule\Ui\Section as s;
-use Capsule\Core\Fn as f;
+use Capsule\Component\SectionManager\Section as s;
 use Capsule\Common\Path;
 /**
  * Section.php
@@ -57,7 +56,7 @@ class Section extends s
      */
     public function __toString()
     {
-        $ui = Ui::getInstance();
+        $ui = SectionManager::getInstance();
         try {
             return $ui($this);
         } catch (\Exception $e) {

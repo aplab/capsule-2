@@ -21,7 +21,7 @@ namespace App\Cms\Ui\ObjectEditor;
 use Capsule\Ui\ObjectEditor\Oe;
 use Capsule\Ui\TabControl\Tab;
 use Capsule\Ui\TabControl\TabControl;
-use App\Cms\Ui\Ui;
+use App\Cms\Ui\SectionManager;
 use App\Cms\Ui\Stylesheet;
 use App\Cms\Ui\Script;
 use App\Cms\Cms;
@@ -75,27 +75,27 @@ class View
             }
             $i++;
         }
-        Ui::getInstance()->css->append(
+        SectionManager::getInstance()->css->append(
             new Stylesheet(Cms::getInstance()->config->ui->objectEditor->css)
         );
-        Ui::getInstance()->js->append(
+        SectionManager::getInstance()->js->append(
             new Script(Cms::getInstance()->config->ui->objectEditor->js)
         );
-        Ui::getInstance()->js->append(
+        SectionManager::getInstance()->js->append(
             new Script(Cms::getInstance()->config->ui->ckeditor->js)
         );
-        Ui::getInstance()->js->append(
+        SectionManager::getInstance()->js->append(
             new Script(Cms::getInstance()->config->ui->ckeditor->adapter)
         );
         $c = 'new CapsuleUiObjectEditor("' . $model->instanceName . '");';
-        Ui::getInstance()->onload->append($c);
+        SectionManager::getInstance()->onload->append($c);
         $c = '$("#' . $model->instanceName . '").css({top: ' . Cms::getInstance()->config->ui->toolbar->height . '})';
-        Ui::getInstance()->onload->append($c);
+        SectionManager::getInstance()->onload->append($c);
         $c = '$("#' . $model->instanceName . '-container").css({top: ' . Cms::getInstance()->config->ui->tabControl->height . '})';
-        Ui::getInstance()->onload->append($c);
+        SectionManager::getInstance()->onload->append($c);
         $this->tabView = new tv($tabs);
         $c = '$( \'textarea.capsule-oe-ckeditor\' ).ckeditor();';
-        Ui::getInstance()->onload->append($c);
+        SectionManager::getInstance()->onload->append($c);
     }
     
     /**

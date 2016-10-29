@@ -22,7 +22,7 @@ use Capsule\Ui\DialogWindow\DialogWindow;
 use App\Cms\Cms;
 use App\Cms\Ui\Stylesheet;
 use App\Cms\Ui\Script;
-use App\Cms\Ui\Ui;
+use App\Cms\Ui\SectionManager;
 /**
  * View.php
  *
@@ -39,16 +39,16 @@ class View
     
     public function __construct(DialogWindow $object) {
         if (!self::$assetsIncluded) {
-            Ui::getInstance()->css->append(
+            SectionManager::getInstance()->css->append(
                 new Stylesheet(Cms::getInstance()->config->ui->dialogWindow->css)
             );
-            Ui::getInstance()->js->append(
+            SectionManager::getInstance()->js->append(
                 new Script(Cms::getInstance()->config->ui->dialogWindow->js)
             );
         }
         $this->object = $object;
         $this->instanceName = $this->object->instanceName;
-        Ui::getInstance()->onload->append(
+        SectionManager::getInstance()->onload->append(
             'new CapsuleUiDialogWindow(' . json_encode($this->object) . ');');
     }
     

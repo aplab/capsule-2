@@ -19,7 +19,7 @@
 namespace App\Cms\Ui\UploadImageHistory;
 
 
-use App\Cms\Ui\Ui;
+use App\Cms\Ui\SectionManager;
 use App\Cms\Ui\Stylesheet;
 use App\Cms\Ui\Script;
 use App\Cms\Cms;
@@ -40,18 +40,18 @@ class View
     
     public function __construct($instance_name) {
         if (!self::$assetsIncluded) {
-            Ui::getInstance()->css->append(
+            SectionManager::getInstance()->css->append(
                 new Stylesheet(Cms::getInstance()->config->ui->uploadImageHistory->css),
                 'storagecss'
             );
-            Ui::getInstance()->js->append(
+            SectionManager::getInstance()->js->append(
                 new Script(Cms::getInstance()->config->ui->uploadImageHistory->js),
                 'storagejs'
             );
         }
         $this->instanceName = $instance_name;
         
-        Ui::getInstance()->onload->append(
+        SectionManager::getInstance()->onload->append(
             'new CapsuleUiUploadImageHistory({
                 instance_name: "' . $this->instanceName . '",
                 top: ' . Cms::getInstance()->config->ui->uploadImage->top . '});'
