@@ -57,13 +57,6 @@ abstract class Section implements Iterator, Countable
     protected $content = array();
     
     /**
-     * Element content with string index (was added with "as" parameter)
-     * 
-     * @var array
-     */
-    protected $index = array();
-
-    /**
      * defined by Countable interface.
      *
      * @param void
