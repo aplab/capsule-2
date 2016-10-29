@@ -20,7 +20,7 @@ $system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2));
 
 class a
 {
-    use \Capsule\Tools\ClassTools\Accessor;
+    use \Capsule\Tools\ClassTools\AccessorName;
     private function getA()
     {
 
@@ -32,7 +32,7 @@ class a
     }
     public function __get($name)
     {
-        $m = static::getter($name);
+        $m = static::_getter($name);
         if ($m) {
             $this->$m($name);
         }
@@ -40,7 +40,7 @@ class a
 
     public function __set($name, $value)
     {
-        $m = static::setter($name);
+        $m = static::_setter($name);
         if ($m) {
             $this->$m($name, $value);
         }
@@ -49,7 +49,7 @@ class a
 
 class b
 {
-    use \Capsule\Tools\ClassTools\Accessor;
+    use \Capsule\Tools\ClassTools\AccessorName;
     private function getC()
     {
 
@@ -61,7 +61,7 @@ class b
     }
     public function __get($name)
     {
-        $m = static::getter($name);
+        $m = static::_getter($name);
         if ($m) {
             $this->$m($name);
         }
@@ -69,7 +69,7 @@ class b
 
     public function __set($name, $value)
     {
-        $m = static::setter($name);
+        $m = static::_setter($name);
         if ($m) {
             $this->$m($name, $value);
         }
@@ -85,6 +85,7 @@ $b = [];
 for ($i = 0; $i < 10; $i++) {
     $b[$i] = new b;
     $b[$i]->d;
-    $b[$i]->t;
+    $b[$i]->t=2;
 }
 \Capsule\Tools\Tools::dump($b);
+\Capsule\Tools\Tools::dump($system->worktime);

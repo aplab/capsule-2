@@ -13,16 +13,26 @@
 
 namespace Capsule\Tools\ClassTools;
 
-
-trait Accessor
+/**
+ * Class Accessor
+ * @package Capsule\Tools\ClassTools
+ */
+trait AccessorName
 {
+    /**
+     * @param string $name
+     * @param string $type
+     * @return string|false
+     */
     protected static function _accessor($name, $type)
     {
         static $methods = [];
         static $names = [];
         $class = get_called_class();
         if (!isset($names[$class][$name][$type])) {
+            echo 'access';
             if (!isset($methods[$class])) {
+                echo 'load';
                 $methods[$class] = array_flip(get_class_methods($class));
             }
             $method = $type . ucfirst($name);
@@ -35,21 +45,37 @@ trait Accessor
         return $names[$class][$name][$type];
     }
 
+    /**
+     * @param $name
+     * @return false|string
+     */
     protected static function _getter($name)
     {
         return self::_accessor($name, 'get');
     }
 
+    /**
+     * @param $name
+     * @return false|string
+     */
     protected static function _setter($name)
     {
         return self::_accessor($name, 'set');
     }
 
+    /**
+     * @param $name
+     * @return false|string
+     */
     protected static function _issetter($name)
     {
         return self::_accessor($name, 'isset');
     }
 
+    /**
+     * @param $name
+     * @return false|string
+     */
     protected static function _unsetter($name)
     {
         return self::_accessor($name, 'unset');
