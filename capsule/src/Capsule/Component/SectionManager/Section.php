@@ -13,7 +13,9 @@
 
 namespace Capsule\Component\SectionManager;
 
+use Capsule\Component\Path\ComponentTemplatePath;
 use Capsule\Component\Path\ComponentTemplatesDir;
+use Capsule\Component\Path\Path;
 use Capsule\Tools\ClassTools\AccessorName;
 use Capsule\Tools\Tools;
 use Iterator, Countable;
@@ -26,6 +28,7 @@ use Capsule\I18n\I18n;
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  * @property string $id
+ * @property string $template
  */
 abstract class Section implements Iterator, Countable
 {
@@ -199,7 +202,6 @@ abstract class Section implements Iterator, Countable
         }
         $this->data[$name] = $id;
         static::$instances[$class][$id] = $this;
-        Tools::dump(static::$instances);
         return $this;
     }
 
@@ -363,14 +365,6 @@ abstract class Section implements Iterator, Countable
     }
 
     /**
-     * Implicit conversion to a string
-     *
-     * @param void
-     * @return string
-     */
-    abstract public function __toString();
-
-    /**
      * defined by Iterator interface functions
      */
 
@@ -438,15 +432,36 @@ abstract class Section implements Iterator, Countable
      */
     protected function setTemplate($name, $path)
     {
-        $path = str_replace('\\', '/', $path);
-        if (!preg_match('|/|', $path)) {
-            $path = Fn::concat_ws('/', self::_rootDir() . static::$localTplDir, $path);
-        }
-        if (file_exists($path)) {
-            $this->data[$name] = $path;
-            return $this;
-        }
-        $msg = I18n::t('File not found');
-        throw new Exception($msg);
+        $this->data[$name] = $path;
+        return $this;
     }
+
+    /**
+     * Возвращает путь к файлу шаблона
+     *
+     * @param string $name
+     * @throws Exception
+     * @return Path
+     */
+    protected function getTemplate($name)
+    {
+        if (isset($this->data[$name])) {
+            return $this->data[$name];
+        }
+        if ($this->id) {
+            $this->data[$name] = new ComponentTemplatePath($this, $this->id);
+        }
+        if (isset($this->data[$name])) {
+            return $this->data[$name];
+        }
+        return null;
+    }
+
+    /**
+     * Implicit conversion to a string
+     *
+     * @param void
+     * @return string
+     */
+    abstract public function __toString();
 }

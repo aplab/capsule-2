@@ -11,7 +11,7 @@
  * Time: 7:35
  */
 
-namespace Capsule\Component\SectionsManager;
+namespace Capsule\Component\SectionManager;
 
 /**
  * http://php.net/manual/ru/language.oop5.magic.php#107509
@@ -20,12 +20,13 @@ namespace Capsule\Component\SectionsManager;
  * @package Capsule\Component\SectionsManager
  * @author daan dot broekhof at gmail dot com
  */
-class ErrorHandler
+class ToStringFixer
 {
     protected static $_toStringException;
 
     public static function errorHandler($errorNumber, $errorMessage, $errorFile, $errorLine)
     {
+        restore_error_handler();
         if (isset(self::$_toStringException))
         {
             $exception = self::$_toStringException;
@@ -43,14 +44,11 @@ class ErrorHandler
     {
         // Should not occur with prescribed usage, but in case of recursion:
         // clean out exception, return a valid string, and weep
-        if (isset(self::$_toStringException))
-        {
+        if (isset(self::$_toStringException)) {
             self::$_toStringException = null;
             return '';
         }
-
         self::$_toStringException = $exception;
-
         return null;
     }
 }

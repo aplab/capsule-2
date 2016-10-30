@@ -13,9 +13,9 @@
 
 namespace App\Cms\Ui;
 
-use Capsule\Component\Path\ComponentTemplatePath;
 use Capsule\Component\SectionManager\Section as s;
-use Capsule\Common\Path;
+use Capsule\Component\SectionManager\ToStringFixer;
+
 /**
  * Section.php
  *
@@ -24,27 +24,6 @@ use Capsule\Common\Path;
  */
 class Section extends s
 {
-    /**
-     * Возвращает путь к файлу шаблона
-     *
-     * @param unknown $name
-     * @throws Exception
-     * @return \Capsule\Section
-     */
-    protected function getTemplate($name)
-    {
-        if ($this->id) {
-            $path = new ComponentTemplatePath($this, $this->id);
-        } else {
-            return null;
-        }
-        if (file_exists($path)) {
-            $this->data[$name] = $path;
-            return $path;
-        }
-        return null;
-    }
-
     /**
      * implicit conversion to a string
      *
@@ -60,7 +39,8 @@ class Section extends s
         try {
             return $ui($this);
         } catch (\Exception $e) {
-            trigger_error($e->getMessage(), E_USER_ERROR);
+            set_error_handler(array('\Capsule\Component\SectionManager\ToStringFixer', 'errorHandler'));
+            return ToStringFixer::throwToStringException($e);
         }
     }
 }

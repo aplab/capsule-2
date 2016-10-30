@@ -7,16 +7,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Date: 28.10.2016
- * Time: 7:33
+ * Date: 31.10.2016
+ * Time: 0:31
  */
-
-namespace Capsule\Component\SectionManager;
-
-
-use Capsule\Component\SectionManager\SectionManager;
-
-class Sm extends SectionManager
-{
-
-}
+?><body>
+    Страница сгенерирована за <?=\Capsule\Capsule::getInstance()->worktime?> сек!
+</body>
