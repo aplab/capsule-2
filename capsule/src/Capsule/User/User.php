@@ -18,18 +18,20 @@
 
 namespace Capsule\User;
 
-use Capsule\Common\String;
+use Capsule\Component\Utf8String;
 use Capsule\Exception;
 use Capsule\Db\Db;
 use Capsule\Capsule;
-use Capsule\Module\Module;
+use Capsule\Model\IdBased;
 /**
  * User.php
  *
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
+ * @property string $login
+ * @property string $password
  */
-class User extends Module
+class User extends IdBased
 {
     /**
      * Минимальная длина пароля.
@@ -39,30 +41,24 @@ class User extends Module
     const PASSWORD_MIN_LENGTH = 8;
 
     /**
-     * Весовой параметр из двух цифр является двоичным логарифмом счетчика
-     * итераций низлежащего хэширующего алгоритма, основанного на Blowfish, и
-     * должен быть в диапазоне 04-31
-     *
-     * @var numeric string 04-31
+     * @param $value
+     * @param $name
+     * @return $this
+     * @throws Exception
      */
-    const PASSWORD_COST = '07';
-
-    protected function setPassword($value, $name) {
-        if (!$value && array_key_exists($name, $this->data) &&
-                $this->data[$name]) {
+    protected function setPassword($value, $name)
+    {
+        if (!$value && array_key_exists($name, $this->data) && $this->data[$name]) {
             // I do not want to change the password
             return $this;
         }
-        $str = './' . join(array_merge(range('a','z'), range('A','Z'), range(0, 9)));
-        $salt = substr(str_shuffle($str), 22);
-        $pass = $value;
-        if (self::PASSWORD_MIN_LENGTH > String::length($pass)) {
+        if (self::PASSWORD_MIN_LENGTH > Utf8String::length($value)) {
             $msg = 'Wrong password length';
             throw new Exception($msg);
         }
-        $hash = crypt($pass, '$2a$' . self::PASSWORD_COST . '$' . $salt . '$');
-        if (strlen($hash) < strlen($salt)) {
-            $msg = 'Crypt error';
+        $hash = password_hash($value, PASSWORD_DEFAULT);
+        if (!$hash) {
+            $msg = 'Password hash error';
             throw new Exception($msg);
         }
         $this->data[$name] = $hash;
@@ -72,19 +68,28 @@ class User extends Module
     /**
      * Проверка пароля.
      *
-     * @param unknown $password
+     * @param string $password
      * @return boolean
      */
-    public function password($password) {
+    public function password($password)
+    {
         $hash = $this->password;
-        return crypt(strval($password), $hash) === $hash;
+        if (password_verify($password, $hash)) {
+            if (password_needs_rehash($hash, PASSWORD_DEFAULT)) {
+                $this->password = $password;
+                $this->store();
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
      * @param string $login
      * @return self
      */
-    public static function getElementByLogin($login) {
+    public static function getElementByLogin($login)
+    {
         $db = Db::getInstance();
         $table = self::config()->table->name;
         $sql = 'SELECT * FROM `' . $table . '`
@@ -101,7 +106,8 @@ class User extends Module
      * @return self
      * @throws Exception
      */
-    public static function createDefaultUser() {
+    public static function createDefaultUser()
+    {
         $user = new self;
         $user->login = Capsule::getInstance()->config->defaultUser->login;
         $user->password = Capsule::getInstance()->config->defaultUser->password;

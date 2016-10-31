@@ -18,6 +18,7 @@ use Capsule\Component\Config\Config;
 use Capsule\Component\DataStorage\DataStorage;
 use Capsule\Component\Json\Loader\Loader;
 use Capsule\Component\Path\ComponentConfigPath;
+use Capsule\Component\Session\Session;
 use Capsule\Component\Utf8String;
 use Capsule\Core\Autoload;
 use PHP\Exceptionizer\Exceptionizer;
@@ -173,8 +174,9 @@ class Capsule implements \Serializable
     {
         Autoload::getInstance();
         Utf8String::initialize();
-//        date_default_timezone_set($this->config->timezoneId);
+        date_default_timezone_set($this->config->timezoneId);
         $this->exceptionizer = new Exceptionizer;
+        Session::getInstance();
         $vendor = $this->buildPath($this->data['systemRoot'], self::DIR_VENDOR, 'autoload.php');
         require_once $vendor;
     }

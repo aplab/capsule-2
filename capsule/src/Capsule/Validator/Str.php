@@ -24,7 +24,7 @@ namespace Capsule\Validator;
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
-class String extends Validator
+class Str extends Validator
 {
     const   INVALID_TYPE = 'invalid_type',
         INVALID_VALUE = 'invalid_value';

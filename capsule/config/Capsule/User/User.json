@@ -34,7 +34,7 @@
             "comment": "",
             "label": "",
             "validator": {
-                "type": "String"
+                "type": "Str"
             },
             "formElement": {
                 "f1": {
