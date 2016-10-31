@@ -24,15 +24,29 @@ namespace App\Cms\Ui;
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
+/**
+ * Class Script
+ * @package App\Cms\Ui
+ */
 class Script
 {
+    /**
+     * @var
+     */
     private $src;
 
+    /**
+     * Script constructor.
+     * @param $src
+     */
     public function __construct($src)
     {
         $this->src = $src;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return'<script src="' . $this->src . '"></script>';

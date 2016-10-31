@@ -9,8 +9,9 @@
  *
  * Date: 31.10.2016
  * Time: 0:31
+ *
+ * include js files in the head section
  */
-?><!doctype html>
-<html lang="ru">
-<?php foreach ($this->html as $item) echo $item ?>
-</html>
+?>
+<script src="/capsule/assets/cms/js/js.js"></script>
+<?php foreach ($this->js as $item) echo $item ?>

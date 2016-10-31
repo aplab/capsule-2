@@ -24,16 +24,34 @@ namespace App\Cms\Ui;
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
+/**
+ * Class Stylesheet
+ * @package App\Cms\Ui
+ */
 class Stylesheet
 {
+    /**
+     * @var
+     */
+    /**
+     * @var null
+     */
     private $href, $media;
 
+    /**
+     * Stylesheet constructor.
+     * @param $href
+     * @param null $media
+     */
     public function __construct($href, $media = null)
     {
         $this->href = $href;
         $this->media = $media;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         if (is_null($this->media)) {

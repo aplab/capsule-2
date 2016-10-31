@@ -14,7 +14,7 @@
 namespace App\Cms\Ui;
 
 use Capsule\Component\SectionManager\Section as s;
-use Capsule\Component\SectionManager\ToStringFixer;
+use Capsule\Component\SectionManager\ToStringExceptionizer;
 
 /**
  * Section.php
@@ -35,12 +35,15 @@ class Section extends s
      */
     public function __toString()
     {
+        /**
+         * @var SectionManager $ui
+         */
         $ui = SectionManager::getInstance();
         try {
             return $ui($this);
         } catch (\Exception $e) {
-            set_error_handler(array('\Capsule\Component\SectionManager\ToStringFixer', 'errorHandler'));
-            return ToStringFixer::throwToStringException($e);
+            set_error_handler(['\Capsule\Component\SectionManager\ToStringExceptionizer', 'errorHandler']);
+            return ToStringExceptionizer::throwException($e);
         }
     }
 }

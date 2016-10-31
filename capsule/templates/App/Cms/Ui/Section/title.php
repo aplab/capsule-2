@@ -10,7 +10,4 @@
  * Date: 31.10.2016
  * Time: 0:31
  */
-?><!doctype html>
-<html lang="ru">
-<?php foreach ($this->html as $item) echo $item ?>
-</html>
+?><title><?php foreach ($this->title as $item) echo $item ?></title>

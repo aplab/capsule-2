@@ -20,35 +20,33 @@ namespace Capsule\Component\SectionManager;
  * @package Capsule\Component\SectionsManager
  * @author daan dot broekhof at gmail dot com
  */
-class ToStringFixer
+class ToStringExceptionizer
 {
-    protected static $_toStringException;
+    protected static $exception;
 
     public static function errorHandler($errorNumber, $errorMessage, $errorFile, $errorLine)
     {
         restore_error_handler();
-        if (isset(self::$_toStringException))
+        if (isset(self::$exception))
         {
-            $exception = self::$_toStringException;
+            $exception = self::$exception;
             // Always unset '_toStringException', we don't want a straggler to be found
             // later if something came between the setting and the error
-            self::$_toStringException = null;
-            if (preg_match('~^Method .*::__toString\(\) must return a string value$~', $errorMessage)) {
-                throw $exception;
-            }
+            self::$exception = null;
+            throw $exception;
         }
         return false;
     }
 
-    public static function throwToStringException($exception)
+    public static function throwException($exception)
     {
         // Should not occur with prescribed usage, but in case of recursion:
         // clean out exception, return a valid string, and weep
-        if (isset(self::$_toStringException)) {
-            self::$_toStringException = null;
+        if (isset(self::$exception)) {
+            self::$exception = null;
             return '';
         }
-        self::$_toStringException = $exception;
+        self::$exception = $exception;
         return null;
     }
 }
