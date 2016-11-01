@@ -16,8 +16,15 @@ namespace Capsule\Component\Session;
 
 use Capsule\Core\Singleton;
 
+/**
+ * Class Session
+ * @package Capsule\Component\Session
+ */
 class Session extends Singleton
 {
+    /**
+     * Session constructor.
+     */
     protected function __construct()
     {
         $lifetime = 86400;
@@ -55,29 +62,25 @@ class Session extends Singleton
 
     /**
      * @param $name
-     * @param $value
+     * @return mixed
      */
-    public function __set($name, $value)
+    public function get($name)
     {
-        return $this->set($name, $value);
-    }
-
-    /**
-     * @param $name
-     * @param null $default
-     * @return null
-     */
-    public function get($name, $default = null)
-    {
-        $key = $this->k($name);
-        return array_key_exists($key, $_SESSION) ? $_SESSION[$key] : $default;
+        $key = self::k($name);
+        if (!array_key_exists($key, $_SESSION)) {
+            $_SESSION[$key] = new SessionData;
+        }
+        if (!($_SESSION[$key] instanceof SessionData)) {
+            $_SESSION[$key] = new SessionData;
+        }
+        return $_SESSION[$key];
     }
 
     /**
      * @param $name
      * @param $value
      */
-    public function set($name, $value)
+    public function __set($name, $value)
     {
         $key = $this->k($name);
         $_SESSION[$key] = $value;
@@ -106,7 +109,7 @@ class Session extends Singleton
      * @param $name
      * @return string
      */
-    private function k($name)
+    private static function k($name)
     {
         return md5(serialize($name));
     }
