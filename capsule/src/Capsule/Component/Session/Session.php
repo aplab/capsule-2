@@ -15,6 +15,7 @@ namespace Capsule\Component\Session;
 
 
 use Capsule\Core\Singleton;
+use Capsule\Exception;
 
 /**
  * Class Session
@@ -79,30 +80,11 @@ class Session extends Singleton
     /**
      * @param $name
      * @param $value
+     * @throws Exception
      */
     public function __set($name, $value)
     {
-        $key = $this->k($name);
-        $_SESSION[$key] = $value;
-    }
-
-    /**
-     * @param $name
-     * @return bool
-     */
-    public function __isset($name)
-    {
-        return $this->exists($name);
-    }
-
-    /**
-     * @param $name
-     * @return bool
-     */
-    public function exists($name)
-    {
-        $key = $this->k($name);
-        return array_key_exists($key, $_SESSION);
+        throw new Exception('direct modification not allowed');
     }
 
     /**

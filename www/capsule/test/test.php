@@ -45,5 +45,6 @@ $system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2));
 $user = \Capsule\User\User::id(1);
 \Capsule\Tools\Tools::dump($user);
 //\Capsule\Tools\Tools::dump($user->password('capsule2'));
-\Capsule\Component\Session\Session::getInstance()->asdfasdf = 444;
+//\Capsule\Component\Session\Session::getInstance()->get(\Capsule\User\User::class)->id = 1;
 \Capsule\Tools\Tools::dump($_SESSION);
+\Capsule\Tools\Tools::dump(\Capsule\Component\Session\Session::getInstance()->get(\Capsule\User\User::class)->id);
