@@ -11,40 +11,24 @@ ini_set('xdebug.var_display_max_depth', 5);
 ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', -1);
 include dirname(__DIR__, 3) . '/capsule/src/Capsule/Capsule.php';
-$system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2));
-//$section = new \App\Cms\Ui\Section();
-//$html = clone $section;
-//$html->id = 'html';
-//
-//$head = clone $section;
-//$head->id = 'head';
-//
-//$body = clone $section;
-//$body->id = 'body';
-//
-//$title = clone $section;
-//$title->id = 'title';
-//$title->append('Capsule ');
-//$title->append(\Capsule\Capsule::getInstance()->config->version);
-//
-//$html->append($head);
-//$html->append($body);
-//$head->append($title);
-//
-//$css = clone $section;
-//$css->id = 'css';
-//$head->append($css);
-//
-//$js = clone $section;
-//$js->id = 'js';
-//$head->append($js);
-//
-//echo $html;
-//
-\Capsule\Tools\Tools::dump(\Capsule\User\User::_configDataJson());
-$user = \Capsule\User\User::id(1);
-\Capsule\Tools\Tools::dump($user);
-//\Capsule\Tools\Tools::dump($user->password('capsule2'));
-//\Capsule\Component\Session\Session::getInstance()->get(\Capsule\User\User::class)->id = 1;
-\Capsule\Tools\Tools::dump($_SESSION);
-\Capsule\Tools\Tools::dump(\Capsule\Component\Session\Session::getInstance()->get(\Capsule\User\User::class)->id);
+$system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2)); ?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form method="post">
+    <input type="text" name="<?=\Capsule\User\Auth::POST_VAR_USERNAME?>"><br>
+    <input type="text" name="<?=\Capsule\User\Auth::POST_VAR_PASSWORD?>"><br>
+    <input type="submit" value="ok">
+</form>
+</body>
+</html>
+<?php \Capsule\Tools\Tools::dump(\Capsule\User\Auth::getInstance()); ?>
+
+
