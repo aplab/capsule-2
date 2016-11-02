@@ -24,6 +24,8 @@ class Auth extends Singleton
     const POST_VAR_PASSWORD = 'password';
     const SESSION_KEY_USER_ID = 'user_id';
     const SESSION_KEY_SERVER_VARS = 'server';
+    const AUTH_METHOD_FORM = 'form';
+    const AUTH_METHOD_SESSION = 'session';
 
     protected $serverCheckKeys = [
         'HTTP_ACCEPT_ENCODING' => true,
@@ -45,6 +47,21 @@ class Auth extends Singleton
      * @var User
      */
     protected $user;
+
+    /**
+     * Как был авторизован пользователь, через форму или через сессию
+     *
+     * @var string
+     */
+    protected $method;
+
+    /**
+     * @return mixed
+     */
+    public function method()
+    {
+        return $this->method();
+    }
 
     /**
      * Auth constructor.
@@ -89,6 +106,7 @@ class Auth extends Singleton
             }
         }
         $this->user = $user;
+        $this->method = static::AUTH_METHOD_SESSION;
     }
 
     /**
@@ -119,7 +137,18 @@ class Auth extends Singleton
         }
         $this->user = $user;
         $this->session->{static::SESSION_KEY_USER_ID} = $user->id;
-        $this->session->{static::SESSION_KEY_SERVER_VARS} = $_SERVER;
+        $server = [];
+        foreach ($this->serverCheckKeys as $key => $check) {
+            if (!$check) {
+                continue;
+            }
+            $server[$key] = null;
+            if (array_key_exists($key, $_SERVER)) {
+                $server[$key] = $_SERVER[$key];
+            }
+        }
+        $this->session->{static::SESSION_KEY_SERVER_VARS} = $server;
+        $this->method = static::AUTH_METHOD_FORM;
     }
 
     /**

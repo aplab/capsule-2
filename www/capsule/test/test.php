@@ -24,11 +24,14 @@ $system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2)); ?>
 <body>
 <form method="post">
     <input type="text" name="<?=\Capsule\User\Auth::POST_VAR_USERNAME?>"><br>
-    <input type="text" name="<?=\Capsule\User\Auth::POST_VAR_PASSWORD?>"><br>
+    <input type="password" name="<?=\Capsule\User\Auth::POST_VAR_PASSWORD?>"><br>
     <input type="submit" value="ok">
 </form>
 </body>
 </html>
-<?php \Capsule\Tools\Tools::dump(\Capsule\User\Auth::getInstance()); ?>
+<?php
+//\Capsule\User\Auth::getInstance()->logout();
+
+\Capsule\Tools\Tools::dump(\Capsule\User\Auth::getInstance()); ?>
 
 
