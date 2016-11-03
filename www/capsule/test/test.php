@@ -11,27 +11,21 @@ ini_set('xdebug.var_display_max_depth', 5);
 ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', -1);
 include dirname(__DIR__, 3) . '/capsule/src/Capsule/Capsule.php';
-$system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2)); ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<form method="post">
-    <input type="text" name="<?=\Capsule\User\Auth::POST_VAR_USERNAME?>"><br>
-    <input type="password" name="<?=\Capsule\User\Auth::POST_VAR_PASSWORD?>"><br>
-    <input type="submit" value="ok">
-</form>
-</body>
-</html>
-<?php
-//\Capsule\User\Auth::getInstance()->logout();
-
-\Capsule\Tools\Tools::dump(\Capsule\User\Auth::getInstance()); ?>
-
+$system = \Capsule\Capsule::getInstance(dirname(__DIR__, 2));
+$section = new \App\Cms\Ui\Section;
+$section->id = 'login';
+if (isset($_GET['logout'])) {
+    \Capsule\User\Auth::getInstance()->logout();
+    header('Location: ' . parse_url($_SERVER['REQUEST_URI'],  PHP_URL_PATH));
+    die;
+}
+$user = \Capsule\User\Auth::getInstance()->user();
+if ($user) {
+    echo 'you are ' . $user->login;
+    ?>,
+    <a href="<?=$_SERVER['REQUEST_URI']?>?logout">logout</a>
+    <?php
+} else {
+    echo $section;
+}
 

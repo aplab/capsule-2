@@ -1,0 +1,28 @@
+@import "../../../resources/fonts/opensans.css";
+/*
+	Open Sans, 300, 300 italic, 400, 400 italic, 600, 600 italic, 700, 700 italic, 800, 800 italic
+*/
+* {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300!important;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+* + * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*::after, *::before {
+  box-sizing: border-box;
+}
+#myModal {
+  min-width: 240px;
+  opacity: .9;
+  background: url("/capsule/assets/cms/login/banner.jpg") no-repeat;
+  background-size: cover;
+  >div {
+    opacity: .7;
+  }
+}
