@@ -32,7 +32,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
                 <h2 class="modal-title">Capsule <?=\Capsule\Capsule::getInstance()->config->version?></h2>
             </div>
             <form method="post" action="<?=parse_url($_SERVER['REQUEST_URI'],  PHP_URL_PATH)?>">
