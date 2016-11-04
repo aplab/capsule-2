@@ -21,9 +21,11 @@ namespace App\AbstractApp;
 use Capsule\Component\Config\Config;
 use Capsule\Component\DataStorage\DataStorage;
 use Capsule\Component\Json\Loader\Loader;
-use Capsule\Component\Path\Path;
+use Capsule\Component\Path\ComponentConfigPath;
 use Capsule\Core\Singleton;
-use Capsule\Capsule;
+use Capsule\Exception;
+use Capsule\Tools\ClassTools\AccessorName;
+
 /**
  * App.php
  *
@@ -33,6 +35,8 @@ use Capsule\Capsule;
  */
 abstract class App extends Singleton
 {
+    use AccessorName;
+
     /**
      * Internal data
      *
@@ -47,9 +51,10 @@ abstract class App extends Singleton
      * @throws Exception
      * @return mixed
      */
-    public function __get($name) {
-        $getter = 'get' . ucfirst($name);
-        if (in_array($getter, get_class_methods($this))) {
+    public function __get($name)
+    {
+        $getter = static::_getter($name);
+        if ($getter) {
             return $this->$getter($name);
         }
         if (array_key_exists($name, $this->data)) {
@@ -67,9 +72,10 @@ abstract class App extends Singleton
      * @throws Exception
      * @return mixed
      */
-    public function __set($name, $value) {
-        $setter = 'set' . ucfirst($name);
-        if (in_array($setter, get_class_methods($this))) {
+    public function __set($name, $value)
+    {
+        $setter = static::_setter($name);
+        if ($setter) {
             $this->$setter($value, $name);
             return $this;
         }
@@ -85,18 +91,15 @@ abstract class App extends Singleton
      * @param string $name
      * @return mixed
      */
-    protected function getConfig($name) {
+    protected function getConfig($name)
+    {
         if (!array_key_exists($name, $this->data)) {
-            $class = get_class($this);
+            $class = get_called_class();
             $storage = DataStorage::getInstance();
             if ($storage->exists($class)) {
                 $this->data[$name] = $storage->get($class);
             } else {
-                $path = new Path(
-                    Capsule::getInstance()->systemRoot,
-                    Capsule::DIR_CONFIG,
-                    $class . '.json'
-                );
+                $path = new ComponentConfigPath($class);
                 $loader = new Loader($path);
                 $data = $loader->loadToArray();
                 $$name = new Config($data);
@@ -119,7 +122,8 @@ abstract class App extends Singleton
      * @param string $name
      * @return boolean
      */
-    public function __isset($name) {
+    public function __isset($name)
+    {
         return array_key_exists($name, $this->data);
     }
 }

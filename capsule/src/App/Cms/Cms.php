@@ -19,8 +19,8 @@
 namespace App\Cms;
 
 use App\AbstractApp\App;
+use Capsule\Component\Url\Path;
 use Capsule\Url\Filter;
-use Capsule\Url\Path;
 use App\Cms\Ui\SectionManager;
 use Capsule\DataStorage\DataStorage;
 use Capsule\I18n\I18n;
@@ -49,7 +49,8 @@ use Capsule\Tools\Sysinfo;
  */
 class Cms extends App
 {
-    protected function __construct() {
+    protected function __construct()
+    {
         $this->_init();
     }
 

@@ -40,13 +40,15 @@ class Lockable extends Registry
      * @var boolean
      */
     protected $lockAll = false;
-    
+
     /**
      * Lock all or selected properties
      *
-     * @param void|string|array|multidimensional array
+     * @param void|string|array|array[[]][]
+     * @return $this
      */
-    public function lock() {
+    public function lock()
+    {
         if (!func_num_args()) {
             $this->lockAll = true;
             return $this;
@@ -62,6 +64,7 @@ class Lockable extends Registry
             }
         };
         $a($args);
+        return $this;
     }
     
     /**
@@ -70,7 +73,8 @@ class Lockable extends Registry
      * @param void
      * @return self
      */
-    public function lockExisting() {
+    public function lockExisting()
+    {
         $this->lock = array_fill_keys(array_keys($this->registry), true);
         return $this;
     }
@@ -80,16 +84,14 @@ class Lockable extends Registry
      *
      * @param string $name
      * @param mixed $value
-     * @return self
      */
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         if ($this->lockAll) {
-            $msg = I18n::t('Cannot overwrite a property');
-            throw new \RuntimeException($msg);
+            throw new \RuntimeException('Cannot overwrite a property');
         }
         if (array_key_exists($name, $this->lock)) {
-            $msg = I18n::t('Cannot overwrite readonly property: ' . $name);
-            throw new \RuntimeException($msg);
+            throw new \RuntimeException('Cannot overwrite readonly property: ' . $name);
         }
         $this->registry[$name] = $value;
     }
@@ -100,14 +102,13 @@ class Lockable extends Registry
      * @param string $name
      * @return void
      */
-    public function __unset($name) {
+    public function __unset($name)
+    {
         if ($this->lockAll) {
-            $msg = I18n::t('Cannot unset a property');
-            throw new \RuntimeException($msg);
+            throw new \RuntimeException('Cannot unset a property');
         }
         if (array_key_exists($name, $this->lock)) {
-            $msg = I18n::t('Cannot unset readonly property: ' . $name);
-            throw new \RuntimeException($msg);
+            throw new \RuntimeException('Cannot unset readonly property: ' . $name);
         }
         unset($this->registry[$name]);
     }

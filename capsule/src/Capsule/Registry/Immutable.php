@@ -32,12 +32,11 @@ class Immutable extends Registry
      *
      * @param string $name
      * @param mixed $value
-     * @return self
      */
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         if (isset($this->$name)) {
-            $msg = I18n::t('Cannot overwrite a property');
-            throw new \RuntimeException($msg);
+            throw new \RuntimeException('Cannot overwrite a property');
         }
         $this->registry[$name] = $value;
     }
@@ -46,10 +45,9 @@ class Immutable extends Registry
      * Unset overloading
      *
      * @param string $name
-     * @return void
      */
-    public function __unset($name) {
-        $msg = I18n::t('Cannot unset a property');
-        throw new \RuntimeException($msg);
+    public function __unset($name)
+    {
+        throw new \RuntimeException('Cannot unset a property');
     }
 }

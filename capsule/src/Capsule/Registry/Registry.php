@@ -18,7 +18,6 @@
 
 namespace Capsule\Registry;
 
-use Capsule\I18n\I18n;
 /**
  * Registry.php
  *
@@ -32,26 +31,19 @@ class Registry
      *
      * @var array
      */
-    protected static $instances = array();
+    protected static $instances = [];
     
     /**
      * Disable create object directly
-     *
-     * @param void
-     * @return self
      */
     final protected function __construct() {}
     
     /**
      * Disable cloning
-     *
-     * @param void
-     * @return void
-     * @throws Exception
      */
-    public function __clone() {
-        $msg = I18n::t('Clone is not allowed.');
-        throw new \RuntimeException($msg);
+    public function __clone()
+    {
+        throw new \RuntimeException('Clone is not allowed.');
     }
     
     /**
@@ -60,7 +52,8 @@ class Registry
      * @param string $classname
      * @return self
      */
-    protected static function getInstanceOf($classname) {
+    protected static function getInstanceOf($classname)
+    {
         if(!isset(self::$instances[$classname])) {
             self::$instances[$classname] = new $classname;
         }
@@ -73,7 +66,8 @@ class Registry
      * @param void
      * @return self
      */
-    public static function getInstance() {
+    public static function getInstance()
+    {
         return self::getInstanceOf(get_called_class());
     }
     
@@ -82,15 +76,16 @@ class Registry
      *
      * @var array
      */
-    protected $registry = array();
-    
+    protected $registry = [];
+
     /**
      * Getter
      *
      * @param string $name
-     * @return Ambigous <NULL, multitype:>
+     * @return mixed|null
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         return array_key_exists($name, $this->registry) ? $this->registry[$name] : null;
     }
     
@@ -99,9 +94,9 @@ class Registry
      *
      * @param string $name
      * @param mixed $value
-     * @return self
      */
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         $this->registry[$name] = $value;
     }
     
@@ -111,7 +106,8 @@ class Registry
      * @param string $name
      * @return boolean
      */
-    public function __isset($name) {
+    public function __isset($name)
+    {
         return array_key_exists($name, $this->registry);
     }
     
@@ -121,7 +117,8 @@ class Registry
      * @param string $name
      * @return void
      */
-    public function __unset($name) {
+    public function __unset($name)
+    {
         unset($this->registry[$name]);
     }
 }
