@@ -37,23 +37,36 @@ class MenuItem
     protected $items = [];
 
     /**
+     * @var string
+     */
+    protected $caption;
+
+    /**
      * Punct constructor.
      * @param MenuItem|MainMenu $container
+     * @param null $caption
+     * @throws Exception
      */
-    public function __construct($container)
+    public function __construct($container, $caption = null)
     {
+        if ($caption) {
+            settype($caption, 'string');
+        }
         if ($container instanceof MainMenu) {
             $this->container = $container;
             $this->id = $container->getInstanceName() . '-' . sizeof(static::$instances);
             static::$instances[$this->id] = $this;
+            $this->caption = $caption ?: $this->id;
             return;
         }
         if ($container instanceof static) {
             $this->container = $container;
             $this->id = $container->getId() . '-' . sizeof(static::$instances);
             static::$instances[$this->id] = $this;
+            $this->caption = $caption ?: $this->id;
             return;
         }
+        throw new Exception('Wrong container type');
     }
 
     /**
@@ -65,11 +78,12 @@ class MenuItem
     }
 
     /**
+     * @param null $caption
      * @return MenuItem
      */
-    public function newSubMenuItem()
+    public function newSubMenuItem($caption = null)
     {
-        $menu_item = new MenuItem($this);
+        $menu_item = new MenuItem($this, $caption);
         $this->items[$menu_item->getId()] = $menu_item;
         return $menu_item;
     }

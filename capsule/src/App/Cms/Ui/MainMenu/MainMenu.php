@@ -53,11 +53,12 @@ class MainMenu
     }
 
     /**
+     * @param null $caption
      * @return MenuItem
      */
-    public function newMenuItem()
+    public function newMenuItem($caption = null)
     {
-        $menu_item = new MenuItem($this);
+        $menu_item = new MenuItem($this, $caption);
         $this->items[$menu_item->getId()] = $menu_item;
         return $menu_item;
     }
