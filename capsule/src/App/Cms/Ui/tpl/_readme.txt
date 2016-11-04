@@ -1,1 +1,0 @@
-Внутри шаблонов $this это объект WebUiCms а не WebUiCmsSection 

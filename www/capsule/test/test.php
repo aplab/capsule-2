@@ -20,12 +20,35 @@ if (isset($_GET['logout'])) {
     die;
 }
 $user = \Capsule\User\Auth::getInstance()->user();
-if ($user) {
-    echo 'you are ' . $user->login;
-    ?>,
-    <a href="<?=$_SERVER['REQUEST_URI']?>?logout">logout</a>
-    <?php
-} else {
+if (!$user) {
     echo $section;
-}
+    exit;
+} ?><!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    you are <?=$user->login?>
+    <a href="<?=$_SERVER['REQUEST_URI']?>?logout">logout</a><br>
+
+<?php
+
+$menu = new \App\Cms\Ui\MainMenu\MainMenu('test');
+$menu->newMenuItem();
+$menu->newMenuItem();
+$menu->newMenuItem()->newSubMenuItem()->newSubMenuItem();
+\Capsule\Tools\Tools::dump($menu)
+
+
+
+
+?>
+
+</body>
+</html>
 
