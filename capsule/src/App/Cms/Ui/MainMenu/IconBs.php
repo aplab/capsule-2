@@ -14,12 +14,37 @@
 namespace App\Cms\Ui\MainMenu;
 
 
+/**
+ * Bootstrap icon
+ *
+ * Class IconBs
+ * @package App\Cms\Ui\MainMenu
+ */
 class IconBs extends Icon
 {
+    /**
+     * @var
+     */
     protected $name;
 
+    /**
+     * IconBs constructor.
+     * @param $name
+     */
     public function __construct($name)
     {
         $this->name = $name;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function JsonSerialize()
+    {
+        return [
+            'type' => 'bootstrap',
+            'name' => $this->name
+        ];
     }
 }

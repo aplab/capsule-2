@@ -14,12 +14,36 @@
 namespace App\Cms\Ui\MainMenu;
 
 
+/**
+ * Font Awesome icon
+ *
+ * Class IconFa
+ * @package App\Cms\Ui\MainMenu
+ */
 class IconFa extends Icon
 {
+    /**
+     * @var
+     */
     protected $name;
 
+    /**
+     * IconFa constructor.
+     * @param $name
+     */
     public function __construct($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return array
+     */
+    public function JsonSerialize()
+    {
+        return [
+            'type' => 'fontawesome',
+            'name' => $this->name
+        ];
     }
 }

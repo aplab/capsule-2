@@ -14,20 +14,20 @@
 namespace App\Cms\Ui\MainMenu;
 
 
-class Url extends Action
+class Callback extends Action
 {
-    protected $url;
+    protected $callback;
 
-    public function __construct($url)
+    public function __construct($callback)
     {
-        $this->url = $url;
+        $this->callback = $callback;
     }
 
     public function JsonSerialize()
     {
         return [
-            'type' => 'url',
-            'url' => $this->url
+            'type' => 'callback',
+            'callback' => $this->callback
         ];
     }
 }

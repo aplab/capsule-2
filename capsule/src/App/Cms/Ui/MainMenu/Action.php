@@ -14,12 +14,19 @@
 namespace App\Cms\Ui\MainMenu;
 
 
-class Action
+abstract class Action implements \JsonSerializable
 {
-    protected $action;
+    /**
+     * Register action type
+     *
+     * @var string
+     */
+    const TYPE_CALLBACK = 'callback';
 
-    public function __construct($action)
-    {
-        $this->action = $action;
-    }
+    /**
+     * Register action type
+     *
+     * @var string
+     */
+    const TYPE_URL = 'url';
 }

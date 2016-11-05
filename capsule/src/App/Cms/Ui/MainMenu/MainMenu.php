@@ -13,7 +13,7 @@
 
 namespace App\Cms\Ui\MainMenu;
 
-class MainMenu
+class MainMenu implements \JsonSerializable
 {
     /**
      * @var static[]
@@ -54,12 +54,26 @@ class MainMenu
 
     /**
      * @param null $caption
+     * @param Action $action
+     * @param Icon $icon
      * @return MenuItem
      */
-    public function newMenuItem($caption = null)
+    public function newMenuItem($caption = null, Action $action = null, Icon $icon = null)
     {
-        $menu_item = new MenuItem($this, $caption);
+        $menu_item = new MenuItem($this, $caption, $action, $icon);
         $this->items[$menu_item->getId()] = $menu_item;
         return $menu_item;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'instanceName' => $this->instanceName,
+            'items' => $this->items
+        ];
     }
 }

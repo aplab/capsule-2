@@ -41,10 +41,11 @@ if (!$user) {
 $menu = new \App\Cms\Ui\MainMenu\MainMenu('test');
 $menu->newMenuItem();
 $menu->newMenuItem();
-$menu->newMenuItem()->newSubMenuItem()->newSubMenuItem();
-\Capsule\Tools\Tools::dump($menu)
+$menu->newMenuItem()->newSubMenuItem()->newSubMenuItem('ыть!');
+\Capsule\Tools\Tools::dump($menu);
+\Capsule\Tools\Tools::dump($menu->jsonSerialize());
 
-
+\Capsule\Tools\Tools::dump(json_encode($menu, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_UNICODE))
 
 
 ?>

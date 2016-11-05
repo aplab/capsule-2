@@ -14,7 +14,11 @@
 namespace App\Cms\Ui\MainMenu;
 
 
-class MenuItem
+/**
+ * Class MenuItem
+ * @package App\Cms\Ui\MainMenu
+ */
+class MenuItem implements \JsonSerializable
 {
     /**
      * @var MainMenu|static
@@ -25,6 +29,16 @@ class MenuItem
      * @var string
      */
     protected $id;
+
+    /**
+     * @var Action
+     */
+    protected $action;
+
+    /**
+     * @var Icon
+     */
+    protected $icon;
 
     /**
      * @var static[]
@@ -45,9 +59,11 @@ class MenuItem
      * Punct constructor.
      * @param MenuItem|MainMenu $container
      * @param null $caption
+     * @param Action $action
+     * @param Icon $icon
      * @throws Exception
      */
-    public function __construct($container, $caption = null)
+    public function __construct($container, $caption = null, Action $action = null, Icon $icon = null)
     {
         if ($caption) {
             settype($caption, 'string');
@@ -86,5 +102,18 @@ class MenuItem
         $menu_item = new MenuItem($this, $caption);
         $this->items[$menu_item->getId()] = $menu_item;
         return $menu_item;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'caption' => $this->caption,
+            'items' => $this->items
+        ];
     }
 }

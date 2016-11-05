@@ -14,7 +14,19 @@
 namespace App\Cms\Ui\MainMenu;
 
 
-abstract class Icon
+abstract class Icon implements \JsonSerializable
 {
+    /**
+     * Register icon type
+     *
+     * @var string
+     */
+    const TYPE_BOOTSTRAP = 'bootstrap';
 
+    /**
+     * Register icon type
+     *
+     * @var string
+     */
+    const TYPE_FONTAWESOME = 'fontawesome';
 }
