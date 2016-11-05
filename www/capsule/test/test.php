@@ -47,7 +47,7 @@ $menu->newMenuItem()->newSubMenuItem()->newSubMenuItem(
     new \App\Cms\Ui\MainMenu\IconBs('exit'));
 
 $section = new \App\Cms\Ui\Section('menu');
-$section->append($menu);
+$section->append(new \App\Cms\View\MainMenu($menu));
 echo $section;
 
 
