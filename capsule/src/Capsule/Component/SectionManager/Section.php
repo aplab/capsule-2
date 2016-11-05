@@ -218,6 +218,18 @@ abstract class Section implements Iterator, Countable
     }
 
     /**
+     * Section constructor.
+     * @param null|string $id
+     */
+    public function __construct($id = null)
+    {
+        if (is_null($id)) {
+            return;
+        }
+        $this->id = $id;
+    }
+
+    /**
      * Append content part
      *
      * @param mixed $content

@@ -45,10 +45,13 @@ $menu->newMenuItem()->newSubMenuItem()->newSubMenuItem(
     'ыть!',
     new \App\Cms\Ui\MainMenu\Url('/admin/'),
     new \App\Cms\Ui\MainMenu\IconBs('exit'));
-\Capsule\Tools\Tools::dump($menu);
-\Capsule\Tools\Tools::dump($menu->jsonSerialize());
 
-\Capsule\Tools\Tools::dump(json_encode($menu, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT))
+$section = new \App\Cms\Ui\Section('menu');
+$section->append($menu);
+echo $section;
+
+
+
 
 
 ?>
