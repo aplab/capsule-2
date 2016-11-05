@@ -42,7 +42,7 @@ class IconFa extends Icon
     public function JsonSerialize()
     {
         return [
-            'type' => 'fontawesome',
+            'type' => self::TYPE_FONTAWESOME,
             'name' => $this->name
         ];
     }

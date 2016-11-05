@@ -43,7 +43,7 @@ class IconBs extends Icon
     public function JsonSerialize()
     {
         return [
-            'type' => 'bootstrap',
+            'type' => self::TYPE_BOOTSTRAP,
             'name' => $this->name
         ];
     }

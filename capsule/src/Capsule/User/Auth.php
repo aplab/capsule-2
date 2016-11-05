@@ -167,5 +167,6 @@ class Auth extends Singleton
         $this->user = null;
         $this->session->{static::SESSION_KEY_USER_ID} = null;
         $this->session->{static::SESSION_KEY_SERVER_VARS} = [];
+        session_destroy();
     }
 }

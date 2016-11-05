@@ -26,7 +26,7 @@ class Url extends Action
     public function JsonSerialize()
     {
         return [
-            'type' => 'url',
+            'type' => self::TYPE_URL,
             'url' => $this->url
         ];
     }

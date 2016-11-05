@@ -73,7 +73,9 @@ class MainMenu implements \JsonSerializable
     {
         return [
             'instanceName' => $this->instanceName,
-            'items' => $this->items
+            'items' => array_map(function(MenuItem $i) {
+                return $i->jsonSerialize();
+            }, $this->items)
         ];
     }
 }

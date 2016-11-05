@@ -26,7 +26,7 @@ class Callback extends Action
     public function JsonSerialize()
     {
         return [
-            'type' => 'callback',
+            'type' => self::TYPE_CALLBACK,
             'callback' => $this->callback
         ];
     }

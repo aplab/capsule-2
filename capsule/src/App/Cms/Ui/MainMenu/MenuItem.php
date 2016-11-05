@@ -73,16 +73,20 @@ class MenuItem implements \JsonSerializable
             $this->id = $container->getInstanceName() . '-' . sizeof(static::$instances);
             static::$instances[$this->id] = $this;
             $this->caption = $caption ?: $this->id;
-            return;
-        }
-        if ($container instanceof static) {
+        } elseif ($container instanceof static) {
             $this->container = $container;
             $this->id = $container->getId() . '-' . sizeof(static::$instances);
             static::$instances[$this->id] = $this;
             $this->caption = $caption ?: $this->id;
-            return;
+        } else {
+            throw new Exception('Wrong container type');
         }
-        throw new Exception('Wrong container type');
+        if ($action) {
+            $this->action = $action;
+        }
+        if ($icon) {
+            $this->icon = $icon;
+        }
     }
 
     /**
@@ -97,9 +101,9 @@ class MenuItem implements \JsonSerializable
      * @param null $caption
      * @return MenuItem
      */
-    public function newSubMenuItem($caption = null)
+    public function newSubMenuItem($caption = null, Action $action = null, Icon $icon = null)
     {
-        $menu_item = new MenuItem($this, $caption);
+        $menu_item = new MenuItem($this, $caption, $action, $icon);
         $this->items[$menu_item->getId()] = $menu_item;
         return $menu_item;
     }
@@ -110,10 +114,19 @@ class MenuItem implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return [
+        $data = [
             'id' => $this->id,
             'caption' => $this->caption,
-            'items' => $this->items
+            'items' => array_map(function(MenuItem $i) {
+                return $i->jsonSerialize();
+            }, $this->items)
         ];
+        if ($this->action) {
+            $data['action'] = $this->action->jsonSerialize();
+        }
+        if ($this->icon) {
+            $data['icon'] = $this->icon->jsonSerialize();
+        }
+        return $data;
     }
 }

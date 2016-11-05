@@ -41,11 +41,14 @@ if (!$user) {
 $menu = new \App\Cms\Ui\MainMenu\MainMenu('test');
 $menu->newMenuItem();
 $menu->newMenuItem();
-$menu->newMenuItem()->newSubMenuItem()->newSubMenuItem('ыть!');
+$menu->newMenuItem()->newSubMenuItem()->newSubMenuItem(
+    'ыть!',
+    new \App\Cms\Ui\MainMenu\Url('/admin/'),
+    new \App\Cms\Ui\MainMenu\IconBs('exit'));
 \Capsule\Tools\Tools::dump($menu);
 \Capsule\Tools\Tools::dump($menu->jsonSerialize());
 
-\Capsule\Tools\Tools::dump(json_encode($menu, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_UNICODE))
+\Capsule\Tools\Tools::dump(json_encode($menu, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT))
 
 
 ?>

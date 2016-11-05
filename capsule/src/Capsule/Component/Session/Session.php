@@ -14,6 +14,8 @@
 namespace Capsule\Component\Session;
 
 
+use Capsule\Capsule;
+use Capsule\Component\Path\Path;
 use Capsule\Core\Singleton;
 use Capsule\Exception;
 
@@ -30,6 +32,7 @@ class Session extends Singleton
     {
         $lifetime = 86400;
         session_cache_expire(720);
+        session_save_path(new Path(dirname(Capsule::getInstance()->systemRoot), '.phpsess'));
         session_start([
             'name' => 'CS2SESSID',
             'cookie_httponly' => true,
