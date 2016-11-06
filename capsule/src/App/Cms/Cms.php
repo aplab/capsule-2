@@ -103,9 +103,9 @@ class Cms extends App
         }
         if (!Auth::getInstance()->user()) {
             $login_form = new Section;
-            $login_form->id = 'loginForm';
+            $login_form->id = 'login';
             ob_start();
-            echo $this->ui->loginForm;
+            echo $this->ui->login;
             $str = ob_get_clean();
             echo Fn::strip_spaces($str);
             return;

@@ -41,12 +41,14 @@ class DefaultController extends AbstractController
      */
     protected $ui;
     
-    protected function _init() {
+    protected function _init()
+    {
         parent::_init();
         $this->ui = $this->app->ui;
     }
     
-    public function handle() {
+    public function handle()
+    {
         $this->initSections();
         $this->initMainMenu();
         $this->initToolbar();
@@ -61,7 +63,8 @@ class DefaultController extends AbstractController
      * @param void
      * @return void
      */
-    protected function initSections() {
+    protected function initSections()
+    {
         $section = new Section;
         $html = clone $section;
         $html->id = 'html';
@@ -173,7 +176,8 @@ class DefaultController extends AbstractController
      * @param void
      * @return void
      */
-    protected function initToolbar() {
+    protected function initToolbar()
+    {
         $toolbar = new Toolbar('cms-toolbar');
         $this->app->registry->toolbar = $toolbar;
         SectionManager::getInstance()->css->append(new Stylesheet(
@@ -190,7 +194,8 @@ class DefaultController extends AbstractController
      * @param void
      * @return void
      */
-    protected function initMainMenu() {
+    protected function initMainMenu()
+    {
         SectionManager::getInstance()->css->append(
             new Stylesheet($this->app->config->ui->mainMenu->css),
             'mainmenucss'
@@ -216,7 +221,8 @@ class DefaultController extends AbstractController
      * @param void
      * @return void
      */
-    private function _initMainMenuSubitem($o, $config) {
+    private function _initMainMenuSubitem($o, $config)
+    {
         $items = $config->get('item');
         if (!$items) {
             return;

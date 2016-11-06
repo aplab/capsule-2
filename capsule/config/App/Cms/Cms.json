@@ -26,15 +26,15 @@
                         "item": {
                             "small_window": {
                                 "caption": "Popup",
-                                "action": "window.open('/admin/uploadimage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+                                "callback": "window.open('/admin/uploadimage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
                             },
                             "new tab": {
                                 "caption": "Open in new tab",
-                                "action": "window.open('/admin/uploadimage/', '_blank')"
+                                "callback": "window.open('/admin/uploadimage/', '_blank')"
                             },
                             "history": {
                                 "caption": "View history",
-                                "action": "window.open('/admin/uploadimagehistory/', '_blank')"
+                                "callback": "window.open('/admin/uploadimagehistory/', '_blank')"
                             }
                         }
                     }
@@ -398,7 +398,7 @@
                         "item": {
                             "small_window": {
                                 "caption": "Popup",
-                                "action": "window.open('/admin/storage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+                                "callback": "window.open('/admin/storage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
                             }
                         }
                     },
@@ -415,11 +415,11 @@
                 "item": {
                     "duplicate": {
                         "caption": "Duplicate",
-                        "action": "window.open(location.href, '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+                        "callback": "window.open(location.href, '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
                     },
                     "new": {
                         "caption": "New",
-                        "action": "window.open('/admin/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+                        "callback": "window.open('/admin/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
                     }
                 }
             },
@@ -458,7 +458,7 @@
                     },
                     "about": {
                         "caption": "About",
-                        "action": "CapsuleUiDialog.getInstance('about').showCenter()"
+                        "callback": "CapsuleUiDialog.getInstance('about').showCenter()"
                     }
                 }
             }
