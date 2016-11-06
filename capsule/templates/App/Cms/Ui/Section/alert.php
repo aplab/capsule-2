@@ -10,9 +10,10 @@
  * Date: 31.10.2016
  * Time: 0:31
  *
- * include js files in the head section
+ * msgboxes after the onload section (javascript)
  */
-?>
-<script src="/capsule/components/jquery/jquery-3.1.1.min.js"></script>
-<script src="/capsule/assets/cms/js/js.js"></script>
-<?php foreach ($this->js as $item) echo $item ?>
+if (sizeof($this->alert)) : ?>
+$(document).ready(function() {
+<?php foreach ($this->alert as $_){?><?='alert(\'' . str_replace('\'', '\\\'', $_) . '\')' . PHP_EOL;}?>
+});
+<?php endif ?>

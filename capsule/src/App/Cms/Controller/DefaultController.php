@@ -54,6 +54,7 @@ class DefaultController extends AbstractController
         $this->initToolbar();
 //        $this->ui->menu->append(new MainMenu($this->app->registry->mainMenu));
 //        $this->ui->toolbar->append(new \App\Cms\Ui\Toolbar\View($this->app->registry->toolbar));
+        SectionManager::getInstance()->alert->append('test');
         echo $this->ui->html;
     }
     
@@ -94,11 +95,6 @@ class DefaultController extends AbstractController
         $css->id = 'css';
         $head->append($css);
 
-        $css->append(new Stylesheet($this->app->config->path->css->cssReset));
-        $css->append(new Stylesheet($this->app->config->path->css->cssStyle));
-
-        $css->append(new Stylesheet($this->app->config->ui->controls->css));
-
         $builtinCss = clone $section;
         $builtinCss->id = 'builtinCss';
         $head->append($builtinCss);
@@ -106,16 +102,6 @@ class DefaultController extends AbstractController
         $js = clone $section;
         $js->id = 'js';
         $head->append($js);
-
-        $js->append(new Script($this->app->config->ui->controls->js));
-        
-        $js->append(new Script($this->app->config->path->js->jquery));
-        $js->append(new Script($this->app->config->path->js->capsule));
-        
-        $css->append(new Stylesheet($this->app->config->path->jqueryUi->css1));
-        $css->append(new Stylesheet($this->app->config->path->jqueryUi->css2));
-        $css->append(new Stylesheet($this->app->config->path->jqueryUi->css3));
-        $js->append(new Script($this->app->config->path->jqueryUi->js));
 
         $onload = clone $section;
         $onload->id = 'onload';
@@ -180,12 +166,6 @@ class DefaultController extends AbstractController
     {
         $toolbar = new Toolbar('cms-toolbar');
         $this->app->registry->toolbar = $toolbar;
-        SectionManager::getInstance()->css->append(new Stylesheet(
-            $this->app->config->ui->toolbar->css
-        ));
-        SectionManager::getInstance()->js->append(new Script(
-            $this->app->config->ui->toolbar->js
-        ));
     }
 
     /**
@@ -196,14 +176,6 @@ class DefaultController extends AbstractController
      */
     protected function initMainMenu()
     {
-        SectionManager::getInstance()->css->append(
-            new Stylesheet($this->app->config->ui->mainMenu->css),
-            'mainmenucss'
-        );
-        SectionManager::getInstance()->js->append(
-            new Script($this->app->config->ui->mainMenu->js),
-            'mainmenujs'
-        );
         $menu = new Menu('main-menu');
         $this->app->registry->mainMenu = $menu;
         $menu_config = $this->app->config->mainMenu;
