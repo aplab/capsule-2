@@ -15,454 +15,445 @@
     "comment": "Main menu configuration",
     "mainMenu": {
         "help": "Конфигурация главного меню",
-        "item": {
-            "file": {
+        "items": [
+            {
                 "caption": "File",
                 "help": "File",
-                "item": {
-                    "uploadimage": {
+                "items": [
+                    {
                         "caption": "Upload image",
                         "url": "uploadimage",
-                        "item": {
-                            "small_window": {
+                        "items": [
+                            {
                                 "caption": "Popup",
                                 "callback": "window.open('/admin/uploadimage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
                             },
-                            "new tab": {
+                            {
                                 "caption": "Open in new tab",
                                 "callback": "window.open('/admin/uploadimage/', '_blank')"
                             },
-                            "history": {
+                            {
                                 "caption": "View history",
                                 "callback": "window.open('/admin/uploadimagehistory/', '_blank')"
                             }
-                        }
+                        ]
                     }
-                }
+                ]
             },
-            "site": {
+            {
                 "caption": "Site",
                 "help": "Site",
-                "item": {
-                    "go_to_admin": {
+                "items": [
+                    {
                         "caption": "Manage",
                         "url": "/admin/"
                     },
-                    "go_to_site": {
+                    {
                         "caption": "Go to website",
                         "url": "/"
                     },
-                    "d1": {
-                        "type": "delimiter"
-                    },
-                    "exit": {
+                    {
                         "caption": "Exit",
                         "url": "logout"
                     }
-                }
+                ]
             },
-            "modules": {
+            {
                 "caption": "Modules",
                 "help": "Modules",
-                "item": {
-                    "catalog": {
+                "items": [
+                    {
                         "caption": "Catalog",
-                        "item": {
-                            "product": {
+                        "items": [
+                            {
                                 "caption": "Product",
                                 "url": "product",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "product/add"
                                     }
-                                }
+                                ]
                             },
-                            "section": {
+                            {
                                 "caption": "Section",
                                 "url": "section",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "section/add"
                                     }
-                                }
+                                ]
                             },
-                            "attribute": {
+                            {
                                 "caption": "Attribute",
                                 "url": "attribute",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "attribute/add"
                                     }
-                                }
+                                ]
                             },
-                            "attributegroup": {
+                            {
                                 "caption": "Attribute group",
                                 "url": "attributegroup",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "attributegroup/add"
                                     }
-                                }
+                                ]
                             },
-                            "unit": {
+                            {
                                 "caption": "Единица измерения",
                                 "url": "unit",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "unit/add"
                                     }
-                                }
+                                ]
                             },
-                            "attribute-section-link": {
+                            {
                                 "caption": "Attribute Section Link",
                                 "url": "attribute-section-link",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "attribute-section-link/add"
                                     }
-                                }
+                                ]
                             }
-                        }
+                        ]
                     },
-                    "usrcatalog": {
+                    {
                         "caption": "Usr Catalog",
-                        "item": {
-                            "product": {
+                        "items": [
+                            {
                                 "caption": "Product",
                                 "url": "usrproduct",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "usrproduct/add"
                                     }
-                                }
+                                ]
                             },
-                            "section": {
+                            {
                                 "caption": "Section",
                                 "url": "usrsection",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "usrsection/add"
                                     }
-                                }
+                                ]
                             },
-                            "attribute": {
+                            {
                                 "caption": "Attribute",
                                 "url": "usrattribute",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "usrattribute/add"
                                     }
-                                }
+                                ]
                             },
-                            "attributegroup": {
+                            {
                                 "caption": "Attribute group",
                                 "url": "usrattributegroup",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "usrattributegroup/add"
                                     }
-                                }
+                                ]
                             },
-                            "unit": {
+                            {
                                 "caption": "Единица измерения",
                                 "url": "usrunit",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "usrunit/add"
                                     }
-                                }
+                                ]
                             },
-                            "attribute-section-link": {
+                            {
                                 "caption": "Attribute Section Link",
                                 "url": "usrattribute-section-link",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "usrattribute-section-link/add"
                                     }
-                                }
+                                ]
                             }
-                        }
+                        ]
                     },
-                    "textblock": {
+                    {
                         "caption": "Text blocks",
                         "url": "textblock"
                     },
-                    "devlog": {
+                    {
                         "caption": "Dev log",
                         "url": "devlog",
-                        "item": {
-                            "add": {
+                        "items": [
+                            {
                                 "caption": "add",
                                 "url": "devlog/add"
                             }
-                        }
+                        ]
                     },
-                    "flatmenu": {
+                    {
                         "caption": "Flat menu",
                         "url": "flatmenu",
-                        "item": {
-                            "container": {
+                        "items": [
+                            {
                                 "caption": "Menu",
                                 "url": "flatmenu",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "flatmenu/add"
                                     },
-                                    "list": {
+                                    {
                                         "caption": "list",
                                         "url": "flatmenu"
                                     }
-                                }
+                                ]
                             },
-                            "item": {
+                            {
                                 "caption": "Punct",
                                 "url": "flatmenupunct",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "flatmenupunct/add"
                                     },
-                                    "list": {
+                                    {
                                         "caption": "list",
                                         "url": "flatmenupunct"
                                     }
-                                }
+                                ]
                             }
-                        }
+                        ]
                     },
-                    "treemenu": {
+                    {
                         "caption": "Tree menu",
                         "url": "treemenu",
-                        "item": {
-                            "container": {
+                        "items": [
+                            {
                                 "caption": "Menu",
                                 "url": "treemenu",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "treemenu/add"
                                     },
-                                    "list": {
+                                    {
                                         "caption": "list",
                                         "url": "treemenu"
                                     }
-                                }
+                                ]
                             },
-                            "item": {
+                            {
                                 "caption": "Punct",
                                 "url": "treemenupunct",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "treemenupunct/add"
                                     },
-                                    "list": {
+                                    {
                                         "caption": "list",
                                         "url": "treemenupunct"
                                     }
-                                }
+                                ]
                             }
-                        }
+                        ]
                     }
-                }
+                ]
             },
-            "references": {
+            {
                 "caption": "References",
                 "help": "References",
-                "item": {
-                    "named": {
+                "items": [
+                    {
                         "caption": "Named",
                         "url": "named"
                     },
-                    "imaged": {
+                    {
                         "caption": "Imaged",
                         "url": "imaged"
                     },
-                    "description": {
+                    {
                         "caption": "Description",
                         "url": "description"
                     }
-                }
+                ]
             },
-            "units": {
+            {
                 "caption": "Units",
                 "help": "Units",
-                "item": {
-                    "nested": {
+                "items": [
+                    {
                         "caption": "nested",
-                        "item": {
-                            "container": {
+                        "items": [
+                            {
                                 "caption": "container",
                                 "url": "nestedcontainer",
-                                "item": {
-                                    "add": {
+                                "items": [
+                                    {
                                         "caption": "add",
                                         "url": "nestedcontainer/add"
                                     },
-                                    "list": {
+                                    {
                                         "caption": "list",
                                         "url": "nestedcontainer"
                                     }
-                                }
+                                ]
                             },
-                            "item": {
+                            {
                                 "caption": "item",
                                 "url": "nesteditem"
                             }
-                        }
+                        ]
                     },
-                    "tree_list": {
+                    {
                         "caption": "nested tree",
-                        "item": {
-                            "container": {
+                        "items": [
+                            {
                                 "caption": "container",
                                 "url": "treecontainer"
                             },
-                            "item": {
+                            {
                                 "caption": "item",
                                 "url": "treeitem"
                             }
-                        }
+                        ]
                     },
-                    "tree": {
+                    {
                         "caption": "Tree",
                         "url": "tree"
                     },
-                    "active": {
+                    {
                         "caption": "Active",
                         "url": "active"
                     },
-                    "richtext": {
+                    {
                         "caption": "Rich text",
                         "url": "richtext"
                     },
-                    "dated": {
+                    {
                         "caption": "dated",
                         "url": "dated"
                     },
-                    "dated advanced": {
+                    {
                         "caption": "dated advanced",
                         "url": "datedadvanced"
                     },
-                    "unit with timestamp": {
+                    {
                         "caption": "unit with timestamp",
                         "url": "unitts"
                     },
-                    "unit with user": {
+                    {
                         "caption": "unit with user",
                         "url": "unitusr"
                     },
-                    "unit with user & timestamp": {
+                    {
                         "caption": "unit with user & ts",
                         "url": "unittsusr"
                     },
-                    "named with user & timestamp": {
+                    {
                         "caption": "named with user & ts",
                         "url": "namedtsusr"
                     },
-                    "titled with user & timestamp": {
+                    {
                         "caption": "titled with user & ts",
                         "url": "titledtsusr"
                     },
-                    "token with user & timestamp": {
+                    {
                         "caption": "token with user & ts",
                         "url": "tokentsusr"
                     },
-                    "bind with user & timestamp": {
+                    {
                         "caption": "bind with user & ts",
                         "url": "bindtsusr"
                     }
-                }
+                ]
             },
-            "tools": {
+            {
                 "disabled": true,
                 "caption": "Tools",
                 "help": "Tools",
-                "item": {
-                    "storage": {
+                "items": [
+                    {
                         "caption": "Storage",
                         "url": "storage",
-                        "item": {
-                            "small_window": {
+                        "items": [
+                            {
                                 "caption": "Popup",
                                 "callback": "window.open('/admin/storage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
                             }
-                        }
+                        ]
                     },
-                    "files": {
+                    {
                         "disabled": false,
                         "caption": "Files",
                         "url": "files"
                     }
-                }
+                ]
             },
-            "window": {
+            {
                 "caption": "Window",
                 "help": "Window",
-                "item": {
-                    "duplicate": {
+                "items": [
+                    {
                         "caption": "Duplicate",
                         "callback": "window.open(location.href, '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
                     },
-                    "new": {
+                    {
                         "caption": "New",
                         "callback": "window.open('/admin/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
                     }
-                }
+                ]
             },
-            "settings": {
+            {
                 "caption": "Settings",
                 "help": "Settings",
-                "item": {
-                    "preferences": {
+                "items": [
+                    {
                         "caption": "Preferences",
                         "url": "preferences"
                     },
-                    "user": {
+                    {
                         "caption": "User management",
                         "url": "user"
                     },
-                    "d1": {
-                        "type": "delimiter"
-                    },
-                    "install": {
+                    {
                         "caption": "Restart",
                         "url": "install"
                     }
-                }
+                ]
             },
-            "help": {
+            {
                 "caption": "Help",
                 "help": "Help",
-                "item": {
-                    "help": {
+                "items": [
+                    {
                         "caption": "Help",
                         "url": "http://www.aplab.ru/",
                         "target": "_blank"
                     },
-                    "d1": {
-                        "type": "delimiter"
-                    },
-                    "about": {
+                    {
                         "caption": "About",
                         "callback": "CapsuleUiDialog.getInstance('about').showCenter()"
                     }
-                }
+                ]
             }
-        }
+        ]
     },
     "templates": "/var/www/templates/cms",
     "ui": {

@@ -56,6 +56,11 @@ class MenuItem implements \JsonSerializable
     protected $caption;
 
     /**
+     * @var bool
+     */
+    public $disabled = false;
+
+    /**
      * Punct constructor.
      * @param MenuItem|MainMenu $container
      * @param null $caption
@@ -117,6 +122,7 @@ class MenuItem implements \JsonSerializable
         $data = [
             'id' => $this->id,
             'caption' => $this->caption,
+            'disabled' => !!$this->disabled,
             'items' => array_map(function(MenuItem $i) {
                 return $i->jsonSerialize();
             }, $this->items)

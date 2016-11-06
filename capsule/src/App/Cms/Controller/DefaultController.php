@@ -18,13 +18,11 @@
 
 namespace App\Cms\Controller;
 
-use App\Cms\View\MainMenu;
+use App\Cms\Ui\MainMenu\MainMenu;
+use App\Cms\Ui\MainMenu\MenuItem;
 use Capsule\Ui\DropdownMenu\SubPunct;
 use Capsule\Ui\DropdownMenu\Punct;
-use Capsule\Ui\DropdownMenu\Menu;
 use App\Cms\Ui\SectionManager;
-use App\Cms\Ui\Script;
-use App\Cms\Ui\Stylesheet;
 use Capsule\Ui\Toolbar\Toolbar;
 use App\Cms\Ui\Section;
 use Capsule\Capsule;
@@ -51,10 +49,9 @@ class DefaultController extends AbstractController
     {
         $this->initSections();
         $this->initMainMenu();
-        $this->initToolbar();
+//        $this->initToolbar();
 //        $this->ui->menu->append(new MainMenu($this->app->registry->mainMenu));
 //        $this->ui->toolbar->append(new \App\Cms\Ui\Toolbar\View($this->app->registry->toolbar));
-        SectionManager::getInstance()->alert->append('test');
         echo $this->ui->html;
     }
     
@@ -103,13 +100,13 @@ class DefaultController extends AbstractController
         $js->id = 'js';
         $head->append($js);
 
-        $onload = clone $section;
-        $onload->id = 'onload';
-        $head->append($onload);
-        
         $builtinJs = clone $section;
         $builtinJs->id = 'builtinJs';
         $head->append($builtinJs);
+
+        $onload = clone $section;
+        $onload->id = 'onload';
+        $head->append($onload);
         
         $alert = clone $section;
         $alert->id = 'alert';
@@ -176,46 +173,12 @@ class DefaultController extends AbstractController
      */
     protected function initMainMenu()
     {
-        $menu = new Menu('main-menu');
+        $menu = new MainMenu('main-menu');
         $this->app->registry->mainMenu = $menu;
         $menu_config = $this->app->config->mainMenu;
         foreach ($menu_config->item as $id => $config) {
             if ($config->get('disabled')) continue;
-            $punct = new Punct($config->get('caption', 'не названный пункт'));
-            $menu->addPunct($punct, $id);
-            $this->_initMainMenuSubitem($punct, $config);
-        }
-    }
-    
-    /**
-     * init main menu subitems
-     *
-     * @param void
-     * @return void
-     */
-    private function _initMainMenuSubitem($o, $config)
-    {
-        $items = $config->get('item');
-        if (!$items) {
-            return;
-        }
-        $filter = $this->app->urlFilter;
-        foreach ($items as $id => $config) {
-            if ('delimiter' == $config->get('type')) {
-                $o->addDelimiter();
-                continue;
-            }
-            $name = $config->get('caption', 'не названный подпункт');
-            $url = $config->get('url');
-            if (!preg_match('|^http://|', $url) && $url) {
-                $url = $filter($url);
-            }
-            $sub = new SubPunct($name, $url);
-            $sub->setDisabled($config->get('disabled'));
-            $sub->setTarget($config->get('target'));
-            $sub->setAction($config->get('action'));
-            $o->addSubPunct($sub);
-            $this->_initMainMenuSubitem($sub, $config);
+            echo $id . ' ';
         }
     }
 }
