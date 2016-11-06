@@ -116,7 +116,7 @@ class Config implements Iterator, Countable
                 } else {
                     if (ArrayTools::isNumericKeys($property_value)) {
                         // не преобразуем в объект, оставляем массивом
-                        $this->data[$property_name] = $property_value;
+                        $this->data[$property_name] = $this->extractArray($property_value);
                     } else {
                         $this->data[$property_name] = new static($property_value);
                     }
@@ -125,6 +125,23 @@ class Config implements Iterator, Countable
                 $this->data[$property_name] = $property_value;
             }
         }
+    }
+
+    protected function extractArray(array $data)
+    {
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                if (ArrayTools::isNumericKeys($value)) {
+                    // не преобразуем в объект, оставляем массивом
+                    $data[$key] = $this->extractArray($value);
+                } else {
+                    $data[$key] = new static($value);
+                }
+            } else {
+                $data[$key] = $value;
+            }
+        }
+        return $data;
     }
 
     /**

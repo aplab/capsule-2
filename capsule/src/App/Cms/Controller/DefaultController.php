@@ -20,6 +20,7 @@ namespace App\Cms\Controller;
 
 use App\Cms\Ui\MainMenu\MainMenu;
 use App\Cms\Ui\MainMenu\MenuItem;
+use Capsule\Tools\Tools;
 use Capsule\Ui\DropdownMenu\SubPunct;
 use Capsule\Ui\DropdownMenu\Punct;
 use App\Cms\Ui\SectionManager;
@@ -50,7 +51,7 @@ class DefaultController extends AbstractController
         $this->initSections();
         $this->initMainMenu();
 //        $this->initToolbar();
-//        $this->ui->menu->append(new MainMenu($this->app->registry->mainMenu));
+        $this->ui->menu->append(new \App\Cms\View\MainMenu($this->app->registry->mainMenu));
 //        $this->ui->toolbar->append(new \App\Cms\Ui\Toolbar\View($this->app->registry->toolbar));
         echo $this->ui->html;
     }
@@ -123,7 +124,7 @@ class DefaultController extends AbstractController
         $toolbar = clone $section;
         $toolbar->id = 'toolbar';
 
-        $wrapper->append($menu);
+        $head->append($menu);
         
         $workplace = clone $section;
         $workplace->id = 'workplace';
@@ -176,9 +177,10 @@ class DefaultController extends AbstractController
         $menu = new MainMenu('main-menu');
         $this->app->registry->mainMenu = $menu;
         $menu_config = $this->app->config->mainMenu;
-        foreach ($menu_config->item as $id => $config) {
+//        Tools::dump($menu_config);
+        foreach ($menu_config->items as $config) {
             if ($config->get('disabled')) continue;
-            echo $id . ' ';
+            $menu->newMenuItem($config->get('caption'));
         }
     }
 }

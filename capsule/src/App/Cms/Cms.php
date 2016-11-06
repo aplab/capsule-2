@@ -19,10 +19,10 @@
 namespace App\Cms;
 
 use App\AbstractApp\App;
+use Capsule\Component\DataStorage\DataStorage;
 use Capsule\Component\Url\Filter;
 use Capsule\Component\Url\Path;
 use App\Cms\Ui\SectionManager;
-use Capsule\DataStorage\DataStorage;
 use Capsule\I18n\I18n;
 use Capsule\User\User;
 use Capsule\Capsule;
