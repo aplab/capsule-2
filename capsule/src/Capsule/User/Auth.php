@@ -28,9 +28,9 @@ class Auth extends Singleton
     const AUTH_METHOD_SESSION = 'session';
 
     protected $serverCheckKeys = [
-        'HTTP_ACCEPT_ENCODING' => true,
+        'HTTP_ACCEPT_ENCODING' => false,
         'HTTP_ACCEPT_LANGUAGE' => true,
-        'HTTP_ACCEPT' => true,
+        'HTTP_ACCEPT' => false,
         'HTTP_USER_AGENT' => true,
         'SERVER_NAME' => true,
         'SERVER_PORT' => true,

@@ -18,7 +18,7 @@
 
 namespace App\Cms\Controller;
 
-use App\Cms\Controller\AbstractController;
+use App\Cms\View\MainMenu;
 use Capsule\Ui\DropdownMenu\SubPunct;
 use Capsule\Ui\DropdownMenu\Punct;
 use Capsule\Ui\DropdownMenu\Menu;
@@ -27,10 +27,7 @@ use App\Cms\Ui\Script;
 use App\Cms\Ui\Stylesheet;
 use Capsule\Ui\Toolbar\Toolbar;
 use App\Cms\Ui\Section;
-use App\Cms\Ui\MainMenu\View;
 use Capsule\Capsule;
-use Capsule\Common\Path;
-use App\Cms\Ui\Dialog\Dialog;
 /**
  * DefaultController.php
  *
@@ -53,8 +50,8 @@ class DefaultController extends AbstractController
         $this->initSections();
         $this->initMainMenu();
         $this->initToolbar();
-        $this->ui->menu->append(new View($this->app->registry->mainMenu));
-        $this->ui->toolbar->append(new \App\Cms\Ui\Toolbar\View($this->app->registry->toolbar));
+//        $this->ui->menu->append(new MainMenu($this->app->registry->mainMenu));
+//        $this->ui->toolbar->append(new \App\Cms\Ui\Toolbar\View($this->app->registry->toolbar));
         echo $this->ui->html;
     }
     
@@ -148,16 +145,16 @@ class DefaultController extends AbstractController
         $workplace->append($toolbar);
 
         $wrapper->append($workplace);
-        $content = include(new Path(Capsule::getInstance()->systemRoot, $this->app->config->templates, 'about.php'));
-        $buffer->append($content);
-        new Dialog(array(
-            'instanceName' => 'about',
-            'contentSrc' => '#capsule-cms-about-window-content',
-            'appendTo' => 'capsule-cms-wrapper',
-            'hidden' => true,
-            'minWidth' => 320,
-            'minHeight' => 240
-        ));
+//        $content = include(new Path(Capsule::getInstance()->systemRoot, $this->app->config->templates, 'about.php'));
+//        $buffer->append($content);
+//        new Dialog(array(
+//            'instanceName' => 'about',
+//            'contentSrc' => '#capsule-cms-about-window-content',
+//            'appendTo' => 'capsule-cms-wrapper',
+//            'hidden' => true,
+//            'minWidth' => 320,
+//            'minHeight' => 240
+//        ));
 //         $window = new DialogWindow('about');
 //         $window->hidden = true;
 //         $window->caption = 'About';
@@ -230,7 +227,7 @@ class DefaultController extends AbstractController
                 $o->addDelimiter();
                 continue;
             }
-            $name = $config->get('caption', 'не названный подункт');
+            $name = $config->get('caption', 'не названный подпункт');
             $url = $config->get('url');
             if (!preg_match('|^http://|', $url) && $url) {
                 $url = $filter($url);

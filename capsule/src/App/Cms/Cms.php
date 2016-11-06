@@ -19,8 +19,8 @@
 namespace App\Cms;
 
 use App\AbstractApp\App;
+use Capsule\Component\Url\Filter;
 use Capsule\Component\Url\Path;
-use Capsule\Url\Filter;
 use App\Cms\Ui\SectionManager;
 use Capsule\DataStorage\DataStorage;
 use Capsule\I18n\I18n;
@@ -54,7 +54,8 @@ class Cms extends App
         $this->_init();
     }
 
-    protected function _init() {
+    protected function _init()
+    {
         $data = Path::getInstance()->data;
         $this->data['base'] = array_shift($data); // base (switch (select) app trigger)
         $this->data['mod'] = array_shift($data); // module (e.g. User, News etc) or mode (operation) (e.g. install, logout etc)
@@ -63,7 +64,8 @@ class Cms extends App
         $this->data['ui'] = SectionManager::getInstance();
     }
 
-    protected function getUrlFilter($name) {
+    protected function getUrlFilter($name)
+    {
         if (!array_key_exists($name, $this->data)) {
             $filter = new Filter;
             $filter->autoRoot = true;
@@ -76,14 +78,16 @@ class Cms extends App
         return $this->data[$name];
     }
 
-    protected function getRegistry($name) {
+    protected function getRegistry($name)
+    {
         if (!array_key_exists($name, $this->data)) {
             $this->data[$name] = Registry::getInstance();
         }
         return $this->data[$name];
     }
 
-    public function run() {
+    public function run()
+    {
         $mod = $this->mod;
         if ($this->config->installCommand === $mod) {
             if ($this->config->allowInstall) {
@@ -92,13 +96,12 @@ class Cms extends App
             }
             return;
         }
-        if (Auth::LOGOUT === $mod) {
-            Auth::logout();
-            Auth::getInstance();
-            Redirect::go(Sysinfo::baseUrl() . $this->config->baseUrl);
-            return;
+        if (isset($_GET['logout'])) {
+            Auth::getInstance()->logout();
+            header('Location: ' . parse_url($_SERVER['REQUEST_URI'],  PHP_URL_PATH));
+            die;
         }
-        if (!Auth::getInstance()->currentUser) {
+        if (!Auth::getInstance()->user()) {
             $login_form = new Section;
             $login_form->id = 'loginForm';
             ob_start();
@@ -119,7 +122,8 @@ class Cms extends App
         DefaultController::getInstance()->handle();
     }
 
-    private function install() {
+    private function install()
+    {
         DataStorage::getInstance()->destroy();
         Storage::getInstance()->destroy();
         \App\Website\Structure\Storage::getInstance()->destroy();

@@ -5,5 +5,4 @@ include dirname(__DIR__) . '/capsule/src/Capsule/Capsule.php';
 \Capsule\Capsule::getInstance(__DIR__);
 $app_manager = \App\AppManager::getInstance();
 $app = $app_manager->selectApp();
-var_dump($app);
-//$app->run();
+$app->run();

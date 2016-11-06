@@ -16,7 +16,7 @@
  * @package Capsule
  */
 
-namespace Capsule\Url;
+namespace Capsule\Component\Url;
 
 /**
  * Filter.php
