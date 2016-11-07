@@ -14,5 +14,7 @@
  */
 ?>
 <script src="/capsule/components/jquery/jquery-3.1.1.min.js"></script>
+<script src="/capsule/components/jquery-ui/jquery-ui.min.js"></script>
+<script src="/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.js"></script>
 <script src="/capsule/assets/cms/js/js.js"></script>
 <?php foreach ($this->js as $item) echo $item ?>

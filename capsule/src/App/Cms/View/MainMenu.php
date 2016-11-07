@@ -25,14 +25,8 @@ class MainMenu
 
     public function __toString()
     {
-        return <<<HTML
-        
-        <script>
-        var a = $this->instance;
-        alert(a.instanceName);
-        </script>
-
-HTML;
-
+        return <<<JS
+new AplAccordionMenu($this->instance);
+JS;
     }
 }

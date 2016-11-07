@@ -18,8 +18,11 @@
 
 namespace App\Cms\Controller;
 
+use App\Cms\Cms;
+use App\Cms\Ui\MainMenu\Callback;
 use App\Cms\Ui\MainMenu\MainMenu;
 use App\Cms\Ui\MainMenu\MenuItem;
+use App\Cms\Ui\MainMenu\Url;
 use Capsule\Tools\Tools;
 use Capsule\Ui\DropdownMenu\SubPunct;
 use Capsule\Ui\DropdownMenu\Punct;
@@ -124,7 +127,7 @@ class DefaultController extends AbstractController
         $toolbar = clone $section;
         $toolbar->id = 'toolbar';
 
-        $head->append($menu);
+        $onload->append($menu);
         
         $workplace = clone $section;
         $workplace->id = 'workplace';
@@ -174,13 +177,48 @@ class DefaultController extends AbstractController
      */
     protected function initMainMenu()
     {
+        $filter = Cms::getInstance()->urlFilter;
         $menu = new MainMenu('main-menu');
         $this->app->registry->mainMenu = $menu;
         $menu_config = $this->app->config->mainMenu;
-//        Tools::dump($menu_config);
         foreach ($menu_config->items as $config) {
             if ($config->get('disabled')) continue;
-            $menu->newMenuItem($config->get('caption'));
+            $action = null;
+            $url = $config->get('url');
+            if ($url) {
+                $action = new Url($filter($url));
+            }
+            $callback = $config->get('callback');
+            if ($callback) {
+                $action = new Callback($callback);
+            }
+            $item = $menu->newMenuItem($config->get('caption'), $action);
+            $items = $config->get('items');
+            if ($items) {
+                $this->initSubmenu($item, $items);
+            }
+        }
+    }
+
+    private function initSubmenu(MenuItem $item, array $items)
+    {
+        $filter = Cms::getInstance()->urlFilter;
+        foreach ($items as $config) {
+            if ($config->get('disabled')) continue;
+            $action = null;
+            $url = $config->get('url');
+            if ($url) {
+                $action = new Url($filter($url));
+            }
+            $callback = $config->get('callback');
+            if ($callback) {
+                $action = new Callback($callback);
+            }
+            $submenu_item = $item->newSubMenuItem($config->get('caption'), $action);
+            $submenu_items = $config->get('items');
+            if ($submenu_items) {
+                $this->initSubmenu($submenu_item, $submenu_items);
+            }
         }
     }
 }

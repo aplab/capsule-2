@@ -13,7 +13,8 @@
  * include css files in the head section
  */
 ?>
+<link rel="stylesheet" href="/capsule/components/jquery-ui/jquery-ui.min.css">
 <link rel="stylesheet" href="/capsule/components/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="/capsule/components/bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.css">
 <link rel="stylesheet" href="/capsule/assets/cms/css/style.css">
 <?php foreach ($this->css as $item) echo $item ?>
