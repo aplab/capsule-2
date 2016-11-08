@@ -20,6 +20,7 @@ namespace App\Cms\Controller;
 
 use App\Cms\Cms;
 use App\Cms\Ui\MainMenu\Callback;
+use App\Cms\Ui\MainMenu\Icon;
 use App\Cms\Ui\MainMenu\MainMenu;
 use App\Cms\Ui\MainMenu\MenuItem;
 use App\Cms\Ui\MainMenu\Url;
@@ -192,7 +193,11 @@ class DefaultController extends AbstractController
             if ($callback) {
                 $action = new Callback($callback);
             }
-            $item = $menu->newMenuItem($config->get('caption'), $action);
+            $icon = $config->get('icon');
+            if ($icon) {
+                $icon = new Icon($icon);
+            }
+            $item = $menu->newMenuItem($config->get('caption'), $action, $icon);
             $items = $config->get('items');
             if ($items) {
                 $this->initSubmenu($item, $items);
@@ -214,7 +219,11 @@ class DefaultController extends AbstractController
             if ($callback) {
                 $action = new Callback($callback);
             }
-            $submenu_item = $item->newSubMenuItem($config->get('caption'), $action);
+            $icon = $config->get('icon');
+            if ($icon) {
+                $icon = new Icon($icon);
+            }
+            $submenu_item = $item->newSubMenuItem($config->get('caption'), $action, $icon);
             $submenu_items = $config->get('items');
             if ($submenu_items) {
                 $this->initSubmenu($submenu_item, $submenu_items);

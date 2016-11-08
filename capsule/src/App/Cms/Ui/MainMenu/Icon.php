@@ -8,25 +8,42 @@
  * file that was distributed with this source code.
  *
  * Date: 04.11.2016
- * Time: 23:35
+ * Time: 23:38
  */
 
 namespace App\Cms\Ui\MainMenu;
 
 
-abstract class Icon implements \JsonSerializable
+/**
+ * Bootstrap icon
+ *
+ * Class IconBs
+ * @package App\Cms\Ui\MainMenu
+ */
+class Icon
 {
     /**
-     * Register icon type
-     *
-     * @var string
+     * @var
      */
-    const TYPE_BOOTSTRAP = 'bootstrap';
+    protected $name;
 
     /**
-     * Register icon type
-     *
-     * @var string
+     * IconBs constructor.
+     * @param $name
      */
-    const TYPE_FONTAWESOME = 'fontawesome';
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function JsonSerialize()
+    {
+        return [
+            'name' => $this->name
+        ];
+    }
 }

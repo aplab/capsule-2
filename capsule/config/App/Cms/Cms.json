@@ -19,6 +19,7 @@
             {
                 "caption": "File",
                 "help": "File",
+                "icon": "glyphicon glyphicon-search",
                 "items": [
                     {
                         "caption": "Upload image",
@@ -43,6 +44,7 @@
             {
                 "caption": "Site",
                 "help": "Site",
+                "icon": "fa fa-puzzle-piece",
                 "items": [
                     {
                         "caption": "Manage",
