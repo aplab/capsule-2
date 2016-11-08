@@ -71,7 +71,7 @@ function AplAccordionMenu(data, append_to)
                     var exclude = append_to.find('.apl-accordion-submenu').has($next);
                     append_to.find('.apl-accordion-submenu').not($next).not(exclude).slideUp().parent().removeClass('open');
                 });
-                li.append('<i class="fa fa-chevron-down"></i>');
+                span.append('<i class="fa fa-chevron-down"></i>');
             } else {
                 if (item.action !== undefined) {
                     if (item.action.type === 'url') {
