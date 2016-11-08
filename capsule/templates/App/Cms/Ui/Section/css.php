@@ -12,9 +12,12 @@
  *
  * include css files in the head section
  */
+$nocache = '?nocache=' . md5(microtime());
+//$nocache = '';
 ?>
 <link rel="stylesheet" href="/capsule/components/jquery-ui/jquery-ui.min.css">
 <link rel="stylesheet" href="/capsule/components/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.css">
-<link rel="stylesheet" href="/capsule/assets/cms/css/style.css">
+<link rel="stylesheet" href="/capsule/components/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.css<?=$nocache?>">
+<link rel="stylesheet" href="/capsule/assets/cms/css/style.css<?=$nocache?>">
 <?php foreach ($this->css as $item) echo $item ?>

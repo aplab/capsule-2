@@ -4,21 +4,66 @@
   margin: 0;
   padding: 0;
   display: block;
-  background: #ccc;
+  background: #3d454d none repeat scroll 0 0;
   overflow: hidden;
   li {
     margin: 0;
     padding: 0;
     display: block;
+    position: relative;
+    >span, >a {
+      padding: 15px 30px 15px 40px;
+      display: block;
+      overflow: hidden;
+      -ms-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #b9bbbe;
+      cursor: pointer;
+    }
+    >span:hover, >span:active {
+      color: #fff;
+      background: #383f45;
+    }
+    >a:hover, >a:active {
+      color: #fff;
+      background: #383f45;
+    }
+    a {
+      text-decoration: none !important;
+    }
+    i {
+      position: absolute;
+      top: 16px;
+      left: 12px;
+      font-size: 18px;
+      -webkit-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+      color: #b9bbbe;
+    }
+    i.fa-chevron-down {
+      right: 12px;
+      left: auto;
+      font-size: 16px;
+    }
+  }
+  li.open > i.fa-chevron-down {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
   }
   ul {
     margin: 0;
     padding: 0;
-    display: block;
   }
 }
 @media (min-width: 768px) {
   .apl-accordion-menu {
     max-width: 320px;
   }
+}
+.apl-accordion-submenu {
+  display: none;
 }

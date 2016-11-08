@@ -67,63 +67,27 @@
                         "items": [
                             {
                                 "caption": "Product",
-                                "url": "product",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "product/add"
-                                    }
-                                ]
+                                "url": "product"
                             },
                             {
                                 "caption": "Section",
-                                "url": "section",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "section/add"
-                                    }
-                                ]
+                                "url": "section"
                             },
                             {
                                 "caption": "Attribute",
-                                "url": "attribute",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "attribute/add"
-                                    }
-                                ]
+                                "url": "attribute"
                             },
                             {
                                 "caption": "Attribute group",
-                                "url": "attributegroup",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "attributegroup/add"
-                                    }
-                                ]
+                                "url": "attributegroup"
                             },
                             {
                                 "caption": "Единица измерения",
-                                "url": "unit",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "unit/add"
-                                    }
-                                ]
+                                "url": "unit"
                             },
                             {
                                 "caption": "Attribute Section Link",
-                                "url": "attribute-section-link",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "attribute-section-link/add"
-                                    }
-                                ]
+                                "url": "attribute-section-link"
                             }
                         ]
                     },
@@ -132,63 +96,27 @@
                         "items": [
                             {
                                 "caption": "Product",
-                                "url": "usrproduct",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "usrproduct/add"
-                                    }
-                                ]
+                                "url": "usrproduct"
                             },
                             {
                                 "caption": "Section",
-                                "url": "usrsection",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "usrsection/add"
-                                    }
-                                ]
+                                "url": "usrsection"
                             },
                             {
                                 "caption": "Attribute",
-                                "url": "usrattribute",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "usrattribute/add"
-                                    }
-                                ]
+                                "url": "usrattribute"
                             },
                             {
                                 "caption": "Attribute group",
-                                "url": "usrattributegroup",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "usrattributegroup/add"
-                                    }
-                                ]
+                                "url": "usrattributegroup"
                             },
                             {
                                 "caption": "Единица измерения",
-                                "url": "usrunit",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "usrunit/add"
-                                    }
-                                ]
+                                "url": "usrunit"
                             },
                             {
                                 "caption": "Attribute Section Link",
-                                "url": "usrattribute-section-link",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "usrattribute-section-link/add"
-                                    }
-                                ]
+                                "url": "usrattribute-section-link"
                             }
                         ]
                     },
@@ -198,13 +126,7 @@
                     },
                     {
                         "caption": "Dev log",
-                        "url": "devlog",
-                        "items": [
-                            {
-                                "caption": "add",
-                                "url": "devlog/add"
-                            }
-                        ]
+                        "url": "devlog"
                     },
                     {
                         "caption": "Flat menu",
@@ -212,31 +134,11 @@
                         "items": [
                             {
                                 "caption": "Menu",
-                                "url": "flatmenu",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "flatmenu/add"
-                                    },
-                                    {
-                                        "caption": "list",
-                                        "url": "flatmenu"
-                                    }
-                                ]
+                                "url": "flatmenu"
                             },
                             {
                                 "caption": "Punct",
-                                "url": "flatmenupunct",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "flatmenupunct/add"
-                                    },
-                                    {
-                                        "caption": "list",
-                                        "url": "flatmenupunct"
-                                    }
-                                ]
+                                "url": "flatmenupunct"
                             }
                         ]
                     },
@@ -246,31 +148,11 @@
                         "items": [
                             {
                                 "caption": "Menu",
-                                "url": "treemenu",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "treemenu/add"
-                                    },
-                                    {
-                                        "caption": "list",
-                                        "url": "treemenu"
-                                    }
-                                ]
+                                "url": "treemenu"
                             },
                             {
                                 "caption": "Punct",
-                                "url": "treemenupunct",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "treemenupunct/add"
-                                    },
-                                    {
-                                        "caption": "list",
-                                        "url": "treemenupunct"
-                                    }
-                                ]
+                                "url": "treemenupunct"
                             }
                         ]
                     }
@@ -303,17 +185,7 @@
                         "items": [
                             {
                                 "caption": "container",
-                                "url": "nestedcontainer",
-                                "items": [
-                                    {
-                                        "caption": "add",
-                                        "url": "nestedcontainer/add"
-                                    },
-                                    {
-                                        "caption": "list",
-                                        "url": "nestedcontainer"
-                                    }
-                                ]
+                                "url": "nestedcontainer"
                             },
                             {
                                 "caption": "item",

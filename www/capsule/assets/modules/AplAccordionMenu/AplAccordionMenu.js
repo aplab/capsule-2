@@ -1,9 +1,9 @@
 /**
  * Created by polyanin on 07.11.2016.
  */
-function AplAccordionMenu(data, container)
+function AplAccordionMenu(data, append_to)
 {
-    container = container || $('body');
+    append_to = append_to || $('body');
     var instanceName = data.instanceName;
 
     /**
@@ -52,7 +52,6 @@ function AplAccordionMenu(data, container)
         for (var id in data) {
             counter++;
             var item = data[id];
-            item.caption += ' lvl' + level;
             var li = $('<li>');
             ul.append(li);
             var child_number = 0;
@@ -63,6 +62,16 @@ function AplAccordionMenu(data, container)
             span.text(item.caption);
             if (child_number) {
                 li.prepend(span);
+                span.click(function() {
+                    var $this = $(this);
+                    var $next = $this.next();
+                    var $parent = $this.parent();
+                    $next.slideToggle();
+                    $parent.toggleClass('open');
+                    var exclude = append_to.find('.apl-accordion-submenu').has($next);
+                    append_to.find('.apl-accordion-submenu').not($next).not(exclude).slideUp().parent().removeClass('open');
+                });
+                li.append('<i class="fa fa-chevron-down"></i>');
             } else {
                 if (item.action !== undefined) {
                     if (item.action.type === 'url') {
@@ -89,5 +98,5 @@ function AplAccordionMenu(data, container)
         return counter;
     }
 
-    createMenuItems(container, data.items);
+    createMenuItems(append_to, data.items);
 }
