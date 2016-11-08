@@ -49,15 +49,17 @@
       top: 16px;
       left: 12px;
       font-size: 18px;
-      -webkit-transition: all 0.4s ease;
-      -o-transition: all 0.4s ease;
-      transition: all 0.4s ease;
       color: inherit;
     }
     i.fa-chevron-down {
       right: 12px;
       left: auto;
       font-size: 16px;
+    }
+    i.fa-chevron-down.trans {
+      -webkit-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease;
     }
   }
   li.open {

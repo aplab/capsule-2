@@ -53,6 +53,7 @@ function AplAccordionMenu(data, append_to)
             counter++;
             var item = data[id];
             var li = $('<li>');
+            li.prop('id', item.id);
             ul.append(li);
             var child_number = 0;
             if (item.items !== undefined) {
@@ -70,6 +71,14 @@ function AplAccordionMenu(data, append_to)
                     var $this = $(this);
                     var $next = $this.next();
                     var $parent = $this.parent();
+                    $.cookie(
+                        'apl-accordion-menu-' + instanceName,
+                        $parent.prop('id'),
+                        {
+                            expires: 7,
+                            path: '/'
+                        }
+                    );
                     $next.slideToggle();
                     $parent.toggleClass('open');
                     var exclude = append_to.find('.apl-accordion-submenu').has($next);
@@ -109,4 +118,21 @@ function AplAccordionMenu(data, append_to)
     }
 
     createMenuItems(append_to, data.items);
+
+    var setCurrent = function() {
+        var current_id = $.cookie('apl-accordion-menu-' + instanceName);
+        var current = $('#' + current_id);
+        if (!current.length) {
+            return;
+        }
+        current = current.eq(0);
+        current.addClass('open').children('.apl-accordion-submenu').show();
+        append_to.find('.apl-accordion-submenu').has(current).show().parent().addClass('open');
+    }
+
+    setCurrent();
+
+    setTimeout(function() {
+        append_to.find('i.fa-chevron-down').addClass('trans');
+    }, 100);
 }
