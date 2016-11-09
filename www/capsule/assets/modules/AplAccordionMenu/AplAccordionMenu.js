@@ -79,6 +79,7 @@ function AplAccordionMenu(data, append_to)
                             path: '/'
                         }
                     );
+                    console.log(append_to.find('.open').prop('id'));
                     $next.slideToggle();
                     $parent.toggleClass('open');
                     var exclude = append_to.find('.apl-accordion-submenu').has($next);
