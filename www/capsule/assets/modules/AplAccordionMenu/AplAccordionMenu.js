@@ -67,23 +67,46 @@ function AplAccordionMenu(data, append_to)
             }
             if (child_number) {
                 li.prepend(span);
-                span.click(function() {
+                span.click(function()
+                {
                     var $this = $(this);
                     var $next = $this.next();
                     var $parent = $this.parent();
+                    $next.slideToggle();
+                    $parent.toggleClass('open');
+                    var exclude = append_to.find('.apl-accordion-submenu').has($next);
+                    append_to.find('.apl-accordion-submenu').not($next).not(exclude).slideUp().parent().removeClass('open');
+                    if ($parent.hasClass('open')) {
+                        $.cookie(
+                            'apl-accordion-menu-' + instanceName,
+                            $parent.prop('id'),
+                            {
+                                expires: 7,
+                                path: '/'
+                            }
+                        );
+                        return;
+                    }
+                    var closest = $parent.closest('.open');
+                    if (closest.length) {
+                        $.cookie(
+                            'apl-accordion-menu-' + instanceName,
+                            closest.prop('id'),
+                            {
+                                expires: 7,
+                                path: '/'
+                            }
+                        );
+                        return;
+                    }
                     $.cookie(
                         'apl-accordion-menu-' + instanceName,
-                        $parent.prop('id'),
+                        '',
                         {
                             expires: 7,
                             path: '/'
                         }
                     );
-                    console.log(append_to.find('.open').prop('id'));
-                    $next.slideToggle();
-                    $parent.toggleClass('open');
-                    var exclude = append_to.find('.apl-accordion-submenu').has($next);
-                    append_to.find('.apl-accordion-submenu').not($next).not(exclude).slideUp().parent().removeClass('open');
                 });
                 span.append('<i class="fa fa-chevron-down"></i>');
                 if (icon) {
@@ -100,7 +123,8 @@ function AplAccordionMenu(data, append_to)
                     } else {
                         li.prepend(span);
                         if (item.action.type === 'callback') {
-                            span.click(function () {
+                            span.click(function ()
+                            {
                                 eval(item.action.callback);
                             });
                         }
