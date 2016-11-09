@@ -119,7 +119,8 @@ function AplAccordionMenu(data, append_to)
 
     createMenuItems(append_to, data.items);
 
-    var setCurrent = function() {
+    var setCurrent = function()
+    {
         var current_id = $.cookie('apl-accordion-menu-' + instanceName);
         var current = $('#' + current_id);
         if (!current.length) {
@@ -132,7 +133,26 @@ function AplAccordionMenu(data, append_to)
 
     setCurrent();
 
-    setTimeout(function() {
+    setTimeout(function()
+    {
         append_to.find('i.fa-chevron-down').addClass('trans');
     }, 100);
+
+    var disableSelection = function(o)
+    {
+        $(o).onselectstart = function()
+        {
+            return false;
+        };
+        $(o).unselectable = "on";
+        $(o).css({
+            '-moz-user-select': 'none',
+            '-khtml-user-select': 'none',
+            '-webkit-user-select': 'none',
+            '-o-user-select': 'none',
+            'user-select': 'none'
+        });
+    }
+
+    disableSelection(append_to);
 }
