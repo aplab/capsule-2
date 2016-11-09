@@ -1,7 +1,7 @@
 /**
  * Created by polyanin on 21.05.2016.
  */
-function CapsuleUiScrollable(instance_name)
+function CapsuleUiScrollable(instance_name, target)
 {
     var instanceName = instance_name;
 
@@ -12,18 +12,19 @@ function CapsuleUiScrollable(instance_name)
      * @param c same function
      */
     (function(o, c) {
-        if ('undefined' === typeof(c.instances)) {
+        if (undefined === c.instances) {
             c.instances = new Array();
         }
-        if ('undefined' === typeof(c.getInstance)) {
-            c.getInstance = function(instance_name) {
-                if ('undefined' !== typeof(c.instances[instance_name])) {
+        if (undefined === c.getInstance) {
+            c.getInstance = function(instance_name)
+            {
+                if (undefined !== c.instances[instance_name]) {
                     return c.instances[instance_name];
                 }
                 return null;
             };
         }
-        if ('undefined' !== typeof(c.instances[instanceName])) {
+        if (undefined !== c.instances[instanceName]) {
             console.log('Instance already exists: ' + instanceName);
             console.error('Instance already exists: ' + instanceName);
             throw new Error('Instance already exists: ' + instanceName);
@@ -32,9 +33,15 @@ function CapsuleUiScrollable(instance_name)
         c.instanceNumber = Object.keys(c.instances).length;
     })(this, arguments.callee);
 
-    var target = $('#' + instanceName);
+    var target = target;
+    if (!target.length) {
+        console.log('Target not found: ' + instanceName);
+        console.error('Target not found: ' + instanceName);
+        throw new Error('Target not found: ' + instanceName);
+    }
+    target = target.eq(0);
     var target_position = target.css('position').toLowerCase();
-    if ('absolute' !== target_position) {
+    if ('static' === target_position) {
         target.css({
             position: 'relative'
         });
@@ -66,6 +73,7 @@ function CapsuleUiScrollable(instance_name)
         if (skipInit) {
             return;
         }
+        content.width(container.width());
         wrapperHeight = wrapper.height();
         contentHeight = content.height();
         if (wrapperHeight >= contentHeight) {
@@ -93,6 +101,12 @@ function CapsuleUiScrollable(instance_name)
 
     wrapper.scroll(function() {
         init();
+    });
+
+    target.on('mouseup', function() {
+        setTimeout(function () {
+            init();
+        }, 500);
     });
 
     scrollbar.draggable({

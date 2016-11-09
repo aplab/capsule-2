@@ -11,5 +11,5 @@
  * Time: 0:31
  */
 ?><body>
-    Страница сгенерирована за <?=\Capsule\Capsule::getInstance()->worktime?> сек!
+    <?php foreach ($this->{pathinfo(__FILE__, PATHINFO_FILENAME)} as $_){?><?=$_.PHP_EOL;}?>
 </body>

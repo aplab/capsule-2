@@ -24,6 +24,7 @@ use App\Cms\Ui\MainMenu\Icon;
 use App\Cms\Ui\MainMenu\MainMenu;
 use App\Cms\Ui\MainMenu\MenuItem;
 use App\Cms\Ui\MainMenu\Url;
+use Capsule\I18n\I18n;
 use Capsule\Tools\Tools;
 use Capsule\Ui\DropdownMenu\SubPunct;
 use Capsule\Ui\DropdownMenu\Punct;
@@ -55,7 +56,7 @@ class DefaultController extends AbstractController
         $this->initSections();
         $this->initMainMenu();
 //        $this->initToolbar();
-        $this->ui->menu->append(new \App\Cms\View\MainMenu($this->app->registry->mainMenu));
+        $this->ui->onload->append(new \App\Cms\View\MainMenu($this->app->registry->mainMenu));
 //        $this->ui->toolbar->append(new \App\Cms\Ui\Toolbar\View($this->app->registry->toolbar));
         echo $this->ui->html;
     }
@@ -85,13 +86,13 @@ class DefaultController extends AbstractController
         $body->id = 'body';
         $html->append($body);
         
-        $buffer = clone $section;
-        $buffer->id = 'buffer';
-        $body->append($buffer);
+//        $buffer = clone $section;
+//        $buffer->id = 'buffer';
+//        $body->append($buffer);
         
-        $pop_calendar = clone $section;
-        $pop_calendar->id = 'popcalendar';
-        $body->append($pop_calendar);
+//        $pop_calendar = clone $section;
+//        $pop_calendar->id = 'popcalendar';
+//        $body->append($pop_calendar);
 
         $css = clone $section;
         $css->id = 'css';
@@ -117,25 +118,29 @@ class DefaultController extends AbstractController
         $alert->id = 'alert';
         $builtinJs->append($alert);
 
-        $wrapper = clone $section;
-        $wrapper->id = 'wrapper';
+//        $wrapper = clone $section;
+//        $wrapper->id = 'wrapper';
+//        $body->append($wrapper);
 
-        $body->append($wrapper);
+
+        $nav = clone $section;
+        $nav->id = 'nav';
+        $body->append($nav);
 
         $menu = clone $section;
         $menu->id = 'menu';
-        
+        $body->append($menu);
+
         $toolbar = clone $section;
         $toolbar->id = 'toolbar';
 
-        $onload->append($menu);
-        
+
         $workplace = clone $section;
         $workplace->id = 'workplace';
         
         $workplace->append($toolbar);
 
-        $wrapper->append($workplace);
+//        $wrapper->append($workplace);
 //        $content = include(new Path(Capsule::getInstance()->systemRoot, $this->app->config->templates, 'about.php'));
 //        $buffer->append($content);
 //        new Dialog(array(
@@ -175,11 +180,12 @@ class DefaultController extends AbstractController
      *
      * @param void
      * @return void
+     * @TODO Объединить в одну функцию!
      */
     protected function initMainMenu()
     {
         $filter = Cms::getInstance()->urlFilter;
-        $menu = new MainMenu('main-menu');
+        $menu = new MainMenu('capsule-cms-main-menu');
         $this->app->registry->mainMenu = $menu;
         $menu_config = $this->app->config->mainMenu;
         foreach ($menu_config->items as $config) {
@@ -197,7 +203,7 @@ class DefaultController extends AbstractController
             if ($icon) {
                 $icon = new Icon($icon);
             }
-            $item = $menu->newMenuItem($config->get('caption'), $action, $icon);
+            $item = $menu->newMenuItem(I18n::_($config->get('caption')), $action, $icon);
             $items = $config->get('items');
             if ($items) {
                 $this->initSubmenu($item, $items);
@@ -223,7 +229,7 @@ class DefaultController extends AbstractController
             if ($icon) {
                 $icon = new Icon($icon);
             }
-            $submenu_item = $item->newSubMenuItem($config->get('caption'), $action, $icon);
+            $submenu_item = $item->newSubMenuItem(I18n::_($config->get('caption')), $action, $icon);
             $submenu_items = $config->get('items');
             if ($submenu_items) {
                 $this->initSubmenu($submenu_item, $submenu_items);

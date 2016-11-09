@@ -6,8 +6,9 @@
   display: block;
   background: #30343e none repeat scroll 0 0;
   overflow: hidden;
+  min-width: 100px;
   >li {
-    border-top: 1px solid #252830;
+    border-bottom: 1px solid #252830;
   }
   >li:first-child {
     border-top: 0;
@@ -74,11 +75,6 @@
   ul {
     margin: 0;
     padding: 0;
-  }
-}
-@media (min-width: 768px) {
-  .apl-accordion-menu {
-    max-width: 320px;
   }
 }
 .apl-accordion-submenu {
