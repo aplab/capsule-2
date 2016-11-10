@@ -69,6 +69,9 @@ function CapsuleUiScrollable(instance_name, target)
     var scrollbarTop;
     var skipInit = false;
 
+    var content_scroll_distance;
+    var scrollbar_move_distance;
+
     var init = function() {
         if (skipInit) {
             return;
@@ -91,9 +94,9 @@ function CapsuleUiScrollable(instance_name, target)
         scrollbar.css({
             height: scrollbarHeight,
             top: scrollbarTop
-        })
+        });
         scrollbar.show();
-    }
+    };
 
     $(window).resize(function() {
         init();
@@ -103,7 +106,7 @@ function CapsuleUiScrollable(instance_name, target)
         init();
     });
 
-    target.on('mouseup', function() {
+    target.on('mouseup tap touch', function() {
         setTimeout(function () {
             init();
         }, 500);

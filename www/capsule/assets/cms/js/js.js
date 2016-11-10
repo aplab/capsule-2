@@ -3,13 +3,17 @@
  */
 $(document).ready(function () 
 {
-    $('#capsule-cms-sidebar-action .fa-bars').click(function ()
+    $('#capsule-cms-sidebar-action-buttons .fa-close').click(function ()
     {
-        $('#capsule-cms-sidebar-nav').addClass('capsule-cms-sidebar-nav-hide').removeClass('capsule-cms-sidebar-nav-show');
+        $('#capsule-cms-sidebar-wrapper')
+            .addClass('capsule-cms-sidebar-wrapper-hide')
+            .removeClass('capsule-cms-sidebar-wrapper-show');
     });
 
     $('#capsule-cms-nav .fa-bars').click(function ()
     {
-        $('#capsule-cms-sidebar-nav').addClass('capsule-cms-sidebar-nav-show').removeClass('capsule-cms-sidebar-nav-hide');
+        $('#capsule-cms-sidebar-wrapper')
+            .addClass('capsule-cms-sidebar-wrapper-show')
+            .removeClass('capsule-cms-sidebar-wrapper-hide');
     });
 });

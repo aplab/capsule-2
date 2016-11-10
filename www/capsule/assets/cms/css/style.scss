@@ -27,23 +27,24 @@ body {
   height: 100%;
   overflow: hidden;
 }
-.capsule-cms-sidebar-nav-show {
+.capsule-cms-sidebar-wrapper-show {
   width: 100%;
 }
-.capsule-cms-sidebar-nav-hide {
+.capsule-cms-sidebar-wrapper-hide {
   width: 0;
 }
-#capsule-cms-sidebar-nav {
+#capsule-cms-sidebar-wrapper {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  background: #30343e none repeat scroll 0 0;
+  background: #1a1c22 none repeat scroll 0 0;
   -webkit-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease;
   overflow: hidden;
-  #capsule-cms-sidebar-action {
+  padding-top: 50px;
+  #capsule-cms-sidebar-action-buttons {
     background: #1a1c22;
     position: absolute;
     left: 0;
@@ -53,23 +54,16 @@ body {
     right: 0;
     color: #fff;
     font-size: 18px;
-    i.fa.fa-bars {
+    i.fa.fa-bars, i.fa.fa-close {
       line-height: 50px;
       width: 50px;
       text-align: center;
       cursor: pointer;
     }
   }
-  #capsule-cms-main-menu-area {
-    position: absolute;
-    left: 0;
-    top: 50px;
-    bottom: 0;
-    right: 0;
-  }
 }
 @media (min-width: 768px) {
-  #capsule-cms-sidebar-nav {
+  #capsule-cms-sidebar-wrapper {
     max-width: 320px;
   }
 }
@@ -88,5 +82,19 @@ body {
     text-align: center;
     cursor: pointer;
     font-size: 18px;
+  }
+}
+#capsule-cms-main-menu-wrapper {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  bottom: 0;
+  right: auto;
+  width: 100vw;
+  background: #30343e;
+}
+@media (min-width: 768px) {
+  #capsule-cms-main-menu-wrapper {
+    max-width: 320px;
   }
 }

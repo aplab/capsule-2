@@ -25,13 +25,13 @@
   .capsule-ui-scrollable-scrollbar {
     position: absolute;
     top: 0;
-    right: -1px;
+    right: 0;
     width: 4px;
     height: 0;
     background: #fff;
     display: none;
     box-sizing: border-box;
-    opacity: .5;
+    opacity: .3;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;

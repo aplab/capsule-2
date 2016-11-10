@@ -26,8 +26,8 @@ class MainMenu
     public function __toString()
     {
         return <<<JS
-new AplAccordionMenu($this->instance, $('#capsule-cms-main-menu-area'));
-new CapsuleUiScrollable('capsule-cms-main-menu-area', $('#capsule-cms-main-menu-area'));
+new AplAccordionMenu($this->instance, $('#capsule-cms-main-menu-wrapper'));
+new CapsuleUiScrollable('capsule-cms-main-menu-scrollable', $('#capsule-cms-main-menu-wrapper'));
 JS;
     }
 }
