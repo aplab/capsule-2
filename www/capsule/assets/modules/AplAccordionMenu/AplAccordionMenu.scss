@@ -24,7 +24,7 @@
     display: block;
     position: relative;
     >span, >a {
-      padding: 15px 30px 15px 40px;
+      padding: 15px 30px 15px 50px;
       display: block;
       overflow: hidden;
       -ms-text-overflow: ellipsis;
@@ -33,6 +33,7 @@
       color: #cfd2da;
       cursor: pointer;
       position: relative;
+      line-height: 20px;
     }
     >span:hover, >span:active {
       color: #fff;
@@ -47,20 +48,30 @@
     }
     i {
       position: absolute;
-      top: 16px;
-      left: 12px;
       font-size: 18px;
       color: inherit;
+      left: 8px;
+      top: 8px;
+      width: 34px;
+      height: 34px;
+      text-align: center;
+      line-height: 34px;
+      overflow: hidden;
     }
     i.fa-chevron-down {
-      right: 12px;
+      right: 8px;
+      top: 8px;
+      width: 34px;
+      height: 34px;
+      text-align: center;
+      line-height: 34px;
+      overflow: hidden;
       left: auto;
-      font-size: 16px;
     }
     i.fa-chevron-down.trans {
-      -webkit-transition: all 0.2s ease;
-      -o-transition: all 0.2s ease;
-      transition: all 0.2s ease;
+      -webkit-transition: all 0.2s ease 0s;
+      -o-transition: all 0.2s ease 0s;
+      transition: all 0.2s ease 0s;
     }
   }
   li.open {

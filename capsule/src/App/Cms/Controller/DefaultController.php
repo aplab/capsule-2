@@ -70,29 +70,13 @@ class DefaultController extends AbstractController
     protected function initSections()
     {
         $section = new Section;
+
         $html = clone $section;
         $html->id = 'html';
 
         $head = clone $section;
         $head->id = 'head';
         $html->append($head);
-        
-        $title = clone $section;
-        $title->id = 'title';
-        $title->append('Capsule ' . Capsule::getInstance()->config->version);
-        $head->append($title);
-        
-        $body = clone $section;
-        $body->id = 'body';
-        $html->append($body);
-        
-//        $buffer = clone $section;
-//        $buffer->id = 'buffer';
-//        $body->append($buffer);
-        
-//        $pop_calendar = clone $section;
-//        $pop_calendar->id = 'popcalendar';
-//        $body->append($pop_calendar);
 
         $css = clone $section;
         $css->id = 'css';
@@ -110,19 +94,23 @@ class DefaultController extends AbstractController
         $builtinJs->id = 'builtinJs';
         $head->append($builtinJs);
 
-        $onload = clone $section;
-        $onload->id = 'onload';
-        $head->append($onload);
-        
         $alert = clone $section;
         $alert->id = 'alert';
         $builtinJs->append($alert);
 
-//        $wrapper = clone $section;
-//        $wrapper->id = 'wrapper';
-//        $body->append($wrapper);
-
-
+        $onload = clone $section;
+        $onload->id = 'onload';
+        $head->append($onload);
+        
+        $title = clone $section;
+        $title->id = 'title';
+        $title->append('Capsule ' . Capsule::getInstance()->config->version);
+        $head->append($title);
+        
+        $body = clone $section;
+        $body->id = 'body';
+        $html->append($body);
+        
         $nav = clone $section;
         $nav->id = 'nav';
         $body->append($nav);
@@ -131,50 +119,10 @@ class DefaultController extends AbstractController
         $menu->id = 'menu';
         $body->append($menu);
 
-        $toolbar = clone $section;
-        $toolbar->id = 'toolbar';
-
-
-        $workplace = clone $section;
-        $workplace->id = 'workplace';
-        
-        $workplace->append($toolbar);
-
-//        $wrapper->append($workplace);
-//        $content = include(new Path(Capsule::getInstance()->systemRoot, $this->app->config->templates, 'about.php'));
-//        $buffer->append($content);
-//        new Dialog(array(
-//            'instanceName' => 'about',
-//            'contentSrc' => '#capsule-cms-about-window-content',
-//            'appendTo' => 'capsule-cms-wrapper',
-//            'hidden' => true,
-//            'minWidth' => 320,
-//            'minHeight' => 240
-//        ));
-//         $window = new DialogWindow('about');
-//         $window->hidden = true;
-//         $window->caption = 'About';
-//         $window->width = 320;
-//         $window->height = 240;
-//         $window->content = include(new Path(Capsule::getInstance()->systemRoot, $this->app->config->templates, 'about.php'));
-//         $view = new \App\Cms\Ui\DialogWindow\View($window);
-//         $wrapper->append($view);
-        
-        
+        $content = new Section('content');
+        $body->append($content);
     }
     
-    /**
-     * init toolbar
-     *
-     * @param void
-     * @return void
-     */
-    protected function initToolbar()
-    {
-        $toolbar = new Toolbar('cms-toolbar');
-        $this->app->registry->toolbar = $toolbar;
-    }
-
     /**
      * init main menu
      *

@@ -11,9 +11,10 @@
  * Time: 0:31
  */
 # foreach ($this->menu as $item) echo $item ?>
-<div id="capsule-cms-sidebar-wrapper" class="capsule-cms-sidebar-wrapper-hide">
+<div id="capsule-cms-sidebar-wrapper">
     <div id="capsule-cms-sidebar-action-buttons">
-        <i class="fa fa-close" aria-hidden="true"></i>
+        <i class="fa fa-bars" aria-hidden="true"></i>
+        <i id="capsule-cms-pin-sidebar" class="fa fa-thumb-tack" aria-hidden="true"></i>
     </div>
     <div id="capsule-cms-main-menu-wrapper"></div>
 </div>

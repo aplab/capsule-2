@@ -77,7 +77,7 @@ function AplAccordionMenu(data, append_to)
                     var exclude = append_to.find('.apl-accordion-submenu').has($next);
                     append_to.find('.apl-accordion-submenu').not($next).not(exclude).slideUp().parent().removeClass('open');
                     if ($parent.hasClass('open')) {
-                        $.cookie(
+                        Cookies(
                             'apl-accordion-menu-' + instanceName,
                             $parent.prop('id'),
                             {
@@ -89,7 +89,7 @@ function AplAccordionMenu(data, append_to)
                     }
                     var closest = $parent.closest('.open');
                     if (closest.length) {
-                        $.cookie(
+                        Cookies(
                             'apl-accordion-menu-' + instanceName,
                             closest.prop('id'),
                             {
@@ -99,7 +99,7 @@ function AplAccordionMenu(data, append_to)
                         );
                         return;
                     }
-                    $.cookie(
+                    Cookies(
                         'apl-accordion-menu-' + instanceName,
                         '',
                         {
@@ -146,7 +146,7 @@ function AplAccordionMenu(data, append_to)
 
     var setCurrent = function()
     {
-        var current_id = $.cookie('apl-accordion-menu-' + instanceName);
+        var current_id = Cookies('apl-accordion-menu-' + instanceName);
         var current = $('#' + current_id);
         if (!current.length) {
             return;

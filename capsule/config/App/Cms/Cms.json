@@ -1,473 +1,474 @@
 {
-    "#": "Так пишутся комментарии",
-    "baseUrl": "/admin/",
-    "cmd": "admin",
-    "allowInstall": true,
-    "installCommand": "install",
-    "defaultItemsPerPage": 100,
-    "itemsPerPageVariants": [
-        10,
-        50,
-        100,
-        200,
-        500
-    ],
-    "comment": "Main menu configuration",
-    "mainMenu": {
-        "help": "Конфигурация главного меню",
+  "#": "Так пишутся комментарии",
+  "baseUrl": "/admin/",
+  "cmd": "admin",
+  "allowInstall": true,
+  "installCommand": "install",
+  "defaultItemsPerPage": 100,
+  "itemsPerPageVariants": [
+    10,
+    50,
+    100,
+    200,
+    500
+  ],
+  "comment": "Main menu configuration",
+  "mainMenu": {
+    "help": "Конфигурация главного меню",
+    "items": [
+      {
+        "caption": "File",
+        "help": "File",
+        "icon": "glyphicon glyphicon-search",
         "items": [
-            {
-                "caption": "File",
-                "help": "File",
-                "icon": "glyphicon glyphicon-search",
-                "items": [
-                    {
-                        "caption": "Upload image",
-                        "url": "uploadimage",
-                        "items": [
-                            {
-                                "caption": "Popup",
-                                "callback": "window.open('/admin/uploadimage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
-                            },
-                            {
-                                "caption": "Open in new tab",
-                                "callback": "window.open('/admin/uploadimage/', '_blank')"
-                            },
-                            {
-                                "caption": "View history",
-                                "callback": "window.open('/admin/uploadimagehistory/', '_blank')"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "caption": "Site",
-                "help": "Site",
-                "icon": "fa fa-puzzle-piece",
-                "items": [
-                    {
-                        "caption": "Manage",
-                        "url": "/admin/"
-                    },
-                    {
-                        "caption": "Go to website",
-                        "url": "/"
-                    },
-                    {
-                        "caption": "Exit",
-                        "url": "logout"
-                    }
-                ]
-            },
-            {
-                "caption": "Modules",
-                "help": "Modules",
-                "items": [
-                    {
-                        "caption": "Catalog",
-                        "items": [
-                            {
-                                "caption": "Product",
-                                "url": "product"
-                            },
-                            {
-                                "caption": "Section",
-                                "url": "section"
-                            },
-                            {
-                                "caption": "Attribute",
-                                "url": "attribute"
-                            },
-                            {
-                                "caption": "Attribute group",
-                                "url": "attributegroup"
-                            },
-                            {
-                                "caption": "Единица измерения",
-                                "url": "unit"
-                            },
-                            {
-                                "caption": "Attribute Section Link",
-                                "url": "attribute-section-link"
-                            }
-                        ]
-                    },
-                    {
-                        "caption": "Usr Catalog",
-                        "items": [
-                            {
-                                "caption": "Product",
-                                "url": "usrproduct"
-                            },
-                            {
-                                "caption": "Section",
-                                "url": "usrsection"
-                            },
-                            {
-                                "caption": "Attribute",
-                                "url": "usrattribute"
-                            },
-                            {
-                                "caption": "Attribute group",
-                                "url": "usrattributegroup"
-                            },
-                            {
-                                "caption": "Единица измерения",
-                                "url": "usrunit"
-                            },
-                            {
-                                "caption": "Attribute Section Link",
-                                "url": "usrattribute-section-link"
-                            }
-                        ]
-                    },
-                    {
-                        "caption": "Text blocks",
-                        "url": "textblock"
-                    },
-                    {
-                        "caption": "Dev log",
-                        "url": "devlog"
-                    },
-                    {
-                        "caption": "Flat menu",
-                        "url": "flatmenu",
-                        "items": [
-                            {
-                                "caption": "Menu",
-                                "url": "flatmenu"
-                            },
-                            {
-                                "caption": "Punct",
-                                "url": "flatmenupunct"
-                            }
-                        ]
-                    },
-                    {
-                        "caption": "Tree menu",
-                        "url": "treemenu",
-                        "items": [
-                            {
-                                "caption": "Menu",
-                                "url": "treemenu"
-                            },
-                            {
-                                "caption": "Punct",
-                                "url": "treemenupunct"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "caption": "References",
-                "help": "References",
-                "items": [
-                    {
-                        "caption": "Named",
-                        "url": "named"
-                    },
-                    {
-                        "caption": "Imaged",
-                        "url": "imaged"
-                    },
-                    {
-                        "caption": "Description",
-                        "url": "description"
-                    }
-                ]
-            },
-            {
-                "caption": "Units",
-                "help": "Units",
-                "items": [
-                    {
-                        "caption": "nested",
-                        "items": [
-                            {
-                                "caption": "container",
-                                "url": "nestedcontainer"
-                            },
-                            {
-                                "caption": "item",
-                                "url": "nesteditem"
-                            }
-                        ]
-                    },
-                    {
-                        "caption": "nested tree",
-                        "items": [
-                            {
-                                "caption": "container",
-                                "url": "treecontainer"
-                            },
-                            {
-                                "caption": "item",
-                                "url": "treeitem"
-                            }
-                        ]
-                    },
-                    {
-                        "caption": "Tree",
-                        "url": "tree"
-                    },
-                    {
-                        "caption": "Active",
-                        "url": "active"
-                    },
-                    {
-                        "caption": "Rich text",
-                        "url": "richtext"
-                    },
-                    {
-                        "caption": "dated",
-                        "url": "dated"
-                    },
-                    {
-                        "caption": "dated advanced",
-                        "url": "datedadvanced"
-                    },
-                    {
-                        "caption": "unit with timestamp",
-                        "url": "unitts"
-                    },
-                    {
-                        "caption": "unit with user",
-                        "url": "unitusr"
-                    },
-                    {
-                        "caption": "unit with user & ts",
-                        "url": "unittsusr"
-                    },
-                    {
-                        "caption": "named with user & ts",
-                        "url": "namedtsusr"
-                    },
-                    {
-                        "caption": "titled with user & ts",
-                        "url": "titledtsusr"
-                    },
-                    {
-                        "caption": "token with user & ts",
-                        "url": "tokentsusr"
-                    },
-                    {
-                        "caption": "bind with user & ts",
-                        "url": "bindtsusr"
-                    }
-                ]
-            },
-            {
-                "disabled": true,
-                "caption": "Tools",
-                "help": "Tools",
-                "items": [
-                    {
-                        "caption": "Storage",
-                        "url": "storage",
-                        "items": [
-                            {
-                                "caption": "Popup",
-                                "callback": "window.open('/admin/storage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
-                            }
-                        ]
-                    },
-                    {
-                        "disabled": false,
-                        "caption": "Files",
-                        "url": "files"
-                    }
-                ]
-            },
-            {
-                "caption": "Window",
-                "help": "Window",
-                "items": [
-                    {
-                        "caption": "Duplicate",
-                        "callback": "window.open(location.href, '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
-                    },
-                    {
-                        "caption": "New",
-                        "callback": "window.open('/admin/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
-                    }
-                ]
-            },
-            {
-                "caption": "Settings",
-                "help": "Settings",
-                "items": [
-                    {
-                        "caption": "Preferences",
-                        "url": "preferences"
-                    },
-                    {
-                        "caption": "User management",
-                        "url": "user"
-                    },
-                    {
-                        "caption": "Restart",
-                        "url": "install"
-                    }
-                ]
-            },
-            {
-                "caption": "Help",
-                "help": "Help",
-                "items": [
-                    {
-                        "caption": "Help",
-                        "url": "http://www.aplab.ru/",
-                        "target": "_blank"
-                    },
-                    {
-                        "caption": "About",
-                        "callback": "CapsuleUiDialog.getInstance('about').showCenter()"
-                    }
-                ]
-            }
+          {
+            "caption": "Upload image",
+            "url": "uploadimage",
+            "items": [
+              {
+                "caption": "Popup",
+                "callback": "window.open('/admin/uploadimage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+              },
+              {
+                "caption": "Open in new tab",
+                "callback": "window.open('/admin/uploadimage/', '_blank')"
+              },
+              {
+                "caption": "View history",
+                "callback": "window.open('/admin/uploadimagehistory/', '_blank')"
+              }
+            ]
+          }
         ]
+      },
+      {
+        "caption": "Site",
+        "help": "Site",
+        "icon": "fa fa-puzzle-piece",
+        "items": [
+          {
+            "caption": "Manage",
+            "url": "/admin/"
+          },
+          {
+            "caption": "Go to website",
+            "url": "/"
+          },
+          {
+            "caption": "Exit",
+            "url": "logout",
+            "icon": "fa fa-power-off"
+          }
+        ]
+      },
+      {
+        "caption": "Modules",
+        "help": "Modules",
+        "items": [
+          {
+            "caption": "Catalog",
+            "items": [
+              {
+                "caption": "Product",
+                "url": "product"
+              },
+              {
+                "caption": "Section",
+                "url": "section"
+              },
+              {
+                "caption": "Attribute",
+                "url": "attribute"
+              },
+              {
+                "caption": "Attribute group",
+                "url": "attributegroup"
+              },
+              {
+                "caption": "Единица измерения",
+                "url": "unit"
+              },
+              {
+                "caption": "Attribute Section Link",
+                "url": "attribute-section-link"
+              }
+            ]
+          },
+          {
+            "caption": "Usr Catalog",
+            "items": [
+              {
+                "caption": "Product",
+                "url": "usrproduct"
+              },
+              {
+                "caption": "Section",
+                "url": "usrsection"
+              },
+              {
+                "caption": "Attribute",
+                "url": "usrattribute"
+              },
+              {
+                "caption": "Attribute group",
+                "url": "usrattributegroup"
+              },
+              {
+                "caption": "Единица измерения",
+                "url": "usrunit"
+              },
+              {
+                "caption": "Attribute Section Link",
+                "url": "usrattribute-section-link"
+              }
+            ]
+          },
+          {
+            "caption": "Text blocks",
+            "url": "textblock"
+          },
+          {
+            "caption": "Dev log",
+            "url": "devlog"
+          },
+          {
+            "caption": "Flat menu",
+            "url": "flatmenu",
+            "items": [
+              {
+                "caption": "Menu",
+                "url": "flatmenu"
+              },
+              {
+                "caption": "Punct",
+                "url": "flatmenupunct"
+              }
+            ]
+          },
+          {
+            "caption": "Tree menu",
+            "url": "treemenu",
+            "items": [
+              {
+                "caption": "Menu",
+                "url": "treemenu"
+              },
+              {
+                "caption": "Punct",
+                "url": "treemenupunct"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "caption": "References",
+        "help": "References",
+        "items": [
+          {
+            "caption": "Named",
+            "url": "named"
+          },
+          {
+            "caption": "Imaged",
+            "url": "imaged"
+          },
+          {
+            "caption": "Description",
+            "url": "description"
+          }
+        ]
+      },
+      {
+        "caption": "Units",
+        "help": "Units",
+        "items": [
+          {
+            "caption": "nested",
+            "items": [
+              {
+                "caption": "container",
+                "url": "nestedcontainer"
+              },
+              {
+                "caption": "item",
+                "url": "nesteditem"
+              }
+            ]
+          },
+          {
+            "caption": "nested tree",
+            "items": [
+              {
+                "caption": "container",
+                "url": "treecontainer"
+              },
+              {
+                "caption": "item",
+                "url": "treeitem"
+              }
+            ]
+          },
+          {
+            "caption": "Tree",
+            "url": "tree"
+          },
+          {
+            "caption": "Active",
+            "url": "active"
+          },
+          {
+            "caption": "Rich text",
+            "url": "richtext"
+          },
+          {
+            "caption": "dated",
+            "url": "dated"
+          },
+          {
+            "caption": "dated advanced",
+            "url": "datedadvanced"
+          },
+          {
+            "caption": "unit with timestamp",
+            "url": "unitts"
+          },
+          {
+            "caption": "unit with user",
+            "url": "unitusr"
+          },
+          {
+            "caption": "unit with user & ts",
+            "url": "unittsusr"
+          },
+          {
+            "caption": "named with user & ts",
+            "url": "namedtsusr"
+          },
+          {
+            "caption": "titled with user & ts",
+            "url": "titledtsusr"
+          },
+          {
+            "caption": "token with user & ts",
+            "url": "tokentsusr"
+          },
+          {
+            "caption": "bind with user & ts",
+            "url": "bindtsusr"
+          }
+        ]
+      },
+      {
+        "disabled": true,
+        "caption": "Tools",
+        "help": "Tools",
+        "items": [
+          {
+            "caption": "Storage",
+            "url": "storage",
+            "items": [
+              {
+                "caption": "Popup",
+                "callback": "window.open('/admin/storage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+              }
+            ]
+          },
+          {
+            "disabled": false,
+            "caption": "Files",
+            "url": "files"
+          }
+        ]
+      },
+      {
+        "caption": "Window",
+        "help": "Window",
+        "items": [
+          {
+            "caption": "Duplicate",
+            "callback": "window.open(location.href, '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+          },
+          {
+            "caption": "New",
+            "callback": "window.open('/admin/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+          }
+        ]
+      },
+      {
+        "caption": "Settings",
+        "help": "Settings",
+        "items": [
+          {
+            "caption": "Preferences",
+            "url": "preferences"
+          },
+          {
+            "caption": "User management",
+            "url": "user"
+          },
+          {
+            "caption": "Restart",
+            "url": "install"
+          }
+        ]
+      },
+      {
+        "caption": "Help",
+        "help": "Help",
+        "items": [
+          {
+            "caption": "Help",
+            "url": "http://www.aplab.ru/",
+            "target": "_blank"
+          },
+          {
+            "caption": "About",
+            "callback": "CapsuleUiDialog.getInstance('about').showCenter()"
+          }
+        ]
+      }
+    ]
+  },
+  "templates": "/var/www/templates/cms",
+  "ui": {
+    "controls": {
+      "css": "/capsule/Ui/CapsuleControl/control.css",
+      "js": "/capsule/Ui/CapsuleControl/control.js"
     },
-    "templates": "/var/www/templates/cms",
-    "ui": {
-        "controls": {
-            "css": "/capsule/Ui/CapsuleControl/control.css",
-            "js": "/capsule/Ui/CapsuleControl/control.js"
-        },
-        "mainMenu": {
-            "css": "/capsule/Ui/DropDownMenu/cms/menu.css",
-            "js": "/capsule/Ui/DropDownMenu/cms/menu.js",
-            "height": 25
-        },
-        "dataGrid": {
-            "css": "/capsule/Ui/DataGrid/cms/CapsuleUiDataGrid.css",
-            "js": "/capsule/Ui/DataGrid/cms/CapsuleUiDataGrid.js",
-            "top": 29
-        },
-        "toolbar": {
-            "height": 29,
-            "css": "/capsule/Ui/Toolbar/cms/CapsuleUiToolbar.css",
-            "js": "/capsule/Ui/Toolbar/cms/CapsuleUiToolbar.js"
-        },
-        "tabControl": {
-            "height": 30,
-            "css": "/capsule/Ui/TabControl/cms/CapsuleUiTabControl.css",
-            "js": "/capsule/Ui/TabControl/cms/CapsuleUiTabControl.js"
-        },
-        "objectEditor": {
-            "css": "/capsule/Ui/ObjectEditor/cms/CapsuleUiObjectEditor.css",
-            "js": "/capsule/Ui/ObjectEditor/cms/CapsuleUiObjectEditor.js"
-        },
-        "ckeditor": {
-            "js": "/capsule/assets/share/ckeditor/ckeditor.js",
-            "adapter": "/capsule/assets/share/ckeditor/adapters/jquery.js",
-            "basePath": "/capsule/assets/share/ckeditor/"
-        },
-        "dialogWindow": {
-            "css": "/capsule/Ui/DialogWindow/cms/CapsuleUiDialogWindow.css",
-            "js": "/capsule/Ui/DialogWindow/cms/CapsuleUiDialogWindow.js"
-        },
-        "dialog": {
-            "css": "/capsule/Ui/Dialog/cms/CapsuleUiDialog.css",
-            "js": "/capsule/Ui/Dialog/cms/CapsuleUiDialog.js"
-        },
-        "storage": {
-            "css": "/capsule/Ui/Storage/cms/CapsuleUiStorage.css",
-            "js": "/capsule/Ui/Storage/cms/CapsuleUiStorage.js",
-            "top": 29
-        },
-        "uploadImage": {
-            "css": "/capsule/Ui/UploadImage/cms/CapsuleUiUploadImage.css",
-            "js": "/capsule/Ui/UploadImage/cms/CapsuleUiUploadImage.js",
-            "top": 29
-        },
-        "uploadImageHistory": {
-            "css": "/capsule/Ui/UploadImageHistory/cms/CapsuleUiUploadImageHistory.css",
-            "js": "/capsule/Ui/UploadImageHistory/cms/CapsuleUiUploadImageHistory.js",
-            "top": 29
-        }
+    "mainMenu": {
+      "css": "/capsule/Ui/DropDownMenu/cms/menu.css",
+      "js": "/capsule/Ui/DropDownMenu/cms/menu.js",
+      "height": 25
     },
-    "comment": "Icons configuration",
-    "icons": {
-        "cms": "/capsule/assets/share/icons/cms"
+    "dataGrid": {
+      "css": "/capsule/Ui/DataGrid/cms/CapsuleUiDataGrid.css",
+      "js": "/capsule/Ui/DataGrid/cms/CapsuleUiDataGrid.js",
+      "top": 29
     },
-    "path": {
-        "assets": "/capsule/assets",
-        "css": {
-            "cssReset": "/capsule/assets/cms/css/cssreset-min.css",
-            "cssStyle": "/capsule/assets/cms/css/style.css"
-        },
-        "js": {
-            "jquery": "/capsule/assets/share/jquery/jquery-2.0.3.min.js",
-            "capsule": "/capsule/assets/cms/js/Capsule.js",
-            "mousewheel": "/capsule/assets/share/jquery.mousewheel.min.js"
-        },
-        "ext": "/capsule/assets/cms/ext",
-        "imageareaselect": {
-            "css": "/capsule/assets/share/imageareaselect/css/imgareaselect-default.css",
-            "js": "/capsule/assets/share/imageareaselect/jquery.imgareaselect.min.js"
-        },
-        "jqueryUi": {
-            "css1": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.css",
-            "css2": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.structure.min.css",
-            "css3": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.theme.min.css",
-            "js": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.js"
-        }
+    "toolbar": {
+      "height": 29,
+      "css": "/capsule/Ui/Toolbar/cms/CapsuleUiToolbar.css",
+      "js": "/capsule/Ui/Toolbar/cms/CapsuleUiToolbar.js"
     },
-    "controller": {
-        "defaultNamespace": "App/Cms/Controller"
+    "tabControl": {
+      "height": 30,
+      "css": "/capsule/Ui/TabControl/cms/CapsuleUiTabControl.css",
+      "js": "/capsule/Ui/TabControl/cms/CapsuleUiTabControl.js"
     },
-    "#": "Module configuration",
-    "#": "команда админки : какой вызвать контроллер",
-    "#": "Пространства имен разделять символом / или \\ (обратный слэш удваивать)",
-    "#": "Пространства имен без ведущего разделителя в начале строки будут пытаться подключить из текущего контекста",
-    "module": {
-        "user": "User",
-        "named": "Named",
-        "description": "Description",
-        "imaged": "Imaged",
-        "richtext": "Richtext",
-        "dated": "Dated",
-        "datedadvanced": "DatedAdvanced",
-        "unitts": "UnitTs",
-        "unitusr": "UnitUsr",
-        "unittsusr": "UnitTsUsr",
-        "namedtsusr": "NamedTsUsr",
-        "titledtsusr": "TitledTsUsr",
-        "tokentsusr": "TokenTsUsr",
-        "bindtsusr": "BindTsUsr",
-        "textblock": "TextBlock",
-        "nestedcontainer": "NestedContainer",
-        "nesteditem": "NestedItem",
-        "treecontainer": "TreeContainer",
-        "treeitem": "TreeItem",
-        "active": "Active",
-        "tree": "Tree",
-        "flatmenu": "FlatMenu",
-        "flatmenupunct": "FlatMenuPunct",
-        "treemenu": "TreeMenu",
-        "treemenupunct": "TreeMenuPunct",
-        "devlog": "DevLog",
-        "storage": "Storage",
-        "files": "Files",
-        "uploadimage": "Upload.Image.Upload",
-        "uploadimagehistory": "Upload.Image.History",
-        "uploadimagefavorites": "Upload.Image.Favorites",
-        "#catalog": "---------------------------------------------------------",
-        "section": "Catalog.Section",
-        "unit": "Catalog.Unit",
-        "product": "Catalog.Product",
-        "attribute-section-link": "Catalog.AttributeSectionLink",
-        "attribute": "Catalog.Attribute",
-        "attributegroup": "Catalog.AttributeGroup",
-        "#usrcatalog": "------------------------------------------------------",
-        "usrsection": "Usr.Catalog.Section",
-        "usrunit": "Usr.Catalog.Unit",
-        "usrproduct": "Usr.Catalog.Product",
-        "usrattribute-section-link": "Usr.Catalog.AttributeSectionLink",
-        "usrattribute": "Usr.Catalog.Attribute",
-        "usrattributegroup": "Usr.Catalog.AttributeGroup",
-        "cpuser": "/Cp.CpUser.CpController"
+    "objectEditor": {
+      "css": "/capsule/Ui/ObjectEditor/cms/CapsuleUiObjectEditor.css",
+      "js": "/capsule/Ui/ObjectEditor/cms/CapsuleUiObjectEditor.js"
+    },
+    "ckeditor": {
+      "js": "/capsule/assets/share/ckeditor/ckeditor.js",
+      "adapter": "/capsule/assets/share/ckeditor/adapters/jquery.js",
+      "basePath": "/capsule/assets/share/ckeditor/"
+    },
+    "dialogWindow": {
+      "css": "/capsule/Ui/DialogWindow/cms/CapsuleUiDialogWindow.css",
+      "js": "/capsule/Ui/DialogWindow/cms/CapsuleUiDialogWindow.js"
+    },
+    "dialog": {
+      "css": "/capsule/Ui/Dialog/cms/CapsuleUiDialog.css",
+      "js": "/capsule/Ui/Dialog/cms/CapsuleUiDialog.js"
+    },
+    "storage": {
+      "css": "/capsule/Ui/Storage/cms/CapsuleUiStorage.css",
+      "js": "/capsule/Ui/Storage/cms/CapsuleUiStorage.js",
+      "top": 29
+    },
+    "uploadImage": {
+      "css": "/capsule/Ui/UploadImage/cms/CapsuleUiUploadImage.css",
+      "js": "/capsule/Ui/UploadImage/cms/CapsuleUiUploadImage.js",
+      "top": 29
+    },
+    "uploadImageHistory": {
+      "css": "/capsule/Ui/UploadImageHistory/cms/CapsuleUiUploadImageHistory.css",
+      "js": "/capsule/Ui/UploadImageHistory/cms/CapsuleUiUploadImageHistory.js",
+      "top": 29
     }
+  },
+  "comment": "Icons configuration",
+  "icons": {
+    "cms": "/capsule/assets/share/icons/cms"
+  },
+  "path": {
+    "assets": "/capsule/assets",
+    "css": {
+      "cssReset": "/capsule/assets/cms/css/cssreset-min.css",
+      "cssStyle": "/capsule/assets/cms/css/style.css"
+    },
+    "js": {
+      "jquery": "/capsule/assets/share/jquery/jquery-2.0.3.min.js",
+      "capsule": "/capsule/assets/cms/js/Capsule.js",
+      "mousewheel": "/capsule/assets/share/jquery.mousewheel.min.js"
+    },
+    "ext": "/capsule/assets/cms/ext",
+    "imageareaselect": {
+      "css": "/capsule/assets/share/imageareaselect/css/imgareaselect-default.css",
+      "js": "/capsule/assets/share/imageareaselect/jquery.imgareaselect.min.js"
+    },
+    "jqueryUi": {
+      "css1": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.css",
+      "css2": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.structure.min.css",
+      "css3": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.theme.min.css",
+      "js": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.js"
+    }
+  },
+  "controller": {
+    "defaultNamespace": "App/Cms/Controller"
+  },
+  "#": "Module configuration",
+  "#": "команда админки : какой вызвать контроллер",
+  "#": "Пространства имен разделять символом / или \\ (обратный слэш удваивать)",
+  "#": "Пространства имен без ведущего разделителя в начале строки будут пытаться подключить из текущего контекста",
+  "module": {
+    "user": "User",
+    "named": "Named",
+    "description": "Description",
+    "imaged": "Imaged",
+    "richtext": "Richtext",
+    "dated": "Dated",
+    "datedadvanced": "DatedAdvanced",
+    "unitts": "UnitTs",
+    "unitusr": "UnitUsr",
+    "unittsusr": "UnitTsUsr",
+    "namedtsusr": "NamedTsUsr",
+    "titledtsusr": "TitledTsUsr",
+    "tokentsusr": "TokenTsUsr",
+    "bindtsusr": "BindTsUsr",
+    "textblock": "TextBlock",
+    "nestedcontainer": "NestedContainer",
+    "nesteditem": "NestedItem",
+    "treecontainer": "TreeContainer",
+    "treeitem": "TreeItem",
+    "active": "Active",
+    "tree": "Tree",
+    "flatmenu": "FlatMenu",
+    "flatmenupunct": "FlatMenuPunct",
+    "treemenu": "TreeMenu",
+    "treemenupunct": "TreeMenuPunct",
+    "devlog": "DevLog",
+    "storage": "Storage",
+    "files": "Files",
+    "uploadimage": "Upload.Image.Upload",
+    "uploadimagehistory": "Upload.Image.History",
+    "uploadimagefavorites": "Upload.Image.Favorites",
+    "#catalog": "---------------------------------------------------------",
+    "section": "Catalog.Section",
+    "unit": "Catalog.Unit",
+    "product": "Catalog.Product",
+    "attribute-section-link": "Catalog.AttributeSectionLink",
+    "attribute": "Catalog.Attribute",
+    "attributegroup": "Catalog.AttributeGroup",
+    "#usrcatalog": "------------------------------------------------------",
+    "usrsection": "Usr.Catalog.Section",
+    "usrunit": "Usr.Catalog.Unit",
+    "usrproduct": "Usr.Catalog.Product",
+    "usrattribute-section-link": "Usr.Catalog.AttributeSectionLink",
+    "usrattribute": "Usr.Catalog.Attribute",
+    "usrattributegroup": "Usr.Catalog.AttributeGroup",
+    "cpuser": "/Cp.CpUser.CpController"
+  }
 }

@@ -3,17 +3,62 @@
  */
 $(document).ready(function () 
 {
-    $('#capsule-cms-sidebar-action-buttons .fa-close').click(function ()
+    var collapseSidebarHandler = function (event)
     {
-        $('#capsule-cms-sidebar-wrapper')
-            .addClass('capsule-cms-sidebar-wrapper-hide')
-            .removeClass('capsule-cms-sidebar-wrapper-show');
+        if ($(event.target).closest('#capsule-cms-sidebar-wrapper').length) {
+            return;
+        }
+        if ($(event.target).closest('#capsule-cms-sidebar-wrapper').length) {
+            return;
+        }
+        $('body').off('click', collapseSidebarHandler);
+        collapseSidebar();
+    };
+
+    var expandSidebar = function ()
+    {
+        $('body')
+            .addClass('capsule-cms-sidebar-wrapper-expanded')
+            .on('click', collapseSidebarHandler);
+    };
+
+    var collapseSidebar = function ()
+    {
+        $('body').removeClass('capsule-cms-sidebar-wrapper-expanded');
+    };
+
+
+    $('#capsule-cms-sidebar-action-buttons').find('.fa-bars').click(function (event)
+    {
+        event.stopPropagation();
+        collapseSidebar();
     });
 
-    $('#capsule-cms-nav .fa-bars').click(function ()
+    var pinned = Cookies('capsule-cms-sidebar-wrapper-pinned');
+    if ('yes' === pinned) {
+        $('body').addClass('capsule-cms-sidebar-wrapper-pinned');
+        expandSidebar();
+    }
+
+
+    $('#capsule-cms-pin-sidebar').click(function (event)
     {
-        $('#capsule-cms-sidebar-wrapper')
-            .addClass('capsule-cms-sidebar-wrapper-show')
-            .removeClass('capsule-cms-sidebar-wrapper-hide');
+        event.stopPropagation();
+        $('body').toggleClass('capsule-cms-sidebar-wrapper-pinned');
+        var pinned = $('body').hasClass('capsule-cms-sidebar-wrapper-pinned');
+        Cookies(
+            'capsule-cms-sidebar-wrapper-pinned',
+            pinned ? 'yes' : 'no',
+            {
+                expires: 7,
+                path: '/'
+            }
+        );
+    });
+
+    $('#capsule-cms-nav').find('.fa-bars').click(function (event)
+    {
+        event.stopPropagation();
+        expandSidebar();
     });
 });
