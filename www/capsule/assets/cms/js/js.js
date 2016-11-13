@@ -3,6 +3,25 @@
  */
 $(document).ready(function () 
 {
+    /**
+     * Global object
+     *
+     * @constructor
+     */
+    window.CapsuleCms = function() {};
+
+    CapsuleCms.expandSidebar = function ()
+    {
+        $('body')
+            .addClass('capsule-cms-sidebar-wrapper-expanded')
+            .on('click', collapseSidebarHandler);
+    };
+
+    CapsuleCms.collapseSidebar = function ()
+    {
+        $('body').removeClass('capsule-cms-sidebar-wrapper-expanded');
+    };
+    
     var collapseSidebarHandler = function (event)
     {
         if ($(event.target).closest('#capsule-cms-sidebar-wrapper').length) {
@@ -12,32 +31,22 @@ $(document).ready(function ()
             return;
         }
         $('body').off('click', collapseSidebarHandler);
-        collapseSidebar();
+        CapsuleCms.collapseSidebar();
     };
 
-    var expandSidebar = function ()
-    {
-        $('body')
-            .addClass('capsule-cms-sidebar-wrapper-expanded')
-            .on('click', collapseSidebarHandler);
-    };
 
-    var collapseSidebar = function ()
-    {
-        $('body').removeClass('capsule-cms-sidebar-wrapper-expanded');
-    };
 
 
     $('#capsule-cms-sidebar-action-buttons').find('.fa-bars').click(function (event)
     {
         event.stopPropagation();
-        collapseSidebar();
+        CapsuleCms.collapseSidebar();
     });
 
     var pinned = Cookies('capsule-cms-sidebar-wrapper-pinned');
     if ('yes' === pinned) {
         $('body').addClass('capsule-cms-sidebar-wrapper-pinned');
-        expandSidebar();
+        CapsuleCms.expandSidebar();
     }
 
 
@@ -59,6 +68,6 @@ $(document).ready(function ()
     $('#capsule-cms-nav').find('.fa-bars').click(function (event)
     {
         event.stopPropagation();
-        expandSidebar();
+        CapsuleCms.expandSidebar();
     });
 });
