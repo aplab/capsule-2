@@ -14,7 +14,7 @@
     <div id="capsule-cms-content">
         <?php
 
-        \Capsule\Tools\Tools::dump($_COOKIE);
+//        \Capsule\Tools\Tools::dump($_COOKIE);
 
         ?>
     </div>

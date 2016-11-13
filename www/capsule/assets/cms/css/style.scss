@@ -41,12 +41,15 @@ body {
   background: #1a1c22 none repeat scroll 0 0;
   color: #fff;
   z-index: 100000;
-  i.fa.fa-bars {
+  > i.fa.fa-bars {
     line-height: $nav-height;
     width: $nav-height;
     text-align: center;
     cursor: pointer;
     font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 }
 /**

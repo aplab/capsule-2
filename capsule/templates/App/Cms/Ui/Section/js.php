@@ -16,6 +16,7 @@ $nocache = '?nocache=' . md5(microtime());
 //$nocache = '';
 ?>
 <script src="/capsule/components/jquery/jquery-3.1.1.min.js"></script>
+<script src="/capsule/components/bootstrap/js/bootstrap.min.js"></script>
 <script src="/capsule/components/jquery-ui/jquery-ui.min.js"></script>
 <script src="/capsule/components/js-cookie/js.cookie-2.1.3.min.js"></script>
 <script src="/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.js<?=$nocache?>"></script>
