@@ -121,6 +121,9 @@ class DefaultController extends AbstractController
 
         $content = new Section('content');
         $body->append($content);
+
+        $actions = new Section('actions');
+        $body->append($actions);
     }
     
     /**

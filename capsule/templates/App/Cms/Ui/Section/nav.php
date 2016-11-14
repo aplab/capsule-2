@@ -13,9 +13,5 @@
 # foreach ($this->menu as $item) echo $item ?>
 <div id="capsule-cms-nav">
     <i id="capsule-cms-open-sidebar" class="fa fa-bars" aria-hidden="true"></i>
-
-
-
-
-
+    <i id="capsule-cms-open-actions" class="fa fa-ellipsis-v" aria-hidden="true"></i>
 </div>
