@@ -40,7 +40,7 @@ body {
   height: $nav-height;
   background: #1a1c22 none repeat scroll 0 0;
   color: #fff;
-  z-index: 100000;
+  z-index: 200000;
   > i.fa.fa-bars {
     line-height: $nav-height;
     width: $nav-height;
@@ -68,7 +68,7 @@ body {
   transition: width 0.15s ease 0s;
   overflow: hidden;
   padding-top: $nav-height;
-  z-index: 200000;
+  z-index: 300000;
   #capsule-cms-sidebar-action-buttons {
     background: #1a1c22;
     position: absolute;
@@ -164,4 +164,5 @@ body {
   right: 10px;
   bottom: 10px;
   //background: #4cae4c;
+  overflow: scroll;
 }
