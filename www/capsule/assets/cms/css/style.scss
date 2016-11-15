@@ -190,12 +190,13 @@ body {
   max-height: calc(100vh - 20px);
   max-width: calc(100vw - 32px);
   overflow-x: hidden;
+  display: none;
   a {
     clear: both;
     color: #333;
     display: block;
     font-weight: 400;
-    line-height: 1.42857;
+    line-height: 44px;
     padding: 3px 20px;
     white-space: nowrap;
     overflow: hidden;
