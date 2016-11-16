@@ -19,17 +19,14 @@
 namespace App\Cms\Controller;
 
 use App\Cms\Cms;
+use App\Cms\Ui\ActionMenu\ActionMenu;
 use App\Cms\Ui\MainMenu\Callback;
 use App\Cms\Ui\MainMenu\Icon;
 use App\Cms\Ui\MainMenu\MainMenu;
 use App\Cms\Ui\MainMenu\MenuItem;
 use App\Cms\Ui\MainMenu\Url;
 use Capsule\I18n\I18n;
-use Capsule\Tools\Tools;
-use Capsule\Ui\DropdownMenu\SubPunct;
-use Capsule\Ui\DropdownMenu\Punct;
 use App\Cms\Ui\SectionManager;
-use Capsule\Ui\Toolbar\Toolbar;
 use App\Cms\Ui\Section;
 use Capsule\Capsule;
 /**
@@ -55,9 +52,9 @@ class DefaultController extends AbstractController
     {
         $this->initSections();
         $this->initMainMenu();
-//        $this->initToolbar();
+        $this->initActionMenu();
         $this->ui->onload->append(new \App\Cms\View\MainMenu($this->app->registry->mainMenu));
-//        $this->ui->toolbar->append(new \App\Cms\Ui\Toolbar\View($this->app->registry->toolbar));
+        $this->ui->onload->append(new \App\Cms\View\ActionMenu($this->app->registry->actionMenu));
         echo $this->ui->html;
     }
     
@@ -121,9 +118,6 @@ class DefaultController extends AbstractController
 
         $content = new Section('content');
         $body->append($content);
-
-        $actions = new Section('actions');
-        $body->append($actions);
     }
     
     /**
@@ -186,5 +180,29 @@ class DefaultController extends AbstractController
                 $this->initSubmenu($submenu_item, $submenu_items);
             }
         }
+    }
+
+    private function initActionMenu()
+    {
+        $filter = Cms::getInstance()->urlFilter;
+        $menu = new ActionMenu('capsule-cms-action-menu');
+        $this->app->registry->actionMenu = $menu;
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test 12341234', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('testasdf asdfasdf', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));$menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test 12341234', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('testasdf asdfasdf', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
+        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
     }
 }

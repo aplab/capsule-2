@@ -166,27 +166,27 @@ $(document).ready(function ()
     /**
      * Expand actionsbar handler
      */
-    CapsuleCms.expandActionsMenu = function ()
+    CapsuleCms.expandActionMenu = function ()
     {
-        $('#capsule-cms-actions-wrapper').show();
-        $('body').on('click', CapsuleCms.clickOutsideActionsMenuHandler);
+        CapsuleCmsActionMenu.getInstance('capsule-cms-action-menu').show();
+        $('body').on('click', CapsuleCms.clickOutsideActionMenuHandler);
     };
 
-    CapsuleCms.collapseActionsMenu = function ()
+    CapsuleCms.collapseActionMenu = function ()
     {
-        $('#capsule-cms-actions-wrapper').hide();
+        CapsuleCmsActionMenu.getInstance('capsule-cms-action-menu').hide();
     };
 
-    CapsuleCms.clickOutsideActionsMenuHandler = function (event)
+    CapsuleCms.clickOutsideActionMenuHandler = function (event)
     {
-        if ($(event.target).closest('#capsule-cms-actions-wrapper').length) {
+        if ($(event.target).closest('#capsule-cms-action-menu').length) {
             return;
         }
         if ($(event.target).closest('#capsule-cms-open-actions').length) {
             return;
         }
-        $('body').off('click', CapsuleCms.clickOutsideActionsMenuHandler);
-        CapsuleCms.collapseActionsMenu();
+        $('body').off('click', CapsuleCms.clickOutsideActionMenuHandler);
+        CapsuleCms.collapseActionMenu();
     };
 
     $('#capsule-cms-close-sidebar').click(function (event)
@@ -206,7 +206,7 @@ $(document).ready(function ()
 
     $('#capsule-cms-open-actions').on('click', function (event)
     {
-        CapsuleCms.expandActionsMenu();
+        CapsuleCms.expandActionMenu();
     });
 
     CapsuleCms.init();
