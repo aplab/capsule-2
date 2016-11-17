@@ -1,0 +1,157 @@
+$header-height: 38px;
+$footer-height: 50px;
+.capsule-cms-data-grid {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  .capsule-cms-data-grid-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: $header-height;
+    background: #f8f8f8;
+    >div {
+      border: 0 solid #ddd;
+      border-left-width: 1px;
+      width: 10000px;
+      overflow: hidden;
+      clear: both;
+      > div {
+        height: $header-height;
+        border: 1px solid #ddd;
+        border-left: 0;
+        width: 200px;
+        float: left;
+        overflow: hidden;
+        padding: 8px;
+      }
+    }
+  }
+  .capsule-cms-data-grid-body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: $header-height;
+    bottom: $footer-height;
+    overflow: scroll;
+    >div {
+      border: 0 solid #ddd;
+      border-left-width: 1px;
+      width: 10000px;
+      overflow: hidden;
+      clear: both;
+      > div {
+        border: 1px solid #ddd;
+        border-top: 0;
+        border-left: 0;
+        width: 200px;
+        float: left;
+        overflow: hidden;
+        padding: 8px;
+      }
+    }
+    > div:hover {
+      background-color: #F5F5F5;
+    }
+    > .capsule-cms-data-grid-active {
+      background-color: #F9F9F9;
+    }
+  }
+  .capsule-cms-data-grid-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: $footer-height;
+    overflow: hidden;
+  }
+  .capsule-cms-data-grid-prev {
+    display: block;
+    width: 14.9%;
+    overflow: hidden;
+    height: $footer-height;
+    float: left;
+    text-align: center;
+    line-height: $footer-height;
+  }
+  .capsule-cms-data-grid-page {
+    display: block;
+    width: 34.9%;
+    overflow: hidden;
+    height: $footer-height;
+    float: left;
+    text-align: center;
+    padding: 8px;
+    select {
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .capsule-cms-data-grid-next {
+    display: block;
+    width: 14.9%;
+    overflow: hidden;
+    height: $footer-height;
+    float: left;
+    text-align: center;
+    line-height: $footer-height;
+  }
+  .capsule-cms-data-grid-limit {
+    display: block;
+    width: 34.9%;
+    overflow: hidden;
+    height: $footer-height;
+    float: left;
+    text-align: center;
+    padding: 8px;
+    select {
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  @media (min-width: 480px) {
+    .capsule-cms-data-grid-prev::after {
+      content: 'Prev';
+    }
+    .capsule-cms-data-grid-next::before {
+      content: 'Next';
+    }
+    .capsule-cms-data-grid-limit {
+      select {
+        display: block;
+        width: 59.9%;
+        float: left;
+      }
+    }
+    .capsule-cms-data-grid-limit::before {
+      content: 'Limit:';
+      display: block;
+      width: 39.9%;
+      float: left;
+      text-align: right;
+      line-height: 34px;
+      padding-right: 8px;
+    }
+    .capsule-cms-data-grid-page {
+      select {
+        display: block;
+        width: 59.9%;
+        float: left;
+      }
+    }
+    .capsule-cms-data-grid-page::before {
+      content: 'Page:';
+      display: block;
+      width: 39.9%;
+      float: left;
+      text-align: right;
+      line-height: 34px;
+      padding-right: 8px;
+    }
+  }
+}

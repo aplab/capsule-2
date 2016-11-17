@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.capsule-cms-data-grid {
+  @media (min-width: 480px) {
+    .capsule-cms-data-grid-prev::after {
+      content: 'Пред.';
+    }
+    .capsule-cms-data-grid-next::before {
+      content: 'След.';
+    }
+    .capsule-cms-data-grid-limit::before {
+      content: 'Лимит:';
+    }
+    .capsule-cms-data-grid-page::before {
+      content: 'Стр.:';
+    }
+  }
+}

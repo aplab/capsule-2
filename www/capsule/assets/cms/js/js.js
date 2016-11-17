@@ -210,4 +210,6 @@ $(document).ready(function ()
     });
 
     CapsuleCms.init();
+
+    new CapsuleCmsDataGrid($('#capsule-cms-data-grid'));
 });

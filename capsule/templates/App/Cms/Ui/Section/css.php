@@ -21,5 +21,7 @@ $nocache = '?nocache=' . md5(microtime());
 <link rel="stylesheet" href="/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.css<?=$nocache?>">
 <link rel="stylesheet" href="/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.css<?=$nocache?>">
 <link rel="stylesheet" href="/capsule/assets/modules/Scrollable/CapsuleUiScrollable.css<?=$nocache?>">
+<link rel="stylesheet" href="/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGrid.css<?=$nocache?>">
+<!--<link rel="stylesheet" href="/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGridRU.css--><?//=$nocache?><!--">-->
 <link rel="stylesheet" href="/capsule/assets/cms/css/style.css<?=$nocache?>">
 <?php foreach ($this->css as $item) echo $item ?>

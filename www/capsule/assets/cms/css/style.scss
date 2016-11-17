@@ -170,10 +170,23 @@ body {
 }
 #capsule-cms-content {
   position: absolute;
-  left: 10px;
-  top: 10px;
-  right: 10px;
-  bottom: 10px;
-  //background: #4cae4c;
-  overflow: scroll;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+@for $i from 0 through 1024 {
+  .w#{$i} {
+    width: 1px * $i;
+  }
+}
+.wa {
+  width: auto;
+}
+@for $i from 0 through 600 {
+  .h#{$i} {
+    height: 1px * $i;
+  }
 }
