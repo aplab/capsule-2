@@ -44,26 +44,28 @@ $sidebar-width: 38px;
     bottom: $footer-height;
     overflow: scroll;
     z-index: 200;
-    >div {
-      border: 0;
-      width: 3000px;
-      overflow: hidden;
-      clear: both;
+    .capsule-cms-data-grid-content {
       > div {
-        border: 1px solid #ddd;
-        border-top: 0;
-        border-left: 0;
-        width: 200px;
-        float: left;
+        border: 0;
+        width: 3000px;
         overflow: hidden;
-        padding: 8px;
+        clear: both;
+        > div {
+          border: 1px solid #ddd;
+          border-top: 0;
+          border-left: 0;
+          width: 200px;
+          float: left;
+          overflow: hidden;
+          padding: 8px;
+        }
       }
-    }
-    > div:hover {
-      background-color: #F5F5F5;
-    }
-    > .capsule-cms-data-grid-active {
-      background-color: #F9F9F9;
+      > div:hover {
+        background-color: #F5F5F5;
+      }
+      > .capsule-cms-data-grid-active {
+        background-color: #F9F9F9;
+      }
     }
   }
   .capsule-cms-data-grid-sidebar {

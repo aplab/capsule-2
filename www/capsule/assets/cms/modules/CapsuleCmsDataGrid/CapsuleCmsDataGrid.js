@@ -7,33 +7,26 @@ var CapsuleCmsDataGrid = function (container)
     var header = container.find('.capsule-cms-data-grid-header').eq(0);
     var header_row = container.find('.capsule-cms-data-grid-header-row').eq(0);
     var body = container.find('.capsule-cms-data-grid-body').eq(0);
+    var content = container.find('.capsule-cms-data-grid-content').eq(0);
     var sidebar_body_col = container.find('.capsule-cms-data-grid-sidebar-body-col').eq(0);
 
     var scrollSync = function () {
-        header_row.css('left', -body.scrollLeft());
-        sidebar_body_col.css('top', -body.scrollTop());
+        header_row.css('left', content.position().left);
+        sidebar_body_col.css('top', content.position().top);
     }
     scrollSync();
 
-    var scroll_end;
-    body.on('scroll', function () {
-        if (scroll_end) {
-            clearTimeout(scroll_end);
-        }
-        scrollSync();
-        scroll_end = setTimeout(scrollSync, 1000);
-    });
+    body.on('touchmove', scrollSync);
 
-    body.children('div').on('click', function () {
+    content.children('div').on('click', function () {
         var o = $(this);
-        body.children('div').not(o).removeClass('capsule-cms-data-grid-active');
+        content.children('div').not(o).removeClass('capsule-cms-data-grid-active');
         o.addClass('capsule-cms-data-grid-active');
     });
 
-    body.children('div').each(function (i, o) {
+    content.children('div').each(function (i, o) {
         var div = $('<div>');
         var o = $(o);
-        console.log(o);
         div.css({
             height: o.height()
         });

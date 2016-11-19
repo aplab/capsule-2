@@ -33,15 +33,17 @@
                 </div>
             </div>
             <div class="capsule-cms-data-grid-body">
-                <?php for ($i = 0; $i < 100; $i++) : ?>
-                <div>
-                    <?php for ($j = 0; $j < 14; $j++) : ?>
-                        <div>
-                            cell
-                        </div>
+                <div class="capsule-cms-data-grid-content">
+                    <?php for ($i = 0; $i < 100; $i++) : ?>
+                    <div>
+                        <?php for ($j = 0; $j < 14; $j++) : ?>
+                            <div>
+                                cell
+                            </div>
+                        <?php endfor ?>
+                    </div>
                     <?php endfor ?>
                 </div>
-                <?php endfor ?>
             </div>
             <div class="capsule-cms-data-grid-footer">
                 <div class="capsule-cms-data-grid-prev">
