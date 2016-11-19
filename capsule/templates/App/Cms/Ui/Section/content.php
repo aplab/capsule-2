@@ -10,41 +10,64 @@
  * Date: 12.11.2016
  * Time: 7:50
  */
-?><div id="capsule-cms-content-wrapper">
+?>
+<div id="capsule-cms-content-wrapper">
     <div id="capsule-cms-content">
 
-
+        <!--data grid-->
         <div class="capsule-cms-data-grid" id="capsule-cms-data-grid">
-            <div class="capsule-cms-data-grid-header">
-                <div class="capsule-cms-data-grid-header-row">
-                    <?php for ($i = 0; $i < 14; $i++) : ?>
-                    <div>
-                        cell
+            <!--data grid body-->
+            <div class="capsule-cms-data-grid-body">
+                <!--data grid content-->
+                <div class="capsule-cms-data-grid-content">
+
+                    <div class="capsule-cms-data-grid-header">
+                        <div class="capsule-cms-data-grid-header-row">
+                            <?php for ($i = 0; $i < 14; $i++) : ?>
+                                <div>
+                                    cell
+                                </div>
+                            <?php endfor ?>
+                        </div>
                     </div>
-                    <?php endfor ?>
-                </div>
-            </div>
-            <div class="capsule-cms-data-grid-sidebar">
-                <div class="capsule-cms-data-grid-sidebar-header">
+
+                    <div class="capsule-cms-data-grid-sidebar">
+                        <div class="capsule-cms-data-grid-sidebar-header">
+
+                        </div>
+                        <div class="capsule-cms-data-grid-sidebar-body">
+                            <div class="capsule-cms-data-grid-sidebar-body-col"></div>
+                        </div>
+                    </div>
+
+                    <div class="capsule-cms-data-grid-data-wrapper">
+                        <div class="capsule-cms-data-grid-data">
+                            <?php for ($i = 0; $i < 100; $i++) : ?>
+                                <div>
+                                    <?php for ($j = 0; $j < 14; $j++) : ?>
+                                        <div>
+                                            cell
+                                        </div>
+                                    <?php endfor ?>
+                                </div>
+                            <?php endfor ?>
+                        </div>
+                    </div>
 
                 </div>
-                <div class="capsule-cms-data-grid-sidebar-body">
-                    <div class="capsule-cms-data-grid-sidebar-body-col"></div>
+                <!--end of capsule-cms-data-grid-content-->
+
+                <div class="capsule-cms-data-grid-scroll-horizontal">
+                    <div class="capsule-cms-data-grid-scroll-horizontal-content"></div>
                 </div>
-            </div>
-            <div class="capsule-cms-data-grid-body">
-                <div class="capsule-cms-data-grid-content">
-                    <?php for ($i = 0; $i < 100; $i++) : ?>
-                    <div>
-                        <?php for ($j = 0; $j < 14; $j++) : ?>
-                            <div>
-                                cell
-                            </div>
-                        <?php endfor ?>
-                    </div>
-                    <?php endfor ?>
+
+                <div class="capsule-cms-data-grid-scroll-vertical">
+                    <div class="capsule-cms-data-grid-scroll-vertical-content"></div>
                 </div>
+
             </div>
+            <!--end of data grid body-->
+            <!--data grid footer-->
             <div class="capsule-cms-data-grid-footer">
                 <div class="capsule-cms-data-grid-prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -71,11 +94,9 @@
                     </select>
                 </div>
             </div>
-
+            <!--end of data grid footer-->
         </div>
-
-
-
+        <!--end of data grid-->
 
 
     </div>
