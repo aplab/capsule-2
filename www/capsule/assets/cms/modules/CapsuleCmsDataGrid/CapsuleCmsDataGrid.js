@@ -16,7 +16,10 @@ var CapsuleCmsDataGrid = function (container)
     }
     scrollSync();
 
-    body.on('touchmove', scrollSync);
+    body.on('touchmove', function (event) {
+        scrollSync();
+        console.log(event);
+    });
 
     content.children('div').on('click', function () {
         var o = $(this);
