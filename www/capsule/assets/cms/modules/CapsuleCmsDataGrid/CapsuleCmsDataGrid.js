@@ -19,25 +19,6 @@ var CapsuleCmsDataGrid = function (container)
 
     var header_row = container.find('.capsule-cms-data-grid-header-row').eq(0);
 
-
-
-    // var header = container.find('.capsule-cms-data-grid-header').eq(0);
-    // var header_row = container.find('.capsule-cms-data-grid-header-row').eq(0);
-    // var body = container.find('.capsule-cms-data-grid-body').eq(0);
-    // var content = container.find('.capsule-cms-data-grid-content').eq(0);
-    // var sidebar_body_col = container.find('.capsule-cms-data-grid-sidebar-body-col').eq(0);
-    //
-    // var scrollSync = function () {
-    //     header_row.css('left', content.position().left);
-    //     sidebar_body_col.css('top', content.position().top);
-    // }
-    // scrollSync();
-    //
-    // body.on('wheel', function (event) {
-    //     scrollSync();
-    //     console.log(event);
-    // });
-    //
     data.children('div').on('click', function () {
         var o = $(this);
         data.children('div').not(o).removeClass('capsule-cms-data-grid-active');
@@ -103,7 +84,7 @@ var CapsuleCmsDataGrid = function (container)
 
     body.on('mousewheel', function (event) {
         var current = scroll_vertical.scrollTop();
-        scroll_vertical.scrollTop(current + -10 * event.deltaY);
+        scroll_vertical.scrollTop(current + -111 * event.deltaY);
     });
 
     var start_position_x = 0;
