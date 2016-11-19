@@ -16,18 +16,26 @@
 
         <div class="capsule-cms-data-grid" id="capsule-cms-data-grid">
             <div class="capsule-cms-data-grid-header">
-                <div>
-                    <?php for ($i = 0; $i < 49; $i++) : ?>
+                <div class="capsule-cms-data-grid-header-row">
+                    <?php for ($i = 0; $i < 14; $i++) : ?>
                     <div>
                         cell
                     </div>
                     <?php endfor ?>
                 </div>
             </div>
+            <div class="capsule-cms-data-grid-sidebar">
+                <div class="capsule-cms-data-grid-sidebar-header">
+
+                </div>
+                <div class="capsule-cms-data-grid-sidebar-body">
+                    <div class="capsule-cms-data-grid-sidebar-body-col"></div>
+                </div>
+            </div>
             <div class="capsule-cms-data-grid-body">
                 <?php for ($i = 0; $i < 100; $i++) : ?>
                 <div>
-                    <?php for ($j = 0; $j < 49; $j++) : ?>
+                    <?php for ($j = 0; $j < 14; $j++) : ?>
                         <div>
                             cell
                         </div>

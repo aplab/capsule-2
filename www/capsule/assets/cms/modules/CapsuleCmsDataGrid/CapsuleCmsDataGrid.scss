@@ -1,5 +1,6 @@
 $header-height: 38px;
 $footer-height: 50px;
+$sidebar-width: 38px;
 .capsule-cms-data-grid {
   position: absolute;
   left: 0;
@@ -9,16 +10,21 @@ $footer-height: 50px;
   overflow: hidden;
   .capsule-cms-data-grid-header {
     position: absolute;
-    left: 0;
+    left: $sidebar-width;
+    right: 0;
     top: 0;
     height: $header-height;
     background: #f8f8f8;
+    z-index: 100;
+    overflow: hidden;
     >div {
-      border: 0 solid #ddd;
-      border-left-width: 1px;
-      width: 10000px;
+      border: 0;
+      width: 3000px;
       overflow: hidden;
       clear: both;
+      position: absolute;
+      left: 0;
+      top: 0;
       > div {
         height: $header-height;
         border: 1px solid #ddd;
@@ -32,15 +38,15 @@ $footer-height: 50px;
   }
   .capsule-cms-data-grid-body {
     position: absolute;
-    left: 0;
+    left: $sidebar-width;
     right: 0;
     top: $header-height;
     bottom: $footer-height;
     overflow: scroll;
+    z-index: 200;
     >div {
-      border: 0 solid #ddd;
-      border-left-width: 1px;
-      width: 10000px;
+      border: 0;
+      width: 3000px;
       overflow: hidden;
       clear: both;
       > div {
@@ -60,6 +66,43 @@ $footer-height: 50px;
       background-color: #F9F9F9;
     }
   }
+  .capsule-cms-data-grid-sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: $sidebar-width;
+    bottom: $footer-height;
+    background: #f8f8f8;
+ }
+  .capsule-cms-data-grid-sidebar-header {
+    border: 1px solid #ddd;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: $header-height;
+  }
+  .capsule-cms-data-grid-sidebar-body {
+    position: absolute;
+    left: 0;
+    top: $header-height;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    >div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: $sidebar-width;
+      >div {
+        border: 1px solid #ddd;
+        border-top: 0;
+        padding: 8px 0;
+        text-align: center;
+      }
+    }
+  }
+
   .capsule-cms-data-grid-footer {
     position: absolute;
     left: 0;
@@ -67,6 +110,8 @@ $footer-height: 50px;
     right: 0;
     height: $footer-height;
     overflow: hidden;
+    z-index: 300;
+    background: #fff;
   }
   .capsule-cms-data-grid-prev {
     display: block;
