@@ -12,16 +12,18 @@
  *
  * include css files in the head section
  */
-$nocache = '?nocache=' . md5(microtime());
-//$nocache = '';
-?>
-<link rel="stylesheet" href="/capsule/components/jquery-ui/jquery-ui.min.css">
-<link rel="stylesheet" href="/capsule/components/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="/capsule/components/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.css<?=$nocache?>">
-<link rel="stylesheet" href="/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.css<?=$nocache?>">
-<link rel="stylesheet" href="/capsule/assets/modules/Scrollable/CapsuleUiScrollable.css<?=$nocache?>">
-<link rel="stylesheet" href="/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGrid.css<?=$nocache?>">
-<!--<link rel="stylesheet" href="/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGridRU.css--><?//=$nocache?><!--">-->
-<link rel="stylesheet" href="/capsule/assets/cms/css/style.css<?=$nocache?>">
-<?php foreach ($this->css as $item) echo $item ?>
+use \Capsule\Tools\Assets\Assets as a;
+use \Capsule\Tools\Assets\Css as c;
+$assets = new a;
+$assets
+    ->add(new c('/capsule/components/jquery-ui/jquery-ui.min.css'))
+    ->add(new c('/capsule/components/bootstrap/css/bootstrap.min.css'))
+    ->add(new c('/capsule/components/font-awesome/css/font-awesome.min.css'))
+    ->add(new c('/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.css', true))
+    ->add(new c('/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.css', true))
+    ->add(new c('/capsule/assets/modules/Scrollable/CapsuleUiScrollable.css', true))
+    ->add(new c('/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGrid.css', true))
+    //->add(new c('/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGridRU.css', true))
+    ->add(new c('/capsule/assets/cms/css/style.css', true));
+$assets->putCss();
+foreach ($this->css as $item) echo $item;

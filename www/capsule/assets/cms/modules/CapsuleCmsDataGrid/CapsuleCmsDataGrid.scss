@@ -221,6 +221,7 @@ $sidebar-width: 38px;
       display: block;
       width: 59.9%;
       float: left;
+      max-width: 120px;
     }
   }
   .capsule-cms-data-grid-limit::before {
@@ -236,6 +237,7 @@ $sidebar-width: 38px;
     select {
       display: block;
       width: 59.9%;
+      max-width: 120px;
       float: left;
     }
   }

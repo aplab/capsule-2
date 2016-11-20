@@ -12,17 +12,19 @@
  *
  * include js files in the head section
  */
-$nocache = '?nocache=' . md5(microtime());
-//$nocache = '';
-?>
-<script src="/capsule/components/jquery/jquery-3.1.1.min.js"></script>
-<script src="/capsule/components/jquery.mousewheel/jquery.mousewheel.min.js"></script>
-<script src="/capsule/components/bootstrap/js/bootstrap.min.js"></script>
-<script src="/capsule/components/jquery-ui/jquery-ui.min.js"></script>
-<script src="/capsule/components/js-cookie/js.cookie-2.1.3.min.js"></script>
-<script src="/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.js<?=$nocache?>"></script>
-<script src="/capsule/assets/modules/Scrollable/CapsuleUiScrollable.js<?=$nocache?>"></script>
-<script src="/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.js<?=$nocache?>"></script>
-<script src="/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGrid.js<?=$nocache?>"></script>
-<script src="/capsule/assets/cms/js/js.js<?=$nocache?>"></script>
-<?php foreach ($this->js as $item) echo $item ?>
+use \Capsule\Tools\Assets\Assets as a;
+use \Capsule\Tools\Assets\Js as j;
+$assets = new a;
+$assets
+    ->add(new j('/capsule/components/jquery/jquery-3.1.1.min.js'))
+    ->add(new j('/capsule/components/jquery.mousewheel/jquery.mousewheel.min.js'))
+    ->add(new j('/capsule/components/bootstrap/js/bootstrap.min.js'))
+    ->add(new j('/capsule/components/jquery-ui/jquery-ui.min.js'))
+    ->add(new j('/capsule/components/js-cookie/js.cookie-2.1.3.min.js'))
+    ->add(new j('/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.js', true))
+    ->add(new j('/capsule/assets/modules/Scrollable/CapsuleUiScrollable.js', true))
+    ->add(new j('/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.js', true))
+    ->add(new j('/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGrid.js', true))
+    ->add(new j('/capsule/assets/cms/js/js.js', true));
+$assets->putJs();
+foreach ($this->js as $item) echo $item;

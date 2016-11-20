@@ -74,11 +74,11 @@
                 </div>
                 <div class="capsule-cms-data-grid-page">
                     <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option>999000000</option>
+                        <option>999000000</option>
+                        <option>999000000</option>
+                        <option>999000000</option>
+                        <option>999000000</option>
                     </select>
                 </div>
                 <div class="capsule-cms-data-grid-next">
@@ -86,11 +86,11 @@
                 </div>
                 <div class="capsule-cms-data-grid-limit">
                     <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option>10</option>
+                        <option>50</option>
+                        <option>100</option>
+                        <option>500</option>
+                        <option selected>1000</option>
                     </select>
                 </div>
             </div>

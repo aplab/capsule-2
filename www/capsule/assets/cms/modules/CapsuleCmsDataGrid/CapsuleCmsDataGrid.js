@@ -107,13 +107,8 @@ var CapsuleCmsDataGrid = function (container)
 
     body.on('touchmove', function(event) {
         var e = event.originalEvent;
-
-        var current_x = scroll_horizontal.scrollLeft();
         scroll_horizontal.scrollLeft(start_position_x - e.touches[0].pageX);
-
-        var current_y = scroll_vertical.scrollTop();
         scroll_vertical.scrollTop(start_position_y - e.touches[0].pageY);
-
-        e.preventDefault();
+        // e.preventDefault();
     });
 }
