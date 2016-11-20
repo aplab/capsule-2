@@ -25,7 +25,7 @@
                         <div class="capsule-cms-data-grid-header-row">
                             <?php for ($i = 0; $i < 14; $i++) : ?>
                                 <div>
-                                    cell
+                                    <?=$i?>
                                 </div>
                             <?php endfor ?>
                         </div>
@@ -33,7 +33,7 @@
 
                     <div class="capsule-cms-data-grid-sidebar">
                         <div class="capsule-cms-data-grid-sidebar-header">
-
+                            <input type="checkbox">
                         </div>
                         <div class="capsule-cms-data-grid-sidebar-body">
                             <div class="capsule-cms-data-grid-sidebar-body-col"></div>
@@ -46,7 +46,7 @@
                                 <div>
                                     <?php for ($j = 0; $j < 14; $j++) : ?>
                                         <div>
-                                            cell
+                                            <?=$i?>x<?=$j?>
                                         </div>
                                     <?php endfor ?>
                                 </div>

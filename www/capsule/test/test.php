@@ -38,18 +38,9 @@ if (!$user) {
 
 <?php
 
-$menu = new \App\Cms\Ui\MainMenu\MainMenu('test');
-$menu->newMenuItem();
-$menu->newMenuItem();
-$menu->newMenuItem()->newSubMenuItem()->newSubMenuItem(
-    'ыть!',
-    new \App\Cms\Ui\MainMenu\Url('/admin/'),
-    new \App\Cms\Ui\MainMenu\Icon('exit'));
-
-$section = new \App\Cms\Ui\Section('menu');
-$section->append(new \App\Cms\View\MainMenu($menu));
-echo $section;
-
+$env = \Capsule\User\Env\Env::getInstance();
+//$env->test->test = 123546;
+\Capsule\Tools\Tools::dump($env);
 
 
 

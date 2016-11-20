@@ -3,7 +3,29 @@
  */
 var CapsuleCmsDataGrid = function (container)
 {
-    var container = container;
+    /**
+     * static init
+     *
+     * @param self o same object
+     * @param c same function
+     */
+    (function(o, c) {
+        if (undefined === c.instance) {
+            c.instance = o;
+        } else {
+            if (c.instance !== o) {
+                console.log('Instance already exists. Only one instance allowed!');
+                throw new Error('Instance already exists. Only one instance allowed!');
+            }
+        }
+        if (undefined === c.getInstance) {
+            c.getInstance = function()
+            {
+                return c.instance;
+            };
+        }
+    })(this, arguments.callee);
+
     var content = container.find('.capsule-cms-data-grid-content').eq(0);
 
     var scroll_horizontal = container.find('.capsule-cms-data-grid-scroll-horizontal').eq(0);
@@ -16,6 +38,8 @@ var CapsuleCmsDataGrid = function (container)
     var data = container.find('.capsule-cms-data-grid-data').eq(0);
 
     var sidebar_body_col = container.find('.capsule-cms-data-grid-sidebar-body-col').eq(0);
+    var sidebar_header = container.find('.capsule-cms-data-grid-sidebar-header').eq(0);
+    var sidebar_header_checkbox = container.find('.capsule-cms-data-grid-sidebar-header :checkbox').eq(0);
 
     var header_row = container.find('.capsule-cms-data-grid-header-row').eq(0);
 
@@ -111,4 +135,54 @@ var CapsuleCmsDataGrid = function (container)
         scroll_vertical.scrollTop(start_position_y - e.touches[0].pageY);
         // e.preventDefault();
     });
+
+    sidebar_header_checkbox.prop({
+        checked: false
+    }).change(function () {
+        sidebar_body_col.find(':checkbox').prop({
+            checked: sidebar_header_checkbox.prop('checked')
+        });
+    });
+
+    /**
+     * Обработчик группового выделения строк
+     */
+    var last_sidebar_checkbox;
+    var all_sidebar_checkboxes = sidebar_body_col.find(':checkbox');
+    all_sidebar_checkboxes.each(function (i, o) {
+        $(o).dblclick(function(event) {
+            event.stopPropagation();
+        });
+        // click handler
+        $(o).click(function(event) {
+            event.stopPropagation();
+            if (!last_sidebar_checkbox) {
+                last_sidebar_checkbox = this;
+                return;
+            }
+            if (last_sidebar_checkbox == this) {
+                return;
+            }
+            if (!event.shiftKey) {
+                last_sidebar_checkbox = this;
+                return;
+            }
+            var flag = 0;
+            for (var i = 0; i < all_sidebar_checkboxes.length; i++) {
+                if (all_sidebar_checkboxes[i] == this || all_sidebar_checkboxes[i] == last_sidebar_checkbox) {
+                    if (flag == 0) {
+                        flag = 1;
+                    } else if (flag == 1) {
+                        all_sidebar_checkboxes[i].checked = last_sidebar_checkbox.checked;
+                        break;
+                    }
+                }
+                if (flag == 1) {
+                    all_sidebar_checkboxes[i].checked = last_sidebar_checkbox.checked;
+                }
+            }
+            last_sidebar_checkbox = this;
+        });
+    });
+
 }
