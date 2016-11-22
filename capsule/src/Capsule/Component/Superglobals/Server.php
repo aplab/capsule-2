@@ -14,7 +14,7 @@
 namespace Capsule\Component\Superglobals;
 
 
-use Capsule\Component\HttpRequest\DataSet;
+use Capsule\Component\Superglobals\DataSet;
 
 /**
  * Class Server
@@ -30,5 +30,14 @@ class Server extends DataSet
     public function get($name, $default = null)
     {
         return array_key_exists($name, $_SERVER) ? $_SERVER[$name] : $default;
+    }
+
+    /**
+     * @param $name
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        return array_key_exists($name, $_SERVER);
     }
 }

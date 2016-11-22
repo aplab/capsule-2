@@ -11,7 +11,7 @@
  * Time: 8:43
  */
 
-namespace Capsule\Component\HttpRequest;
+namespace Capsule\Component\Superglobals;
 
 
 /**
@@ -27,6 +27,13 @@ abstract class DataSet
      */
     abstract public function get($name, $default = null);
 
+
+    /**
+     * @param $name
+     * @return boolean
+     */
+    abstract public function __isset($name);
+
     /**
      * @param $name
      * @return mixed
@@ -34,5 +41,43 @@ abstract class DataSet
     public function __get($name)
     {
         return $this->get($name);
+    }
+
+    /**
+     * @param $name
+     * @param $value
+     * @throws \Capsule\Component\Superglobals\Exception
+     */
+    public function __set($name, $value)
+    {
+        throw new Exception('Modification not allowed');
+    }
+
+    /**
+     * @param $name
+     * @param $default
+     * @return bool|float|int|string
+     */
+    public function getScalar($name, $default = '')
+    {
+        if ($this->__isset($name)) {
+            $value = $this->get($name);
+            return is_scalar($value) ? $value : $default;
+        }
+        return $default;
+    }
+
+    /**
+     * @param $name
+     * @param $default
+     * @return bool|float|int|string
+     */
+    public function getBoolean($name, $default = false)
+    {
+        if ($this->__isset($name)) {
+            $value = $this->get($name);
+            return !!$value;
+        }
+        return $default;
     }
 }

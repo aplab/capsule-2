@@ -11,7 +11,7 @@
  * Time: 8:40
  */
 
-namespace Capsule\Component\HttpRequest;
+namespace Capsule\Component\Superglobals;
 use Capsule\Component\Superglobals\Cookie;
 use Capsule\Component\Superglobals\Env;
 use Capsule\Component\Superglobals\Exception;
@@ -83,9 +83,11 @@ class Superglobals
     }
 
     /**
-     * @throws Exception
+     * @param $name
+     * @param $value
+     * @throws \Capsule\Component\Superglobals\Exception
      */
-    public function __set()
+    public function __set($name, $value)
     {
         throw new Exception('Modification not allowed');
     }

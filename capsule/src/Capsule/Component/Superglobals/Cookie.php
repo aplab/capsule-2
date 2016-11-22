@@ -14,7 +14,7 @@
 namespace Capsule\Component\Superglobals;
 
 
-use Capsule\Component\HttpRequest\DataSet;
+use Capsule\Component\Superglobals\DataSet;
 
 /**
  * Class Cookie
@@ -30,5 +30,14 @@ class Cookie extends DataSet
     public function get($name, $default = null)
     {
         return array_key_exists($name, $_COOKIE) ? $_COOKIE[$name] : $default;
+    }
+
+    /**
+     * @param $name
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        return array_key_exists($name, $_COOKIE);
     }
 }

@@ -36,13 +36,17 @@ if (!$user) {
     you are <?=$user->login?>
     <a href="<?=$_SERVER['REQUEST_URI']?>?logout">logout</a><br>
 
+    <form action="">
+        <input type="text" name="test">
+        <button>ok</button>
+    </form>
+
 <?php
 
-$env = \Capsule\User\Env\Env::getInstance();
-//$env->test->test = 123546;
-\Capsule\Tools\Tools::dump($env);
+\Capsule\Tools\Tools::dump($_REQUEST);
 
-
+$sg = new \Capsule\Component\Superglobals\Superglobals();
+\Capsule\Tools\Tools::dump($sg->post->test);
 
 
 ?>

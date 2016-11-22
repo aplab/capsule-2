@@ -14,7 +14,7 @@
 namespace Capsule\Component\Superglobals;
 
 
-use Capsule\Component\HttpRequest\DataSet;
+use Capsule\Component\Superglobals\DataSet;
 
 /**
  * Class Session
@@ -30,5 +30,14 @@ class Session extends DataSet
     public function get($name, $default = null)
     {
         return array_key_exists($name, $_SESSION) ? $_SESSION[$name] : $default;
+    }
+
+    /**
+     * @param $name
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        return array_key_exists($name, $_SESSION);
     }
 }
