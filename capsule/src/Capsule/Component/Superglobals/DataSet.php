@@ -8,23 +8,31 @@
  * file that was distributed with this source code.
  *
  * Date: 22.11.2016
- * Time: 8:40
+ * Time: 8:43
  */
 
 namespace Capsule\Component\HttpRequest;
 
 
 /**
- * Class HttpRequest
+ * Class DataSet
  * @package Capsule\Component\HttpRequest
- * @property request
- * @property get
- * @property post
- * @property cookie
- * @property files
- * @property server
  */
-class HttpRequest
+abstract class DataSet
 {
+    /**
+     * @param $name
+     * @param null $default
+     * @return mixed
+     */
+    abstract public function get($name, $default = null);
 
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        return $this->get($name);
+    }
 }

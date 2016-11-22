@@ -8,13 +8,17 @@
  * file that was distributed with this source code.
  *
  * Date: 22.11.2016
- * Time: 8:43
+ * Time: 23:28
  */
 
-namespace Capsule\Component\HttpRequest;
+namespace Capsule\Component\Superglobals;
 
 
-class DataSet
+/**
+ * Class Exception
+ * @package Capsule\Component\Superglobals
+ */
+class Exception extends \Exception
 {
 
 }
