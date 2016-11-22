@@ -14,7 +14,7 @@
 namespace Capsule\Component\HttpRequest;
 
 
-class HttpRequestData
+class DataSet
 {
 
 }
