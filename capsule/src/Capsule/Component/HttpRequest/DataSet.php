@@ -8,23 +8,13 @@
  * file that was distributed with this source code.
  *
  * Date: 22.11.2016
- * Time: 8:40
+ * Time: 8:43
  */
 
 namespace Capsule\Component\HttpRequest;
 
 
-/**
- * Class HttpRequest
- * @package Capsule\Component\HttpRequest
- * @property request
- * @property get
- * @property post
- * @property cookie
- * @property files
- * @property server
- */
-class HttpRequest
+class HttpRequestData
 {
 
 }
