@@ -36,18 +36,28 @@ if (!$user) {
     you are <?=$user->login?>
     <a href="<?=$_SERVER['REQUEST_URI']?>?logout">logout</a><br>
 
-    <form action="">
-        <input type="text" name="test">
-        <button>ok</button>
-    </form>
+
 
 <?php
 
-\Capsule\Tools\Tools::dump($_REQUEST);
+function a(Traversable $items)
+{
+    \Capsule\Tools\Tools::dump($items);
+    foreach ($items as $item) {
+        \Capsule\Tools\Tools::dump($item);
+    }
+}
 
-$sg = new \Capsule\Component\Superglobals\Superglobals();
-\Capsule\Tools\Tools::dump($sg->post->test);
+$a = range(1, 10);
 
+a(new ArrayIterator($a));
+
+$a = new stdClass;
+$b = new stdClass;
+
+
+var_dump(spl_object_hash(new stdClass()), spl_object_hash(new stdClass()));
+var_dump(spl_object_hash($a), spl_object_hash($b));
 
 ?>
 

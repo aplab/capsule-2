@@ -20,6 +20,7 @@ namespace App\Cms\Controller;
 
 use App\Cms\Cms;
 use App\Cms\Ui\ActionMenu\ActionMenu;
+use App\Cms\Ui\DataGrid\DataGrid;
 use App\Cms\Ui\MainMenu\Callback;
 use App\Cms\Ui\MainMenu\Icon;
 use App\Cms\Ui\MainMenu\MainMenu;
@@ -29,6 +30,9 @@ use Capsule\I18n\I18n;
 use App\Cms\Ui\SectionManager;
 use App\Cms\Ui\Section;
 use Capsule\Capsule;
+use Capsule\Tools\Tools;
+use Capsule\User\User;
+
 /**
  * DefaultController.php
  *
@@ -118,6 +122,11 @@ class DefaultController extends AbstractController
 
         $content = new Section('content');
         $body->append($content);
+
+        $data_grid = new DataGrid('ololo', [], new \ArrayIterator([]));
+        $config = User::config();
+        
+        $content->append(new \App\Cms\View\DataGrid($data_grid));
     }
     
     /**

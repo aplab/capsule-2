@@ -7,12 +7,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Date: 12.11.2016
- * Time: 7:50
+ * Date: 24.11.2016
+ * Time: 0:41
  */
-?>
-<div id="capsule-cms-content-wrapper">
-    <div id="capsule-cms-content">
-        <?php foreach ($this->content as $item) echo $item ?>
-    </div>
-</div>
+
+namespace App\Cms\Ui\DataGrid;
+
+
+class Col
+{
+
+}
