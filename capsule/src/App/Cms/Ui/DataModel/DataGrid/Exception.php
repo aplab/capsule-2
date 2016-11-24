@@ -11,7 +11,7 @@
  * Time: 1:18
  */
 
-namespace App\Cms\Ui\DataGrid;
+namespace App\Cms\Ui\DataModel\DataGrid;
 
 
 class Exception extends \Exception

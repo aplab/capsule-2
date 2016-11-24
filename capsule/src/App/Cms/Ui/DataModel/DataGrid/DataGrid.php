@@ -11,11 +11,19 @@
  * Time: 0:15
  */
 
-namespace App\Cms\Ui\DataGrid;
+namespace App\Cms\Ui\DataModel\DataGrid;
 
 
+use Capsule\DataModel\Config\Config;
+use Capsule\DataModel\DataModel;
 use Capsule\Tools\ClassTools\AccessorName;
 
+/**
+ * Class DataGrid
+ * @package App\Cms\Ui\DataModel\DataGrid
+ * @property Config $config
+ * @property DataModel[] $items
+ */
 class DataGrid
 {
     use AccessorName;
@@ -42,19 +50,18 @@ class DataGrid
     /**
      * DataGrid constructor.
      * @param $instance_name
-     * @param array $columns
+     * @param Config $config
      * @param \Traversable $items
      * @throws Exception
      */
-    public function __construct($instance_name, array $columns, \Traversable $items)
+    public function __construct($instance_name, Config $config, \Traversable $items)
     {
         if (array_key_exists($instance_name, static::$instances)) {
             throw new Exception('Instance already exists: ' . $instance_name);
         }
         static::$instances[$instance_name] = $this;
-        array_filter($columns, function(Col $v) {});
+        $this->data['config'] = $config;
         $this->data['items'] = $items;
-        $this->data['columns'] = $columns;
     }
 
     /**
@@ -102,5 +109,13 @@ class DataGrid
     public function __isset($name)
     {
         return array_key_exists($name, $this->data);
+    }
+
+    /**
+     *
+     */
+    protected function configure()
+    {
+
     }
 }

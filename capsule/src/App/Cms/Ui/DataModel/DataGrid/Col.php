@@ -11,7 +11,7 @@
  * Time: 0:41
  */
 
-namespace App\Cms\Ui\DataGrid;
+namespace App\Cms\Ui\DataModel\DataGrid;
 
 
 class Col

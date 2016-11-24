@@ -14,6 +14,7 @@
 namespace App\Cms\View;
 
 
+use App\Cms\Ui\DataModel\DataGrid\DataGrid;
 use App\Cms\Ui\SectionManager;
 use Capsule\Capsule;
 use Capsule\Component\Path\ComponentTemplatePath;
@@ -23,7 +24,7 @@ class DataGridView
 {
     protected $instance;
 
-    public function __construct(\App\Cms\Ui\DataGrid\DataGrid $instance)
+    public function __construct(DataGrid $instance)
     {
         $this->instance = $instance;
         SectionManager::getInstance()->onload->append(<<<JS

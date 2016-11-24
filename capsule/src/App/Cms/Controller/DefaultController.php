@@ -20,7 +20,7 @@ namespace App\Cms\Controller;
 
 use App\Cms\Cms;
 use App\Cms\Ui\ActionMenu\ActionMenu;
-use App\Cms\Ui\DataGrid\DataGrid;
+use App\Cms\Ui\DataModel\DataGrid\DataGrid;
 use App\Cms\Ui\MainMenu\Callback;
 use App\Cms\Ui\MainMenu\Icon;
 use App\Cms\Ui\MainMenu\MainMenu;
@@ -126,7 +126,7 @@ class DefaultController extends AbstractController
         $content = new Section('content');
         $body->append($content);
 
-        $data_grid = new DataGrid('ololo', [], new \ArrayIterator([]));
+        $data_grid = new DataGrid('ololo', User::config(), new \ArrayIterator([]));
         $config = User::config();
 
         $content->append(new DataGridView($data_grid));
