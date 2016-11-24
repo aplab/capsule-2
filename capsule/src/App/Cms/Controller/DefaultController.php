@@ -125,7 +125,7 @@ class DefaultController extends AbstractController
 
         $data_grid = new DataGrid('ololo', [], new \ArrayIterator([]));
         $config = User::config();
-        
+
         $content->append(new \App\Cms\View\DataGrid($data_grid));
     }
     

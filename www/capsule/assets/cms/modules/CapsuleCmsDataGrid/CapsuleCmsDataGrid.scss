@@ -9,248 +9,250 @@ $sidebar-width: 38px;
   bottom: 0;
   overflow: hidden;
   background: #fff;
-}
-.capsule-cms-data-grid-body {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: $footer-height;
-  overflow: hidden;
-  background: #fff;
-}
-.capsule-cms-data-grid-scroll-horizontal {
-  position: absolute;
-  left: $sidebar-width;
-  bottom: 0;
-  right: 0;
-  overflow-y: hidden;
-  overflow-x: scroll;
-}
-.capsule-cms-data-grid-scroll-horizontal-content {
-  height: 10px;
-  width: 200%;
-}
-.capsule-cms-data-grid-scroll-vertical {
-  position: absolute;
-  right: 0;
-  top: $header-height;
-  bottom: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-.capsule-cms-data-grid-scroll-vertical-content {
-  width: 10px;
-  height: 200%;
-}
-.capsule-cms-data-grid-content {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-.capsule-cms-data-grid-header {
-  position: absolute;
-  left: $sidebar-width;
-  right: 0;
-  top: 0;
-  height: $header-height;
-  background: #f8f8f8;
-  z-index: 100;
-  overflow: hidden;
-  >div {
-    border: 0;
-    width: 3000px;
-    overflow: hidden;
-    clear: both;
+  &-body {
     position: absolute;
     left: 0;
     top: 0;
-    > div {
-      height: $header-height;
-      border: 1px solid #ddd;
-      border-left: 0;
-      width: 200px;
-      float: left;
-      overflow: hidden;
-      padding: 8px;
+    right: 0;
+    bottom: $footer-height;
+    overflow: hidden;
+    background: #fff;
+  }
+  &-scroll-horizontal {
+    position: absolute;
+    left: $sidebar-width;
+    bottom: 0;
+    right: 0;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    &-content {
+      height: 10px;
+      width: 200%;
     }
   }
-}
-.capsule-cms-data-grid-sidebar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: $sidebar-width;
-  bottom: 0;
-  background: #f8f8f8;
-}
-.capsule-cms-data-grid-sidebar-header {
-  border: 1px solid #ddd;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  height: $header-height;
-  padding: 8px;
-  text-align: center;
-}
-.capsule-cms-data-grid-sidebar-body {
-  position: absolute;
-  left: 0;
-  top: $header-height;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  >div {
+  &-scroll-vertical {
+    position: absolute;
+    right: 0;
+    top: $header-height;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    &-content {
+      width: 10px;
+      height: 200%;
+    }
+  }
+  &-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &-header {
+    position: absolute;
+    left: $sidebar-width;
+    right: 0;
+    top: 0;
+    height: $header-height;
+    background: #f8f8f8;
+    z-index: 100;
+    overflow: hidden;
+    >div {
+      border: 0;
+      width: 3000px;
+      overflow: hidden;
+      clear: both;
+      position: absolute;
+      left: 0;
+      top: 0;
+      > div {
+        height: $header-height;
+        border: 1px solid #ddd;
+        border-left: 0;
+        width: 200px;
+        float: left;
+        overflow: hidden;
+        padding: 8px;
+      }
+    }
+  }
+  &-sidebar {
     position: absolute;
     left: 0;
     top: 0;
     width: $sidebar-width;
-    >div {
+    bottom: 0;
+    background: #f8f8f8;
+    &-header {
       border: 1px solid #ddd;
-      border-top: 0;
-      padding: 8px 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: $header-height;
+      padding: 8px;
       text-align: center;
     }
-  }
-}
-.capsule-cms-data-grid-data-wrapper {
-  position: absolute;
-  left: $sidebar-width;
-  top: $header-height;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-}
-.capsule-cms-data-grid-data {
-  position: absolute;
-  left: 0;
-  top: 0;
-  > div {
-    border: 0;
-    width: 3000px;
-    overflow: hidden;
-    clear: both;
-    > div {
-      border: 1px solid #ddd;
-      border-top: 0;
-      border-left: 0;
-      width: 200px;
-      float: left;
+    &-body {
+      position: absolute;
+      left: 0;
+      top: $header-height;
+      right: 0;
+      bottom: 0;
       overflow: hidden;
-      padding: 8px;
+      >div {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: $sidebar-width;
+        >div {
+          border: 1px solid #ddd;
+          border-top: 0;
+          padding: 8px 0;
+          text-align: center;
+        }
+      }
     }
   }
-  > div:hover {
-    background-color: #f1f1f1;
+  &-data-wrapper {
+    position: absolute;
+    left: $sidebar-width;
+    top: $header-height;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
   }
-  > .capsule-cms-data-grid-active {
-    background-color: #dadada;
+  &-data {
+    position: absolute;
+    left: 0;
+    top: 0;
+    > div {
+      border: 0;
+      width: 3000px;
+      overflow: hidden;
+      clear: both;
+      > div {
+        border: 1px solid #ddd;
+        border-top: 0;
+        border-left: 0;
+        width: 200px;
+        float: left;
+        overflow: hidden;
+        padding: 8px;
+      }
+    }
+    > div:hover {
+      background-color: #f1f1f1;
+    }
+    > .capsule-cms-data-grid-active {
+      background-color: #dadada;
+    }
+    > div.capsule-cms-data-grid-active:hover {
+      background-color: #dadada;
+    }
   }
-  > div.capsule-cms-data-grid-active:hover {
-    background-color: #dadada;
+  // footer
+  &-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: $footer-height;
+    overflow: hidden;
+    z-index: 300;
+    background: #fff;
+  }
+  &-prev {
+    display: block;
+    width: 14.9%;
+    overflow: hidden;
+    height: $footer-height;
+    float: left;
+    text-align: center;
+    line-height: $footer-height;
+  }
+  &-page {
+    display: block;
+    width: 34.9%;
+    overflow: hidden;
+    height: $footer-height;
+    float: left;
+    text-align: center;
+    padding: 8px;
+    select {
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  &-next {
+    display: block;
+    width: 14.9%;
+    overflow: hidden;
+    height: $footer-height;
+    float: left;
+    text-align: center;
+    line-height: $footer-height;
+  }
+  &-limit {
+    display: block;
+    width: 34.9%;
+    overflow: hidden;
+    height: $footer-height;
+    float: left;
+    text-align: center;
+    padding: 8px;
+    select {
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }
 
-// footer
-.capsule-cms-data-grid-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: $footer-height;
-  overflow: hidden;
-  z-index: 300;
-  background: #fff;
-}
-.capsule-cms-data-grid-prev {
-  display: block;
-  width: 14.9%;
-  overflow: hidden;
-  height: $footer-height;
-  float: left;
-  text-align: center;
-  line-height: $footer-height;
-}
-.capsule-cms-data-grid-page {
-  display: block;
-  width: 34.9%;
-  overflow: hidden;
-  height: $footer-height;
-  float: left;
-  text-align: center;
-  padding: 8px;
-  select {
-    text-align: center;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-.capsule-cms-data-grid-next {
-  display: block;
-  width: 14.9%;
-  overflow: hidden;
-  height: $footer-height;
-  float: left;
-  text-align: center;
-  line-height: $footer-height;
-}
-.capsule-cms-data-grid-limit {
-  display: block;
-  width: 34.9%;
-  overflow: hidden;
-  height: $footer-height;
-  float: left;
-  text-align: center;
-  padding: 8px;
-  select {
-    text-align: center;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
 @media (min-width: 480px) {
-  .capsule-cms-data-grid-prev::after {
-    content: 'Prev';
-  }
-  .capsule-cms-data-grid-next::before {
-    content: 'Next';
-  }
-  .capsule-cms-data-grid-limit {
-    select {
-      display: block;
-      width: 59.9%;
-      float: left;
-      max-width: 120px;
+  .capsule-cms-data-grid {
+    &-prev::after {
+      content: 'Prev';
     }
-  }
-  .capsule-cms-data-grid-limit::before {
-    content: 'Limit:';
-    display: block;
-    width: 39.9%;
-    float: left;
-    text-align: right;
-    line-height: 34px;
-    padding-right: 8px;
-  }
-  .capsule-cms-data-grid-page {
-    select {
-      display: block;
-      width: 59.9%;
-      max-width: 120px;
-      float: left;
+    &-next::before {
+      content: 'Next';
     }
-  }
-  .capsule-cms-data-grid-page::before {
-    content: 'Page:';
-    display: block;
-    width: 39.9%;
-    float: left;
-    text-align: right;
-    line-height: 34px;
-    padding-right: 8px;
+    &-limit {
+      select {
+        display: block;
+        width: 59.9%;
+        float: left;
+        max-width: 120px;
+      }
+    }
+    &-limit::before {
+      content: 'Limit:';
+      display: block;
+      width: 39.9%;
+      float: left;
+      text-align: right;
+      line-height: 34px;
+      padding-right: 8px;
+    }
+    &-page {
+      select {
+        display: block;
+        width: 59.9%;
+        max-width: 120px;
+        float: left;
+      }
+    }
+    &-page::before {
+      content: 'Page:';
+      display: block;
+      width: 39.9%;
+      float: left;
+      text-align: right;
+      line-height: 34px;
+      padding-right: 8px;
+    }
   }
 }
 // end of footer

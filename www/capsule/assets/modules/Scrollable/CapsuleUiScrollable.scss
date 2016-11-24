@@ -7,7 +7,7 @@
   width: auto;
   overflow: hidden;
   box-sizing: border-box;
-  .capsule-ui-scrollable-wrapper {
+  &-wrapper {
     position: absolute;
     left: 0;
     top: 0;
@@ -18,11 +18,11 @@
     overflow-y: scroll;
     box-sizing: border-box;
   }
-  .capsule-ui-scrollable-content {
+  &-content {
     overflow: hidden;
     box-sizing: border-box;
   }
-  .capsule-ui-scrollable-scrollbar {
+  &-scrollbar {
     position: absolute;
     top: 0;
     right: 0;
@@ -36,7 +36,7 @@
     -moz-border-radius: 2px;
     border-radius: 2px;
   }
-  .capsule-ui-scrollable-scrollbar:hover {
+  &-scrollbar:hover {
     //width: 10px;
   }
 }
