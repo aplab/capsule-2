@@ -88,38 +88,42 @@ class Cms extends App
 
     public function run()
     {
-        $mod = $this->mod;
-        if ($this->config->installCommand === $mod) {
-            if ($this->config->allowInstall) {
-                $this->install();
+        try {
+            $mod = $this->mod;
+            if ($this->config->installCommand === $mod) {
+                if ($this->config->allowInstall) {
+                    $this->install();
+                    return;
+                }
                 return;
             }
-            return;
-        }
-        if (isset($_GET['logout'])) {
-            Auth::getInstance()->logout();
-            header('Location: ' . parse_url($_SERVER['REQUEST_URI'],  PHP_URL_PATH));
-            die;
-        }
-        if (!Auth::getInstance()->user()) {
-            $login_form = new Section;
-            $login_form->id = 'login';
-            ob_start();
-            echo $this->ui->login;
-            $str = ob_get_clean();
-            echo Fn::strip_spaces($str);
-            return;
-        }
-        $config = Cms::getInstance()->config->module;
-        $controller_name = $config->get($mod);
-        if ($controller_name) {
-            $controller_name = Fn::cc($controller_name, $this->config->controller->defaultNamespace);
+            if (isset($_GET['logout'])) {
+                Auth::getInstance()->logout();
+                header('Location: ' . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+                die;
+            }
+            if (!Auth::getInstance()->user()) {
+                $login_form = new Section;
+                $login_form->id = 'login';
+                ob_start();
+                echo $this->ui->login;
+                $str = ob_get_clean();
+                echo Fn::strip_spaces($str);
+                return;
+            }
+            $config = Cms::getInstance()->config->module;
+            $controller_name = $config->get($mod);
             if ($controller_name) {
-                $controller_name::getInstance()->handle();
-                return;
+                $controller_name = Fn::cc($controller_name, $this->config->controller->defaultNamespace);
+                if ($controller_name) {
+                    $controller_name::getInstance()->handle();
+                    return;
+                }
             }
+            DefaultController::getInstance()->handle();
+        } catch (\Throwable $throwable) {
+            throw $throwable;
         }
-        DefaultController::getInstance()->handle();
     }
 
     private function install()

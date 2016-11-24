@@ -26,6 +26,9 @@ use App\Cms\Ui\MainMenu\Icon;
 use App\Cms\Ui\MainMenu\MainMenu;
 use App\Cms\Ui\MainMenu\MenuItem;
 use App\Cms\Ui\MainMenu\Url;
+use App\Cms\View\ActionMenuView;
+use App\Cms\View\DataGridView;
+use App\Cms\View\MainMenuView;
 use Capsule\I18n\I18n;
 use App\Cms\Ui\SectionManager;
 use App\Cms\Ui\Section;
@@ -57,8 +60,8 @@ class DefaultController extends AbstractController
         $this->initSections();
         $this->initMainMenu();
         $this->initActionMenu();
-        $this->ui->onload->append(new \App\Cms\View\MainMenu($this->app->registry->mainMenu));
-        $this->ui->onload->append(new \App\Cms\View\ActionMenu($this->app->registry->actionMenu));
+        $this->ui->onload->append(new MainMenuView($this->app->registry->mainMenu));
+        $this->ui->onload->append(new ActionMenuView($this->app->registry->actionMenu));
         echo $this->ui->html;
     }
     
@@ -126,7 +129,7 @@ class DefaultController extends AbstractController
         $data_grid = new DataGrid('ololo', [], new \ArrayIterator([]));
         $config = User::config();
 
-        $content->append(new \App\Cms\View\DataGrid($data_grid));
+        $content->append(new DataGridView($data_grid));
     }
     
     /**

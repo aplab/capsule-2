@@ -14,11 +14,13 @@
 namespace App\Cms\View;
 
 
-class ActionMenu
+use App\Cms\Ui\MainMenu\MainMenu;
+
+class MainMenuView
 {
     protected $instance;
 
-    public function __construct(\App\Cms\Ui\ActionMenu\ActionMenu $instance)
+    public function __construct(MainMenu $instance)
     {
         $this->instance = $instance;
     }
@@ -26,7 +28,8 @@ class ActionMenu
     public function __toString()
     {
         return <<<JS
-new CapsuleCmsActionMenu($this->instance, $('body'));
+new AplAccordionMenu($this->instance, $('#capsule-cms-main-menu-wrapper'));
+new CapsuleUiScrollable('capsule-cms-main-menu-scrollable', $('#capsule-cms-main-menu-wrapper'));
 JS;
     }
 }

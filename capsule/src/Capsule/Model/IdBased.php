@@ -29,6 +29,11 @@ use Capsule\Db\Db;
  */
 class IdBased extends SingleKey
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * Первичный ключ модуля
      *

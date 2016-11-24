@@ -19,7 +19,7 @@ use Capsule\Capsule;
 use Capsule\Component\Path\ComponentTemplatePath;
 use Capsule\Component\SectionManager\ToStringExceptionizer;
 
-class DataGrid
+class DataGridView
 {
     protected $instance;
 
