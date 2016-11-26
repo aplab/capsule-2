@@ -132,6 +132,7 @@ $sidebar-width: 38px;
     position: absolute;
     left: 0;
     top: 0;
+    overflow: hidden;
     > div {
       border: 0;
       overflow: hidden;
