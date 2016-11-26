@@ -30,11 +30,12 @@ class Properties extends AbstractConfig
 {
     const PROPERTY_NAME = 'name';
 
-    public function __construct(array $data) {
+    public function __construct(array $data)
+    {
         foreach ($data as $property_name => $property_data) {
             if (array_key_exists(self::PROPERTY_NAME, $property_data)) {
-                $msg = 'Cannot redeclare automatically generated property: property::' . self::PROPERTY_NAME
-                    . '. Check configuration. Remove property::' . self::PROPERTY_NAME . ' definition from configuration.';
+                $msg = 'Cannot redeclare automatically generated property: Property::' . self::PROPERTY_NAME
+                    . '. Check configuration. Remove Property::' . self::PROPERTY_NAME . ' definition from configuration.';
                 throw new \Exception($msg);
             }
             $property_data[self::PROPERTY_NAME] = $property_name;
@@ -48,7 +49,8 @@ class Properties extends AbstractConfig
      * @param void
      * @return string
      */
-    public function toString() {
+    public function toString()
+    {
         return __CLASS__;
     }
 
@@ -58,7 +60,8 @@ class Properties extends AbstractConfig
      * @param Property $property
      * @return boolean
      */
-    public function inject(Property $property) {
+    public function inject(Property $property)
+    {
         $name = $property->name;
         if (array_key_exists($name, $this->data)) return false;
         $this->data[$name] = $property;

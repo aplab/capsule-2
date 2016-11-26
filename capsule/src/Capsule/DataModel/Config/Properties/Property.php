@@ -46,11 +46,15 @@ class Property extends AbstractConfig
      */
     const VALIDATOR_DEFAULT_NS = '\\Capsule\\Validator';
 
+    const FORM_ELEMENT_ID = 'id';
+    const COLUMN_ID = 'id';
+
     /**
      * @param array $data
      * @throws Exception
      */
-    public function __construct(array $data) {
+    public function __construct(array $data)
+    {
         parent::__construct($data);
         if (array_key_exists(self::VALIDATOR, $this->data)) {
             $tmp = $this->data[self::VALIDATOR];
@@ -70,17 +74,31 @@ class Property extends AbstractConfig
         }
     }
     
-    private function initColumn(array $data) {
+    private function initColumn(array $data)
+    {
         foreach($data as $key => $data_item) {
             if (is_array($data_item)) {
+                if (array_key_exists(static::COLUMN_ID, $data_item)) {
+                    $msg = 'Cannot redeclare automatically generated property: Column::' . static::COLUMN_ID
+                        . '. Check configuration. Remove property::' . static::COLUMN_ID . ' definition from configuration.';
+                    throw new \Exception($msg);
+                }
+                $data_item[static::COLUMN_ID] = $key;
                 $this->data[self::COLUMN][$key] = new Column($data_item);
             }
         }
     }
     
-    private function initFormElement(array $data) {
+    private function initFormElement(array $data)
+    {
         foreach($data as $key => $data_item) {
             if (is_array($data_item)) {
+                if (array_key_exists(static::FORM_ELEMENT_ID, $data_item)) {
+                    $msg = 'Cannot redeclare automatically generated property: FormElement::' . static::FORM_ELEMENT_ID
+                        . '. Check configuration. Remove FormElement::' . static::FORM_ELEMENT_ID . ' definition from configuration.';
+                    throw new \Exception($msg);
+                }
+                $data_item[static::FORM_ELEMENT_ID] = $key;
                 $this->data[self::FORM_ELEMENT][$key] = new FormElement($data_item);
             }
         }
@@ -93,7 +111,8 @@ class Property extends AbstractConfig
      * @return mixed
      * @throws Exception
      */
-    private static function initValidator($data) {
+    private static function initValidator($data)
+    {
         if (!is_array($data)) {
             return false;
         }
@@ -124,7 +143,8 @@ class Property extends AbstractConfig
      * @param void
      * @return string
      */
-    public function toString() {
+    public function toString()
+    {
         return __CLASS__;
     }
 }

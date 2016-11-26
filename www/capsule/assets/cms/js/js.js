@@ -212,4 +212,8 @@ $(document).ready(function ()
     CapsuleCms.init();
 
     window.viewportUnitsBuggyfill.init();
+
+    // $(function () {
+    //     $('[data-toggle="tooltip"]').tooltip()
+    // });
 });
