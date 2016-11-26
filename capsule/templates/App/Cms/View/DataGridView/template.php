@@ -10,6 +10,8 @@
  * Date: 24.11.2016
  * Time: 1:59
  */
+$columns = $this->instance->columns;
+use Capsule\I18n\I18n as _;
 ?>
 <!--data grid-->
 <div class="capsule-cms-data-grid" id="capsule-cms-data-grid">
@@ -19,12 +21,13 @@
         <div class="capsule-cms-data-grid-content">
 
             <div class="capsule-cms-data-grid-header">
-                <div class="capsule-cms-data-grid-header-row">
-                    <?php for ($i = 0; $i < 14; $i++) : ?>
-                        <div>
-                            <?=$i?>
+                <div class="capsule-cms-data-grid-header-row wExt">
+                    <?php foreach ($columns as $column) : ?>
+                        <div class="w<?= $column->column->width ?>"
+                             title="<?= _::_($column->property->title) ?>">
+                            <?= _::_($column->property->title) ?>
                         </div>
-                    <?php endfor ?>
+                    <?php endforeach ?>
                 </div>
             </div>
 
@@ -38,16 +41,17 @@
             </div>
 
             <div class="capsule-cms-data-grid-data-wrapper">
-                <div class="capsule-cms-data-grid-data">
-                    <?php for ($i = 0; $i < 100; $i++) : ?>
-                        <div>
-                            <?php for ($j = 0; $j < 14; $j++) : ?>
-                                <div>
-                                    <?=$i?>x<?=$j?>
+                <div class="capsule-cms-data-grid-data wSum">
+                    <?php foreach ($this->instance->items as $item) : ?>
+                        <div class="wExt">
+                            <?php foreach ($columns as $column) : ?>
+                                <div class="w<?= $column->column->width ?>"
+                                     title="<?= _::_($column->property->title) ?>">
+                                    <?= $item->get($column->property->name) ?>
                                 </div>
-                            <?php endfor ?>
+                            <?php endforeach ?>
                         </div>
-                    <?php endfor ?>
+                    <?php endforeach ?>
                 </div>
             </div>
 

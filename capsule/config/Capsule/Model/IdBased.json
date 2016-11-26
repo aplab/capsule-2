@@ -13,10 +13,6 @@
             "comment": "",
             "label": "",
             "column": {
-                "c1": {
-                    "width": 24,
-                    "type": "Checkbox"
-                },
                 "c2": {
                     "width": 80,
                     "order": 1000,

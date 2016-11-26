@@ -31,6 +31,7 @@ class DataGridView
 new CapsuleCmsDataGrid($('#capsule-cms-data-grid')); 
 JS
         );
+        SectionManager::getInstance()->builtinCss->append($this->getWidthDefinition());
     }
 
     public function __toString()
@@ -43,5 +44,29 @@ JS
             set_error_handler(['\Capsule\Component\SectionManager\ToStringExceptionizer', 'errorHandler']);
             return ToStringExceptionizer::throwException($e);
         }
+    }
+
+    /**
+     * Собираем CSS
+     *
+     * @param void
+     * @return string|NULL
+     */
+    protected function getWidthDefinition()
+    {
+        $tmp = array();
+        $sum = 0;
+        foreach ($this->instance->columns as $column) {
+            $width = $column->column->width;
+            $sum += $width;
+            $tmp[$width] = '.w' . $width . '{width:' . $width . 'px;}';
+        }
+        $tmp[$sum] = '.wSum{width:' . $sum . 'px;}';
+        $sum += 100;
+        $tmp[$sum] = '.wExt{width:' . $sum . 'px;}';
+        if (sizeof($tmp)) {
+            return join(PHP_EOL, $tmp);
+        }
+        return null;
     }
 }

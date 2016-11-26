@@ -81,6 +81,6 @@ class ActionMenu implements \JsonSerializable
 
     public function __toString()
     {
-        return json_encode($this, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+        return json_encode($this);
     }
 }

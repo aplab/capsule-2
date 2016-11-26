@@ -60,7 +60,6 @@ $sidebar-width: 38px;
     overflow: hidden;
     >div {
       border: 0;
-      width: 3000px;
       overflow: hidden;
       clear: both;
       position: absolute;
@@ -70,10 +69,12 @@ $sidebar-width: 38px;
         height: $header-height;
         border: 1px solid #ddd;
         border-left: 0;
-        width: 200px;
         float: left;
-        overflow: hidden;
         padding: 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
       }
     }
   }
@@ -111,6 +112,10 @@ $sidebar-width: 38px;
           border-top: 0;
           padding: 8px 0;
           text-align: center;
+          overflow: hidden;
+          white-space: nowrap;
+          -ms-text-overflow: ellipsis;
+          text-overflow: ellipsis;
         }
       }
     }
@@ -129,17 +134,18 @@ $sidebar-width: 38px;
     top: 0;
     > div {
       border: 0;
-      width: 3000px;
       overflow: hidden;
       clear: both;
       > div {
         border: 1px solid #ddd;
         border-top: 0;
         border-left: 0;
-        width: 200px;
         float: left;
-        overflow: hidden;
         padding: 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
       }
     }
     > div:hover {
