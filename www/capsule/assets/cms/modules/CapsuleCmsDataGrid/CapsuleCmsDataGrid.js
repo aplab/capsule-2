@@ -199,30 +199,50 @@ function CapsuleCmsDataGrid (container)
         });
     });
 
-    this.getSelected = function ()
+    /**
+     * Retrieve checked rows
+     *
+     * @returns {{length: number}}
+     */
+    this.getCheckedRows = function ()
     {
-        var elements = new Object();
+        var elements = {
+            length: 0
+        };
         var rows = data.children('div');
-        var selected = data.children('[class$="-active"]');
-        if (selected.length) {
-            for (var i = 0; i < selected.length; i++) {
-                var element = selected.eq(i);
-                var index = rows.index(element);
-                elements[index] = element.data('pk');
-            }
-        }
+        var index, element;
         var checked = sidebar_body_col.children('div').has(':checked');
         if (checked.length) {
             for (var i = 0; i < checked.length; i++) {
-                var index = sidebar_body_col.children('div').index(checked[i]);
-                var element = rows.eq(index);
+                index = sidebar_body_col.children('div').index(checked[i]);
+                element = rows.eq(index);
                 elements[index] = element.data('pk');
             }
+            elements.length = i;
         }
-        console.log(elements);
+        return elements;
     };
 
-    setInterval(function () {
-        CapsuleCmsDataGrid.getInstance().getSelected();
-    }, 1000);
+    /**
+     * Retrieve currently-selected row if it only one!
+     *
+     * @returns {{length: number}}
+     */
+    this.getCurrentRow = function ()
+    {
+        var elements = {
+            length: 0
+        };
+        var rows = data.children('div');
+        var selected = data.children('[class$="-active"]');
+        if (selected.length == 1) {
+            var element = selected.eq(0);
+            var index = rows.index(element);
+            elements[index] = element.data('pk');
+            elements.length = 1;
+        }
+        return elements;
+    };
+
+
 }
