@@ -67,7 +67,7 @@ class IdBased extends SingleKey
      * Возвращает объект по его идентификатору, если такой есть в кэше
      *
      * @param int $id
-     * @return self
+     * @return $this
      */
     public static function id($id)
     {

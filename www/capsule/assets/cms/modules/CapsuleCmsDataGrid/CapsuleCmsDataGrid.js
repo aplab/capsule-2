@@ -1,7 +1,7 @@
 /**
  * Created by polyanin on 17.11.2016.
  */
-var CapsuleCmsDataGrid = function (container)
+function CapsuleCmsDataGrid (container)
 {
     /**
      * static init
@@ -43,13 +43,15 @@ var CapsuleCmsDataGrid = function (container)
 
     var header_row = container.find('.capsule-cms-data-grid-header-row').eq(0);
 
-    data.children('div').on('click', function () {
+    data.children('div').on('click', function ()
+    {
         var o = $(this);
         data.children('div').not(o).removeClass('capsule-cms-data-grid-active');
-        o.addClass('capsule-cms-data-grid-active');
+        o.toggleClass('capsule-cms-data-grid-active');
     });
 
-    data.children('div').each(function (i, o) {
+    data.children('div').each(function (i, o)
+    {
         var div = $('<div>');
         var o = $(o);
         div.css({
@@ -59,18 +61,19 @@ var CapsuleCmsDataGrid = function (container)
         div.append('<input type="checkbox">');
     });
 
-    var init = function () {
+    var init = function ()
+    {
         var scroll_horizontal_height = scroll_horizontal.height() - scroll_horizontal_content.height();
         var scroll_vertical_width = scroll_vertical.width() - scroll_vertical_content.width();
         content.css({
-            right: scroll_horizontal_height,
+            right: scroll_vertical_width,
             bottom: scroll_horizontal_height
         });
         scroll_horizontal.css({
-            right: scroll_horizontal_height,
+            right: scroll_vertical_width
         });
         scroll_horizontal_content.css({
-            width: data.width(),
+            width: data.width()
         });
         scroll_vertical.css({
             bottom: scroll_horizontal_height
@@ -82,11 +85,13 @@ var CapsuleCmsDataGrid = function (container)
 
     init();
 
-    $(window).resize(function() {
+    $(window).resize(function()
+    {
         init();
     });
 
-    scroll_vertical.scroll(function () {
+    scroll_vertical.scroll(function ()
+    {
         var scroll_top = -1 * $(this).scrollTop();
         data.css({
             top: scroll_top
@@ -96,7 +101,8 @@ var CapsuleCmsDataGrid = function (container)
         })
     });
 
-    scroll_horizontal.scroll(function () {
+    scroll_horizontal.scroll(function ()
+    {
         var scroll_left = -1 * $(this).scrollLeft();
         data.css({
             left: scroll_left
@@ -106,7 +112,8 @@ var CapsuleCmsDataGrid = function (container)
         })
     });
 
-    body.on('mousewheel', function (event) {
+    body.on('mousewheel', function (event)
+    {
         var current = scroll_vertical.scrollTop();
         scroll_vertical.scrollTop(current + -111 * event.deltaY);
     });
@@ -115,21 +122,24 @@ var CapsuleCmsDataGrid = function (container)
     var start_position_y = 0;
 
 
-    body.on('touchstart', function(event) {
+    body.on('touchstart', function(event)
+    {
         var e = event.originalEvent;
         start_position_x = scroll_horizontal.scrollLeft() + e.touches[0].pageX;
         start_position_y = scroll_vertical.scrollTop() + e.touches[0].pageY;
         // e.preventDefault();
     });
 
-    body.on('touchend', function(event) {
+    body.on('touchend', function(event)
+    {
         var e = event.originalEvent;
         start_position_x = 0;
         start_position_y = 0;
         // e.preventDefault();
     });
 
-    body.on('touchmove', function(event) {
+    body.on('touchmove', function(event)
+    {
         var e = event.originalEvent;
         scroll_horizontal.scrollLeft(start_position_x - e.touches[0].pageX);
         scroll_vertical.scrollTop(start_position_y - e.touches[0].pageY);
@@ -138,7 +148,8 @@ var CapsuleCmsDataGrid = function (container)
 
     sidebar_header_checkbox.prop({
         checked: false
-    }).change(function () {
+    }).change(function ()
+    {
         sidebar_body_col.find(':checkbox').prop({
             checked: sidebar_header_checkbox.prop('checked')
         });
@@ -149,12 +160,15 @@ var CapsuleCmsDataGrid = function (container)
      */
     var last_sidebar_checkbox;
     var all_sidebar_checkboxes = sidebar_body_col.find(':checkbox');
-    all_sidebar_checkboxes.each(function (i, o) {
-        $(o).dblclick(function(event) {
+    all_sidebar_checkboxes.each(function (i, o)
+    {
+        $(o).dblclick(function(event)
+        {
             event.stopPropagation();
         });
         // click handler
-        $(o).click(function(event) {
+        $(o).click(function(event)
+        {
             event.stopPropagation();
             if (!last_sidebar_checkbox) {
                 last_sidebar_checkbox = this;
@@ -184,5 +198,4 @@ var CapsuleCmsDataGrid = function (container)
             last_sidebar_checkbox = this;
         });
     });
-
 }

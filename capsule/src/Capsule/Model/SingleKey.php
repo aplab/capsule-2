@@ -193,7 +193,7 @@ abstract class SingleKey extends DataModel
      * Возвращает объект по его ключу
      *
      * @param mixed $key
-     * @return self
+     * @return $this
      */
     public static function getElementByKey($key)
     {
@@ -204,7 +204,7 @@ abstract class SingleKey extends DataModel
      * Возвращает объект по его ключу
      *
      * @param mixed $key
-     * @return self
+     * @return $this
      */
     public static function k($key)
     {

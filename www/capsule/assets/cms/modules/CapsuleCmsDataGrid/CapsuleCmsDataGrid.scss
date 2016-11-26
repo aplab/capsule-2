@@ -16,7 +16,6 @@ $sidebar-width: 38px;
     right: 0;
     bottom: $footer-height;
     overflow: hidden;
-    background: #fff;
   }
   &-scroll-horizontal {
     position: absolute;
@@ -24,10 +23,10 @@ $sidebar-width: 38px;
     bottom: 0;
     right: 0;
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
     &-content {
       height: 10px;
-      width: 200%;
+      width: auto;
     }
   }
   &-scroll-vertical {
@@ -36,10 +35,10 @@ $sidebar-width: 38px;
     top: $header-height;
     bottom: 0;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     &-content {
       width: 10px;
-      height: 200%;
+      height: auto;
     }
   }
   &-content {
@@ -55,7 +54,6 @@ $sidebar-width: 38px;
     right: 0;
     top: 0;
     height: $header-height;
-    background: #f8f8f8;
     z-index: 100;
     overflow: hidden;
     >div {
@@ -75,6 +73,7 @@ $sidebar-width: 38px;
         white-space: nowrap;
         -ms-text-overflow: ellipsis;
         text-overflow: ellipsis;
+        background: #f8f8f8;
       }
     }
   }
@@ -84,7 +83,6 @@ $sidebar-width: 38px;
     top: 0;
     width: $sidebar-width;
     bottom: 0;
-    background: #f8f8f8;
     &-header {
       border: 1px solid #ddd;
       position: absolute;
@@ -94,6 +92,7 @@ $sidebar-width: 38px;
       height: $header-height;
       padding: 8px;
       text-align: center;
+      background: #f8f8f8;
     }
     &-body {
       position: absolute;
@@ -116,6 +115,7 @@ $sidebar-width: 38px;
           white-space: nowrap;
           -ms-text-overflow: ellipsis;
           text-overflow: ellipsis;
+          background: #f8f8f8;
         }
       }
     }
@@ -150,13 +150,13 @@ $sidebar-width: 38px;
       }
     }
     > div:hover {
-      background-color: #f1f1f1;
+      background-color: rgba(0, 0, 0, 0.075);
     }
     > .capsule-cms-data-grid-active {
-      background-color: #dadada;
+      background-color: rgba(0, 0, 0, 0.05);
     }
     > div.capsule-cms-data-grid-active:hover {
-      background-color: #dadada;
+      background-color: rgba(0, 0, 0, 0.125);
     }
   }
   // footer
@@ -169,6 +169,7 @@ $sidebar-width: 38px;
     overflow: hidden;
     z-index: 300;
     background: #fff;
+    background: #f8f8f8;
   }
   &-prev {
     display: block;
