@@ -198,4 +198,31 @@ function CapsuleCmsDataGrid (container)
             last_sidebar_checkbox = this;
         });
     });
+
+    this.getSelected = function ()
+    {
+        var elements = new Object();
+        var rows = data.children('div');
+        var selected = data.children('[class$="-active"]');
+        if (selected.length) {
+            for (var i = 0; i < selected.length; i++) {
+                var element = selected.eq(i);
+                var index = rows.index(element);
+                elements[index] = element.data('pk');
+            }
+        }
+        var checked = sidebar_body_col.children('div').has(':checked');
+        if (checked.length) {
+            for (var i = 0; i < checked.length; i++) {
+                var index = sidebar_body_col.children('div').index(checked[i]);
+                var element = rows.eq(index);
+                elements[index] = element.data('pk');
+            }
+        }
+        console.log(elements);
+    };
+
+    setInterval(function () {
+        CapsuleCmsDataGrid.getInstance().getSelected();
+    }, 1000);
 }

@@ -33,4 +33,14 @@ abstract class CompositeKey extends DataModel
      * @var array
      */
     protected static $key = array();
+
+    /**
+     * Returns information about primary key
+     *
+     * @return string
+     */
+    public static function pk()
+    {
+        return static::$key;
+    }
 }

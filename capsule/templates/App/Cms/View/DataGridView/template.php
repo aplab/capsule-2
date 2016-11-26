@@ -12,6 +12,7 @@
  */
 $columns = $this->instance->columns;
 use Capsule\I18n\I18n as _;
+use Capsule\Component\Utf8String as str;
 ?>
 <!--data grid-->
 <div class="capsule-cms-data-grid" id="capsule-cms-data-grid">
@@ -43,9 +44,21 @@ use Capsule\I18n\I18n as _;
             <div class="capsule-cms-data-grid-data-wrapper">
                 <div class="capsule-cms-data-grid-data wSum">
                     <?php foreach ($this->instance->items as $item) : ?>
-                        <div class="wExt">
+                        <?php
+                        $key = $item::pk();
+                        if (is_array($key)) {
+                            /**
+                             * @TODO проработать вариант с составными ключами, json {"id1":"","id2":""}
+                             */
+                        } else {
+                            $data_pk = json_encode([
+                                $key => $item->{$key}
+                            ]);
+                        }
+                        ?>
+                        <div class="wExt" data-pk="<?=str::hsc($data_pk)?>">
                             <?php foreach ($columns as $column) : ?>
-                                <div class="w<?= $column->column->width ?>"
+                                <div class="w<?=$column->column->width?>"
                                      title="<?= _::_($column->property->title) ?>">
                                     <?= $item->get($column->property->name) ?>
                                 </div>

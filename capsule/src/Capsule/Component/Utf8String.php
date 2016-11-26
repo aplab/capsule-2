@@ -639,7 +639,8 @@ class Utf8String
      * @param string $charset
      * @return string
      */
-    public static function htmlspecialchars($string, $quote_style = null, $charset = null) {
+    public static function htmlspecialchars($string, $quote_style = null, $charset = null)
+    {
         if (is_null($charset) && is_null($quote_style)) {
             return htmlspecialchars($string, ENT_COMPAT, 'UTF-8');
         }
@@ -647,6 +648,11 @@ class Utf8String
             return htmlspecialchars($string, $quote_style, 'UTF-8');
         }
         return htmlspecialchars($string, $quote_style, $charset);
+    }
+
+    public static function hsc($string, $quote_style = null, $charset = null)
+    {
+        return static::htmlspecialchars($string, $quote_style, $charset);
     }
     
     /**

@@ -40,6 +40,16 @@ abstract class SingleKey extends DataModel
     protected static $key;
 
     /**
+     * Returns information about primary key
+     *
+     * @return string
+     */
+    public static function pk()
+    {
+        return static::$key;
+    }
+
+    /**
      * Возвращает данные в виде объектов
      *
      * @param Result $result

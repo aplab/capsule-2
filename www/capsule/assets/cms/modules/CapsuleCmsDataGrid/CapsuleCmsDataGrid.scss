@@ -1,6 +1,8 @@
 $header-height: 38px;
-$footer-height: 50px;
+$footer-height: 52px;
 $sidebar-width: 38px;
+$panel-color: #f8f8f8;
+$border-color: #ddd;
 .capsule-cms-data-grid {
   position: absolute;
   left: 0;
@@ -65,7 +67,7 @@ $sidebar-width: 38px;
       top: 0;
       > div {
         height: $header-height;
-        border: 1px solid #ddd;
+        border: 1px solid $border-color;
         border-left: 0;
         float: left;
         padding: 8px;
@@ -73,7 +75,7 @@ $sidebar-width: 38px;
         white-space: nowrap;
         -ms-text-overflow: ellipsis;
         text-overflow: ellipsis;
-        background: #f8f8f8;
+        background: $panel-color;
       }
     }
   }
@@ -84,7 +86,7 @@ $sidebar-width: 38px;
     width: $sidebar-width;
     bottom: 0;
     &-header {
-      border: 1px solid #ddd;
+      border: 1px solid $border-color;
       position: absolute;
       left: 0;
       top: 0;
@@ -92,7 +94,7 @@ $sidebar-width: 38px;
       height: $header-height;
       padding: 8px;
       text-align: center;
-      background: #f8f8f8;
+      background: $panel-color;
     }
     &-body {
       position: absolute;
@@ -107,7 +109,7 @@ $sidebar-width: 38px;
         top: 0;
         width: $sidebar-width;
         >div {
-          border: 1px solid #ddd;
+          border: 1px solid $border-color;
           border-top: 0;
           padding: 8px 0;
           text-align: center;
@@ -115,7 +117,7 @@ $sidebar-width: 38px;
           white-space: nowrap;
           -ms-text-overflow: ellipsis;
           text-overflow: ellipsis;
-          background: #f8f8f8;
+          background: $panel-color;
         }
       }
     }
@@ -138,7 +140,7 @@ $sidebar-width: 38px;
       overflow: hidden;
       clear: both;
       > div {
-        border: 1px solid #ddd;
+        border: 1px solid $border-color;
         border-top: 0;
         border-left: 0;
         float: left;
@@ -168,8 +170,8 @@ $sidebar-width: 38px;
     height: $footer-height;
     overflow: hidden;
     z-index: 300;
-    background: #fff;
-    background: #f8f8f8;
+    background: $panel-color;
+    border-top: 1px $border-color solid;
   }
   &-prev {
     display: block;
