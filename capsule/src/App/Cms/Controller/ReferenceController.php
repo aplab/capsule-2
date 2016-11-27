@@ -18,8 +18,12 @@
 
 namespace App\Cms\Controller;
 
+use App\Cms\Ui\DataModel\DataGrid\DataGrid;
+use App\Cms\Ui\SectionManager;
 use App\Cms\View\ActionMenuView;
+use App\Cms\View\DataGridView;
 use App\Cms\View\MainMenuView;
+use Capsule\Component\DataStruct\ReturnValue;
 use Capsule\Component\Superglobals\Superglobals;
 use Capsule\Tools\Tools;
 use Capsule\Ui\Toolbar\Button;
@@ -77,6 +81,7 @@ abstract class ReferenceController extends DefaultController
     {
         $this->initSections();
         $this->initMainMenu();
+        $this->initActionMenu();
         if (method_exists($this, $this->cmd)) {
             $this->{$this->cmd}();
         } else {
@@ -94,28 +99,35 @@ abstract class ReferenceController extends DefaultController
     {
         $p = $this->pagination();
         $filter = $this->app->urlFilter;
-        $toolbar = $this->app->registry->toolbar;
-        $button = new Button;
-        $toolbar->add($button);
-        $button->caption = 'New';
-        $button->url = $filter($this->mod, 'add');
-        $button->icon = $this->app->config->icons->cms . '/document--plus.png';
+        $toolbar = $this->app->registry->actionMenu;
+        $toolbar->newMenuItem('New', new \App\Cms\Ui\ActionMenu\Url($filter($this->mod, 'add')));
 
-        $button = new Button;
-        $toolbar->add($button);
-        $button->caption = 'Delete selected';
-        $button->icon = $this->app->config->icons->cms . '/cross-script.png';
-        $button->action = 'CapsuleUiDataGrid.getInstance("capsule-ui-datagrid").del()';
+        $toolbar->newMenuItem(
+            'Delete selected',
+            new \App\Cms\Ui\ActionMenu\Callback(
+                $filter(
+                    $this->mod,
+                    'CapsuleUiDataGrid.getInstance("capsule-ui-datagrid").del()'
+                )
+            )
+        );
 
         $c = $this->moduleClass;
         $config = $c::config();
         $title = $config->get('title') ?: 'untitled';
         $this->ui->title->prepend($title . '::List items');
 
-        $data_grid = new DataGrid('capsule-ui-datagrid', $c::page($p->currentPage, $p->itemsPerPage));
-        $data_grid->baseUrl = $filter($this->mod);
-        $data_grid->p = $p;
-        $this->ui->workplace->append(new \App\Cms\Ui\DataGrid\View($data_grid));
+        $data_grid = new DataGrid(
+            'capsule-ui-datagrid',
+            ($this->moduleClass)::config(),
+            new \ArrayIterator(($this->moduleClass)::all())
+        );
+        SectionManager::getInstance()->content->append(new DataGridView($data_grid));
+
+//        $data_grid = new DataGrid('capsule-ui-datagrid', $c::page($p->currentPage, $p->itemsPerPage));
+//        $data_grid->baseUrl = $filter($this->mod);
+//        $data_grid->p = $p;
+//        $this->ui->workplace->append(new \App\Cms\Ui\DataGrid\View($data_grid));
     }
 
     /**
@@ -387,7 +399,7 @@ abstract class ReferenceController extends DefaultController
     protected function pagination()
     {
         $post = (new Superglobals())->post;
-        $env = Env::getInstance();
+        $env = Env::getInstance()->get(__CLASS__);
         $class = $this->moduleClass;
         $default_items_per_page = $this->app->config->defaultItemsPerPage;
         $items_per_page_variants = $this->app->config->itemsPerPageVariants;

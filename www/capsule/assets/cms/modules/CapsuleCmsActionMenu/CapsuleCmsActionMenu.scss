@@ -1,3 +1,4 @@
+$namespace: capsule-cms-action-menu;
 .capsule-cms-action-menu {
   position: fixed;
   z-index: 400000;
@@ -13,14 +14,14 @@
   max-width: calc(100vw - 32px);
   overflow-x: hidden;
   display: none;
-  .capsule-cms-action-menu-wrapper {
+  &-wrapper {
     max-height: calc(100vh - 32px);
     max-width: calc(100vw - 34px);
     overflow-x: hidden;
     overflow-y: hidden;
     position: relative;
   }
-  .capsule-cms-action-menu-container {
+  &-container {
     max-height: calc(100vh - 32px);
     max-width: calc(100vw - 34px);
     overflow-x: hidden;
@@ -28,7 +29,7 @@
     position: relative;
     z-index: 10000;
   }
-  .capsule-cms-action-menu-content {
+  &-content {
     width: auto;
     height: auto;
     a, span {
@@ -42,6 +43,7 @@
       overflow: hidden;
       -ms-text-overflow: ellipsis;
       text-overflow: ellipsis;
+      cursor: pointer;
     }
     a:hover, span:hover {
       background-color: #f5f5f5;
@@ -49,7 +51,7 @@
       text-decoration: none;
     }
   }
-  .capsule-cms-action-menu-scrollbar {
+  &-scrollbar {
     position: absolute;
     top: 0;
     right: 0;
@@ -66,13 +68,13 @@
     -webkit-transition: opacity 0.2s ease 0s;
     -o-transition: opacity 0.2s ease 0s;
     transition: opacity 0.2s ease 0s;
+    &:hover {
+      //width: 10px;
+    }
   }
-  .capsule-cms-action-menu-scrollbar:hover {
-    //width: 10px;
-  }
-}
-.capsule-cms-action-menu:hover {
-  .capsule-cms-action-menu-scrollbar {
-    opacity: .4;
+  &:hover {
+    #{$namespace}-scrollbar {
+      opacity: .4;
+    }
   }
 }

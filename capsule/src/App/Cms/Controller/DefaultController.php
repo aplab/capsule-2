@@ -132,10 +132,9 @@ class DefaultController extends AbstractController
         $content = new Section('content');
         $body->append($content);
 
-        $data_grid = new DataGrid('data-grid', User::config(), new \ArrayIterator(User::all()));
-        $config = User::config();
-
-        $content->append(new DataGridView($data_grid));
+//        Error: Instance already exists. Only one instance allowed!
+//        $data_grid = new DataGrid('data-grid', User::config(), new \ArrayIterator(User::all()));
+//        $content->append(new DataGridView($data_grid));
     }
     
     /**
@@ -207,11 +206,9 @@ class DefaultController extends AbstractController
     /**
      *
      */
-    private function initActionMenu()
+    protected function initActionMenu()
     {
-        $filter = Cms::getInstance()->urlFilter;
         $menu = new ActionMenu('capsule-cms-action-menu');
         $this->app->registry->actionMenu = $menu;
-        $menu->newMenuItem('test', new \App\Cms\Ui\ActionMenu\Url($filter('/test/')));
     }
 }
