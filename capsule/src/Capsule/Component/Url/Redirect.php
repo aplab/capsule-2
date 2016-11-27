@@ -16,9 +16,9 @@
  * @package Capsule
  */
 
-namespace Capsule\Url;
+namespace Capsule\Component\Url;
 
-use Capsule\Superglobals\Server;
+
 /**
  * Redirect.php
  *
@@ -29,7 +29,6 @@ class Redirect
 {
     public static function go($url)
     {
-        $server = Server::getInstance();
         $file = null;
         $line = null;
         if (headers_sent($file, $line)) {

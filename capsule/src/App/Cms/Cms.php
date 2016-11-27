@@ -19,20 +19,20 @@
 namespace App\Cms;
 
 use App\AbstractApp\App;
+use Capsule\Cache\Cache;
 use Capsule\Component\DataStorage\DataStorage;
 use Capsule\Component\Url\Filter;
 use Capsule\Component\Url\Path;
 use App\Cms\Ui\SectionManager;
 use Capsule\I18n\I18n;
+use Capsule\Component\Url\Redirect;
 use Capsule\User\User;
 use Capsule\Capsule;
 use Capsule\User\Auth;
-use Capsule\Url\Redirect;
 use App\Cms\Ui\Section;
 use Capsule\Core\Fn;
 use App\Cms\Controller\DefaultController;
 use Capsule\DataModel\Config\Storage;
-use Capsule\Tools\Sysinfo;
 
 /**
  * Cms.php
@@ -49,11 +49,17 @@ use Capsule\Tools\Sysinfo;
  */
 class Cms extends App
 {
+    /**
+     * Cms constructor.
+     */
     protected function __construct()
     {
         $this->_init();
     }
 
+    /**
+     *
+     */
     protected function _init()
     {
         $data = Path::getInstance()->data;
@@ -64,6 +70,10 @@ class Cms extends App
         $this->data['ui'] = SectionManager::getInstance();
     }
 
+    /**
+     * @param $name
+     * @return mixed
+     */
     protected function getUrlFilter($name)
     {
         if (!array_key_exists($name, $this->data)) {
@@ -78,6 +88,10 @@ class Cms extends App
         return $this->data[$name];
     }
 
+    /**
+     * @param $name
+     * @return mixed
+     */
     protected function getRegistry($name)
     {
         if (!array_key_exists($name, $this->data)) {
@@ -86,6 +100,9 @@ class Cms extends App
         return $this->data[$name];
     }
 
+    /**
+     * @throws \Throwable
+     */
     public function run()
     {
         try {
@@ -97,9 +114,10 @@ class Cms extends App
                 }
                 return;
             }
-            if (isset($_GET['logout'])) {
+            if ($this->config->logoutCommand === $mod) {
+                echo '<a href="' . $this->config->baseUrl . '">logout</a>';
                 Auth::getInstance()->logout();
-                header('Location: ' . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+                Redirect::go($this->config->baseUrl);
                 die;
             }
             if (!Auth::getInstance()->user()) {
@@ -126,20 +144,22 @@ class Cms extends App
         }
     }
 
+    /**
+     *
+     */
     private function install()
     {
         DataStorage::getInstance()->destroy();
         Storage::getInstance()->destroy();
         \App\Website\Structure\Storage::getInstance()->destroy();
-        \Capsule\Cache\Cache::getInstance()->destroy();
+        Cache::getInstance()->destroy();
         \App\Website\Cache::getInstance()->destroy();
-        $t = I18n::getInstance();
         if (!User::number()) {
             $user = new User;
             $user->login = Capsule::getInstance()->config->defaultUser->login;
             $user->password = Capsule::getInstance()->config->defaultUser->password;
             $user->store();
         }
-        Redirect::go(Sysinfo::baseUrl() . $this->config->baseUrl);
+        Redirect::go($this->config->baseUrl);
     }
 }

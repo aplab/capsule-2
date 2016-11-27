@@ -4,6 +4,7 @@
   "cmd": "admin",
   "allowInstall": true,
   "installCommand": "install",
+  "logoutCommand": "logout",
   "defaultItemsPerPage": 100,
   "itemsPerPageVariants": [
     10,
@@ -56,7 +57,7 @@
           },
           {
             "caption": "Exit",
-            "url": "logout",
+            "url": "/admin/logout/",
             "icon": "fa fa-power-off"
           }
         ]
@@ -284,10 +285,12 @@
       {
         "caption": "Window",
         "help": "Window",
+        "icon": "fa fa-window-maximize",
         "items": [
           {
             "caption": "Duplicate",
-            "callback": "window.open(location.href, '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+            "callback": "window.open(location.href, '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')",
+            "icon": "fa fa-copy"
           },
           {
             "caption": "New",
@@ -298,33 +301,40 @@
       {
         "caption": "Settings",
         "help": "Settings",
+        "icon": "fa fa-cogs",
         "items": [
           {
             "caption": "Preferences",
-            "url": "preferences"
+            "url": "preferences",
+            "icon": "fa fa-list"
           },
           {
             "caption": "User management",
-            "url": "user"
+            "url": "user",
+            "icon": "fa fa-users"
           },
           {
             "caption": "Restart",
-            "url": "install"
+            "url": "install",
+            "icon": "fa fa-refresh text-danger"
           }
         ]
       },
       {
         "caption": "Help",
         "help": "Help",
+        "icon": "fa fa-life-ring",
         "items": [
           {
             "caption": "Help",
             "url": "http://www.aplab.ru/",
-            "target": "_blank"
+            "target": "_blank",
+            "icon": "fa fa-life-ring"
           },
           {
             "caption": "About",
-            "callback": "CapsuleUiDialog.getInstance('about').showCenter()"
+            "callback": "CapsuleUiDialog.getInstance('about').showCenter()",
+            "icon": "fa fa-external-link-square"
           }
         ]
       }
