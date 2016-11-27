@@ -74,13 +74,14 @@ class Table extends AbstractConfig
      * @var string
      */
     const COLUMNS = 'columns',
-          INDEXES = 'indexes';
+        INDEXES = 'indexes';
 
     /**
-     * @param void
-     * @return self
+     * @param array $data
+     * @throws Exception
      */
-    public function __construct(array $data) {
+    public function __construct(array $data)
+    {
         parent::__construct($data);
         if (array_key_exists(self::COLUMNS, $this->data)) {
             $this->data[self::COLUMNS] =
@@ -114,7 +115,8 @@ class Table extends AbstractConfig
      * @param void
      * @return string
      */
-    public function toString() {
+    public function toString()
+    {
         $sql[] = 'CREATE TABLE IF NOT EXISTS `' . $this->name . '` (';
         $tmp[] = $this->columns->toString(self::DEFAULT_INDENT);
         if (isset($this->indexes)) {
@@ -122,13 +124,13 @@ class Table extends AbstractConfig
         }
         $sql[] = Fn::join_ne(',' . chr(10), $tmp);
         $sql[] = ') ENGINE=' . $this->get('engine', self::DEFAULT_ENGINE)
-                . ' AUTO_INCREMENT=' .
-                    $this->get('autoIncrement', self::DEFAULT_AUTO_INCREMENT)
-                . ' DEFAULT CHARSET=' .
-                    $this->get('defaultCharset', self::DEFAULT_CHARSET);
+            . ' AUTO_INCREMENT=' .
+            $this->get('autoIncrement', self::DEFAULT_AUTO_INCREMENT)
+            . ' DEFAULT CHARSET=' .
+            $this->get('defaultCharset', self::DEFAULT_CHARSET);
         $sql = join(chr(10), $sql);
         if (isset($this->comment) && $this->comment) {
-            $sql.= ' COMMENT="' . $this->comment . '"';
+            $sql .= ' COMMENT="' . $this->comment . '"';
         }
         return $sql;
     }

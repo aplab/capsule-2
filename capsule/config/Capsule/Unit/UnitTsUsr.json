@@ -5,7 +5,7 @@
             "title": "created",
             "column": {
                 "c1": {
-                    "width": 120,
+                    "width": 160,
                     "order": 100000000
                 }
             },
@@ -21,7 +21,7 @@
             "title": "last modified",
             "column": {
                 "c1": {
-                    "width": 120,
+                    "width": 160,
                     "order": 200000000
                 }
             },
@@ -37,12 +37,12 @@
     "table": {
         "columns": {
             "created": {
-                "type": "timestamp",
-                "default": 0,
+                "type": "datetime",
+                "default": "CURRENT_TIMESTAMP",
                 "comment": "created"
             },
             "last_modified": {
-                "type": "timestamp",
+                "type": "datetime",
                 "default": "CURRENT_TIMESTAMP",
                 "onUpdate": "CURRENT_TIMESTAMP",
                 "comment": "last modified"

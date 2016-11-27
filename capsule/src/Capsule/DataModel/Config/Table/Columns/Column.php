@@ -30,9 +30,17 @@ use Capsule\DataModel\Config\AbstractConfig;
  */
 class Column extends AbstractConfig
 {
+    /**
+     *
+     */
     const TYPE = 'type';
 
-    public function __construct(array $data) {
+    /**
+     * Column constructor.
+     * @param array $data
+     */
+    public function __construct(array $data)
+    {
         parent::__construct($data);
         if (array_key_exists(self::TYPE, $this->data)) {
             $this->data[self::TYPE] = strtoupper($this->data[self::TYPE]);
@@ -45,7 +53,8 @@ class Column extends AbstractConfig
      * @param void
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return $this->toString();
     }
 
@@ -55,7 +64,8 @@ class Column extends AbstractConfig
      * @param void
      * @return string
      */
-    public function toString() {
+    public function toString()
+    {
         $str = array($this->type);
         if (isset($this->length)) {
             $tmp = array('(' . $this->length);
@@ -87,7 +97,7 @@ class Column extends AbstractConfig
                 $tmp[] = 'NULL';
             } else {
                 if (is_string($default)) {
-                    if ('TIMESTAMP' === $this->type) {
+                    if ('TIMESTAMP' === $this->type || 'DATETIME' === $this->type) {
                         if ('CURRENT_TIMESTAMP' === strtoupper($default)) {
                             $tmp[] = 'CURRENT_TIMESTAMP';
                         } elseif ('0' === strval($default)) {

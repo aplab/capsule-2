@@ -18,15 +18,40 @@ use Capsule\Component\Session\Session;
 use Capsule\Component\Session\SessionData;
 use Capsule\Core\Singleton;
 
+/**
+ * Class Auth
+ * @package Capsule\User
+ */
 class Auth extends Singleton
 {
+    /**
+     *
+     */
     const POST_VAR_USERNAME = 'login_as';
+    /**
+     *
+     */
     const POST_VAR_PASSWORD = 'password';
+    /**
+     *
+     */
     const SESSION_KEY_USER_ID = 'user_id';
+    /**
+     *
+     */
     const SESSION_KEY_SERVER_VARS = 'server';
+    /**
+     *
+     */
     const AUTH_METHOD_FORM = 'form';
+    /**
+     *
+     */
     const AUTH_METHOD_SESSION = 'session';
 
+    /**
+     * @var array
+     */
     protected $serverCheckKeys = [
         'HTTP_ACCEPT_ENCODING' => false,
         'HTTP_ACCEPT_LANGUAGE' => true,
@@ -157,6 +182,15 @@ class Auth extends Singleton
     public function user()
     {
         return $this->user;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public static function userId()
+    {
+        $u = static::getInstance()->user();
+        return $u ? $u->id : null;
     }
 
     /**

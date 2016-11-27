@@ -23,6 +23,7 @@ use Capsule\DataModel\Inflector;
 use Capsule\Core\Fn;
 use Capsule\Model\Exception;
 use Capsule\User\Auth;
+
 /**
  * UnitTsUsr.php
  * С меткой времени создания и последнего изменения.
@@ -42,15 +43,16 @@ class UnitTsUsr extends UnitUsr
         LAST_MODIFIED_BY = 'last_modified_by',
         CREATED = 'created',
         LAST_MODIFIED = 'last_modified';
-    
+
     /**
      * Сохраняет объект в связанную таблицу базы данных.
      * Возвращает присвоенный идентификатор.
      *
-     *  @param void
-     *  @return int
+     * @return int
+     * @throws Exception
      */
-    protected function insert() {
+    protected function insert()
+    {
         $db = Db::getInstance();
         $table = self::config()->table->name;
         $fields = $db->listFields($table);
@@ -76,12 +78,12 @@ class UnitTsUsr extends UnitUsr
             $values[$map[$property]] = $value;
         }
         if (empty($values)) {
-            $sql = 'INSERT INTO ' . $db->bq($table) . '(`' . self::CREATED_BY . '`, `' . self::CREATED . '`)
-                    VALUES(' . $db->qt((int)Auth::currentUserId()) . ', NOW())';
+            $sql = 'INSERT INTO ' . $db->bq($table) . '(`' . self::CREATED_BY . '`)
+                    VALUES(' . $db->qt((int)Auth::currentUserId()) . ')';
         } else {
             $sql = 'INSERT INTO ' . $db->bq($table) . ' (' .
-                    join(', ', $db->bq(array_keys($values))) . ', `' . self::CREATED_BY . '`, `' . self::CREATED . '`)
-                    VALUES (' . join(', ', $values) . ', ' . $db->qt((int)Auth::currentUserId()) . ', NOW())';
+                join(', ', $db->bq(array_keys($values))) . ', `' . self::CREATED_BY . '`)
+                    VALUES (' . join(', ', $values) . ', ' . $db->qt((int)Auth::currentUserId()) . ')';
         }
         $db->query($sql);
         if ($db->errno) {
@@ -91,15 +93,15 @@ class UnitTsUsr extends UnitUsr
         $this->data[static::$key] = $key;
         return $key;
     }
-    
+
     /**
      * Обновляет объект в связанной таблице базы данных.
-     * Возвращает
      *
-     *  @param void
-     *  @return boolean
+     * @return bool
+     * @throws Exception
      */
-    protected function update() {
+    protected function update()
+    {
         $db = Db::getInstance();
         $table = self::config()->table->name;
         $fields = $db->listFields($table);
@@ -146,7 +148,7 @@ class UnitTsUsr extends UnitUsr
         }
         return $db->affected_rows;
     }
-    
+
     /**
      * Disable set special property "created" directly
      *
@@ -154,8 +156,10 @@ class UnitTsUsr extends UnitUsr
      * @param string $name
      * @return void
      */
-    final protected function setCreated($value, $name) {}
-    
+    final protected function setCreated($value, $name)
+    {
+    }
+
     /**
      * Disable set special property "last modified" directly
      *
@@ -163,5 +167,7 @@ class UnitTsUsr extends UnitUsr
      * @param string $name
      * @return void
      */
-    final protected function setLastModified($value, $name) {}
+    final protected function setLastModified($value, $name)
+    {
+    }
 }

@@ -71,11 +71,11 @@ class UnitTs extends Unit
             $values[$map[$property]] = $value;
         }
         if (empty($values)) {
-            $sql = 'INSERT INTO ' . $db->bq($table) . '(`' . self::CREATED . '`) VALUES(NOW())';
+            $sql = 'INSERT INTO ' . $db->bq($table) . '() VALUES ()';
         } else {
             $sql = 'INSERT INTO ' . $db->bq($table) . ' (' .
-                join(', ', $db->bq(array_keys($values))) . ', `' . self::CREATED . '`)
-                    VALUES (' . join(', ', $values) . ', NOW())';
+                join(', ', $db->bq(array_keys($values))) . ')
+                    VALUES (' . join(', ', $values) . ')';
         }
         $db->query($sql);
         if ($db->errno) {
@@ -88,7 +88,6 @@ class UnitTs extends Unit
 
     /**
      * Обновляет объект в связанной таблице базы данных.
-     * Возвращает
      *
      * @return bool
      * @throws Exception
@@ -99,8 +98,7 @@ class UnitTs extends Unit
         $db = Db::getInstance();
         $table = self::config()->table->name;
         $fields = $db->listFields($table);
-        $properties = Inflector::getInstance()
-            ->getAssociatedProperties($fields);
+        $properties = Inflector::getInstance()->getAssociatedProperties($fields);
         $map = array_combine($properties, $fields);
         $fragments = array();
         foreach ($this->data as $property => $value) {

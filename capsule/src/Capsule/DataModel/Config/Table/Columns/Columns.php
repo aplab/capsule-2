@@ -32,7 +32,8 @@ class Columns extends AbstractConfig
      * @param array $data
      * @return self
      */
-    public function __construct(array $data) {
+    public function __construct(array $data)
+    {
         foreach ($data as $column_name => $column_data) {
             $this->data[$column_name] = new Column($column_data);
         }
@@ -41,14 +42,15 @@ class Columns extends AbstractConfig
     /**
      * explicit conversion to string
      *
-     * @param void
+     * @param int $indent
      * @return string
      */
-    public function toString($indent = 0) {
+    public function toString($indent = 0)
+    {
         $ret = array();
         foreach ($this->data as $name => $column) {
             $ret[] = str_repeat(' ', $indent) . '`' . $name . '` ' . sprintf($column->toString(), $name);
         }
-        return join(', ' . chr(10), $ret);
+        return join(', ' . PHP_EOL, $ret);
     }
 }
