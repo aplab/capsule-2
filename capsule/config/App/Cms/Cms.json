@@ -340,92 +340,6 @@
       }
     ]
   },
-  "templates": "/var/www/templates/cms",
-  "ui": {
-    "controls": {
-      "css": "/capsule/Ui/CapsuleControl/control.css",
-      "js": "/capsule/Ui/CapsuleControl/control.js"
-    },
-    "mainMenu": {
-      "css": "/capsule/Ui/DropDownMenu/cms/menu.css",
-      "js": "/capsule/Ui/DropDownMenu/cms/menu.js",
-      "height": 25
-    },
-    "dataGrid": {
-      "css": "/capsule/Ui/DataGrid/cms/CapsuleUiDataGrid.css",
-      "js": "/capsule/Ui/DataGrid/cms/CapsuleUiDataGrid.js",
-      "top": 29
-    },
-    "toolbar": {
-      "height": 29,
-      "css": "/capsule/Ui/Toolbar/cms/CapsuleUiToolbar.css",
-      "js": "/capsule/Ui/Toolbar/cms/CapsuleUiToolbar.js"
-    },
-    "tabControl": {
-      "height": 30,
-      "css": "/capsule/Ui/TabControl/cms/CapsuleUiTabControl.css",
-      "js": "/capsule/Ui/TabControl/cms/CapsuleUiTabControl.js"
-    },
-    "objectEditor": {
-      "css": "/capsule/Ui/ObjectEditor/cms/CapsuleUiObjectEditor.css",
-      "js": "/capsule/Ui/ObjectEditor/cms/CapsuleUiObjectEditor.js"
-    },
-    "ckeditor": {
-      "js": "/capsule/assets/share/ckeditor/ckeditor.js",
-      "adapter": "/capsule/assets/share/ckeditor/adapters/jquery.js",
-      "basePath": "/capsule/assets/share/ckeditor/"
-    },
-    "dialogWindow": {
-      "css": "/capsule/Ui/DialogWindow/cms/CapsuleUiDialogWindow.css",
-      "js": "/capsule/Ui/DialogWindow/cms/CapsuleUiDialogWindow.js"
-    },
-    "dialog": {
-      "css": "/capsule/Ui/Dialog/cms/CapsuleUiDialog.css",
-      "js": "/capsule/Ui/Dialog/cms/CapsuleUiDialog.js"
-    },
-    "storage": {
-      "css": "/capsule/Ui/Storage/cms/CapsuleUiStorage.css",
-      "js": "/capsule/Ui/Storage/cms/CapsuleUiStorage.js",
-      "top": 29
-    },
-    "uploadImage": {
-      "css": "/capsule/Ui/UploadImage/cms/CapsuleUiUploadImage.css",
-      "js": "/capsule/Ui/UploadImage/cms/CapsuleUiUploadImage.js",
-      "top": 29
-    },
-    "uploadImageHistory": {
-      "css": "/capsule/Ui/UploadImageHistory/cms/CapsuleUiUploadImageHistory.css",
-      "js": "/capsule/Ui/UploadImageHistory/cms/CapsuleUiUploadImageHistory.js",
-      "top": 29
-    }
-  },
-  "comment": "Icons configuration",
-  "icons": {
-    "cms": "/capsule/assets/share/icons/cms"
-  },
-  "path": {
-    "assets": "/capsule/assets",
-    "css": {
-      "cssReset": "/capsule/assets/cms/css/cssreset-min.css",
-      "cssStyle": "/capsule/assets/cms/css/style.css"
-    },
-    "js": {
-      "jquery": "/capsule/assets/share/jquery/jquery-2.0.3.min.js",
-      "capsule": "/capsule/assets/cms/js/Capsule.js",
-      "mousewheel": "/capsule/assets/share/jquery.mousewheel.min.js"
-    },
-    "ext": "/capsule/assets/cms/ext",
-    "imageareaselect": {
-      "css": "/capsule/assets/share/imageareaselect/css/imgareaselect-default.css",
-      "js": "/capsule/assets/share/imageareaselect/jquery.imgareaselect.min.js"
-    },
-    "jqueryUi": {
-      "css1": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.css",
-      "css2": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.structure.min.css",
-      "css3": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.theme.min.css",
-      "js": "/capsule/assets/share/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.js"
-    }
-  },
   "controller": {
     "defaultNamespace": "App/Cms/Controller"
   },
@@ -434,7 +348,7 @@
   "#": "Пространства имен разделять символом / или \\ (обратный слэш удваивать)",
   "#": "Пространства имен без ведущего разделителя в начале строки будут пытаться подключить из текущего контекста",
   "module": {
-    "user": "User",
+    "user": "UserController",
     "named": "Named",
     "description": "Description",
     "imaged": "Imaged",

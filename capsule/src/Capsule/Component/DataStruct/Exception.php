@@ -3,9 +3,9 @@
 // +---------------------------------------------------------------------------+
 // | PHP version 5.4.7                                                         |
 // +---------------------------------------------------------------------------+
-// | Copyright (c) 2006-2014                                                   |
+// | Copyright (c) 2006-2013                                                   |
 // +---------------------------------------------------------------------------+
-// | 08.03.2014 3:32:18 YEKT 2014                                              |
+// | 03.12.2013 0:22:21 YEKT 2013                                              |
 // | Класс - type_description_here                                             |
 // +---------------------------------------------------------------------------+
 // | Author: Alexander Polyanin <polyanin@gmail.com>                           |
@@ -16,17 +16,12 @@
  * @package Capsule
  */
 
-namespace App\Cms\Controller;
+namespace Capsule\DataStruct;
 
 /**
- * User.php
+ * Exception.php
  *
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
-class User extends ReferenceController
-{
-    protected $moduleClass = 'Capsule\\User\\User';
-    
-    
-}
+class Exception extends \Capsule\Core\Exception {}

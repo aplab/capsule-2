@@ -19,6 +19,7 @@
 namespace Capsule\Common;
 
 use Capsule\Core\Singleton;
+
 /**
  * TplVar.php
  * Для передачи переменных в шаблон.
@@ -29,9 +30,18 @@ use Capsule\Core\Singleton;
  */
 class TplVar extends Singleton
 {
+    /**
+     * @var array
+     */
     private $data = array();
 
-    public function __get($name) {
+    /**
+     * @param $name
+     * @return mixed
+     * @throws Exception
+     */
+    public function __get($name)
+    {
         if (array_key_exists($name, $this->data)) {
             $ret = $this->data[$name];
             unset($this->data[$name]);
@@ -41,7 +51,13 @@ class TplVar extends Singleton
         throw new Exception($msg);
     }
 
-    public function __set($name, $value) {
+    /**
+     * @param $name
+     * @param $value
+     * @return $this
+     */
+    public function __set($name, $value)
+    {
         $this->data[$name] = $value;
         return $this;
     }
