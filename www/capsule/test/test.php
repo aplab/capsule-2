@@ -31,35 +31,63 @@ if (!$user) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="/capsule/components/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="/capsule/components/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/capsule/components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.css?v=20161127103924">
+    <link rel="stylesheet" href="/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.css?v=20161127122756">
+    <link rel="stylesheet" href="/capsule/assets/modules/Scrollable/CapsuleUiScrollable.css?v=20161125020631">
+    <link rel="stylesheet" href="/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGrid.css?v=20161127171323">
+    <link rel="stylesheet" href="/capsule/assets/cms/css/style.css?v=20161118014933">
+    <script src="/capsule/components/jquery/jquery-3.1.1.min.js"></script>
+    <script src="/capsule/components/jquery.mousewheel/jquery.mousewheel.min.js"></script>
+    <script src="/capsule/components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/capsule/components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/capsule/components/js-cookie/js.cookie-2.1.3.min.js"></script>
+    <script src="/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.js?v=20161113172505"></script>
+    <script src="/capsule/assets/modules/Scrollable/CapsuleUiScrollable.js?v=20161111011517"></script>
+    <script src="/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.js?v=20161117023043"></script>
+    <script src="/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGrid.js?v=20161127171026"></script>
+    <script src="/capsule/components/viewport-units-buggyfill/viewport-units-buggyfill.js"></script>
+    <script src="/capsule/assets/cms/js/js.js?v=20161126200521"></script>
 </head>
 <body>
     you are <?=$user->login?>
     <a href="<?=$_SERVER['REQUEST_URI']?>?logout">logout</a><br>
 
 
+    <script>
+        $(document).ready(function () {
+            var outer = $('<div>');
+            outer.css({
+                width: 400,
+                height: 400,
+                overflow: 'scroll',
+                background: '#f00',
+                position: 'relative'
+            });
+            var inner = $('<div>');
+            inner.css({
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                right: 1,
+                bottom: 1,
+                background: '#ff0'
+            });
 
-<?php
-
-function a(Traversable $items)
-{
-    \Capsule\Tools\Tools::dump($items);
-    foreach ($items as $item) {
-        \Capsule\Tools\Tools::dump($item);
-    }
-}
-
-$a = range(1, 10);
-
-a(new ArrayIterator($a));
-
-$a = new stdClass;
-$b = new stdClass;
+            $('body').append(outer);
+            outer.append(inner);
+            console.log(outer.width());
+            console.log(outer.height());
+            console.log(inner.width());
+            console.log(inner.height());
 
 
-var_dump(spl_object_hash(new stdClass()), spl_object_hash(new stdClass()));
-var_dump(spl_object_hash($a), spl_object_hash($b));
+        });
 
-?>
+    </script>
+
 
 </body>
 </html>

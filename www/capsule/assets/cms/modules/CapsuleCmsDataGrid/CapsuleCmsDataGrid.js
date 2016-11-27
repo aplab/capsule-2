@@ -63,8 +63,23 @@ function CapsuleCmsDataGrid (container)
 
     var init = function ()
     {
+        scroll_horizontal_content.css({
+            width: data.width()
+        });
+        scroll_vertical_content.css({
+            height: data.height(),
+        });
+
         var scroll_horizontal_height = scroll_horizontal.height() - scroll_horizontal_content.height();
+
         var scroll_vertical_width = scroll_vertical.width() - scroll_vertical_content.width();
+
+
+        console.log(scroll_vertical.outerWidth());
+        console.log(scroll_vertical.innerWidth());
+
+
+
         content.css({
             right: scroll_vertical_width,
             bottom: scroll_horizontal_height
@@ -72,14 +87,8 @@ function CapsuleCmsDataGrid (container)
         scroll_horizontal.css({
             right: scroll_vertical_width
         });
-        scroll_horizontal_content.css({
-            width: data.width()
-        });
         scroll_vertical.css({
             bottom: scroll_horizontal_height
-        });
-        scroll_vertical_content.css({
-            height: data.height(),
         });
     }
 

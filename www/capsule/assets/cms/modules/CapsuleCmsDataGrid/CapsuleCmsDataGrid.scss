@@ -36,11 +36,16 @@ $border-color: #ddd;
     right: 0;
     top: $header-height;
     bottom: 0;
+    width: auto;
+    left: auto;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
     &-content {
-      width: 10px;
-      height: auto;
+      width: 100px;
+      height: 200%;
     }
   }
   &-content {
