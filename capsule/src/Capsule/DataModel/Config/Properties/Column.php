@@ -19,6 +19,7 @@
 namespace Capsule\DataModel\Config\Properties;
 
 use Capsule\DataModel\Config\AbstractConfig;
+use Capsule\DataModel\Config\Exception;
 
 /**
  * Column.php
@@ -36,7 +37,8 @@ class Column extends AbstractConfig
      * @param void
      * @return string
      */
-    public function toString() {
+    public function toString()
+    {
         return $this->width;
     }
 
@@ -46,7 +48,8 @@ class Column extends AbstractConfig
      * @param string $name
      * @return mixed
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         return array_key_exists($name, $this->data) ? $this->data[$name] : null;
     }
     
@@ -57,7 +60,8 @@ class Column extends AbstractConfig
      * @param mixed $value
      * @return self
      */
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         $setter = 'set' . ucfirst($name);
         if (in_array($setter, get_class_methods($this))) {
             $this->$setter($value, $name);
@@ -75,7 +79,8 @@ class Column extends AbstractConfig
      * @throws \InvalidArgumentException
      * @return \Capsule\DataModel\Config\Properties\Column
      */
-    protected function setWidth($value, $name) {
+    protected function setWidth($value, $name)
+    {
         if (!$value) {
             $this->data[$name] = 0;
             return $this;
@@ -86,5 +91,17 @@ class Column extends AbstractConfig
         }
         $msg = 'Wrong width value';
         throw new \InvalidArgumentException($msg);
+    }
+
+
+    /**
+     * @param $value
+     * @param $name
+     * @throws Exception
+     */
+    protected function setId($value, $name)
+    {
+        unset($value);
+        throw new Exception('Readonly property: ' . get_class($this) . '::$' . $name);
     }
 }

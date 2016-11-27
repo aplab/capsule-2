@@ -202,7 +202,6 @@ class DataGrid
                     $column->order = static::DEFAULT_COLUMN_SORT_ORDER;
                 }
                 $column->property = $property_name;
-                $column->id = $column_id;
                 $columns[] = $column;
             }
         }

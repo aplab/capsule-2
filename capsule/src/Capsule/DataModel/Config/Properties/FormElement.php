@@ -19,6 +19,7 @@
 namespace Capsule\DataModel\Config\Properties;
 
 use Capsule\DataModel\Config\AbstractConfig;
+use Capsule\DataModel\Config\Exception;
 
 /**
  * Column.php
@@ -62,7 +63,19 @@ class FormElement extends AbstractConfig
      * @param string $name
      * @return mixed
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         return array_key_exists($name, $this->data) ? $this->data[$name] : null;
+    }
+
+    /**
+     * @param $value
+     * @param $name
+     * @throws Exception
+     */
+    protected function setId($value, $name)
+    {
+        unset($value);
+        throw new Exception('Readonly property: ' . get_class($this) . '::$' . $name);
     }
 }
