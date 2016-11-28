@@ -33,12 +33,24 @@ $border-color: #ddd;
     bottom: $footer-height;
     overflow: hidden;
     z-index: 200;
+    background: $panel-color;
   }
-  &-scroll-horizontal {
+  &-scroll-horizontal-wrapper {
     position: absolute;
     left: $sidebar-width;
     bottom: 0;
     right: 0;
+    top: auto;
+    height: 0;
+    overflow: hidden;
+  }
+  &-scroll-horizontal {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: auto;
+    height: 200px;
     overflow-y: hidden;
     overflow-x: auto;
     &-content {
@@ -46,21 +58,27 @@ $border-color: #ddd;
       width: auto;
     }
   }
-  &-scroll-vertical {
+  &-scroll-vertical-wrapper {
     position: absolute;
     right: 0;
     top: $header-height;
     bottom: 0;
-    width: auto;
+    width: 0;
+    left: auto;
+    overflow: hidden;
+  }
+  &-scroll-vertical {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px;
     left: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
     &-content {
-      width: 100px;
-      height: 200%;
+      width: 10px;
+      height: auto;
     }
   }
   &-content {
@@ -78,6 +96,7 @@ $border-color: #ddd;
     height: $header-height;
     z-index: 100;
     overflow: hidden;
+    background: #fff;
     >div {
       border: 0;
       overflow: hidden;
@@ -105,6 +124,7 @@ $border-color: #ddd;
     top: 0;
     width: $sidebar-width;
     bottom: 0;
+    background: #fff;
     &-header {
       border: 1px solid $border-color;
       position: absolute;
@@ -149,6 +169,7 @@ $border-color: #ddd;
     right: 0;
     bottom: 0;
     overflow: hidden;
+    background: #fff;
   }
   &-data {
     position: absolute;

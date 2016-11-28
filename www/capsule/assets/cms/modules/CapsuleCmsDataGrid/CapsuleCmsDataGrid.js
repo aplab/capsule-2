@@ -26,22 +26,26 @@ function CapsuleCmsDataGrid (container)
         }
     })(this, arguments.callee);
 
-    var content = container.find('.capsule-cms-data-grid-content').eq(0);
+    var prefix = '.capsule-cms-data-grid-';
 
-    var scroll_horizontal = container.find('.capsule-cms-data-grid-scroll-horizontal').eq(0);
-    var scroll_horizontal_content = container.find('.capsule-cms-data-grid-scroll-horizontal-content').eq(0);
+    var content = container.find(prefix + 'content').eq(0);
 
-    var scroll_vertical = container.find('.capsule-cms-data-grid-scroll-vertical').eq(0);
-    var scroll_vertical_content = container.find('.capsule-cms-data-grid-scroll-vertical-content').eq(0);
+    var scroll_horizontal_wrapper = container.find(prefix + 'scroll-horizontal-wrapper').eq(0);
+    var scroll_horizontal = container.find(prefix + 'scroll-horizontal').eq(0);
+    var scroll_horizontal_content = container.find(prefix + 'scroll-horizontal-content').eq(0);
 
-    var body = container.find('.capsule-cms-data-grid-body').eq(0);
-    var data = container.find('.capsule-cms-data-grid-data').eq(0);
+    var scroll_vertical_wrapper = container.find(prefix + 'scroll-vertical-wrapper').eq(0);
+    var scroll_vertical = container.find(prefix + 'scroll-vertical').eq(0);
+    var scroll_vertical_content = container.find(prefix + 'scroll-vertical-content').eq(0);
 
-    var sidebar_body_col = container.find('.capsule-cms-data-grid-sidebar-body-col').eq(0);
-    var sidebar_header = container.find('.capsule-cms-data-grid-sidebar-header').eq(0);
-    var sidebar_header_checkbox = container.find('.capsule-cms-data-grid-sidebar-header :checkbox').eq(0);
+    var body = container.find(prefix + 'body').eq(0);
+    var data = container.find(prefix + 'data').eq(0);
 
-    var header_row = container.find('.capsule-cms-data-grid-header-row').eq(0);
+    var sidebar_body_col = container.find(prefix + 'sidebar-body-col').eq(0);
+    var sidebar_header = container.find(prefix + 'sidebar-header').eq(0);
+    var sidebar_header_checkbox = container.find(prefix + 'sidebar-header :checkbox').eq(0);
+
+    var header_row = container.find(prefix + 'header-row').eq(0);
 
     var scrollbar_calc_outer = $('<div>').addClass('capsule-cms-data-grid-scrollbar-calc-outer');
     var scrollbar_calc_inner = $('<div>').addClass('capsule-cms-data-grid-scrollbar-calc-inner');
@@ -67,45 +71,84 @@ function CapsuleCmsDataGrid (container)
         div.append('<input type="checkbox">');
     });
 
+    /**
+     *
+     * @returns {{h: number, v: number}}
+     */
     var calcScrollbarWidth = function ()
     {
         var ow = scrollbar_calc_outer.width();
-        var oh = scrollbar_calc_outer.height();
         var iw = scrollbar_calc_inner.width();
+        var oh = scrollbar_calc_outer.height();
         var ih = scrollbar_calc_inner.height();
-
-    }
+        return {
+            h: Math.round(oh - ih),
+            v: Math.round(ow - iw)
+        }
+    };
 
     var init = function ()
     {
+        var system_scrollbar_size = calcScrollbarWidth();
+        var data_width = data.width();
+        var data_height = data.height();
         scroll_horizontal_content.css({
-            width: data.width()
+            width: data_width
         });
         scroll_vertical_content.css({
-            height: data.height(),
+            height: data_height
         });
-
-        var scroll_horizontal_height = scroll_horizontal.height() - scroll_horizontal_content.height();
-
-        var scroll_vertical_width = scroll_vertical.width() - scroll_vertical_content.width();
-
-
-        console.log(scroll_vertical.outerWidth());
-        console.log(scroll_vertical.innerWidth());
-
-
-
-        content.css({
-            right: scroll_vertical_width,
-            bottom: scroll_horizontal_height
-        });
-        scroll_horizontal.css({
-            right: scroll_vertical_width
-        });
-        scroll_vertical.css({
-            bottom: scroll_horizontal_height
-        });
-    }
+        var threshold = 0;
+        var hcalc = function () {
+            if ((data_width - scroll_horizontal.width()) > threshold) {
+                content.css({
+                    bottom: system_scrollbar_size.h
+                });
+                scroll_horizontal_wrapper.css({
+                    height: system_scrollbar_size.h || 4,
+                });
+                scroll_vertical_wrapper.css({
+                    bottom: system_scrollbar_size.h
+                });
+            } else {
+                content.css({
+                    bottom: 0
+                });
+                scroll_horizontal_wrapper.css({
+                    height: 0
+                });
+                scroll_vertical_wrapper.css({
+                    bottom: 0
+                });
+            }
+        };
+        var vcalc = function () {
+            if ((data_height - scroll_vertical.height()) > threshold) {
+                content.css({
+                    right: system_scrollbar_size.v
+                });
+                scroll_vertical_wrapper.css({
+                    width: system_scrollbar_size.v || 4
+                });
+                scroll_horizontal_wrapper.css({
+                    right: system_scrollbar_size.v
+                });
+            } else {
+                content.css({
+                    right: 0
+                });
+                scroll_vertical_wrapper.css({
+                    width: 0
+                });
+                scroll_horizontal_wrapper.css({
+                    right: 0
+                });
+            }
+        };
+        vcalc();
+        hcalc();
+        vcalc();
+    };
 
     init();
 

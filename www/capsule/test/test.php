@@ -78,12 +78,12 @@ if (!$user) {
 
             $('body').append(outer);
             outer.append(inner);
-            console.log(outer.width() - inner.width());
-            console.log(outer.height() - inner.height());
+            console.log(Math.round(outer.width() - inner.width()));
+            console.log(Math.round(outer.height() - inner.height()));
             $(window).resize(function () {
                 console.clear();
-                console.log(outer.width() - inner.width());
-                console.log(outer.height() - inner.height());
+                console.log(Math.round(outer.width() - inner.width()));
+                console.log(Math.round(outer.height() - inner.height()));
             });
 
         });

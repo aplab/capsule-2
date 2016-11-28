@@ -71,12 +71,16 @@ use Capsule\Component\Utf8String as str;
         </div>
         <!--end of capsule-cms-data-grid-content-->
 
-        <div class="capsule-cms-data-grid-scroll-horizontal">
-            <div class="capsule-cms-data-grid-scroll-horizontal-content"></div>
+        <div class="capsule-cms-data-grid-scroll-horizontal-wrapper">
+            <div class="capsule-cms-data-grid-scroll-horizontal">
+                <div class="capsule-cms-data-grid-scroll-horizontal-content"></div>
+            </div>
         </div>
 
-        <div class="capsule-cms-data-grid-scroll-vertical">
-            <div class="capsule-cms-data-grid-scroll-vertical-content"></div>
+        <div class="capsule-cms-data-grid-scroll-vertical-wrapper">
+            <div class="capsule-cms-data-grid-scroll-vertical">
+                <div class="capsule-cms-data-grid-scroll-vertical-content"></div>
+            </div>
         </div>
 
     </div>
