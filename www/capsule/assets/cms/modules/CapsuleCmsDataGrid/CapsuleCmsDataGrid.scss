@@ -11,6 +11,20 @@ $border-color: #ddd;
   bottom: 0;
   overflow: hidden;
   background: #fff;
+  &-scrollbar-calc-outer {
+    z-index: 1;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: scroll;
+    display: block;
+    visibility: hidden;
+  }
+  &-scrollbar-calc-inner {
+    display: block;
+    width: auto;
+    height: 100%;
+  }
   &-body {
     position: absolute;
     left: 0;
@@ -18,6 +32,7 @@ $border-color: #ddd;
     right: 0;
     bottom: $footer-height;
     overflow: hidden;
+    z-index: 200;
   }
   &-scroll-horizontal {
     position: absolute;

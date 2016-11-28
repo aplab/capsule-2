@@ -60,8 +60,8 @@ if (!$user) {
         $(document).ready(function () {
             var outer = $('<div>');
             outer.css({
-                width: 400,
-                height: 400,
+                width: 100,
+                height: 100,
                 overflow: 'scroll',
                 background: '#f00',
                 position: 'relative'
@@ -71,18 +71,20 @@ if (!$user) {
                 position: 'absolute',
                 left: 0,
                 top: 0,
-                right: 1,
-                bottom: 1,
+                right: 0,
+                bottom: 0,
                 background: '#ff0'
             });
 
             $('body').append(outer);
             outer.append(inner);
-            console.log(outer.width());
-            console.log(outer.height());
-            console.log(inner.width());
-            console.log(inner.height());
-
+            console.log(outer.width() - inner.width());
+            console.log(outer.height() - inner.height());
+            $(window).resize(function () {
+                console.clear();
+                console.log(outer.width() - inner.width());
+                console.log(outer.height() - inner.height());
+            });
 
         });
 

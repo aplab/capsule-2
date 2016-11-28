@@ -43,6 +43,12 @@ function CapsuleCmsDataGrid (container)
 
     var header_row = container.find('.capsule-cms-data-grid-header-row').eq(0);
 
+    var scrollbar_calc_outer = $('<div>').addClass('capsule-cms-data-grid-scrollbar-calc-outer');
+    var scrollbar_calc_inner = $('<div>').addClass('capsule-cms-data-grid-scrollbar-calc-inner');
+
+    container.append(scrollbar_calc_outer);
+    scrollbar_calc_outer.append(scrollbar_calc_inner);
+
     data.children('div').on('click', function ()
     {
         var o = $(this);
@@ -60,6 +66,15 @@ function CapsuleCmsDataGrid (container)
         sidebar_body_col.append(div);
         div.append('<input type="checkbox">');
     });
+
+    var calcScrollbarWidth = function ()
+    {
+        var ow = scrollbar_calc_outer.width();
+        var oh = scrollbar_calc_outer.height();
+        var iw = scrollbar_calc_inner.width();
+        var ih = scrollbar_calc_inner.height();
+
+    }
 
     var init = function ()
     {
