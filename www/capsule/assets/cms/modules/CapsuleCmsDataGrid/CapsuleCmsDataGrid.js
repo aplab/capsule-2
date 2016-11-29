@@ -1,7 +1,7 @@
 /**
  * Created by polyanin on 17.11.2016.
  */
-function CapsuleCmsDataGrid (container)
+function CapsuleCmsDataGrid (container, data)
 {
     /**
      * static init
@@ -49,6 +49,12 @@ function CapsuleCmsDataGrid (container)
 
     var scrollbar_calc_outer = $('<div>').addClass('capsule-cms-data-grid-scrollbar-calc-outer');
     var scrollbar_calc_inner = $('<div>').addClass('capsule-cms-data-grid-scrollbar-calc-inner');
+
+    var prev_trigger = container.find(prefix + 'prev').eq(0);
+    var next_trigger = container.find(prefix + 'next').eq(0);
+    var page_select = container.find(prefix + 'page select').eq(0);
+    var limit_select = container.find(prefix + 'limit select').eq(0);
+    var base_url = container.data('baseUrl');
 
     container.append(scrollbar_calc_outer);
     scrollbar_calc_outer.append(scrollbar_calc_inner);
@@ -311,5 +317,7 @@ function CapsuleCmsDataGrid (container)
         return elements;
     };
 
+    var navigate = function ($page) {
 
+    };
 }

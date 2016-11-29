@@ -228,6 +228,9 @@ SQL;
      */
     protected static function k($name)
     {
+        if (is_object($name)) {
+            $name = get_class($name);
+        }
         return md5(serialize($name));
     }
 

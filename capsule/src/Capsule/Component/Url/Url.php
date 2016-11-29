@@ -30,15 +30,16 @@ namespace Capsule\Url;
 class Url
 {
     protected $data = array();
-    
+
     /**
      * getter
      *
      * @param $name
-     * @throws Exception
      * @return mixed
+     * @throws \Exception
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         $getter = 'get' . ucfirst($name);
         if (in_array($getter, get_class_methods($this))) {
             return $this->$getter($name);
@@ -49,16 +50,16 @@ class Url
         $msg = 'Unknown property: ' . get_class($this) . '::$' . $name;
         throw new \Exception($msg);
     }
-    
+
     /**
      * setter
      *
      * @param $name
      * @param $value
-     * @throws Exception
      * @return mixed
      */
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         $setter = 'set' . ucfirst($name);
         if (in_array($setter, get_class_methods($this))) {
             $this->$setter($value, $name);
@@ -67,24 +68,26 @@ class Url
         $this->data[$name] = $value;
         return $this;
     }
-    
+
     /**
      * Absolute
      *
      * @param void
      * @return string
      */
-    public function abs() {
+    public function abs()
+    {
         $ret = $this->scheme . '://' . $this->host . '/' . ltrim($this->path, '/');
     }
-    
+
     /**
      * Relative
      *
      * @param void
      * @return string
      */
-    public function rel() {
+    public function rel()
+    {
         return $this->path;
     }
 }

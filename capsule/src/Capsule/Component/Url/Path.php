@@ -59,7 +59,8 @@ class Path extends Singleton implements Countable, Iterator
      * @see    Countable::count()
      * @return integer
      */
-    public function count() {
+    public function count()
+    {
         if (is_null($this->count)) {
             $this->count = sizeof($this->getData());
         }
@@ -72,7 +73,8 @@ class Path extends Singleton implements Countable, Iterator
      * @return array
      * @throws Exception
      */
-    protected function getData() {
+    protected function getData()
+    {
         if (is_null($this->data)) {
             $this->data = array();
             $request_uri = getenv('REQUEST_URI');
@@ -102,7 +104,8 @@ class Path extends Singleton implements Countable, Iterator
      * @throws Exception
      * @return mixed
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         $getter = 'get' . ucfirst($name);
         if (in_array($getter, get_class_methods($this))) {
             return $this->$getter();
@@ -117,7 +120,8 @@ class Path extends Singleton implements Countable, Iterator
      * @see    Iterator::current()
      * @return mixed
      */
-    public function current() {
+    public function current()
+    {
         return $this->data[$this->key()];
     }
 
@@ -127,7 +131,8 @@ class Path extends Singleton implements Countable, Iterator
      * @see    Iterator::key()
      * @return mixed
      */
-    public function key() {
+    public function key()
+    {
         return key($this->data);
     }
 
@@ -137,7 +142,8 @@ class Path extends Singleton implements Countable, Iterator
      * @see    Iterator::next()
      * @return void
      */
-    public function next() {
+    public function next()
+    {
         next($this->data);
     }
 
@@ -147,7 +153,8 @@ class Path extends Singleton implements Countable, Iterator
      * @see    Iterator::rewind()
      * @return void
      */
-    public function rewind() {
+    public function rewind()
+    {
         reset($this->data);
     }
 
@@ -157,7 +164,8 @@ class Path extends Singleton implements Countable, Iterator
      * @see    Iterator::valid()
      * @return boolean
      */
-    public function valid() {
+    public function valid()
+    {
         return ($this->key() !== null);
     }
 
@@ -166,7 +174,8 @@ class Path extends Singleton implements Countable, Iterator
      *
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return $this->_path;
     }
 
@@ -175,7 +184,8 @@ class Path extends Singleton implements Countable, Iterator
      *
      * @return string
      */
-    public static function path() {
+    public static function path()
+    {
         return static::getInstance()->__toString();
     }
 }

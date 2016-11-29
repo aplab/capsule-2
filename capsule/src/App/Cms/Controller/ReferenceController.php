@@ -101,7 +101,6 @@ abstract class ReferenceController extends DefaultController
         $filter = $this->app->urlFilter;
         $toolbar = $this->app->registry->actionMenu;
         $toolbar->newMenuItem('New', new \App\Cms\Ui\ActionMenu\Url($filter($this->mod, 'add')));
-
         $toolbar->newMenuItem(
             'Delete selected',
             new \App\Cms\Ui\ActionMenu\Callback(
@@ -111,23 +110,21 @@ abstract class ReferenceController extends DefaultController
                 )
             )
         );
-
         $c = $this->moduleClass;
         $config = $c::config();
         $title = $config->get('title') ?: 'untitled';
         $this->ui->title->prepend($title . '::List items');
-
         $data_grid = new DataGrid(
             'capsule-ui-datagrid',
             ($this->moduleClass)::config(),
-            new \ArrayIterator(($this->moduleClass)::all())
+            new \ArrayIterator(($this->moduleClass)::page($p->currentPage, $p->itemsPerPage))
         );
+        $data_grid->itemsPerPageVariants = $p->itemsPerPageVariants;
+        $data_grid->pagesNumber = $p->pagesNumber;
+        $data_grid->currentPage = $p->currentPage;
+        $data_grid->itemsPerPage = $p->itemsPerPage;
+        $data_grid->baseUrl = ($this->app->urlFilter)($this->mod);
         SectionManager::getInstance()->content->append(new DataGridView($data_grid));
-
-//        $data_grid = new DataGrid('capsule-ui-datagrid', $c::page($p->currentPage, $p->itemsPerPage));
-//        $data_grid->baseUrl = $filter($this->mod);
-//        $data_grid->p = $p;
-//        $this->ui->workplace->append(new \App\Cms\Ui\DataGrid\View($data_grid));
     }
 
     /**
@@ -313,7 +310,8 @@ abstract class ReferenceController extends DefaultController
 
     /**
      * @param unknown $item
-     * @param string $deep
+     * @param bool|string $deep
+     * @return ReturnValue
      */
     protected function copyItem($item, $deep = false)
     {
@@ -399,31 +397,28 @@ abstract class ReferenceController extends DefaultController
     protected function pagination()
     {
         $post = (new Superglobals())->post;
-        $env = Env::getInstance()->get(__CLASS__);
-        $class = $this->moduleClass;
         $default_items_per_page = $this->app->config->defaultItemsPerPage;
         $items_per_page_variants = $this->app->config->itemsPerPageVariants;
         // init items per page
-        $current_items_per_page = $env->get($class . '.itemsPerPage', $default_items_per_page);
+        $current_items_per_page = $this->env->get('itemsPerPage', $default_items_per_page);
         if (!in_array($current_items_per_page, $items_per_page_variants)) {
             $current_items_per_page = $default_items_per_page;
         }
         if (in_array($post->itemsPerPage, $items_per_page_variants)) {
             $current_items_per_page = $post->itemsPerPage;
-            $env->set($class . '.itemsPerPage', $current_items_per_page);
+            $this->env->set('itemsPerPage', $current_items_per_page);
         }
         $pages = $this->pages($current_items_per_page);
         // init current page
         $default_page = 1;
-        $current_page = $env->get($class . '.currentPage', $default_page);
+        $current_page = $this->env->get('currentPage', $default_page);
         if (!in_array($current_page, $pages)) {
             $current_page = $default_page;
         }
         if (in_array($post->pageNumber, $pages)) {
             $current_page = $post->pageNumber;
-            $env->set($class . '.currentPage', $current_page);
+            $this->env->set('currentPage', $current_page);
         }
-
         $prev_page = $current_page - 1;
         if (!$prev_page) {
             $prev_page = null;
@@ -438,10 +433,8 @@ abstract class ReferenceController extends DefaultController
         $ret->currentPage = $current_page;
         $ret->nextPage = $next_page;
         $ret->itemsPerPage = $current_items_per_page;
-        $ret->listPages = $pages;
+        $ret->pagesNumber = $pages_number;
         $ret->itemsPerPageVariants = $items_per_page_variants;
-        $filter = $this->app->urlFilter;
-        $ret->url = $filter($this->mod);
         return $ret;
     }
 

@@ -222,6 +222,11 @@ $border-color: #ddd;
     float: left;
     text-align: center;
     line-height: $footer-height;
+    cursor: pointer;
+  }
+  &-prev.disabled {
+    opacity: 0.3;
+    cursor: default;
   }
   &-page {
     display: block;
@@ -245,6 +250,11 @@ $border-color: #ddd;
     float: left;
     text-align: center;
     line-height: $footer-height;
+    cursor: pointer;
+  }
+  &-next.disabled {
+    opacity: 0.3;
+    cursor: default;
   }
   &-limit {
     display: block;

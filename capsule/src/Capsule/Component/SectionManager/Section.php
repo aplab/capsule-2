@@ -129,7 +129,7 @@ abstract class Section implements Iterator, Countable
     {
         $setter = static::_setter($name);
         if ($setter) {
-            return $this->$setter($name, $value);
+            return $this->$setter($value, $name);
         }
         echo 'setter ';
         $this->data[$name] = $value;
@@ -190,7 +190,7 @@ abstract class Section implements Iterator, Countable
      * @return static
      * @throws Exception
      */
-    protected function setId($name, $id)
+    protected function setId($id, $name)
     {
         $class = get_class($this);
         if (isset($this->id)) {
@@ -442,7 +442,7 @@ abstract class Section implements Iterator, Countable
      * @return Section
      * @throws Exception
      */
-    protected function setTemplate($name, $path)
+    protected function setTemplate($path, $name)
     {
         $this->data[$name] = $path;
         return $this;

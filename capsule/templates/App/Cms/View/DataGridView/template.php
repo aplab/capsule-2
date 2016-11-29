@@ -15,7 +15,9 @@ use Capsule\I18n\I18n as _;
 use Capsule\Component\Utf8String as str;
 ?>
 <!--data grid-->
-<div class="capsule-cms-data-grid" id="capsule-cms-data-grid">
+<div class="capsule-cms-data-grid"
+     id="capsule-cms-data-grid"
+     data-base-url="<?=$this->instance->baseUrl?>">
     <!--data grid body-->
     <div class="capsule-cms-data-grid-body">
         <!--data grid content-->
@@ -87,28 +89,28 @@ use Capsule\Component\Utf8String as str;
     <!--end of data grid body-->
     <!--data grid footer-->
     <div class="capsule-cms-data-grid-footer">
-        <div class="capsule-cms-data-grid-prev">
+        <div class="capsule-cms-data-grid-prev<?=$this->instance->currentPage>1?'':' disabled'?>">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         </div>
         <div class="capsule-cms-data-grid-page">
             <select class="form-control">
-                <option>999000000</option>
-                <option>999000000</option>
-                <option>999000000</option>
-                <option>999000000</option>
-                <option>999000000</option>
+                <?php for ($i = 1; $i <= $this->instance->pagesNumber; $i++) : ?>
+                    <option<?=$i==$this->instance->currentPage?' selected="selected"':''?>>
+                        <?=$i?>
+                    </option>
+                <?php endfor ?>
             </select>
         </div>
-        <div class="capsule-cms-data-grid-next">
+        <div class="capsule-cms-data-grid-next<?=$this->instance->currentPage<$this->instance->pagesNumber?'':' disabled'?>">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         </div>
         <div class="capsule-cms-data-grid-limit">
             <select class="form-control">
-                <option>10</option>
-                <option>50</option>
-                <option>100</option>
-                <option>500</option>
-                <option selected>1000</option>
+                <?php foreach ($this->instance->itemsPerPageVariants as $v) : ?>
+                    <option<?=$v==$this->instance->itemsPerPage?' selected="selected"':''?>>
+                        <?=$v?>
+                    </option>
+                <?php endforeach ?>
             </select>
         </div>
     </div>

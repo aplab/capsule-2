@@ -26,6 +26,11 @@ use Capsule\Tools\ClassTools\AccessorName;
  * @property Config $config
  * @property DataModel[] $items
  * @property Col[] $columns
+ * @property int $itemsPerPage
+ * @property array $itemsPerPageVariants
+ * @property int $currentPage
+ * @property int $pagesNumber
+ * @property string $baseUrl
  */
 class DataGrid
 {
@@ -76,6 +81,10 @@ class DataGrid
         static::$instances[$instance_name] = $this;
         $this->data['config'] = $config;
         $this->data['items'] = $items;
+        $this->data['pagesNumber'] = 0;
+        $this->data['currentPage'] = null;
+        $this->data['itemsPerPageVariants'] = [];
+        $this->data['itemsPerPage'] = [];
         $this->configure();
     }
 
@@ -90,7 +99,7 @@ class DataGrid
     {
         $setter = static::_setter($name);
         if ($setter) {
-            return $this->$setter($name, $value);
+            return $this->$setter($value, $name);
         }
         echo 'setter ';
         $this->data[$name] = $value;
@@ -215,5 +224,64 @@ class DataGrid
                 $column
             );
         }
+    }
+
+    /**
+     * @param $value
+     * @param $name
+     */
+    protected function setCurrentPage($value, $name)
+    {
+        if (!preg_match('/^\\d+$/', $value)) {
+            throw new \InvalidArgumentException('Wrong current page');
+        }
+        $this->data[$name] = $value;
+    }
+
+    /**
+     * @param $value
+     * @param $name
+     */
+    protected function setPagesNumber($value, $name)
+    {
+        if (!preg_match('/^\\d+$/', $value)) {
+            throw new \InvalidArgumentException('Wrong pages number');
+        }
+        $this->data[$name] = $value;
+    }
+
+    /**
+     * @param $value
+     * @param $name
+     */
+    protected function setItemsPerPage($value, $name)
+    {
+        if (!preg_match('/^\\d+$/', $value)) {
+            throw new \InvalidArgumentException('Wrong items per page');
+        }
+        $this->data[$name] = $value;
+    }
+
+    /**
+     * @param $value
+     * @param $name
+     */
+    protected function setBaseUrl($value, $name)
+    {
+        $this->data[$name] = (string)$value;
+    }
+
+    /**
+     * @param array $value
+     * @param $name
+     */
+    protected function setItemsPerPageVariants(array $value, $name)
+    {
+        array_filter($value, function($v) {
+            if (!preg_match('/^\\d+$/', $v)) {
+                throw new \InvalidArgumentException('Wrong items per page variant');
+            }
+        });
+        $this->data[$name] = $value;
     }
 }

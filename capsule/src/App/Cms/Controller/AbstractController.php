@@ -20,6 +20,7 @@ namespace App\Cms\Controller;
 
 use Capsule\Controller\AbstractController as a;
 use App\Cms\Cms;
+use Capsule\User\Env\Env;
 
 /**
  * AbstractController.php
@@ -39,6 +40,7 @@ abstract class AbstractController extends a
         $this->mod = $this->app->mod;
         $this->cmd = $this->app->cmd;
         $this->param = $this->app->param;
+        $this->env = Env::getInstance()->get($this);
     }
 
     /**
@@ -73,4 +75,9 @@ abstract class AbstractController extends a
      * @var array
      */
     protected $param;
+
+    /**
+     * @var Env
+     */
+    protected $env;
 }
