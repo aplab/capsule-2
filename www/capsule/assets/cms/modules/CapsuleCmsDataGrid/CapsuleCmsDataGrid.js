@@ -340,7 +340,7 @@ function CapsuleCmsDataGrid (container, data)
     if (!(prev_trigger.hasClass('disabled'))) {
         prev_trigger.click(function ()
         {
-            console.log(page_select.val());
+            prev_trigger.addClass('disabled');
             page_select.val(parseInt(page_select.val(), 10) - 1);
             navigate();
         })
@@ -349,7 +349,7 @@ function CapsuleCmsDataGrid (container, data)
     if (!(next_trigger.hasClass('disabled'))) {
         next_trigger.click(function ()
         {
-            console.log(page_select.val());
+            next_trigger.addClass('disabled');
             page_select.val(parseInt(page_select.val(), 10) + 1);
             navigate();
         })
