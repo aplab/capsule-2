@@ -46,6 +46,15 @@ class EnvData
      */
     public function __set($name, $value)
     {
+        $this->set($name, $value);
+    }
+
+    /**
+     * @param $name
+     * @param $value
+     */
+    public function set($name, $value)
+    {
         $this->data[$name] = $value;
     }
 

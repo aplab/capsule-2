@@ -95,7 +95,7 @@ use Capsule\Component\Utf8String as str;
         <div class="capsule-cms-data-grid-page">
             <select class="form-control">
                 <?php for ($i = 1; $i <= $this->instance->pagesNumber; $i++) : ?>
-                    <option<?=$i==$this->instance->currentPage?' selected="selected"':''?>>
+                    <option value="<?=$i?>"<?=$i==$this->instance->currentPage?' selected="selected"':''?>>
                         <?=$i?>
                     </option>
                 <?php endfor ?>
@@ -107,7 +107,7 @@ use Capsule\Component\Utf8String as str;
         <div class="capsule-cms-data-grid-limit">
             <select class="form-control">
                 <?php foreach ($this->instance->itemsPerPageVariants as $v) : ?>
-                    <option<?=$v==$this->instance->itemsPerPage?' selected="selected"':''?>>
+                    <option value="<?=$v?>"<?=$v==$this->instance->itemsPerPage?' selected="selected"':''?>>
                         <?=$v?>
                     </option>
                 <?php endforeach ?>

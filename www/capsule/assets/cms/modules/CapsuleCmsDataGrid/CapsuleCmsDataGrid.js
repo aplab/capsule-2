@@ -317,7 +317,41 @@ function CapsuleCmsDataGrid (container, data)
         return elements;
     };
 
-    var navigate = function ($page) {
-
+    var navigate = function ()
+    {
+        var f = $('<form method="post">');
+        var page_number = $('<input type="hidden" name="pageNumber">').val(page_select.val());
+        var items_per_page = $('<input type="hidden" name="itemsPerPage">').val(limit_select.val());
+        f.append(page_number).append(items_per_page);
+        container.append(f);
+        f.submit();
     };
+
+    page_select.change(function ()
+    {
+        navigate();
+    })
+
+    limit_select.change(function ()
+    {
+        navigate();
+    })
+
+    if (!(prev_trigger.hasClass('disabled'))) {
+        prev_trigger.click(function ()
+        {
+            console.log(page_select.val());
+            page_select.val(parseInt(page_select.val(), 10) - 1);
+            navigate();
+        })
+    }
+
+    if (!(next_trigger.hasClass('disabled'))) {
+        next_trigger.click(function ()
+        {
+            console.log(page_select.val());
+            page_select.val(parseInt(page_select.val(), 10) + 1);
+            navigate();
+        })
+    }
 }
