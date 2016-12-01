@@ -103,7 +103,12 @@ abstract class ReferenceController extends DefaultController
         $toolbar->newMenuItem('New', new \App\Cms\Ui\ActionMenu\Url($filter($this->mod, 'add')));
         $toolbar->newMenuItem(
             'Delete selected',
-            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsDataGrid.getInstance().del()')
+            new \App\Cms\Ui\ActionMenu\Callback(
+                $filter(
+                    $this->mod,
+                    'CapsuleUiDataGrid.getInstance("capsule-ui-datagrid").del()'
+                )
+            )
         );
         $c = $this->moduleClass;
         $config = $c::config();
