@@ -20,6 +20,10 @@ class ComposerStaticInitd56147756f67303f795fbcfd7ba19eaa
         array (
             'Respect\\Validation\\' => 19,
         ),
+        'F' => 
+        array (
+            'Fxp\\Composer\\AssetPlugin\\' => 25,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -30,6 +34,10 @@ class ComposerStaticInitd56147756f67303f795fbcfd7ba19eaa
         'Respect\\Validation\\' => 
         array (
             0 => __DIR__ . '/..' . '/respect/validation/library',
+        ),
+        'Fxp\\Composer\\AssetPlugin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fxp/composer-asset-plugin',
         ),
     );
 
