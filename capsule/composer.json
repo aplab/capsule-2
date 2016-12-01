@@ -1,5 +1,7 @@
 {
     "require": {
-        "swiftmailer/swiftmailer": "^5.4"
+        "swiftmailer/swiftmailer": "^5.4",
+        "easybook/geshi": "v1.0.8.18",
+        "respect/validation": "^1.1"
     }
 }
