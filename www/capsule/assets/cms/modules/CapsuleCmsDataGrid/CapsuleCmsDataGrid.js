@@ -281,7 +281,7 @@ function CapsuleCmsDataGrid (container, data)
     {
         var elements = {
             length: 0,
-            items: {}
+            items: []
         };
         var rows = data.children('div');
         var index, element;
@@ -290,7 +290,12 @@ function CapsuleCmsDataGrid (container, data)
             for (var i = 0; i < checked.length; i++) {
                 index = sidebar_body_col.children('div').index(checked[i]);
                 element = rows.eq(index);
-                elements.items[index] = element.data('pk');
+                elements.items[] = {
+                    rowNumber: index,
+                    data: {
+                        pk: element.data('pk')
+                    }
+                };
             }
             elements.length = i;
         }
@@ -367,10 +372,12 @@ function CapsuleCmsDataGrid (container, data)
         if (!items.length) {
             alert('Nothing selected');
         }
-        console.log(items);
         var post_data = {};
         for (var i = 0; i < items.length; i++) {
 
+            console.log(items.items);
+            for (var p in items.items[i]) {
+            }
         }
 
     }
