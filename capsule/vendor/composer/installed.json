@@ -1,50 +1,60 @@
 [
     {
-        "name": "easybook/geshi",
-        "version": "v1.0.8.18",
-        "version_normalized": "1.0.8.18",
+        "name": "fxp/composer-asset-plugin",
+        "version": "v1.2.2",
+        "version_normalized": "1.2.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/easybook/geshi.git",
-            "reference": "4b06bfe8c6fbedd6aad0a0700d650f591386e287"
+            "url": "https://github.com/fxpio/composer-asset-plugin.git",
+            "reference": "60bc94db574103dfc73acb907fa79c6dfc86c96e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/easybook/geshi/zipball/4b06bfe8c6fbedd6aad0a0700d650f591386e287",
-            "reference": "4b06bfe8c6fbedd6aad0a0700d650f591386e287",
+            "url": "https://api.github.com/repos/fxpio/composer-asset-plugin/zipball/60bc94db574103dfc73acb907fa79c6dfc86c96e",
+            "reference": "60bc94db574103dfc73acb907fa79c6dfc86c96e",
             "shasum": ""
         },
         "require": {
-            "php": ">4.3.0"
+            "composer-plugin-api": "^1.0",
+            "php": ">=5.3.3"
         },
-        "time": "2016-10-05 07:15:42",
-        "type": "library",
+        "require-dev": {
+            "composer/composer": "^1.0.0"
+        },
+        "time": "2016-10-12 08:03:45",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "Fxp\\Composer\\AssetPlugin\\FxpAssetPlugin",
+            "branch-alias": {
+                "dev-master": "1.2-dev"
+            }
+        },
         "installation-source": "dist",
         "autoload": {
-            "classmap": [
-                "./"
-            ]
+            "psr-4": {
+                "Fxp\\Composer\\AssetPlugin\\": ""
+            }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "GPL-2.0"
+            "MIT"
         ],
         "authors": [
             {
-                "name": "Nigel McNie",
-                "email": "nigel@geshi.org"
-            },
-            {
-                "name": "Benny Baumann",
-                "email": "BenBE@geshi.org"
+                "name": "François Pluchino",
+                "email": "francois.pluchino@gmail.com"
             }
         ],
-        "description": "GeSHi - Generic Syntax Highlighter. This is an unmodified port of GeSHi project code found on SourceForge.",
-        "homepage": "http://qbnz.com/highlighter",
+        "description": "NPM/Bower Dependency Manager for Composer",
+        "homepage": "https://github.com/fxpio/composer-asset-plugin",
         "keywords": [
-            "highlight",
-            "highlighter",
-            "syntax"
+            "asset",
+            "bower",
+            "composer",
+            "dependency manager",
+            "nodejs",
+            "npm",
+            "package"
         ]
     },
     {
@@ -100,6 +110,54 @@
             "email",
             "mail",
             "mailer"
+        ]
+    },
+    {
+        "name": "easybook/geshi",
+        "version": "v1.0.8.18",
+        "version_normalized": "1.0.8.18",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/easybook/geshi.git",
+            "reference": "4b06bfe8c6fbedd6aad0a0700d650f591386e287"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/easybook/geshi/zipball/4b06bfe8c6fbedd6aad0a0700d650f591386e287",
+            "reference": "4b06bfe8c6fbedd6aad0a0700d650f591386e287",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">4.3.0"
+        },
+        "time": "2016-10-05 07:15:42",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "./"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Nigel McNie",
+                "email": "nigel@geshi.org"
+            },
+            {
+                "name": "Benny Baumann",
+                "email": "BenBE@geshi.org"
+            }
+        ],
+        "description": "GeSHi - Generic Syntax Highlighter. This is an unmodified port of GeSHi project code found on SourceForge.",
+        "homepage": "http://qbnz.com/highlighter",
+        "keywords": [
+            "highlight",
+            "highlighter",
+            "syntax"
         ]
     },
     {

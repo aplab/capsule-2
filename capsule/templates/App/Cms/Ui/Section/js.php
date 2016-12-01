@@ -25,7 +25,7 @@ $assets
     ->add(new j('/capsule/assets/modules/Scrollable/CapsuleUiScrollable.js', true))
     ->add(new j('/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.js', true))
     ->add(new j('/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGrid.js', true))
-    ->add(new j('/capsule/components/viewport-units-buggyfill/viewport-units-buggyfill.js'))
+    ->add(new j('/capsule/vendor/viewport-units-buggyfill/viewport-units-buggyfill.js'))
     ->add(new j('/capsule/assets/cms/js/js.js', true));
 $assets->putJs();
 foreach ($this->js as $item) echo $item;

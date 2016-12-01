@@ -1,9 +1,0 @@
-/* From https://coderwall.com/p/qac-og */
-
-@mixin calc($property, $expression, $x:"") {
-
-
-  #{$property}: -moz-calc(#{$expression}) #{$x};
-  #{$property}: -webkit-calc(#{$expression}) #{$x};
-  #{$property}: calc(#{$expression}) #{$x};
-}

@@ -2,6 +2,14 @@
     "require": {
         "swiftmailer/swiftmailer": "^5.4",
         "easybook/geshi": "v1.0.8.18",
-        "respect/validation": "^1.1"
+        "respect/validation": "^1.1",
+        "fxp/composer-asset-plugin": "^1.2",
+        "bower-asset/viewport-units-buggyfill": "^0.6.0"
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "../www/capsule/vendor",
+            "bower-asset-library": "../www/capsule/vendor"
+        }
     }
 }
