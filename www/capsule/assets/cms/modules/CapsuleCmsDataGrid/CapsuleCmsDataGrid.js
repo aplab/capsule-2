@@ -280,12 +280,8 @@ function CapsuleCmsDataGrid (container, data)
     this.getCheckedRows = function ()
     {
         var elements = {
-<<<<<<< HEAD
-            length: 0
-=======
             length: 0,
             items: []
->>>>>>> 68214984e37378082f353e40c8d449c40deeb9c1
         };
         var rows = data.children('div');
         var index, element;
@@ -294,16 +290,12 @@ function CapsuleCmsDataGrid (container, data)
             for (var i = 0; i < checked.length; i++) {
                 index = sidebar_body_col.children('div').index(checked[i]);
                 element = rows.eq(index);
-<<<<<<< HEAD
-                elements[index] = element.data('pk');
-=======
-                elements.items[] = {
+                elements.items[i] = {
                     rowNumber: index,
                     data: {
                         pk: element.data('pk')
                     }
                 };
->>>>>>> 68214984e37378082f353e40c8d449c40deeb9c1
             }
             elements.length = i;
         }
@@ -318,14 +310,15 @@ function CapsuleCmsDataGrid (container, data)
     this.getCurrentRow = function ()
     {
         var elements = {
-            length: 0
+            length: 0,
+            items: {}
         };
         var rows = data.children('div');
         var selected = data.children('[class$="-active"]');
         if (selected.length == 1) {
             var element = selected.eq(0);
             var index = rows.index(element);
-            elements[index] = element.data('pk');
+            elements.items[index] = element.data('pk');
             elements.length = 1;
         }
         return elements;
@@ -368,8 +361,6 @@ function CapsuleCmsDataGrid (container, data)
             navigate();
         })
     }
-<<<<<<< HEAD
-=======
 
     this.del = function ()
     {
@@ -390,5 +381,4 @@ function CapsuleCmsDataGrid (container, data)
         }
 
     }
->>>>>>> 68214984e37378082f353e40c8d449c40deeb9c1
 }
