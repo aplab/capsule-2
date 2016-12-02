@@ -1,20 +1,7 @@
 {
     "require": {
-      "fxp/composer-asset-plugin": "^1.2",
       "swiftmailer/swiftmailer": "^5.4",
       "easybook/geshi": "v1.0.8.18",
-      "respect/validation": "^1.1",
-      "bower-asset/viewport-units-buggyfill": "^0.6.0",
-      "bower-asset/jquery": "^3.1",
-      "bower-asset/js-cookie": "^2.1",
-      "bower-asset/jquery-mousewheel": "^3.1",
-      "bower-asset/jquery-ui": "^1.12",
-      "bower-asset/bootstrap": "^3.3"
-    },
-    "extra": {
-        "asset-installer-paths": {
-            "npm-asset-library": "../www/capsule/vendor",
-            "bower-asset-library": "../www/capsule/vendor"
-        }
+      "respect/validation": "^1.1"
     }
 }
