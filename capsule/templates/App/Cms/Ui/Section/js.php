@@ -18,7 +18,7 @@ $assets = new a;
 $assets
     ->add(new j('/capsule/vendor/jquery/dist/jquery.min.js'))
     ->add(new j('/capsule/vendor/jquery-mousewheel/jquery.mousewheel.min.js'))
-    ->add(new j('/capsule/components/bootstrap/js/bootstrap.min.js'))
+    ->add(new j('/capsule/vendor/bootstrap/dist/js/bootstrap.js'))
     ->add(new j('/capsule/vendor/jquery-ui/jquery-ui.min.js'))
     ->add(new j('/capsule/vendor/js-cookie/src/js.cookie.js'))
     ->add(new j('/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.js', true))

@@ -17,7 +17,8 @@ use \Capsule\Tools\Assets\Css as c;
 $assets = new a;
 $assets
     ->add(new c('/capsule/vendor/jquery-ui/themes/ui-lightness/jquery-ui.min.css'))
-    ->add(new c('/capsule/components/bootstrap/css/bootstrap.min.css'))
+    ->add(new c('/capsule/vendor/bootstrap/dist/css/bootstrap.min.css'))
+    ->add(new c('/capsule/vendor/bootstrap/dist/css/bootstrap-theme.min.css'))
     ->add(new c('/capsule/components/font-awesome/css/font-awesome.min.css'))
     ->add(new c('/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.css', true))
     ->add(new c('/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.css', true))
