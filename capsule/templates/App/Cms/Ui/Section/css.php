@@ -16,10 +16,10 @@ use \Capsule\Tools\Assets\Assets as a;
 use \Capsule\Tools\Assets\Css as c;
 $assets = new a;
 $assets
-    ->add(new c('/capsule/vendor/jquery-ui/themes/ui-lightness/jquery-ui.min.css'))
-    ->add(new c('/capsule/vendor/bootstrap/dist/css/bootstrap.min.css'))
-    ->add(new c('/capsule/vendor/bootstrap/dist/css/bootstrap-theme.min.css'))
-    ->add(new c('/capsule/components/font-awesome/css/font-awesome.min.css'))
+    ->add(new c('/capsule/vendor/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css'))
+    ->add(new c('/capsule/vendor/bower_components/bootstrap/dist/css/bootstrap.min.css'))
+    ->add(new c('/capsule/vendor/bower_components/bootstrap/dist/css/bootstrap-theme.min.css'))
+    ->add(new c('/capsule/vendor/bower_components/font-awesome/css/font-awesome.min.css'))
     ->add(new c('/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.css', true))
     ->add(new c('/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.css', true))
     ->add(new c('/capsule/assets/modules/Scrollable/CapsuleUiScrollable.css', true))
