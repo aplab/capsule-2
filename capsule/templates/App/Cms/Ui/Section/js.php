@@ -16,11 +16,11 @@ use \Capsule\Tools\Assets\Assets as a;
 use \Capsule\Tools\Assets\Js as j;
 $assets = new a;
 $assets
-    ->add(new j('/capsule/components/jquery/jquery-3.1.1.min.js'))
-    ->add(new j('/capsule/components/jquery.mousewheel/jquery.mousewheel.min.js'))
+    ->add(new j('/capsule/vendor/jquery/dist/jquery.min.js'))
+    ->add(new j('/capsule/vendor/jquery-mousewheel/jquery.mousewheel.min.js'))
     ->add(new j('/capsule/components/bootstrap/js/bootstrap.min.js'))
-    ->add(new j('/capsule/components/jquery-ui/jquery-ui.min.js'))
-    ->add(new j('/capsule/components/js-cookie/js.cookie-2.1.3.min.js'))
+    ->add(new j('/capsule/vendor/jquery-ui/jquery-ui.min.js'))
+    ->add(new j('/capsule/vendor/js-cookie/src/js.cookie.js'))
     ->add(new j('/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.js', true))
     ->add(new j('/capsule/assets/modules/Scrollable/CapsuleUiScrollable.js', true))
     ->add(new j('/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.js', true))

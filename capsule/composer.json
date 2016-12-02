@@ -4,7 +4,11 @@
         "easybook/geshi": "v1.0.8.18",
         "respect/validation": "^1.1",
         "fxp/composer-asset-plugin": "^1.2",
-        "bower-asset/viewport-units-buggyfill": "^0.6.0"
+        "bower-asset/viewport-units-buggyfill": "^0.6.0",
+        "bower-asset/jquery": "^3.1",
+        "bower-asset/js-cookie": "^2.1",
+        "bower-asset/jquery-mousewheel": "^3.1",
+        "bower-asset/jquery-ui": "^1.12"
     },
     "extra": {
         "asset-installer-paths": {
