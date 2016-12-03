@@ -1,10 +1,11 @@
-/.project
-/.gitignore
-/.buildpath
 /.git/
-/.settings/
-.idea
+/.idea/
 /fd
 
 /www/capsule/storage/files
 !readme
+
+capsule/cache/
+
+/capsule/vendor/
+/www/capsule/vendor/bower_components/
