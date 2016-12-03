@@ -103,12 +103,7 @@ abstract class ReferenceController extends DefaultController
         $toolbar->newMenuItem('New', new \App\Cms\Ui\ActionMenu\Url($filter($this->mod, 'add')));
         $toolbar->newMenuItem(
             'Delete selected',
-            new \App\Cms\Ui\ActionMenu\Callback(
-                $filter(
-                    $this->mod,
-                    'CapsuleUiDataGrid.getInstance("capsule-ui-datagrid").del()'
-                )
-            )
+            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsDataGrid.getInstance().del()')
         );
         $c = $this->moduleClass;
         $config = $c::config();
@@ -368,26 +363,32 @@ abstract class ReferenceController extends DefaultController
      */
     protected function del()
     {
-        $post = Post::getInstance();
-        $tmp = $post->get(__FUNCTION__, null);
-        if (!$tmp) {
-            return;
-        }
-        if (!is_array($tmp)) {
-            $tmp[] = $tmp;
-        }
-        $ids = array();
-        foreach ($tmp as $id) {
-            if (ctype_digit($id)) {
-                $ids[] = $id;
-            }
-        }
-        if (empty($ids)) {
-            return;
-        }
+        $post = (new Superglobals())->post;
         $class = $this->moduleClass;
-        $class::del($ids);
+        $pk = $class::pk();
         $filter = $this->app->urlFilter;
+        if (is_array($pk)) {
+            /**
+             * @TODO проработать вариант с составными ключами, json {"id1":"","id2":""}
+             */
+        } else if(is_scalar($pk)) {
+            $tmp = $post->get($pk);
+            $tmp = json_decode($tmp);
+            if (!is_array($tmp)) {
+                Redirect::go($filter($this->mod));
+            }
+            $ids = array();
+            foreach ($tmp as $id) {
+                if (ctype_digit($id)) {
+                    $ids[] = $id;
+                }
+            }
+            if (empty($ids)) {
+                Redirect::go($filter($this->mod));
+            }
+            $class::del($ids);
+            Redirect::go($filter($this->mod));
+        }
         Redirect::go($filter($this->mod));
     }
 

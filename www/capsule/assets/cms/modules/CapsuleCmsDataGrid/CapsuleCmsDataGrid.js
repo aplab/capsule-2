@@ -382,12 +382,25 @@ function CapsuleCmsDataGrid (container, data)
         }
         var post_data = {};
         for (var i = 0; i < items.length; i++) {
-
-            console.log(items.items);
-            for (var p in items.items[i]) {
+            var pk = items.items[i].data.pk;
+            for (var p in pk) {
+                if (undefined === post_data[p]) {
+                    post_data[p] = [];
+                }
+                post_data[p].push(pk[p]);
             }
         }
-
+        var f = $('<form method="post">');
+        f.prop({
+            action: (base_url + '/del/').replace(/\/{2,}/, '/')
+        });
+        for (var p in post_data) {
+            var input = $('<input type="hidden" name="' + p + '">')
+                .val(JSON.stringify(post_data[p]));
+            f.append(input);
+        }
+        container.append(f);
+        f.submit();
     };
     
     var isTouchDevice = function ()
