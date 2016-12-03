@@ -61,6 +61,9 @@ function CapsuleCmsDataGrid (container, data)
 
     data.children('div').on('click', function ()
     {
+        if (isTouchDevice()) {
+            return;
+        }
         var o = $(this);
         data.children('div').not(o).removeClass('capsule-cms-data-grid-active');
         o.toggleClass('capsule-cms-data-grid-active');
@@ -380,5 +383,10 @@ function CapsuleCmsDataGrid (container, data)
             }
         }
 
-    }
+    };
+    
+    var isTouchDevice = function ()
+    {
+        return 'ontouchstart' in document.documentElement;
+    };
 }
