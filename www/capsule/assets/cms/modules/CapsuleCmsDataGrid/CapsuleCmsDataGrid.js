@@ -372,6 +372,7 @@ function CapsuleCmsDataGrid (container, data)
 
     this.del = function ()
     {
+        CapsuleCms.collapseActionMenu();
         var items;
         items = this.getCheckedRows();
         if (!items.length) {
@@ -379,6 +380,10 @@ function CapsuleCmsDataGrid (container, data)
         }
         if (!items.length) {
             alert('Nothing selected');
+            return;
+        }
+        if (!confirm('Confifm delete items: ' + items.length)) {
+            return;
         }
         var post_data = {};
         for (var i = 0; i < items.length; i++) {

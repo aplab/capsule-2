@@ -44,7 +44,7 @@
                 <?php var_dump($section->exception); ?>
 
         </div>
-        <h2>Xdebug message</h2>
+        <h2 class="text-danger">Xdebug message</h2>
         <div class="table-responsive">
             <table class="table table-bordered table-bordered">
                 <?=$xdebug_message?>

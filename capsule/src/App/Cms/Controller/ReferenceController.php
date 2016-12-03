@@ -130,31 +130,31 @@ abstract class ReferenceController extends DefaultController
         $filter = $this->app->urlFilter;
         $toolbar = $this->app->registry->toolbar;
 
-        $button = new Button;
-        $toolbar->add($button, 'save');
-        $button->caption = 'Save';
-        $button->icon = $this->app->config->icons->cms . '/disk.png';
-        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").save()';
-
-        $button = clone $button;
-        $toolbar->add($button, 'save and exit');
-        $button->caption = 'Save and exit';
-        $button->icon = $this->app->config->icons->cms . '/disk_go.png';
-        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndExit()';
-
-        $button = clone $button;
-        $toolbar->add($button, 'exit');
-        $button->caption = 'Exit without saving';
-        $button->url = $filter($this->mod);
-        $button->icon = $this->app->config->icons->cms . '/arrow-return-180.png';
-        $button->action = null;
-
-        $button = clone $button;
-        $toolbar->add($button, 'save and add new');
-        $button->caption = 'Save and add new';
-        $button->icon = $this->app->config->icons->cms . '/disk--plus.png';
-        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndAdd()';
-        $button->url = null;
+//        $button = new Button;
+//        $toolbar->add($button, 'save');
+//        $button->caption = 'Save';
+//        $button->icon = $this->app->config->icons->cms . '/disk.png';
+//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").save()';
+//
+//        $button = clone $button;
+//        $toolbar->add($button, 'save and exit');
+//        $button->caption = 'Save and exit';
+//        $button->icon = $this->app->config->icons->cms . '/disk_go.png';
+//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndExit()';
+//
+//        $button = clone $button;
+//        $toolbar->add($button, 'exit');
+//        $button->caption = 'Exit without saving';
+//        $button->url = $filter($this->mod);
+//        $button->icon = $this->app->config->icons->cms . '/arrow-return-180.png';
+//        $button->action = null;
+//
+//        $button = clone $button;
+//        $toolbar->add($button, 'save and add new');
+//        $button->caption = 'Save and add new';
+//        $button->icon = $this->app->config->icons->cms . '/disk--plus.png';
+//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndAdd()';
+//        $button->url = null;
 
         $c = $this->moduleClass;
         $config = $c::config();
@@ -165,17 +165,17 @@ abstract class ReferenceController extends DefaultController
         $tmp = $this->createElement($class);
         if ($tmp->status) {
             $oe = new Oe($tmp->item, 'object_editor');
-            $this->ui->workplace->append(new View($oe));
+            SectionManager::getInstance()->content->append(new View($oe));
             return;
         }
-        if (isset(Post::getInstance()->{self::SAVE_AND_EXIT})) {
-            Redirect::go($filter($this->mod));
-            return;
-        }
-        if (isset(Post::getInstance()->{self::SAVE_AND_ADD})) {
-            Redirect::go($filter($this->mod, 'add'));
-            return;
-        }
+//        if (isset(Post::getInstance()->{self::SAVE_AND_EXIT})) {
+//            Redirect::go($filter($this->mod));
+//            return;
+//        }
+//        if (isset(Post::getInstance()->{self::SAVE_AND_ADD})) {
+//            Redirect::go($filter($this->mod, 'add'));
+//            return;
+//        }
         Redirect::go($filter($this->mod, 'edit', $tmp->item->id));
     }
 
@@ -188,7 +188,7 @@ abstract class ReferenceController extends DefaultController
         $item = ($class instanceof DataModel) ? $class : new $class;
         $config = $class::config();
         $properties = $config->properties;
-        $post = Post::getInstance();
+        $post = (new Superglobals())->post;
         $ret = new ReturnValue;
         $ret->item = $item;
         foreach ($properties as $name => $property) {

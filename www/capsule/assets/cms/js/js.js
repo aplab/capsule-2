@@ -174,6 +174,7 @@ $(document).ready(function ()
 
     CapsuleCms.collapseActionMenu = function ()
     {
+        $('body').off('click', CapsuleCms.clickOutsideActionMenuHandler);
         CapsuleCmsActionMenu.getInstance('capsule-cms-action-menu').hide();
     };
 
@@ -185,7 +186,6 @@ $(document).ready(function ()
         if ($(event.target).closest('#capsule-cms-open-actions').length) {
             return;
         }
-        $('body').off('click', CapsuleCms.clickOutsideActionMenuHandler);
         CapsuleCms.collapseActionMenu();
     };
 
