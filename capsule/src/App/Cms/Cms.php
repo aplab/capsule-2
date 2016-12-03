@@ -26,6 +26,7 @@ use Capsule\Component\Url\Path;
 use App\Cms\Ui\SectionManager;
 use Capsule\I18n\I18n;
 use Capsule\Component\Url\Redirect;
+use Capsule\Tools\Tools;
 use Capsule\User\User;
 use Capsule\Capsule;
 use Capsule\User\Auth;
@@ -140,7 +141,11 @@ class Cms extends App
             }
             DefaultController::getInstance()->handle();
         } catch (\Throwable $throwable) {
-            throw $throwable;
+            $error_page = new Section;
+            $error_page->id = 'error';
+            $error_page->exception = $throwable;
+            echo $error_page;
+            return;
         }
     }
 

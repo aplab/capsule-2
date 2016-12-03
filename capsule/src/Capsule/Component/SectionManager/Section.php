@@ -131,7 +131,6 @@ abstract class Section implements Iterator, Countable
         if ($setter) {
             return $this->$setter($value, $name);
         }
-        echo 'setter ';
         $this->data[$name] = $value;
         return $this;
     }
