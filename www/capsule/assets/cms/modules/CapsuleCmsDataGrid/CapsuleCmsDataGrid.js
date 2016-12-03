@@ -61,9 +61,9 @@ function CapsuleCmsDataGrid (container, data)
 
     data.children('div').on('click', function ()
     {
-        if (isTouchDevice()) {
-            return;
-        }
+        // if (isTouchDevice()) {
+        //     return;
+        // }
         var o = $(this);
         data.children('div').not(o).removeClass('capsule-cms-data-grid-active');
         o.toggleClass('capsule-cms-data-grid-active');
@@ -294,7 +294,7 @@ function CapsuleCmsDataGrid (container, data)
                 index = sidebar_body_col.children('div').index(checked[i]);
                 element = rows.eq(index);
                 elements.items[i] = {
-                    rowNumber: index,
+                    index: index,
                     data: {
                         pk: element.data('pk')
                     }
@@ -321,7 +321,12 @@ function CapsuleCmsDataGrid (container, data)
         if (selected.length == 1) {
             var element = selected.eq(0);
             var index = rows.index(element);
-            elements.items[index] = element.data('pk');
+            elements.items[0] = {
+                index: index,
+                data: {
+                    pk: element.data('pk')
+                }
+            };
             elements.length = 1;
         }
         return elements;
