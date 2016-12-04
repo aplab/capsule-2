@@ -19,6 +19,7 @@
 namespace App\Cms\Ui\DataModel\ObjectEditor\Element;
 
 use Capsule\DataModel\Config\Properties\FormElement;
+use Capsule\DataModel\Config\Properties\Property;
 use Capsule\DataModel\DataModel;
 use Capsule\I18n\I18n;
 /**
@@ -60,12 +61,13 @@ abstract class Element implements IElement
      * @param DataModel $model
      * @param FormElement $form_element
      */
-    public function __construct(DataModel $model, FormElement $form_element)
+    public function __construct(DataModel $model, Property $property, FormElement $form_element)
     {
 
 //        $this->data['id'] = self::$_idCounter++;
         $this->data['model'] = $model;
         $this->data['formElement'] = $form_element;
+        $this->data['property'] = $property;
 //        $this->data['config'] = $object->config();
 //        $this->data['name'] = $name;
 //        $this->data['settings'] = $settings;

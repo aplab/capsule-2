@@ -136,7 +136,11 @@ class ObjectEditor
                     $form_element->order = 0;
                 }
                 $element_class = Fn::cc($form_element->type, $element_ns);
-                $this->data['elements'][] = new $element_class($this->model, $form_element);
+                $this->data['elements'][] = new $element_class(
+                    $this->model,
+                    $property,
+                    $form_element
+                );
             }
         }
         usort ($this->data['elements'], function($a, $b) {
