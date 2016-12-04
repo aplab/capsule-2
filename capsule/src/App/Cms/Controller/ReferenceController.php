@@ -19,6 +19,7 @@
 namespace App\Cms\Controller;
 
 use App\Cms\Ui\DataModel\DataGrid\DataGrid;
+use App\Cms\Ui\DataModel\ObjectEditor\ObjectEditor;
 use App\Cms\Ui\SectionManager;
 use App\Cms\View\ActionMenuView;
 use App\Cms\View\DataGridView;
@@ -164,7 +165,7 @@ abstract class ReferenceController extends DefaultController
         $class = $this->moduleClass;
         $tmp = $this->createElement($class);
         if ($tmp->status) {
-            $oe = new Oe($tmp->item, 'object_editor');
+            $oe = new ObjectEditor($tmp->item, 'object_editor');
             SectionManager::getInstance()->content->append(new View($oe));
             return;
         }

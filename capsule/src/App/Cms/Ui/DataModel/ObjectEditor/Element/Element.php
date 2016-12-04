@@ -18,6 +18,7 @@
 
 namespace App\Cms\Ui\DataModel\ObjectEditor\Element;
 
+use Capsule\DataModel\Config\Properties\FormElement;
 use Capsule\DataModel\DataModel;
 use Capsule\I18n\I18n;
 /**
@@ -52,27 +53,29 @@ abstract class Element implements IElement
         'property' => null,
         'settings' => array()
     );
-    
+
     /**
      * Принимает ссылку на объект и имя свойства
      *
-     * @param DataModel $object
-     * @param string $name
-     * @return self
+     * @param DataModel $model
+     * @param FormElement $form_element
      */
-    public function __construct(DataModel $object, $name, $settings = array()) {
-        $this->data['id'] = self::$_idCounter++;
-        $this->data['model'] = $object;
-        $this->data['config'] = $object->config();
-        $this->data['name'] = $name;
-        $this->data['settings'] = $settings;
-        $this->data['class'] = get_class($object);
-        $properties = $this->config->properties;
-        $this->data['property'] = $properties->get($name);
-        if (isset($object->$name)) {
-            $this->data['value'] = $object->$name;
-            $this->data['hasValue'] = true;
-        }
+    public function __construct(DataModel $model, FormElement $form_element)
+    {
+
+//        $this->data['id'] = self::$_idCounter++;
+        $this->data['model'] = $model;
+        $this->data['formElement'] = $form_element;
+//        $this->data['config'] = $object->config();
+//        $this->data['name'] = $name;
+//        $this->data['settings'] = $settings;
+//        $this->data['class'] = get_class($object);
+//        $properties = $this->config->properties;
+//        $this->data['property'] = $properties->get($name);
+//        if (isset($object->$name)) {
+//            $this->data['value'] = $object->$name;
+//            $this->data['hasValue'] = true;
+//        }
     }
     
     /**
@@ -81,7 +84,8 @@ abstract class Element implements IElement
      * @param string $name
      * @return mixed
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         return array_key_exists($name, $this->data) ? $this->data[$name] : null;
     }
     
@@ -92,7 +96,8 @@ abstract class Element implements IElement
      * @param mixed $value
      * @return self
      */
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         $setter = 'set' . ucfirst($name);
         if (in_array($setter, get_class_methods($this))) {
             $this->$setter($value, $name);
@@ -106,7 +111,8 @@ abstract class Element implements IElement
      * (non-PHPdoc)
      * @see SplObserver::update()
      */
-    public function update(\SplSubject $group) {
+    public function update(\SplSubject $group)
+    {
         
     }
 }

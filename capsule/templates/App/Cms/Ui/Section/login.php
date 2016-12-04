@@ -18,11 +18,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/capsule/components/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/capsule/components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/capsule/vendor/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/capsule/vendor/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/capsule/vendor/bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/capsule/assets/cms/css/login.css">
-    <script src="/capsule/components/jquery/jquery-3.1.1.min.js"></script>
-    <script src="/capsule/components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/capsule/vendor/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/capsule/vendor/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/capsule/assets/cms/js/login.js"></script>
 </head>
 <body>
