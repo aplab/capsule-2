@@ -38,22 +38,14 @@ abstract class Element implements IElement
      * 
      * @var int
      */
-    protected static $_idCounter = 1;
+    protected static $counter = 0;
     
     /**
      * Internal data
      *
      * @var array
      */
-    protected $data = array(
-        'model' => null,
-        'config' => null,
-        'name' => null,
-        'value' => null,
-        'hasValue' => false,
-        'property' => null,
-        'settings' => array()
-    );
+    protected $data = [];
 
     /**
      * Принимает ссылку на объект и имя свойства
@@ -63,21 +55,14 @@ abstract class Element implements IElement
      */
     public function __construct(DataModel $model, Property $property, FormElement $form_element)
     {
-
-//        $this->data['id'] = self::$_idCounter++;
+        $this->data['id'] = ++static::$counter;
         $this->data['model'] = $model;
         $this->data['formElement'] = $form_element;
         $this->data['property'] = $property;
-//        $this->data['config'] = $object->config();
-//        $this->data['name'] = $name;
-//        $this->data['settings'] = $settings;
-//        $this->data['class'] = get_class($object);
-//        $properties = $this->config->properties;
-//        $this->data['property'] = $properties->get($name);
-//        if (isset($object->$name)) {
-//            $this->data['value'] = $object->$name;
-//            $this->data['hasValue'] = true;
-//        }
+        if (isset($model->{$property->name})) {
+            $this->data['value'] = $model->{$property->name};
+            $this->data['hasValue'] = true;
+        }
     }
     
     /**
