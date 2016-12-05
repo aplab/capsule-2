@@ -62,6 +62,8 @@ abstract class Element implements IElement
         if (isset($model->{$property->name})) {
             $this->data['value'] = $model->{$property->name};
             $this->data['hasValue'] = true;
+        } else {
+            $this->data['hasValue'] = false;
         }
     }
     

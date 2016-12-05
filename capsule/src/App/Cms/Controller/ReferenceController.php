@@ -24,6 +24,7 @@ use App\Cms\Ui\SectionManager;
 use App\Cms\View\ActionMenuView;
 use App\Cms\View\DataGridView;
 use App\Cms\View\MainMenuView;
+use App\Cms\View\ObjectEditorView;
 use Capsule\Component\DataStruct\ReturnValue;
 use Capsule\Component\Superglobals\Superglobals;
 use Capsule\Tools\Tools;
@@ -166,7 +167,7 @@ abstract class ReferenceController extends DefaultController
         $tmp = $this->createElement($class);
         if ($tmp->status) {
             $oe = new ObjectEditor($tmp->item, 'object_editor');
-            SectionManager::getInstance()->content->append(new View($oe));
+            SectionManager::getInstance()->content->append(new ObjectEditorView($oe));
             return;
         }
 //        if (isset(Post::getInstance()->{self::SAVE_AND_EXIT})) {

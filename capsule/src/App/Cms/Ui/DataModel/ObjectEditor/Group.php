@@ -19,8 +19,9 @@
 namespace App\Cms\Ui\DataModel\ObjectEditor;
 
 use Capsule\I18n\I18n;
-use Capsule\Ui\ObjectEditor\Element\IElement;
+use App\Cms\Ui\DataModel\ObjectEditor\Element\IElement;
 use Iterator, Countable;
+
 /**
  * Group.php
  *
@@ -36,17 +37,19 @@ class Group implements IGroup, Iterator, Countable
      *
      * @var array
      */
-    private $data = array(
+    private $data = [
         'name' => null,
         'order' => null,
-        'elements' => array()
-    );
-    
+        'elements' => []
+    ];
+
     /**
      * (non-PHPdoc)
      * @see SplSubject::attach()
+     * @param \SplObserver $element
      */
-    public function attach(\SplObserver $element) {
+    public function attach(\SplObserver $element)
+    {
         if (!($element instanceof IElement)) {
             $msg = 'The parameter must be instance of IElement';
             throw new \InvalidArgumentException($msg);
@@ -58,12 +61,14 @@ class Group implements IGroup, Iterator, Countable
         $this->data['elements'][] = $element;
         $this->notify();
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see SplSubject::detach()
+     * @param \SplObserver $element
      */
-    public function detach(\SplObserver $element) {
+    public function detach(\SplObserver $element)
+    {
         if (!($element instanceof IElement)) {
             $msg = 'The parameter must be instance of IElement';
             throw new \InvalidArgumentException($msg);
@@ -74,27 +79,29 @@ class Group implements IGroup, Iterator, Countable
         }
         $this->notify();
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see SplSubject::notify()
      */
-    public function notify() {
+    public function notify()
+    {
         foreach ($this->data['elements'] as $existent) {
             $existent->update($this);
         }
     }
-    
+
     /**
      * Getter
      *
      * @param string $name
      * @return mixed
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         return array_key_exists($name, $this->data) ? $this->data[$name] : null;
     }
-    
+
     /**
      * Setter
      *
@@ -102,7 +109,8 @@ class Group implements IGroup, Iterator, Countable
      * @param mixed $value
      * @return self
      */
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         $setter = 'set' . ucfirst($name);
         if (in_array($setter, get_class_methods($this))) {
             $this->$setter($value, $name);
@@ -111,75 +119,82 @@ class Group implements IGroup, Iterator, Countable
         }
         return $this;
     }
-    
+
     /**
      * Disable set elements directly
      *
      * @param mixed $value
      * @param string $name
      */
-    protected function setElements($value, $name) {
-        $msg = I18n::t('Readonly property: ') . get_class($this) . '::$' . $name;
+    protected function setElements($value, $name)
+    {
+        $msg = 'Readonly property: ' . get_class($this) . '::$' . $name;
         throw new \RuntimeException($msg);
     }
-    
+
     /**
      * count(): defined by Countable interface.
      *
      * @see    Countable::count()
      * @return integer
      */
-    public function count() {
+    public function count()
+    {
         return sizeof($this->data['elements']);
     }
-    
+
     /**
      * current(): defined by Iterator interface.
      *
      * @see    Iterator::current()
      * @return mixed
      */
-    public function current() {
+    public function current()
+    {
         return current($this->data['elements']);
     }
-    
+
     /**
      * key(): defined by Iterator interface.
      *
      * @see    Iterator::key()
      * @return mixed
      */
-    public function key() {
+    public function key()
+    {
         return key($this->data['elements']);
     }
-    
+
     /**
      * next(): defined by Iterator interface.
      *
      * @see    Iterator::next()
      * @return void
      */
-    public function next() {
+    public function next()
+    {
         next($this->data['elements']);
     }
-    
+
     /**
      * rewind(): defined by Iterator interface.
      *
      * @see    Iterator::rewind()
      * @return void
      */
-    public function rewind() {
+    public function rewind()
+    {
         reset($this->data['elements']);
     }
-    
+
     /**
      * valid(): defined by Iterator interface.
      *
      * @see    Iterator::valid()
      * @return boolean
      */
-    public function valid() {
+    public function valid()
+    {
         return ($this->key() !== null);
     }
 }

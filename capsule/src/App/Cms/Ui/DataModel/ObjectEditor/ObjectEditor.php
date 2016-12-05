@@ -66,8 +66,6 @@ class ObjectEditor
         $this->data['elements'] = [];
         $this->data['groups'] = [];
         $this->configure();
-        Tools::dump($this);
-        die();
     }
 
     /**
@@ -145,6 +143,37 @@ class ObjectEditor
         }
         usort ($this->data['elements'], function($a, $b) {
             return $a->formElement->order <=> $b->formElement->order;
+        });
+        $tab_order = $this->config->tabOrder;
+        foreach ($this->data['elements'] as $element) {
+            $tab_name = $element->formElement->tab;
+            if (array_key_exists($tab_name, $this->data['groups'])) {
+                $group = $this->data['groups'][$tab_name];
+            } else {
+                $group = $this->data['groups'][$tab_name] = new Group;
+                $group->name = $tab_name;
+                if (isset($tab_order->$tab_name)) {
+                    $group->order = $tab_order->$tab_name;
+                }
+            }
+            $group->attach($element);
+        }
+        uasort($this->data['groups'], function($a, $b) {
+            $ao = $a->order;
+            $bo = $b->order;
+            if (is_null($ao) && is_null($bo)) {
+                return 0;
+            }
+            if ($ao === $bo) {
+                return 0;
+            }
+            if (is_null($ao)) {
+                return 1;
+            }
+            if (is_null($bo)) {
+                return -1;
+            }
+            return $ao <=> $bo;
         });
     }
 }

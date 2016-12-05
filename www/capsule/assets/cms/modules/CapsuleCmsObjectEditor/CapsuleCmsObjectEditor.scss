@@ -1,0 +1,118 @@
+$header-height: 50px;
+$active-color: #1ca8dd;
+.capsule-cms-object-editor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  &-head {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    height: $header-height;
+    overflow: hidden;
+    z-index: 200;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.176);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.176);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.176);
+  }
+  &-tabs-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    height: $header-height * 10;
+    overflow: hidden;
+    overflow-x: scroll;
+  }
+  &-tabs {
+    width: 10000px;
+    height: $header-height;
+    overflow: hidden;
+  }
+  &-tab {
+    float: left;
+    height: $header-height;
+    padding: 0 15px;
+    border-bottom: 4px #fff solid;
+    line-height: $header-height - 1px;
+    cursor: pointer;
+    color: #ffffff - #cfd2da;
+  }
+  //&-tab:hover {
+  //  color: #137499;
+  //  background: #e3f5fb;
+  //  border-bottom-color: #e3f5fb;
+  //}
+  &-tab-active {
+    border-bottom-color: $active-color;
+    color: $active-color;
+  }
+  //&-tab-active:hover {
+  //  border-bottom-color: $active-color;
+  //  color: $active-color;
+  //}
+  &-arrow-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: $header-height;
+    overflow: hidden;
+    text-align: center;
+    line-height: $header-height - 1px;
+    opacity: .4;
+    background: #e3f5fb;
+    color: $active-color;
+    display: none;
+    cursor: pointer;
+    font-size: 32px;
+  }
+  &-arrow-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: $header-height;
+    overflow: hidden;
+    text-align: center;
+    line-height: $header-height - 1px;
+    opacity: .4;
+    background: #e3f5fb;
+    color: $active-color;
+    display: none;
+    cursor: pointer;
+    font-size: 32px;
+  }
+  &-body {
+    position: absolute;
+    left: 0;
+    top: $header-height;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    overflow: hidden;
+    z-index: 100;
+  }
+  &-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    width: auto;
+    overflow: hidden;
+    display: none;
+  }
+  &-panel-active {
+    display: block;
+  }
+}
