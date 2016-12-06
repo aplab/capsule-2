@@ -41,6 +41,13 @@ $prefix = 'capsule-cms-object-editor';
                         </div>
 
                         <div class="<?=$prefix?>-element">
+                            <div class="<?=$prefix?>-value-checkbox">
+                                <input type="checkbox">
+                            </div>
+                            <label class="<?=$prefix?>-label-checkbox" for="email">Email here:</label>
+                        </div>
+
+                        <div class="<?=$prefix?>-element">
                             <label class="<?=$prefix?>-label" for="txt">Email here:</label>
                             <div class="<?=$prefix?>-value">
                                 <textarea class="form-control" rows="3" id="txt" placeholder="Enter email"></textarea>
