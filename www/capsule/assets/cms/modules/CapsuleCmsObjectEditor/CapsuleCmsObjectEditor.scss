@@ -115,4 +115,28 @@ $active-color: #1ca8dd;
   &-panel-active {
     display: block;
   }
+  &-elements-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    width: auto;
+    overflow: auto;
+  }
+  &-elements {
+    overflow: hidden;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  textarea {
+    resize: vertical;
+  }
+  label {
+    text-align: left!important;
+  }
+  .container-limited {
+    max-width: 1280px;
+  }
 }
