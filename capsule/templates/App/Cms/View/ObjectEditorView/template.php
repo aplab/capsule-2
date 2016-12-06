@@ -33,34 +33,113 @@ $prefix = 'capsule-cms-object-editor';
                 <div class="<?=$prefix?>-elements-wrapper">
                     <div class="<?=$prefix?>-elements">
 
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="control-label col-sm-3" for="email">Email:</label>
-                                <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email">
-                                </div>
+                        <div class="<?=$prefix?>-element">
+                            <label class="<?=$prefix?>-label" for="email">Email here:</label>
+                            <div class="<?=$prefix?>-value">
+                                <input type="text" class="form-control" id="email" placeholder="Enter email">
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-3" for="pwd">Password:</label>
-                                <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                                </div>
+                        </div>
+
+                        <div class="<?=$prefix?>-element">
+                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <div class="<?=$prefix?>-value">
+                                <textarea class="form-control" rows="3" id="txt" placeholder="Enter email"></textarea>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-9">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox"> Remember me</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-3" for="comment">Password:</label>
-                                <div class="col-sm-9">
-                                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                        </div>
+
+                        <div class="<?=$prefix?>-element">
+                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <div class="<?=$prefix?>-value">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                                    <div class="input-group-addon">.00</div>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="<?=$prefix?>-element">
+                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <div class="<?=$prefix?>-value">
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div><!-- /btn-group -->
+                                    <input type="text" class="form-control" aria-label="...">
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
+
+                        <div class="<?=$prefix?>-element">
+                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <div class="<?=$prefix?>-value">
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="<?=$prefix?>-element">
+                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <div class="<?=$prefix?>-value">
+                                <select multiple class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="<?=$prefix?>-element">
+                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <div class="<?=$prefix?>-value">
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div><!-- /btn-group -->
+                                    <input type="text" class="form-control" aria-label="...">
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
+
+                        <div class="<?=$prefix?>-element">
+                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <div class="<?=$prefix?>-value">
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div><!-- /btn-group -->
+                                    <input type="text" class="form-control" aria-label="...">
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
 
 
 

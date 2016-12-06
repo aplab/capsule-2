@@ -126,17 +126,47 @@ $active-color: #1ca8dd;
     overflow: auto;
   }
   &-elements {
-    overflow: hidden;
+    //overflow: hidden;
     padding-top: 15px;
-    padding-bottom: 15px;
+    width: 100%;
+    max-width: 992px;
   }
-  textarea {
-    resize: vertical;
+  &-element {
+    margin-bottom: 15px;
+    textarea {
+      resize: vertical;
+    }
   }
-  label {
-    text-align: left!important;
+  &-element:after {
+    clear: both;
+    display: table;
+    content: ' ';
   }
-  .container-limited {
-    max-width: 1280px;
+  &-label {
+    padding-left: 15px;
+    padding-right: 15px;
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 5px;
+  }
+  &-value {
+    padding-left: 15px;
+    padding-right: 15px;
+
+  }
+  @media (min-width: 768px) {
+    &-label {
+      float: left;
+      width: 768px / 12 * 4;
+      padding-top: 7px;
+      margin-bottom: 0;
+    }
+    &-value {
+      float: left;
+      width: 768px / 12 * 8;
+    }
   }
 }
