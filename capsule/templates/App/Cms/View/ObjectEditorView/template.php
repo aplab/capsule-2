@@ -41,10 +41,10 @@ $prefix = 'capsule-cms-object-editor';
                         </div>
 
                         <div class="<?=$prefix?>-element">
+                            <label class="<?=$prefix?>-label-checkbox" for="custch1">Email here</label>
                             <div class="<?=$prefix?>-value-checkbox">
-                                <input type="checkbox">
+                                <input type="checkbox" id="custch1"><label for="custch1"></label>
                             </div>
-                            <label class="<?=$prefix?>-label-checkbox" for="email">Email here</label>
                         </div>
 
                         <div class="<?=$prefix?>-element">
