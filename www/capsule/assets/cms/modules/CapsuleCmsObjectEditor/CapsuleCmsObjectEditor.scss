@@ -157,30 +157,6 @@ $active-color: #1ca8dd;
     padding-left: 15px;
     padding-right: 15px;
   }
-  &-label-checkbox {
-    padding-left: 15px;
-    padding-right: 15px;
-    white-space: nowrap;
-    -ms-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    display: block;
-    overflow: hidden;
-    float: left;
-    padding-top: 7px;
-    margin-bottom: 0;
-    height: 34px;
-  }
-  &-value-checkbox {
-    padding-left: 15px;
-    padding-right: 0;
-    float: left;
-    height: 34px;
-    padding-top: 8px;
-    input {
-      margin: 0;
-      display: inline-block;
-    }
-  }
   @media (min-width: 768px) {
     &-label {
       float: left;
@@ -192,19 +168,10 @@ $active-color: #1ca8dd;
       float: left;
       width: calc(100% - 768px / 12 * 3);
     }
-    &-label-checkbox {
-
-    }
-    &-value-checkbox {
-      height: 31px;
-      padding-top: 8px;
-      width: auto;
-      position: absolute;
-      left: 768px / 12 * 3;
-      input {
-        margin: 0;
-        display: inline-block;
-      }
-    }
   }
+  // custom checkbox
+  @media (min-width: 768px) {
+
+  }
+  // end of custom checkbox
 }

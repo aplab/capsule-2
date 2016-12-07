@@ -34,7 +34,7 @@ $prefix = 'capsule-cms-object-editor';
                     <div class="<?=$prefix?>-elements">
 
                         <div class="<?=$prefix?>-element">
-                            <label class="<?=$prefix?>-label" for="email">Email here:</label>
+                            <label class="<?=$prefix?>-label" for="email">Email here</label>
                             <div class="<?=$prefix?>-value">
                                 <input type="text" class="form-control" id="email" placeholder="Enter email">
                             </div>
@@ -44,18 +44,18 @@ $prefix = 'capsule-cms-object-editor';
                             <div class="<?=$prefix?>-value-checkbox">
                                 <input type="checkbox">
                             </div>
-                            <label class="<?=$prefix?>-label-checkbox" for="email">Email here:</label>
+                            <label class="<?=$prefix?>-label-checkbox" for="email">Email here</label>
                         </div>
 
                         <div class="<?=$prefix?>-element">
-                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <label class="<?=$prefix?>-label" for="txt">Email here</label>
                             <div class="<?=$prefix?>-value">
                                 <textarea class="form-control" rows="3" id="txt" placeholder="Enter email"></textarea>
                             </div>
                         </div>
 
                         <div class="<?=$prefix?>-element">
-                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <label class="<?=$prefix?>-label" for="txt">Email here</label>
                             <div class="<?=$prefix?>-value">
                                 <div class="input-group">
                                     <div class="input-group-addon">$</div>
@@ -66,7 +66,7 @@ $prefix = 'capsule-cms-object-editor';
                         </div>
 
                         <div class="<?=$prefix?>-element">
-                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <label class="<?=$prefix?>-label" for="txt">Email here</label>
                             <div class="<?=$prefix?>-value">
                                 <div class="input-group">
                                     <div class="input-group-btn">
@@ -85,7 +85,7 @@ $prefix = 'capsule-cms-object-editor';
                         </div>
 
                         <div class="<?=$prefix?>-element">
-                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <label class="<?=$prefix?>-label" for="txt">Email here</label>
                             <div class="<?=$prefix?>-value">
                                 <select class="form-control">
                                     <option>1</option>
@@ -98,7 +98,7 @@ $prefix = 'capsule-cms-object-editor';
                         </div>
 
                         <div class="<?=$prefix?>-element">
-                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <label class="<?=$prefix?>-label" for="txt">Email here</label>
                             <div class="<?=$prefix?>-value">
                                 <select multiple class="form-control">
                                     <option>1</option>
@@ -111,7 +111,7 @@ $prefix = 'capsule-cms-object-editor';
                         </div>
 
                         <div class="<?=$prefix?>-element">
-                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <label class="<?=$prefix?>-label" for="txt">Email here</label>
                             <div class="<?=$prefix?>-value">
                                 <div class="input-group">
                                     <div class="input-group-btn">
@@ -130,7 +130,7 @@ $prefix = 'capsule-cms-object-editor';
                         </div>
 
                         <div class="<?=$prefix?>-element">
-                            <label class="<?=$prefix?>-label" for="txt">Email here:</label>
+                            <label class="<?=$prefix?>-label" for="txt">Email here</label>
                             <div class="<?=$prefix?>-value">
                                 <div class="input-group">
                                     <div class="input-group-btn">
