@@ -40,7 +40,7 @@ body {
   height: $nav-height;
   background: #1a1c22 none repeat scroll 0 0;
   color: #fff;
-  z-index: 200000;
+  z-index: 200;
   padding: 0 15px;
   > #capsule-cms-open-sidebar {
     line-height: $nav-height;
@@ -79,7 +79,7 @@ body {
   transition: width 0.15s ease 0s;
   overflow: hidden;
   padding-top: $nav-height;
-  z-index: 300000;
+  z-index: 300;
   #capsule-cms-sidebar-action-buttons {
     background: #1a1c22;
     position: absolute;
@@ -156,7 +156,7 @@ body {
   top: $nav-height;
   right: 0;
   bottom: 0;
-  z-index: 100000;
+  z-index: 100;
   -webkit-transition: padding 0.15s ease 0s;
   -o-transition: padding 0.15s ease 0s;
   transition: padding 0.15s ease 0s;

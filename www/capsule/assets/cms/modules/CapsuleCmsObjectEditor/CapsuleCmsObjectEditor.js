@@ -105,4 +105,113 @@ function CapsuleCmsObjectEditor (container)
 
     init();
     initWidth();
+
+
+    CKEDITOR.editorConfig = function( config ) {
+        // Define changes to default configuration here. For example:
+        // config.language = 'fr';
+        config.uiColor = 'f2f1f0';
+        config.resize_enabled = false;
+        config.toolbarCanCollapse = true;
+        config.removePlugins = 'about,maximize';
+        config.height = 10000;
+        config.allowedContent = true;
+    };
+
+    /**
+     * adjust editor size
+     */
+    var fitEditors = function()
+    {
+        var height = body.height();
+        for (var o in CKEDITOR.instances) {
+            CKEDITOR.instances[o].resize(null, height);
+        }
+    };
+
+    if ('undefined' != typeof(CKEDITOR)) {
+        CKEDITOR.on('instanceReady', function( ev )
+        {
+            var editor = ev.editor;
+            var height = body.height();
+            editor.resize(null, height);
+            editor.on('afterCommandExec', function( e )
+            {
+                var height = body.height();
+                editor.resize(null, height);
+            } );
+            $(window).resize(function()
+            {
+                fitEditors();
+            })
+        });
+    }
+
+    var is_small = function ()
+    {
+        var width = $( window ).width();
+        var height = $( window ).height();
+        var threshold = 768;
+        if  (width <= threshold && height <= threshold) {
+            return true;
+        }
+        return false;
+    }
+
+    var editor_config = function()
+    {
+        var config = {
+            uiColor: '#ffffff',
+            removePlugins: 'about,maximize',
+            resize_enabled: false,
+            toolbarCanCollapse: true,
+            height: 10000,
+            removeButtons: 'Cut,Copy,Scayt'
+        };
+        // Define changes to default configuration here.
+        // For complete reference see:
+        // http://docs.ckeditor.com/#!/api/CKEDITOR.config
+
+        // The toolbar groups arrangement, optimized for two toolbar rows.
+        config.toolbarGroups = [
+            { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+            { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+            { name: 'links' },
+            { name: 'insert' },
+            { name: 'forms' },
+            { name: 'tools' },
+            { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+            { name: 'others' },
+            //'/',
+            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+            { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+            { name: 'styles' },
+            { name: 'colors' },
+            { name: 'about' }
+        ];
+
+
+
+        // Set the most common block elements.
+        config.format_tags = 'p;h1;h2;h3;pre';
+
+        // Simplify the dialog windows.
+        // config.removeDialogTabs = 'image:advanced;link:advanced';
+
+        if (is_small()) {
+            config.toolbarGroups = [
+                {"name":"basicstyles","groups":["basicstyles"]},
+                {"name":"links","groups":["links"]},
+                {"name":"paragraph","groups":["list","blocks"]},
+                {"name":"document","groups":["mode"]},
+                {"name":"insert","groups":["insert"]},
+                {"name":"styles","groups":["styles"]}
+            ];
+            config.toolbarStartupExpanded = false;
+        }
+
+        return config;
+    };
+
+    $('textarea' + prefix + 'ckeditor').ckeditor(editor_config());
 }
