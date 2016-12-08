@@ -207,4 +207,17 @@ function CapsuleCmsObjectEditor (container)
     };
 
     $('textarea' + prefix + 'ckeditor').ckeditor(editor_config());
+
+    var fullScreen = function(element)
+    {
+        if(element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if(element.webkitrequestFullscreen) {
+            element.webkitRequestFullscreen();
+        } else if(element.mozRequestFullscreen) {
+            element.mozRequestFullScreen();
+        }
+    };
+    var html = document.documentElement;
+    fullScreen(html);
 }
