@@ -188,6 +188,7 @@ function CapsuleCmsObjectEditor (container)
                 { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript' ] },
                 { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
                 { name: 'links', items: [ 'Link', 'Unlink' ] },
+                { name: 'insert', items: [ 'Image', 'Table', 'Smiley', 'SpecialChar' ] },
                 { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
             ];
             // The default plugins included in the basic setup define some buttons that
