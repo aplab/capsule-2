@@ -208,6 +208,19 @@ function CapsuleCmsObjectEditor (container)
                 {"name":"styles","groups":["styles"]}
             ];
             config.toolbarStartupExpanded = false;
+        } else {
+            config.toolbar = [
+                { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
+                { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
+                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting' ] },
+                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+                { name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+                { name: 'links', items: [ 'Link', 'Unlink' ] },
+                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
+                { name: 'insert', items: [ 'Image', 'Table' ] },
+                { name: 'tools', items: [ 'Maximize' ] },
+                { name: 'editing', items: [ 'Scayt' ] }
+            ]
         }
 
         return config;
