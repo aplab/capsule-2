@@ -172,26 +172,6 @@ function CapsuleCmsObjectEditor (container)
         // For complete reference see:
         // http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
-        //The toolbar groups arrangement, optimized for two toolbar rows.
-        // config.toolbarGroups = [
-        //     { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-        //     { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-        //     { name: 'links' },
-        //     { name: 'insert' },
-        //     { name: 'forms' },
-        //     { name: 'tools' },
-        //     { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
-        //     { name: 'others' },
-        //     //'/',
-        //     { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-        //     { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-        //     { name: 'styles' },
-        //     { name: 'colors' },
-        //     { name: 'about' }
-        // ];
-
-
-
         // Set the most common block elements.
         config.format_tags = 'p;h1;h2;h3;pre';
 
@@ -199,27 +179,27 @@ function CapsuleCmsObjectEditor (container)
         // config.removeDialogTabs = 'image:advanced;link:advanced';
 
         if (is_small()) {
-            config.toolbarGroups = [
-                {"name":"basicstyles","groups":["basicstyles"]},
-                {"name":"links","groups":["links"]},
-                {"name":"paragraph","groups":["list","blocks"]},
-                {"name":"document","groups":["mode"]},
-                {"name":"insert","groups":["insert"]},
-                {"name":"styles","groups":["styles"]}
-            ];
-            config.toolbarStartupExpanded = false;
-        } else {
             config.toolbar = [
                 { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
-                { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
+                { name: 'styles', items: [ 'Format'/*, 'Font'*/, 'FontSize' ] },
                 { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting' ] },
                 { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
                 { name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
                 { name: 'links', items: [ 'Link', 'Unlink' ] },
                 { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
-                { name: 'insert', items: [ 'Image', 'Table' ] },
-                { name: 'tools', items: [ 'Maximize' ] },
-                { name: 'editing', items: [ 'Scayt' ] }
+                { name: 'insert', items: [ 'Image', 'Table' ] }
+            ]
+            config.toolbarStartupExpanded = false;
+        } else {
+            config.toolbar = [
+                { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
+                { name: 'styles', items: [ 'Format'/*, 'Font'*/, 'FontSize' ] },
+                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting' ] },
+                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+                { name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+                { name: 'links', items: [ 'Link', 'Unlink' ] },
+                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
+                { name: 'insert', items: [ 'Image', 'Table' ] }
             ]
         }
 
