@@ -18,6 +18,7 @@
     "jquery-ui": "^1.12.1",
     "jquery-mousewheel": "jquery/jquery-mousewheel#^3.1.13",
     "bootstrap": "^3.3.7",
-    "font-awesome": "fontawesome#^4.7.0"
+    "font-awesome": "fontawesome#^4.7.0",
+    "ckeditor": "#full/4.6.0"
   }
 }

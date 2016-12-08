@@ -6,6 +6,8 @@
  */
 function CapsuleCmsObjectEditor (container)
 {
+    CKEDITOR.basePath = 'http://www.capsule2.aplab.ru:8080/capsule/vendor/bower_components/ckeditor/';
+    CKEDITOR.plugins.basePath = 'http://www.capsule2.aplab.ru:8080/capsule/vendor/bower_components/ckeditor/plugins/';
     /**
      * static init
      *
@@ -158,6 +160,9 @@ function CapsuleCmsObjectEditor (container)
         return false;
     }
 
+    CKEDITOR_BASEPATH = '/capsule/vendor/bower_components/ckeditor/';
+    CKEDITOR.basePath = '/capsule/vendor/bower_components/ckeditor/';
+
     var editor_config = function()
     {
         var config = {
@@ -179,28 +184,41 @@ function CapsuleCmsObjectEditor (container)
         // config.removeDialogTabs = 'image:advanced;link:advanced';
 
         if (is_small()) {
+            // The toolbar groups arrangement, optimized for a single toolbar row.
             config.toolbar = [
+                { name: 'document', items: [ 'Source'] },
                 { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
-                { name: 'styles', items: [ 'Format'/*, 'Font'*/, 'FontSize' ] },
-                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting' ] },
-                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                { name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript' ] },
+                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
                 { name: 'links', items: [ 'Link', 'Unlink' ] },
-                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
-                { name: 'insert', items: [ 'Image', 'Table' ] }
-            ]
+                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+            ];
+
+            // The default plugins included in the basic setup define some buttons that
+            // are not needed in a basic editor. They are removed here.
+            config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
+
+            // Dialog windows are also simplified.
+            config.removeDialogTabs = 'link:advanced';
             config.toolbarStartupExpanded = false;
         } else {
-            config.toolbar = [
-                { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
-                { name: 'styles', items: [ 'Format'/*, 'Font'*/, 'FontSize' ] },
-                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting' ] },
-                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                { name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
-                { name: 'links', items: [ 'Link', 'Unlink' ] },
-                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
-                { name: 'insert', items: [ 'Image', 'Table' ] }
-            ]
+            config.toolbarGroups = [
+                { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+                { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+                { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+                { name: 'forms', groups: [ 'forms' ] },
+                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+                { name: 'links', groups: [ 'links' ] },
+                { name: 'insert', groups: [ 'insert' ] },
+                { name: 'styles', groups: [ 'styles' ] },
+                { name: 'colors', groups: [ 'colors' ] },
+                { name: 'tools', groups: [ 'tools' ] },
+                { name: 'others', groups: [ 'others' ] },
+                { name: 'about', groups: [ 'about' ] }
+            ];
+
+            config.removeButtons = 'Save,NewPage,Preview,Print,Templates,Cut,Copy,About,Maximize,Font,Flash,Iframe,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField';
         }
 
         return config;
@@ -208,16 +226,16 @@ function CapsuleCmsObjectEditor (container)
 
     $('textarea' + prefix + 'ckeditor').ckeditor(editor_config());
 
-    var fullScreen = function(element)
-    {
-        if(element.requestFullscreen) {
-            element.requestFullscreen();
-        } else if(element.webkitrequestFullscreen) {
-            element.webkitRequestFullscreen();
-        } else if(element.mozRequestFullscreen) {
-            element.mozRequestFullScreen();
-        }
-    };
-    var html = document.documentElement;
-    fullScreen(html);
+    // var fullScreen = function(element)
+    // {
+    //     if(element.requestFullscreen) {
+    //         element.requestFullscreen();
+    //     } else if(element.webkitrequestFullscreen) {
+    //         element.webkitRequestFullscreen();
+    //     } else if(element.mozRequestFullscreen) {
+    //         element.mozRequestFullScreen();
+    //     }
+    // };
+    // var html = document.documentElement;
+    // fullScreen(html);
 }
