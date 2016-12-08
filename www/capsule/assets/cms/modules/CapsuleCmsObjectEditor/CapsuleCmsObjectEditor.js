@@ -139,7 +139,7 @@ function CapsuleCmsObjectEditor (container)
             var height = body.height();
             var width = body.width();
             editor.resize(width, height);
-            editor.on('afterCommandExec', function( e )
+            editor.on('afterCommandExec', function()
             {
                 var width = body.width();
                 var height = body.height();
@@ -157,11 +157,8 @@ function CapsuleCmsObjectEditor (container)
         var width = $( window ).width();
         var height = $( window ).height();
         var threshold = 768;
-        if  (width <= threshold && height <= threshold) {
-            return true;
-        }
-        return false;
-    }
+        return width <= threshold && height <= threshold;
+    };
 
     var editor_config = function()
     {
@@ -169,7 +166,6 @@ function CapsuleCmsObjectEditor (container)
             uiColor: '#ffffff',
             removePlugins: 'about,maximize',
             resize_enabled: false,
-            toolbarCanCollapse: true,
             height: 10000,
             removeButtons: 'Cut,Copy,Scayt'
         };
@@ -189,7 +185,7 @@ function CapsuleCmsObjectEditor (container)
                 { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
                 { name: 'links', items: [ 'Link', 'Unlink' ] },
                 { name: 'insert', items: [ 'Image', 'Table', 'Smiley', 'SpecialChar' ] },
-                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+                { name: 'colors', items: [ 'TextColor', 'BGColor' ] }
             ];
             // The default plugins included in the basic setup define some buttons that
             // are not needed in a basic editor. They are removed here.
@@ -197,23 +193,22 @@ function CapsuleCmsObjectEditor (container)
             // Dialog windows are also simplified.
             config.removeDialogTabs = 'link:advanced';
             config.toolbarStartupExpanded = false;
+            config.toolbarCanCollapse = true;
         } else {
-            config.toolbarGroups = [
-                { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-                { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-                { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-                { name: 'forms', groups: [ 'forms' ] },
-                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-                { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-                { name: 'links', groups: [ 'links' ] },
-                { name: 'insert', groups: [ 'insert' ] },
-                { name: 'styles', groups: [ 'styles' ] },
-                { name: 'colors', groups: [ 'colors' ] },
-                { name: 'tools', groups: [ 'tools' ] },
-                { name: 'others', groups: [ 'others' ] },
-                { name: 'about', groups: [ 'about' ] }
+            config.toolbar = [
+                { name: 'document', items: [ 'Source' ] },
+                { name: 'clipboard', items: [ 'Paste', 'PasteText', 'PasteFromWord', 'Undo', 'Redo' ] },
+                { name: 'editing', items: [ 'Find', 'Replace',  'SelectAll' ] },
+                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'CopyFormatting', 'RemoveFormat' ] },
+                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'CreateDiv', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+                { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+                { name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+                { name: 'styles', items: [ 'Styles', 'Format', 'FontSize' ] },
+                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+                { name: 'tools', items: [ 'ShowBlocks' ] }
             ];
-            config.removeButtons = 'Save,NewPage,Preview,Print,Templates,Cut,Copy,About,Maximize,Font,Flash,Iframe,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField';
+            config.toolbarCanCollapse = false;
+            config.toolbarStartupExpanded = true;
         }
         return config;
     };
