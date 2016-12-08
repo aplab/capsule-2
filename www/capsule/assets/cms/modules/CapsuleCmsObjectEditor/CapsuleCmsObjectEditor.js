@@ -126,8 +126,9 @@ function CapsuleCmsObjectEditor (container)
     var fitEditors = function()
     {
         var height = body.height();
+        var width = body.width();
         for (var o in CKEDITOR.instances) {
-            CKEDITOR.instances[o].resize(null, height);
+            CKEDITOR.instances[o].resize(width, height);
         }
     };
 
@@ -136,16 +137,18 @@ function CapsuleCmsObjectEditor (container)
         {
             var editor = ev.editor;
             var height = body.height();
-            editor.resize(null, height);
+            var width = body.width();
+            editor.resize(width, height);
             editor.on('afterCommandExec', function( e )
             {
+                var width = body.width();
                 var height = body.height();
-                editor.resize(null, height);
+                editor.resize(width, height);
             } );
             $(window).resize(function()
             {
                 fitEditors();
-            })
+            });
         });
     }
 
@@ -160,9 +163,6 @@ function CapsuleCmsObjectEditor (container)
         return false;
     }
 
-    CKEDITOR_BASEPATH = '/capsule/vendor/bower_components/ckeditor/';
-    CKEDITOR.basePath = '/capsule/vendor/bower_components/ckeditor/';
-
     var editor_config = function()
     {
         var config = {
@@ -176,13 +176,10 @@ function CapsuleCmsObjectEditor (container)
         // Define changes to default configuration here.
         // For complete reference see:
         // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-
         // Set the most common block elements.
         config.format_tags = 'p;h1;h2;h3;pre';
-
         // Simplify the dialog windows.
         // config.removeDialogTabs = 'image:advanced;link:advanced';
-
         if (is_small()) {
             // The toolbar groups arrangement, optimized for a single toolbar row.
             config.toolbar = [
@@ -193,11 +190,9 @@ function CapsuleCmsObjectEditor (container)
                 { name: 'links', items: [ 'Link', 'Unlink' ] },
                 { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
             ];
-
             // The default plugins included in the basic setup define some buttons that
             // are not needed in a basic editor. They are removed here.
             config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
-
             // Dialog windows are also simplified.
             config.removeDialogTabs = 'link:advanced';
             config.toolbarStartupExpanded = false;
@@ -217,25 +212,9 @@ function CapsuleCmsObjectEditor (container)
                 { name: 'others', groups: [ 'others' ] },
                 { name: 'about', groups: [ 'about' ] }
             ];
-
             config.removeButtons = 'Save,NewPage,Preview,Print,Templates,Cut,Copy,About,Maximize,Font,Flash,Iframe,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField';
         }
-
         return config;
     };
-
     $('textarea' + prefix + 'ckeditor').ckeditor(editor_config());
-
-    // var fullScreen = function(element)
-    // {
-    //     if(element.requestFullscreen) {
-    //         element.requestFullscreen();
-    //     } else if(element.webkitrequestFullscreen) {
-    //         element.webkitRequestFullscreen();
-    //     } else if(element.mozRequestFullscreen) {
-    //         element.mozRequestFullScreen();
-    //     }
-    // };
-    // var html = document.documentElement;
-    // fullScreen(html);
 }
