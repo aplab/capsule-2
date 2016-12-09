@@ -80,9 +80,8 @@ function CapsuleCmsActionMenu(data, append_to)
         var items = data.items;
         for (var id in items) {
             var item = items[id];
-            var span = $('<span>');
-            span.text(item.caption);
             var icon = null;
+            var span;
             if (item.icon !== undefined && item.icon.name !== undefined) {
                 icon = $('<i class="' + item.icon.name + '" aria-hidden="true"></i>');
             }
@@ -94,16 +93,24 @@ function CapsuleCmsActionMenu(data, append_to)
                     content.append(a);
                     a.append(icon);
                 } else {
+                    span = $('<span>');
+                    span.text(item.caption);
                     content.append(span);
                     if (item.action.type === 'callback') {
-                        span.click(function ()
+                        (function (v)
                         {
-                            eval(item.action.callback);
-                        });
+                            span.click(function ()
+                            {
+                                eval(v);
+
+                            });
+                        })(item.action.callback);
                     }
                     span.append(icon);
                 }
             } else {
+                span = $('<span>');
+                span.text(item.caption);
                 content.append(span);
                 span.append(icon);
             }
