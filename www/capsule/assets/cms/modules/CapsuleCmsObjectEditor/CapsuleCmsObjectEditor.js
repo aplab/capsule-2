@@ -202,10 +202,10 @@ function CapsuleCmsObjectEditor (container)
                 { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'CopyFormatting', 'RemoveFormat' ] },
                 { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'CreateDiv', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
                 { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-                { name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
-                { name: 'styles', items: [ 'Styles', 'Format', 'FontSize' ] },
                 { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                { name: 'tools', items: [ 'ShowBlocks' ] }
+                { name: 'tools', items: [ 'ShowBlocks' ] },
+                { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+                { name: 'styles', items: [ 'Styles', 'Format', 'FontSize' ] }
             ];
             config.toolbarCanCollapse = false;
             config.toolbarStartupExpanded = true;
@@ -213,4 +213,22 @@ function CapsuleCmsObjectEditor (container)
         return config;
     };
     $('textarea' + prefix + 'ckeditor').ckeditor(editor_config());
+
+    body.on("click", function ()
+    {
+        var docElm = document.documentElement;
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+        }
+        else if (docElm.msRequestFullscreen) {
+            docElm.msRequestFullscreen();
+        }
+        else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen();
+        }
+        else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen();
+        }
+    });
+
 }
