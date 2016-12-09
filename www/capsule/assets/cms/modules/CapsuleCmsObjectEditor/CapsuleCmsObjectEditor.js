@@ -214,21 +214,4 @@ function CapsuleCmsObjectEditor (container)
     };
     $('textarea' + prefix + 'ckeditor').ckeditor(editor_config());
 
-    body.on("click", function ()
-    {
-        var docElm = document.documentElement;
-        if (docElm.requestFullscreen) {
-            docElm.requestFullscreen();
-        }
-        else if (docElm.msRequestFullscreen) {
-            docElm.msRequestFullscreen();
-        }
-        else if (docElm.mozRequestFullScreen) {
-            docElm.mozRequestFullScreen();
-        }
-        else if (docElm.webkitRequestFullScreen) {
-            docElm.webkitRequestFullScreen();
-        }
-    });
-
 }

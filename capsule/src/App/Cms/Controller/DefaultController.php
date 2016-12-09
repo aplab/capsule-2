@@ -210,5 +210,10 @@ class DefaultController extends AbstractController
     {
         $menu = new ActionMenu('capsule-cms-action-menu');
         $this->app->registry->actionMenu = $menu;
+
+        $menu->newMenuItem(
+            'Toggle fullscreen',
+            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCms.collapseActionMenu();screenfull.toggle();')
+        );
     }
 }
