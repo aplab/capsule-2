@@ -24,4 +24,7 @@ namespace App\Cms\Ui\DataModel\ObjectEditor\Element;
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
-interface IElement extends \SplObserver {}
+interface IElement extends \SplObserver
+{
+    public function __toString();
+}

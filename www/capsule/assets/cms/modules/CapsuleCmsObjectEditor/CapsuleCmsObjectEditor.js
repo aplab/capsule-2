@@ -6,13 +6,11 @@
  */
 function CapsuleCmsObjectEditor (container)
 {
-    CKEDITOR.basePath = 'http://www.capsule2.aplab.ru:8080/capsule/vendor/bower_components/ckeditor/';
-    CKEDITOR.plugins.basePath = 'http://www.capsule2.aplab.ru:8080/capsule/vendor/bower_components/ckeditor/plugins/';
     /**
      * static init
      *
      * @param self o same object
-     * @param c same function
+     * @param CapsuleCmsObjectEditor c
      */
     (function(o, c) {
         if (undefined === c.instance) {
@@ -128,7 +126,9 @@ function CapsuleCmsObjectEditor (container)
         var height = body.height();
         var width = body.width();
         for (var o in CKEDITOR.instances) {
-            CKEDITOR.instances[o].resize(width, height);
+            if (CKEDITOR.instances.hasOwnProperty(o)) {
+                CKEDITOR.instances[o].resize(width, height);
+            }
         }
     };
 
@@ -212,6 +212,18 @@ function CapsuleCmsObjectEditor (container)
         }
         return config;
     };
+
+    this.save = function()
+    {
+        body.children('form').eq(0).submit();
+    }
+
     $('textarea' + prefix + 'ckeditor').ckeditor(editor_config());
 
+    /**
+     * workaround function to clear autocomplete password
+     */
+    setTimeout(function () {
+        body.find(':password').val('');
+    }, 10);
 }

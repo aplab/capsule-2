@@ -158,6 +158,12 @@ abstract class ReferenceController extends DefaultController
 //        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndAdd()';
 //        $button->url = null;
 
+        $toolbar = $this->app->registry->actionMenu;
+        $toolbar->newMenuItem(
+            'Save',
+            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsObjectEditor.getInstance().save()')
+        );
+
         $c = $this->moduleClass;
         $config = $c::config();
         $title = $config->get('title') ?: untitled;

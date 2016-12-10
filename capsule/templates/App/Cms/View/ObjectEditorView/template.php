@@ -27,11 +27,25 @@ $prefix = 'capsule-cms-object-editor';
         <div class="<?=$prefix?>-arrow-right glyphicon glyphicon-menu-right"></div>
     </div>
     <div class="<?=$prefix?>-body">
+        <form method="post" id="<?=$this->instance->instanceName?>-form">
         <?php foreach ($this->instance->groups as $group) : ?>
             <div class="<?=$prefix?>-panel">
-                <?php #\Capsule\Tools\Tools::dump($group) ?>
-                <textarea name="test" class="<?=$prefix?>-ckeditor"></textarea>
+                <?php if ($group->ckeditor) : ?>
+                    <?php foreach ($group as $element) : ?>
+                        <?=$element?>
+<!--                        <textarea name="test" class="--><?//=$prefix?><!---ckeditor"></textarea>-->
+                    <?php endforeach ?>
+                <?php else : ?>
+                <div class="<?=$prefix?>-elements-wrapper">
+                    <div class="<?=$prefix?>-elements">
+                    <?php foreach ($group as $element) : ?>
+                        <?=$element?>
+                    <?php endforeach ?>
+                    </div>
+                </div>
+                <?php endif ?>
             </div>
         <?php endforeach ?>
+        </form>
     </div>
 </div>

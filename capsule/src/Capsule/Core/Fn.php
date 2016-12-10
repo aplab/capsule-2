@@ -29,6 +29,8 @@ class Fn
      * @param string $piece_2
      * ...
      * @param string $piece_n
+     *
+     * @return string
      */
     public static function concat()
     {
@@ -308,7 +310,6 @@ class Fn
      */
     public static function split_dot($val)
     {
-        $e = new Exceptionizer();
         settype($val, 'string');
         $tmp = explode('.', $val);
         array_walk($tmp, function (&$v, $k) {

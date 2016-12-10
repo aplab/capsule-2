@@ -234,4 +234,15 @@ $active-color: #1ca8dd;
     }
   }
   // end of custom checkbox
+  &-value-label {
+    height: 34px;
+    padding-top: 7px;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  &-value-label-undefined:after {
+    content: "undefined";
+  }
 }

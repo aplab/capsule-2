@@ -24,7 +24,7 @@ $(document).ready(function ()
                 CapsuleCms.unpinSidebar();
             }
         }
-    }
+    };
 
     /**
      * Expand sidebar handler
@@ -80,7 +80,7 @@ $(document).ready(function ()
     /**
      * Set pin sidebar state
      *
-     * @param boolean value
+     * @param value
      */
     CapsuleCms.setSidebarPin = function (value)
     {
@@ -107,7 +107,7 @@ $(document).ready(function ()
     /**
      * Set pin sidebar state
      *
-     * @param boolean value
+     * @param value
      */
     CapsuleCms.setSidebarOpen = function (value)
     {
@@ -189,22 +189,22 @@ $(document).ready(function ()
         CapsuleCms.collapseActionMenu();
     };
 
-    $('#capsule-cms-close-sidebar').click(function (event)
+    $('#capsule-cms-close-sidebar').click(function ()
     {
         CapsuleCms.collapseSidebar();
     });
 
-    $('#capsule-cms-open-sidebar').click(function (event)
+    $('#capsule-cms-open-sidebar').click(function ()
     {
         CapsuleCms.expandSidebar();
     });
 
-    $('#capsule-cms-toggle-pin-sidebar').on('click', function (event)
+    $('#capsule-cms-toggle-pin-sidebar').on('click', function ()
     {
         CapsuleCms.togglePinSidebar();
     });
 
-    $('#capsule-cms-open-actions').on('click', function (event)
+    $('#capsule-cms-open-actions').on('click', function ()
     {
         CapsuleCms.expandActionMenu();
     });
