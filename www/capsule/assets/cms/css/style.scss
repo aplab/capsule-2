@@ -51,6 +51,8 @@ body {
     position: absolute;
     left: 0;
     top: 0;
+    background: #1a1c22;
+    z-index: 100;
   }
   > #capsule-cms-open-actions {
     line-height: $nav-height;
@@ -61,6 +63,8 @@ body {
     position: absolute;
     right: 0;
     top: 0;
+    background: #1a1c22;
+    z-index: 200;
   }
 }
 /**
@@ -95,6 +99,7 @@ body {
       width: 50px;
       text-align: center;
       cursor: pointer;
+      background: #1a1c22;
     }
   }
 }
