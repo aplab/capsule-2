@@ -97,7 +97,7 @@ function CapsuleCmsActionMenu(data, append_to)
                     span.text(item.caption);
                     content.append(span);
                     if (item.action.type === 'callback') {
-                        (function (v)
+                        (function (v)//isolation
                         {
                             span.click(function ()
                             {
