@@ -17,8 +17,10 @@ use \Capsule\Tools\Assets\Js as j;
 $assets = new a;
 $assets
     ->add(new j('/capsule/vendor/bower_components/jquery/dist/jquery.min.js'))
+    ->add(new j('/capsule/vendor/bower_components/moment/min/moment.min.js'))
     ->add(new j('/capsule/vendor/bower_components/jquery-mousewheel/jquery.mousewheel.min.js'))
-    ->add(new j('/capsule/vendor/bower_components/bootstrap/dist/js/bootstrap.js'))
+    ->add(new j('/capsule/vendor/bower_components/bootstrap/dist/js/bootstrap.min.js'))
+    ->add(new j('/capsule/vendor/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'))
     ->add(new j('/capsule/vendor/bower_components/jquery-ui/jquery-ui.min.js'))
     ->add(new j('/capsule/vendor/bower_components/js-cookie/src/js.cookie.js'))
     ->add(new j('/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.js', true))

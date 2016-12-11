@@ -252,6 +252,15 @@ function CapsuleCmsObjectEditor(container) {
 
     $('textarea' + prefix + 'ckeditor').ckeditor(editor_config());
 
+    $(prefix + 'datetime').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm:ss',
+        ignoreReadonly: true,
+        allowInputToggle: true,
+        focusOnShow: true,
+        showClose: true,
+        showClear: true
+    });
+
     /**
      * workaround function to clear autocomplete password
      */

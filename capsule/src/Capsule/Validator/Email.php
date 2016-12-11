@@ -18,7 +18,7 @@
 
 namespace Capsule\Validator;
 
-use Capsule\Common\String;
+use Capsule\Common\Utf8String;
 /**
  * Email.php
  *
@@ -52,7 +52,7 @@ class Email extends Validator
             $this->message(self::INVALID_TYPE);
             return $this->isValid = false;
         }
-        $this->value = String::trim($this->value);
+        $this->value = Utf8String::trim($this->value);
         if (!$this->value) {
             if ($this->allowEmpty) {
                 $this->value = '';

@@ -248,4 +248,7 @@ $active-color: #1ca8dd;
   &-value-label-nobody:after {
     content: "nobody";
   }
+  &-datetime input {
+    background-color: #fff!important;
+  }
 }

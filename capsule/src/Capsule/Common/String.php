@@ -24,7 +24,7 @@ namespace Capsule\Common;
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
-class String
+class Utf8String
 {
     /**
      * Внутренняя кодировка для mbstring

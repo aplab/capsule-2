@@ -194,7 +194,7 @@ class Filter
         }
         settype($value, 'string');
         $string = $charlist ? trim($value, $charlist) : trim($value);
-        return String::toLowerCase($string) ?: $fail;
+        return Utf8String::toLowerCase($string) ?: $fail;
     }
     
     /**
@@ -212,7 +212,7 @@ class Filter
         }
         settype($value, 'string');
         $string = $charlist ? trim($value, $charlist) : trim($value);
-        return String::toUpperCase($string) ?: $fail;
+        return Utf8String::toUpperCase($string) ?: $fail;
     }
     
     public static function path($path, $backslash = false) {

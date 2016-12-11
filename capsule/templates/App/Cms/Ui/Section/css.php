@@ -19,6 +19,7 @@ $assets
     ->add(new c('/capsule/vendor/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css'))
     ->add(new c('/capsule/vendor/bower_components/bootstrap/dist/css/bootstrap.min.css'))
     ->add(new c('/capsule/vendor/bower_components/bootstrap/dist/css/bootstrap-theme.min.css'))
+    ->add(new c('/capsule/vendor/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'))
     ->add(new c('/capsule/vendor/bower_components/font-awesome/css/font-awesome.min.css'))
     ->add(new c('/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.css', true))
     ->add(new c('/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.css', true))
