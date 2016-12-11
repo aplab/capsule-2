@@ -18,6 +18,8 @@
 
 namespace App\Cms\Controller;
 
+use App\Cms\Ui\ActionMenu\Callback;
+use App\Cms\Ui\ActionMenu\Url;
 use App\Cms\Ui\DataModel\DataGrid\DataGrid;
 use App\Cms\Ui\DataModel\ObjectEditor\ObjectEditor;
 use App\Cms\Ui\SectionManager;
@@ -27,14 +29,10 @@ use App\Cms\View\MainMenuView;
 use App\Cms\View\ObjectEditorView;
 use Capsule\Component\DataStruct\ReturnValue;
 use Capsule\Component\Superglobals\Superglobals;
-use Capsule\Tools\Tools;
-use Capsule\Ui\Toolbar\Button;
 use Capsule\Component\Url\Redirect;
 use Capsule\I18n\I18n;
-use Capsule\Ui\ObjectEditor\Oe;
 use Capsule\Core\Fn;
 use Capsule\DataModel\DataModel;
-use Capsule\User\Env\Env;
 
 /**
  * ReferenceController.php
@@ -102,10 +100,10 @@ abstract class ReferenceController extends DefaultController
         $p = $this->pagination();
         $filter = $this->app->urlFilter;
         $toolbar = $this->app->registry->actionMenu;
-        $toolbar->newMenuItem('New', new \App\Cms\Ui\ActionMenu\Url($filter($this->mod, 'add')));
+        $toolbar->newMenuItem('New', new Url($filter($this->mod, 'add')));
         $toolbar->newMenuItem(
             'Delete selected',
-            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsDataGrid.getInstance().del()')
+            new Callback('CapsuleCmsDataGrid.getInstance().del()')
         );
         $c = $this->moduleClass;
         $config = $c::config();
@@ -130,39 +128,20 @@ abstract class ReferenceController extends DefaultController
     protected function add()
     {
         $filter = $this->app->urlFilter;
-        $toolbar = $this->app->registry->toolbar;
-
-//        $button = new Button;
-//        $toolbar->add($button, 'save');
-//        $button->caption = 'Save';
-//        $button->icon = $this->app->config->icons->cms . '/disk.png';
-//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").save()';
-//
-//        $button = clone $button;
-//        $toolbar->add($button, 'save and exit');
-//        $button->caption = 'Save and exit';
-//        $button->icon = $this->app->config->icons->cms . '/disk_go.png';
-//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndExit()';
-//
-//        $button = clone $button;
-//        $toolbar->add($button, 'exit');
-//        $button->caption = 'Exit without saving';
-//        $button->url = $filter($this->mod);
-//        $button->icon = $this->app->config->icons->cms . '/arrow-return-180.png';
-//        $button->action = null;
-//
-//        $button = clone $button;
-//        $toolbar->add($button, 'save and add new');
-//        $button->caption = 'Save and add new';
-//        $button->icon = $this->app->config->icons->cms . '/disk--plus.png';
-//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndAdd()';
-//        $button->url = null;
-
         $toolbar = $this->app->registry->actionMenu;
         $toolbar->newMenuItem(
             'Save',
             new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsObjectEditor.getInstance().save()')
         );
+        $toolbar->newMenuItem(
+            'Save and exit',
+            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsObjectEditor.getInstance().saveAndExit()')
+        );
+        $toolbar->newMenuItem(
+            'Save and add new',
+            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsObjectEditor.getInstance().saveAndAdd()')
+        );
+        $toolbar->newMenuItem('Exit without saving', new \App\Cms\Ui\ActionMenu\Url($filter($this->mod)));
 
         $c = $this->moduleClass;
         $config = $c::config();
@@ -176,14 +155,15 @@ abstract class ReferenceController extends DefaultController
             SectionManager::getInstance()->content->append(new ObjectEditorView($oe));
             return;
         }
-//        if (isset(Post::getInstance()->{self::SAVE_AND_EXIT})) {
-//            Redirect::go($filter($this->mod));
-//            return;
-//        }
-//        if (isset(Post::getInstance()->{self::SAVE_AND_ADD})) {
-//            Redirect::go($filter($this->mod, 'add'));
-//            return;
-//        }
+        $post = (new Superglobals())->post;
+        if (isset($post->{self::SAVE_AND_EXIT})) {
+            Redirect::go($filter($this->mod));
+            return;
+        }
+        if (isset($post->{self::SAVE_AND_ADD})) {
+            Redirect::go($filter($this->mod, 'add'));
+            return;
+        }
         Redirect::go($filter($this->mod, 'edit', $tmp->item->id));
     }
 
@@ -246,45 +226,22 @@ abstract class ReferenceController extends DefaultController
             Redirect::go($filter($this->mod));
             return;
         }
-//        $toolbar = $this->app->registry->toolbar;
-//
-//        $button = new Button;
-//        $toolbar->add($button, 'save');
-//        $button->caption = 'Save';
-//        $button->icon = $this->app->config->icons->cms . '/disk.png';
-//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").save()';
-//
-//        $button = clone $button;
-//        $toolbar->add($button, 'save and exit');
-//        $button->caption = 'Save and exit';
-//        $button->icon = $this->app->config->icons->cms . '/disk_go.png';
-//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndExit()';
-//
-//        $button = clone $button;
-//        $toolbar->add($button, 'exit');
-//        $button->caption = 'Exit without saving';
-//        $button->url = $filter($this->mod);
-//        $button->icon = $this->app->config->icons->cms . '/arrow-return-180.png';
-//        $button->action = null;
-//
-//        $button = clone $button;
-//        $toolbar->add($button, 'save and add new');
-//        $button->caption = 'Save and add new';
-//        $button->icon = $this->app->config->icons->cms . '/disk--plus.png';
-//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndAdd()';
-//        $button->url = null;
-//
-//        $button = clone $button;
-//        $toolbar->add($button, 'save as new');
-//        $button->caption = 'Save as new';
-//        $button->icon = $this->app->config->icons->cms . '/documents.png';
-//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAsNew()';
-//        $button->url = null;
-
         $toolbar = $this->app->registry->actionMenu;
         $toolbar->newMenuItem(
             'Save',
             new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsObjectEditor.getInstance().save()')
+        );
+        $toolbar->newMenuItem(
+            'Save and exit',
+            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsObjectEditor.getInstance().saveAndExit()')
+        );
+        $toolbar->newMenuItem(
+            'Save and add new',
+            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsObjectEditor.getInstance().saveAndAdd()')
+        );
+        $toolbar->newMenuItem(
+            'Save as new',
+            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsObjectEditor.getInstance().saveAsNew()')
         );
         $toolbar->newMenuItem('Exit without saving', new \App\Cms\Ui\ActionMenu\Url($filter($this->mod)));
 

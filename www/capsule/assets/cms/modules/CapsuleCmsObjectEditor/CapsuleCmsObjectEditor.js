@@ -4,15 +4,14 @@
 /**
  * Created by polyanin on 17.11.2016.
  */
-function CapsuleCmsObjectEditor (container)
-{
+function CapsuleCmsObjectEditor(container) {
     /**
      * static init
      *
      * @param self o same object
      * @param CapsuleCmsObjectEditor c
      */
-    (function(o, c) {
+    (function (o, c) {
         if (undefined === c.instance) {
             c.instance = o;
         } else {
@@ -22,8 +21,7 @@ function CapsuleCmsObjectEditor (container)
             }
         }
         if (undefined === c.getInstance) {
-            c.getInstance = function()
-            {
+            c.getInstance = function () {
                 return c.instance;
             };
         }
@@ -43,8 +41,7 @@ function CapsuleCmsObjectEditor (container)
     var tabs_scroll = [];
     var tabs_width_sum = 0;
 
-    var init = function ()
-    {
+    var init = function () {
         tabs.find(prefix + 'tab').each(function (i, o) {
             tabs_width[i] = $(o).outerWidth();
             tabs_scroll[i] = tabs_width_sum;
@@ -59,8 +56,7 @@ function CapsuleCmsObjectEditor (container)
         });
     };
 
-    var initWidth = function ()
-    {
+    var initWidth = function () {
         if (head.width() < tabs_width_sum) {
             arrow_left.show();
             arrow_right.show();
@@ -78,13 +74,11 @@ function CapsuleCmsObjectEditor (container)
         }
     };
 
-    $(window).resize(function()
-    {
+    $(window).resize(function () {
         initWidth();
     });
 
-    tabs.find(prefix + 'tab').click(function ()
-    {
+    tabs.find(prefix + 'tab').click(function () {
         var all = tabs.find(prefix + 'tab');
         $(this).addClass(class_prefix + 'tab-active');
         all.not(this).removeClass(class_prefix + 'tab-active');
@@ -107,7 +101,7 @@ function CapsuleCmsObjectEditor (container)
     initWidth();
 
 
-    CKEDITOR.editorConfig = function( config ) {
+    CKEDITOR.editorConfig = function (config) {
         // Define changes to default configuration here. For example:
         // config.language = 'fr';
         config.uiColor = 'f2f1f0';
@@ -121,8 +115,7 @@ function CapsuleCmsObjectEditor (container)
     /**
      * adjust editor size
      */
-    var fitEditors = function()
-    {
+    var fitEditors = function () {
         var height = body.height();
         var width = body.width();
         for (var o in CKEDITOR.instances) {
@@ -133,35 +126,30 @@ function CapsuleCmsObjectEditor (container)
     };
 
     if ('undefined' != typeof(CKEDITOR)) {
-        CKEDITOR.on('instanceReady', function( ev )
-        {
+        CKEDITOR.on('instanceReady', function (ev) {
             var editor = ev.editor;
             var height = body.height();
             var width = body.width();
             editor.resize(width, height);
-            editor.on('afterCommandExec', function()
-            {
+            editor.on('afterCommandExec', function () {
                 var width = body.width();
                 var height = body.height();
                 editor.resize(width, height);
-            } );
-            $(window).resize(function()
-            {
+            });
+            $(window).resize(function () {
                 fitEditors();
             });
         });
     }
 
-    var is_small = function ()
-    {
-        var width = $( window ).width();
-        var height = $( window ).height();
+    var is_small = function () {
+        var width = $(window).width();
+        var height = $(window).height();
         var threshold = 768;
         return width <= threshold && height <= threshold;
     };
 
-    var editor_config = function()
-    {
+    var editor_config = function () {
         var config = {
             uiColor: '#ffffff',
             removePlugins: 'about,maximize',
@@ -179,13 +167,16 @@ function CapsuleCmsObjectEditor (container)
         if (is_small()) {
             // The toolbar groups arrangement, optimized for a single toolbar row.
             config.toolbar = [
-                { name: 'document', items: [ 'Source'] },
-                { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
-                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript' ] },
-                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
-                { name: 'links', items: [ 'Link', 'Unlink' ] },
-                { name: 'insert', items: [ 'Image', 'Table', 'Smiley', 'SpecialChar' ] },
-                { name: 'colors', items: [ 'TextColor', 'BGColor' ] }
+                {name: 'document', items: ['Source']},
+                {name: 'clipboard', items: ['Undo', 'Redo']},
+                {name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript']},
+                {
+                    name: 'paragraph',
+                    items: ['NumberedList', 'BulletedList', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+                },
+                {name: 'links', items: ['Link', 'Unlink']},
+                {name: 'insert', items: ['Image', 'Table', 'Smiley', 'SpecialChar']},
+                {name: 'colors', items: ['TextColor', 'BGColor']}
             ];
             // The default plugins included in the basic setup define some buttons that
             // are not needed in a basic editor. They are removed here.
@@ -196,16 +187,25 @@ function CapsuleCmsObjectEditor (container)
             config.toolbarCanCollapse = true;
         } else {
             config.toolbar = [
-                { name: 'document', items: [ 'Source' ] },
-                { name: 'clipboard', items: [ 'Paste', 'PasteText', 'PasteFromWord', 'Undo', 'Redo' ] },
-                { name: 'editing', items: [ 'Find', 'Replace',  'SelectAll' ] },
-                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'CopyFormatting', 'RemoveFormat' ] },
-                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'CreateDiv', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
-                { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                { name: 'tools', items: [ 'ShowBlocks' ] },
-                { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
-                { name: 'styles', items: [ 'Styles', 'Format', 'FontSize' ] }
+                {name: 'document', items: ['Source']},
+                {name: 'clipboard', items: ['Paste', 'PasteText', 'PasteFromWord', 'Undo', 'Redo']},
+                {name: 'editing', items: ['Find', 'Replace', 'SelectAll']},
+                {
+                    name: 'basicstyles',
+                    items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'CopyFormatting', 'RemoveFormat']
+                },
+                {
+                    name: 'paragraph',
+                    items: ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'CreateDiv', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+                },
+                {name: 'links', items: ['Link', 'Unlink', 'Anchor']},
+                {name: 'colors', items: ['TextColor', 'BGColor']},
+                {name: 'tools', items: ['ShowBlocks']},
+                {
+                    name: 'insert',
+                    items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']
+                },
+                {name: 'styles', items: ['Styles', 'Format', 'FontSize']}
             ];
             config.toolbarCanCollapse = false;
             config.toolbarStartupExpanded = true;
@@ -213,9 +213,41 @@ function CapsuleCmsObjectEditor (container)
         return config;
     };
 
-    this.save = function()
-    {
+    this.save = function () {
         body.children('form').eq(0).submit();
+    };
+
+    this.saveAndExit = function () {
+        var e = document.createElement('input');
+        $(e).attr({
+            'type': 'hidden',
+            'name': 'saveAndExit',
+            'value': 'Y'
+        });
+        body.children('form').eq(0).append(e);
+        this.save();
+    }
+
+    this.saveAndAdd = function () {
+        var e = document.createElement('input');
+        $(e).attr({
+            'type': 'hidden',
+            'name': 'saveAndAdd',
+            'value': 'Y'
+        });
+        body.children('form').eq(0).append(e);
+        this.save();
+    }
+
+    this.saveAsNew = function () {
+        var e = document.createElement('input');
+        $(e).attr({
+            'type': 'hidden',
+            'name': 'saveAsNew',
+            'value': 'Y'
+        });
+        body.children('form').eq(0).append(e);
+        this.save();
     }
 
     $('textarea' + prefix + 'ckeditor').ckeditor(editor_config());
