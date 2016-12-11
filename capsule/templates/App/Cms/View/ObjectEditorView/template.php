@@ -33,7 +33,6 @@ $prefix = 'capsule-cms-object-editor';
                 <?php if ($group->ckeditor) : ?>
                     <?php foreach ($group as $element) : ?>
                         <?=$element?>
-<!--                        <textarea name="test" class="--><?//=$prefix?><!---ckeditor"></textarea>-->
                     <?php endforeach ?>
                 <?php else : ?>
                 <div class="<?=$prefix?>-elements-wrapper">
