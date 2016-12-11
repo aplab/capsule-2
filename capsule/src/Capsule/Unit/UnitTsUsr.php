@@ -79,11 +79,11 @@ class UnitTsUsr extends UnitUsr
         }
         if (empty($values)) {
             $sql = 'INSERT INTO ' . $db->bq($table) . '(`' . self::CREATED_BY . '`)
-                    VALUES(' . $db->qt((int)Auth::currentUserId()) . ')';
+                    VALUES(' . $db->qt((int)Auth::getInstance()->userId()) . ')';
         } else {
             $sql = 'INSERT INTO ' . $db->bq($table) . ' (' .
                 join(', ', $db->bq(array_keys($values))) . ', `' . self::CREATED_BY . '`)
-                    VALUES (' . join(', ', $values) . ', ' . $db->qt((int)Auth::currentUserId()) . ')';
+                    VALUES (' . join(', ', $values) . ', ' . $db->qt((int)Auth::getInstance()->userId()) . ')';
         }
         $db->query($sql);
         if ($db->errno) {
@@ -140,7 +140,7 @@ class UnitTsUsr extends UnitUsr
         }
         $sql = 'UPDATE ' . $db->bq($table) . '
                 SET ' . join(', ', $fragments) . ',
-                ' . $db->bq(self::LAST_MODIFIED_BY) . ' = ' . $db->qt((int)Auth::currentUserId()) . '
+                ' . $db->bq(self::LAST_MODIFIED_BY) . ' = ' . $db->qt((int)Auth::getInstance()->userId()) . '
                 WHERE `' . static::$key . '` = ' . $db->qt($this->id);
         $db->query($sql);
         if ($db->errno) {

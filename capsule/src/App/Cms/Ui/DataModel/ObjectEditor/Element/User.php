@@ -19,6 +19,7 @@
 namespace App\Cms\Ui\DataModel\ObjectEditor\Element;
 
 use Capsule\User\User as u;
+
 /**
  * User.php
  *
@@ -28,15 +29,17 @@ use Capsule\User\User as u;
 class User extends Element
 {
     protected static $cache;
-    
-    protected static function users() {
+
+    protected static function users()
+    {
         if (!self::$cache) {
             self::$cache = u::all();
         }
         return self::$cache;
     }
-    
-    public function getUser($id) {
+
+    public function getUser($id)
+    {
         $users = self::users();
         return array_key_exists($id, $users) ? $users[$id] : null;
     }

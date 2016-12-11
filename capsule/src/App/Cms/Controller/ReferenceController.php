@@ -246,47 +246,55 @@ abstract class ReferenceController extends DefaultController
             Redirect::go($filter($this->mod));
             return;
         }
-        $toolbar = $this->app->registry->toolbar;
+//        $toolbar = $this->app->registry->toolbar;
+//
+//        $button = new Button;
+//        $toolbar->add($button, 'save');
+//        $button->caption = 'Save';
+//        $button->icon = $this->app->config->icons->cms . '/disk.png';
+//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").save()';
+//
+//        $button = clone $button;
+//        $toolbar->add($button, 'save and exit');
+//        $button->caption = 'Save and exit';
+//        $button->icon = $this->app->config->icons->cms . '/disk_go.png';
+//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndExit()';
+//
+//        $button = clone $button;
+//        $toolbar->add($button, 'exit');
+//        $button->caption = 'Exit without saving';
+//        $button->url = $filter($this->mod);
+//        $button->icon = $this->app->config->icons->cms . '/arrow-return-180.png';
+//        $button->action = null;
+//
+//        $button = clone $button;
+//        $toolbar->add($button, 'save and add new');
+//        $button->caption = 'Save and add new';
+//        $button->icon = $this->app->config->icons->cms . '/disk--plus.png';
+//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndAdd()';
+//        $button->url = null;
+//
+//        $button = clone $button;
+//        $toolbar->add($button, 'save as new');
+//        $button->caption = 'Save as new';
+//        $button->icon = $this->app->config->icons->cms . '/documents.png';
+//        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAsNew()';
+//        $button->url = null;
 
-        $button = new Button;
-        $toolbar->add($button, 'save');
-        $button->caption = 'Save';
-        $button->icon = $this->app->config->icons->cms . '/disk.png';
-        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").save()';
-
-        $button = clone $button;
-        $toolbar->add($button, 'save and exit');
-        $button->caption = 'Save and exit';
-        $button->icon = $this->app->config->icons->cms . '/disk_go.png';
-        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndExit()';
-
-        $button = clone $button;
-        $toolbar->add($button, 'exit');
-        $button->caption = 'Exit without saving';
-        $button->url = $filter($this->mod);
-        $button->icon = $this->app->config->icons->cms . '/arrow-return-180.png';
-        $button->action = null;
-
-        $button = clone $button;
-        $toolbar->add($button, 'save and add new');
-        $button->caption = 'Save and add new';
-        $button->icon = $this->app->config->icons->cms . '/disk--plus.png';
-        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAndAdd()';
-        $button->url = null;
-
-        $button = clone $button;
-        $toolbar->add($button, 'save as new');
-        $button->caption = 'Save as new';
-        $button->icon = $this->app->config->icons->cms . '/documents.png';
-        $button->action = 'CapsuleUiObjectEditor.getInstance("object_editor").saveAsNew()';
-        $button->url = null;
+        $toolbar = $this->app->registry->actionMenu;
+        $toolbar->newMenuItem(
+            'Save',
+            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCmsObjectEditor.getInstance().save()')
+        );
+        $toolbar->newMenuItem('Exit without saving', new \App\Cms\Ui\ActionMenu\Url($filter($this->mod)));
 
         $c = $this->moduleClass;
         $config = $c::config();
         $title = $config->get('title') ?: untitled;
         $this->ui->title->prepend($title . '::Edit');
 
-        if (isset(Post::getInstance()->{self::SAVE_AS_NEW})) {
+        $post = (new Superglobals())->post;
+        if (isset($post->{self::SAVE_AS_NEW})) {
             $tmp = $this->copyItem($item);
             if (!$tmp->status) {
                 Redirect::go($filter($this->mod, 'edit', $tmp->item->id));
@@ -295,20 +303,20 @@ abstract class ReferenceController extends DefaultController
         }
         $tmp = $this->updateItem($item);
         if ($tmp->status) {
-            $oe = new Oe($item, 'object_editor');
-            $this->ui->workplace->append(new View($oe));
+            $oe = new ObjectEditor($item, 'object_editor');
+            SectionManager::getInstance()->content->append(new ObjectEditorView($oe));
             return;
         }
-        if (isset(Post::getInstance()->{self::SAVE_AND_EXIT})) {
+        if (isset($post->{self::SAVE_AND_EXIT})) {
             Redirect::go($filter($this->mod));
             return;
         }
-        if (isset(Post::getInstance()->{self::SAVE_AND_ADD})) {
+        if (isset($post->{self::SAVE_AND_ADD})) {
             Redirect::go($filter($this->mod, 'add'));
             return;
         }
-        $oe = new Oe($item, 'object_editor');
-        $this->ui->workplace->append(new View($oe));
+        $oe = new ObjectEditor($item, 'object_editor');
+        SectionManager::getInstance()->content->append(new ObjectEditorView($oe));
     }
 
     /**
@@ -331,7 +339,7 @@ abstract class ReferenceController extends DefaultController
     {
         $config = $item::config();
         $properties = $config->properties;
-        $post = Post::getInstance();
+        $post = (new Superglobals())->post;
         $ret = new ReturnValue;
         $ret->item = $item;
         foreach ($properties as $name => $property) {

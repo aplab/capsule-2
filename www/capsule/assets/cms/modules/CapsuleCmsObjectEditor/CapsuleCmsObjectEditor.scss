@@ -245,4 +245,7 @@ $active-color: #1ca8dd;
   &-value-label-undefined:after {
     content: "undefined";
   }
+  &-value-label-nobody:after {
+    content: "nobody";
+  }
 }
