@@ -74,7 +74,7 @@ abstract class Cell implements ICell
             return $this;
         }
         if (array_key_exists($name, $this->data)) {
-            $msg = 'Readonly property';
+            $msg = 'Readonly property: ' . $name;
             throw new \RuntimeException($msg);
         }
         $this->data[$name] = $value;
@@ -89,6 +89,11 @@ abstract class Cell implements ICell
     {
         $this->data[$name] = $item;
         $this->data['val'] = $item->get($this->col->property->name);
+    }
+
+    protected function setId($value, $name)
+    {
+        $this->data[$name] = $value;
     }
 
     /**

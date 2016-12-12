@@ -191,6 +191,9 @@ $border-color: #ddd;
         -ms-text-overflow: ellipsis;
         text-overflow: ellipsis;
         min-height: 37px;
+        a {
+          text-decoration: underline;
+        }
       }
     }
     > div:hover {
