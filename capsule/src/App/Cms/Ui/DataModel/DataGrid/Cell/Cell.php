@@ -19,6 +19,10 @@
 namespace App\Cms\Ui\DataModel\DataGrid\Cell;
 
 use App\Cms\Ui\DataModel\DataGrid\Col;
+use Capsule\Capsule;
+use Capsule\Component\Path\Path;
+use Capsule\Core\Fn;
+use Capsule\Core\ToStringExceptionizer;
 use Capsule\DataModel\DataModel;
 
 /**
@@ -29,6 +33,11 @@ use Capsule\DataModel\DataModel;
  */
 abstract class Cell implements ICell
 {
+    /**
+     * @var Path[]
+     */
+    protected static $template = [];
+
     /**
      * @var array
      */
@@ -80,5 +89,38 @@ abstract class Cell implements ICell
     {
         $this->data[$name] = $item;
         $this->data['val'] = $item->get($this->col->property->name);
+    }
+
+    /**
+     * @return Path
+     */
+    protected static function template()
+    {
+        $class = get_called_class();
+        if (!array_key_exists($class, self::$template)) {
+            $classname = Fn::get_classname($class);
+            self::$template[$class] = new Path(
+                Capsule::getInstance()->systemRoot,
+                Capsule::DIR_TEMPLATES,
+                __NAMESPACE__,
+                strtolower($classname) . '.php'
+            );
+        }
+        return self::$template[$class];
+    }
+
+    /**
+     * @return null|string
+     */
+    public function __toString()
+    {
+        try {
+            ob_start();
+            include static::template();
+            return ob_get_clean();
+        } catch (\Exception $e) {
+            set_error_handler(['\Capsule\Core\ToStringExceptionizer', 'errorHandler']);
+            return ToStringExceptionizer::throwException($e);
+        }
     }
 }

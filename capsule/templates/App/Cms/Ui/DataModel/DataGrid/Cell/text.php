@@ -1,0 +1,2 @@
+<?php use Capsule\Component\Utf8String ?>
+<div title="<?=Utf8String::htmlspecialchars($this->val)?>" class="cell-text w<?=$this->col->width?>"><div><?=Utf8String::htmlspecialchars($this->val)?></div></div>

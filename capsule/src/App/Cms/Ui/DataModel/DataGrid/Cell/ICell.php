@@ -33,4 +33,6 @@ interface ICell
      * @param Col $col
      */
     public function __construct(Col $col);
+
+    public function __toString();
 }

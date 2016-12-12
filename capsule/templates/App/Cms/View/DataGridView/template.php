@@ -60,10 +60,8 @@ use Capsule\Component\Utf8String as str;
                         ?>
                         <div class="wExt" data-pk="<?=str::hsc($data_pk)?>">
                             <?php foreach ($columns as $column) : ?>
-                                <div class="w<?=$column->column->width?>"
-                                     title="<?= $item->get($column->property->name) ?>">
-                                    <?= $item->get($column->property->name) ?>
-                                </div>
+                                <?php $column->cell->item = $item ?>
+                                <?=$column->cell?>
                             <?php endforeach ?>
                         </div>
                     <?php endforeach ?>

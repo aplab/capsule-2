@@ -44,14 +44,16 @@ class Col
      * @param Property $property
      * @param Config $config
      * @param Column $column
+     * @param DataGrid $data_grid
      */
-    public function __construct(Property $property, Config $config, Column $column)
+    public function __construct(Property $property, Config $config, Column $column, DataGrid $data_grid)
     {
         $this->data['property'] = $property;
         $this->data['config'] = $config;
         $this->data['column'] = $column;
         $this->data['name'] = $property->name;
         $this->data['type'] = $column->get('type');
+        $this->data['container'] = $data_grid;
         if (!$this->data['type']){
             $this->data['type'] = static::DEFAULT_CELL_TYPE;
         }

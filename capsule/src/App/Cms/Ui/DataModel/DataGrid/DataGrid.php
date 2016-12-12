@@ -221,7 +221,8 @@ class DataGrid
             $this->data['columns'][] = new Col(
                 $this->config->properties->{$column->property},
                 $this->config,
-                $column
+                $column,
+                $this
             );
         }
     }

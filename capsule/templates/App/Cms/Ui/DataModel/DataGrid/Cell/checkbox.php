@@ -1,0 +1,1 @@
+<div title="<?=$cell->val?>" class="cell-checkbox w<?=$cell->col->width?>"><div><input name="Checkbox" type="checkbox" value="<?=$cell->val?>"></div></div>
