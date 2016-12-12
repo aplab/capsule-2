@@ -190,6 +190,7 @@ $border-color: #ddd;
         white-space: nowrap;
         -ms-text-overflow: ellipsis;
         text-overflow: ellipsis;
+        min-height: 37px;
       }
     }
     > div:hover {

@@ -187,9 +187,11 @@ class Db extends mysqli
                     $break = true;
                 }
             }
-            $geshi = new \GeSHi($sql, 'sql');
-            $geshi->enable_classes(false);
-            echo $geshi->parse_code();
+            if (self::$debug) {
+                $geshi = new \GeSHi($sql, 'sql');
+                $geshi->enable_classes(false);
+                echo $geshi->parse_code();
+            }
             throw $e;
         }
     }
