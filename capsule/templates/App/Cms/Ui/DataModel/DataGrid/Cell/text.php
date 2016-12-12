@@ -1,2 +1,4 @@
-<?php use Capsule\Component\Utf8String ?>
-<div title="<?=Utf8String::htmlspecialchars($this->val)?>" class="cell-text w<?=$this->col->width?>"><div><?=Utf8String::htmlspecialchars($this->val)?></div></div>
+<div class="w<?=$this->col->column->width?>"
+     title="<?=hsc($this->item->get($this->col->property->name))?>">
+    <?=hsc($this->item->get($this->col->property->name))?>
+</div>

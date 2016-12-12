@@ -240,3 +240,8 @@ function absolute_path($path)
     }
     return join('/', $absolutes);
 }
+
+function hsc($string, $quote_style = null, $charset = null)
+{
+    return \Capsule\Component\Utf8String::htmlspecialchars($string, $quote_style, $charset);
+}

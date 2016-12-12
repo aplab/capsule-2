@@ -1,4 +1,4 @@
-<div class="w<?=$this->col->column->width?> text-center"
-     title="<?=$this->item->get($this->col->property->name)?>">
-    <?=$this->item->get($this->col->property->name)?>
+<div class="w<?=$this->col->column->width?> text-right"
+     title="<?=hsc($this->item->get($this->col->property->name))?>">
+    <?=hsc($this->item->get($this->col->property->name))?>
 </div>

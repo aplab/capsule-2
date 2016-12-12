@@ -13,6 +13,7 @@
 $columns = $this->instance->columns;
 use Capsule\I18n\I18n as _;
 use Capsule\Component\Utf8String as str;
+$cell_id_counter = 0;
 ?>
 <!--data grid-->
 <div class="capsule-cms-data-grid"
@@ -61,6 +62,7 @@ use Capsule\Component\Utf8String as str;
                         <div class="wExt" data-pk="<?=str::hsc($data_pk)?>">
                             <?php foreach ($columns as $column) : ?>
                                 <?php $column->cell->item = $item ?>
+                                <?php $column->cell->id = $cell_id_counter++ ?>
                                 <?=$column->cell?>
                             <?php endforeach ?>
                         </div>
