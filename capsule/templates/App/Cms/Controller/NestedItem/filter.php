@@ -28,15 +28,15 @@ ob_start();
             <div class="modal-body">
                 <form method="post" id="apply-filter-by-container-form"
                       action="<?=$filter($this->mod);?>">
-                    <div class="form-group">
-                        <select class="form-control" name="<?=self::FILTER_BY_CONTAINER?>">
-                            <?php foreach ($variants as $val => $op) : ?>
-                                <option<?=!ctype_digit((string)$val)?' class="bold"':''?>
-                                    <?=($val==$this->filterByContainer)?' selected="selected"':''?>
-                                    value="<?=$val?>"><?=$op['text']?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
+                    
+                    <select class="form-control" name="<?=self::FILTER_BY_CONTAINER?>">
+                        <?php foreach ($variants as $val => $op) : ?>
+                            <option<?=!ctype_digit((string)$val)?' class="bold"':''?>
+                                <?=($val==$this->filterByContainer)?' selected="selected"':''?>
+                                value="<?=$val?>"><?=$op['text']?></option>
+                        <?php endforeach ?>
+                    </select>
+
                 </form>
             </div>
             <div class="modal-footer">
