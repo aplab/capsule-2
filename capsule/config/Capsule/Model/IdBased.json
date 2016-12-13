@@ -14,7 +14,7 @@
             "label": "",
             "column": {
                 "c2": {
-                    "width": 80,
+                    "width": 120,
                     "order": 1000,
                     "type": "Id",
                     "edit": true,

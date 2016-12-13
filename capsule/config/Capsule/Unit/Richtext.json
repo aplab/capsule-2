@@ -1,13 +1,6 @@
 {
     "title": "Rich text",
     "properties": {
-        "id": {
-            "column": {
-                "c1": {
-                    "order": 500
-                }
-            }
-        },
         "text1": {
             "title": "Text 1",
             "description": "",
