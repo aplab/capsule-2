@@ -24,11 +24,13 @@ use App\Cms\Ui\DataModel\DataGrid\DataGrid;
 use App\Cms\Ui\SectionManager;
 use App\Cms\View\DataGridView;
 use Capsule\Component\DataStruct\ReturnValue;
+use Capsule\Component\Path\ComponentTemplatePath;
 use Capsule\Component\Superglobals\Superglobals;
 use Capsule\I18n\I18n;
 use Capsule\Core\Fn;
 use Capsule\DataModel\DataModel;
 use Capsule\Common\Filter;
+use Capsule\Tools\Tools;
 
 /**
  * NestedItem.php
@@ -90,41 +92,32 @@ class NestedItem extends ReferenceController
         $module_class = $this->moduleClass;
         $module_config = $module_class::config();
         $container_class = Fn::cc($module_config->container, Fn::ns($module_class));
-        foreach ($this->filterVariants as &$variant) $variant['text'] = '<strong>' . I18n::_($variant['text']) . '</strong>';
+        foreach ($this->filterVariants as &$variant) {
+            $variant['text'] = '<strong>' . I18n::_($variant['text']) . '</strong>';
+        }
         $variants = array_replace($this->filterVariants, $container_class::optionsDataList());
         $this->filterByContainer();
         $this->filterByContainer = $this->env->get($this->filterByContainerKey());
 
-//        new Dialog(array(
-//            'title' => I18n::_('Filter'),
-//            'instanceName' => 'filter-by-container-window',
-//            'content' => include(new Path(Capsule::getInstance()->systemRoot, $this->app->config->templates, 'NestedItemFilter.php')),
-//            'appendTo' => 'capsule-cms-wrapper',
-//            'hidden' => true,
-//            'minWidth' => 320,
-//            'minHeight' => 240
-//        ));
-
+        $path = new ComponentTemplatePath($this, 'filter');
+        SectionManager::getInstance()->body->append(include $path);
         $toolbar = $this->app->registry->actionMenu;
         $toolbar->newMenuItem('New', new Url($filter($this->mod, 'add')));
         $toolbar->newMenuItem(
             'Delete selected',
             new Callback('CapsuleCmsDataGrid.getInstance().del()')
         );
-
-//        $button = new Button;
-//        $toolbar->add($button);
-//        $button->caption = I18n::_($variants[$this->filterByContainer]['text']);
-//        $button->icon = $this->app->config->icons->cms . '/funnel.png';
-//        $button->action = 'CapsuleUiDialog.getInstance("filter-by-container-window").showCenter()';
-
+        $toolbar->newMenuItem(
+            'Filter: ' . I18n::_($variants[$this->filterByContainer]['text']),
+            new Callback('CapsuleCmsDataGrid.getInstance().showModalDialog(\'#filter-by-container-window\', {backdrop: \'static\',
+        keyboard: false})')
+        );
         $c = $this->moduleClass;
         $config = $c::config();
         $title = $config->get('title') ?: untitled;
         $this->ui->title->prepend($title . '::List items');
 
         $p = $this->pagination();
-        $items = array();
         if (self::ALL === $this->filterByContainer) {
             $items = $c::page($p->currentPage, $p->itemsPerPage);
         } elseif (self::BOUND === $this->filterByContainer) {

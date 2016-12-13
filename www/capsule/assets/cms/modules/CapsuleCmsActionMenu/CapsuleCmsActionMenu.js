@@ -94,7 +94,7 @@ function CapsuleCmsActionMenu(data, append_to)
                     a.append(icon);
                 } else {
                     span = $('<span>');
-                    span.text(item.caption);
+                    span.html(item.caption);
                     content.append(span);
                     if (item.action.type === 'callback') {
                         (function (v)//isolation
@@ -102,7 +102,6 @@ function CapsuleCmsActionMenu(data, append_to)
                             span.click(function ()
                             {
                                 eval(v);
-
                             });
                         })(item.action.callback);
                     }

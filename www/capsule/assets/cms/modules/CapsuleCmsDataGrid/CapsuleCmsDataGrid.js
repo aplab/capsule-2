@@ -407,6 +407,13 @@ function CapsuleCmsDataGrid (container, data)
         container.append(f);
         f.submit();
     };
+
+    this.showModalDialog = function(selector, options)
+    {
+        CapsuleCms.collapseActionMenu();
+        options = options || {};
+        $(selector).modal(options);
+    };
     
     var isTouchDevice = function ()
     {
