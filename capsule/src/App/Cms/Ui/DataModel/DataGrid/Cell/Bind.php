@@ -19,6 +19,7 @@
 namespace App\Cms\Ui\DataModel\DataGrid\Cell;
 
 use Capsule\Core\Fn;
+
 /**
  * Bind.php
  *
@@ -29,7 +30,8 @@ class Bind extends Cell
 {
     protected static $cache = array();
 
-    protected function options() {
+    protected function options()
+    {
         $hash = spl_object_hash($this);
         if (!array_key_exists($hash, self::$cache)) {
             $class = Fn::cc($this->col->property->bind, Fn::ns($this->col->cell->item));
@@ -38,7 +40,8 @@ class Bind extends Cell
         return self::$cache[$hash];
     }
 
-    public function getValue($id) {
+    public function value($id)
+    {
         $options = $this->options();
         return array_key_exists($id, $options) ? $options[$id] : null;
     }

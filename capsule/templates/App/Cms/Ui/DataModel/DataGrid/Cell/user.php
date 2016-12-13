@@ -1,4 +1,4 @@
-<?php $user = $this->getUser($this->val) ?>
+<?php $user = $this->user($this->val) ?>
 <?php if ($user) : ?>
     <div class="w<?=$this->col->column->width?>"
          title="<?=hsc($user->login)?>">

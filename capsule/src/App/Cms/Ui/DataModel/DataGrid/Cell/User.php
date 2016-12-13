@@ -36,7 +36,7 @@ class User extends Cell
         return self::$cache;
     }
     
-    public function getUser($id) {
+    public function user($id) {
         $users = self::users();
         return array_key_exists($id, $users) ? $users[$id] : null;
     }

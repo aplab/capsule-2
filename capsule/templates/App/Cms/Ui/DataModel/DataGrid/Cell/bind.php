@@ -1,7 +1,10 @@
-<?php $o = $cell->getValue($cell->val); if (is_null($o)) : ?>
-<div title="undefined" class="cell-bind w<?=$cell->col->width?>">
-<div class="undef">undefined</div></div>
+<?php $value = $this->value($this->val) ?>
+<?php if (is_null($value)) : ?>
+    <div class="w<?=$this->col->column->width?> text-muted"
+         title="undefined">undefined</div>
 <?php else : ?>
-<div title="<?=$o['text']?>" class="cell-bind w<?=$cell->col->width?>">
-<div><?=$o['text']?></div></div>
+    <div class="w<?=$this->col->column->width?>"
+         title="<?=hsc($value['text'])?>">
+        <?=hsc($value['text'])?>
+    </div>
 <?php endif ?>

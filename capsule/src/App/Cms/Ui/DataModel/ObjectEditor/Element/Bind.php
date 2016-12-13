@@ -18,10 +18,12 @@
 
 namespace App\Cms\Ui\DataModel\ObjectEditor\Element;
 
+use Capsule\DataModel\Config\Properties\Property;
 use Capsule\DataModel\DataModel;
 use Capsule\Core\Fn;
 use Capsule\DataModel\Config\Properties\FormElement;
-use Capsule\User\Env;
+use Capsule\User\Env\Env;
+
 /**
  * Bind.php
  *
@@ -30,14 +32,14 @@ use Capsule\User\Env;
  */
 class Bind extends Element
 {
-    public function __construct(DataModel $object, $name, $settings) {
-        parent::__construct($object, $name, $settings);
-        $this->data['bind'] = Fn::cc($this->property->bind, $object);
+    public function __construct(DataModel $model, Property $property, FormElement $form_element)
+    {
+        parent::__construct($model, $property, $form_element);
+        $this->data['bind'] = Fn::cc($this->property->bind, $model);
         $class = $this->data['bind'];
         $this->data['options'] = $class::optionsDataList();
-        if ($settings instanceof FormElement) {
-            $default = $settings->default;
-            $this->data['default'] = Env::getInstance()->get($default);
-        }
+        $default = $form_element->default;
+        $env = Env::getInstance()->get($model);
+        $this->data['default'] = $env->get($default);
     }
 }

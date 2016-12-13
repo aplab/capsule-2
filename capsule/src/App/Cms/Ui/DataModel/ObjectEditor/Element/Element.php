@@ -32,9 +32,12 @@ use Capsule\I18n\I18n;
  *
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
+ * @property int $id
  * @property DataModel $model
- * @property Config $config
- * @property string $name
+ * @property FormElement $formElement
+ * @property Property $property
+ * @property bool $hasValue
+ * @property mixed $value
  */
 abstract class Element implements IElement
 {

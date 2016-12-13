@@ -18,18 +18,18 @@
 
 namespace App\Cms\Controller;
 
-use Capsule\Ui\Toolbar\Button;
-use Capsule\Ui\DataGrid\DataGrid;
+use App\Cms\Ui\ActionMenu\Callback;
+use App\Cms\Ui\ActionMenu\Url;
+use App\Cms\Ui\DataModel\DataGrid\DataGrid;
+use App\Cms\Ui\SectionManager;
+use App\Cms\View\DataGridView;
+use Capsule\Component\DataStruct\ReturnValue;
+use Capsule\Component\Superglobals\Superglobals;
 use Capsule\I18n\I18n;
-use Capsule\Common\Path;
-use Capsule\Capsule;
-use Capsule\Superglobals\Post;
-use Capsule\User\Env;
 use Capsule\Core\Fn;
-use App\Cms\Ui\Dialog\Dialog;
-use Capsule\DataStruct\ReturnValue;
 use Capsule\DataModel\DataModel;
 use Capsule\Common\Filter;
+
 /**
  * NestedItem.php
  *
@@ -67,10 +67,10 @@ class NestedItem extends ReferenceController
      * @var array
      */
     protected $filterVariants = array(
-    	self::ALL => array(
-    	    'value' => self::ALL,
+        self::ALL => array(
+            'value' => self::ALL,
             'text' => 'All',
-            'selected'=> false
+            'selected' => false
         ),
         self::BOUND => array(
             'value' => self::BOUND,
@@ -84,7 +84,8 @@ class NestedItem extends ReferenceController
         )
     );
 
-    protected function listItems() {
+    protected function listItems()
+    {
         $filter = $this->app->urlFilter;
         $module_class = $this->moduleClass;
         $module_config = $module_class::config();
@@ -92,41 +93,35 @@ class NestedItem extends ReferenceController
         foreach ($this->filterVariants as &$variant) $variant['text'] = '<strong>' . I18n::_($variant['text']) . '</strong>';
         $variants = array_replace($this->filterVariants, $container_class::optionsDataList());
         $this->filterByContainer();
-        $this->filterByContainer = Env::getInstance()->get($this->filterByContainerKey());
+        $this->filterByContainer = $this->env->get($this->filterByContainerKey());
 
-        new Dialog(array(
-            'title' => I18n::_('Filter'),
-            'instanceName' => 'filter-by-container-window',
-            'content' => include(new Path(Capsule::getInstance()->systemRoot, $this->app->config->templates, 'NestedItemFilter.php')),
-            'appendTo' => 'capsule-cms-wrapper',
-            'hidden' => true,
-            'minWidth' => 320,
-            'minHeight' => 240
-        ));
+//        new Dialog(array(
+//            'title' => I18n::_('Filter'),
+//            'instanceName' => 'filter-by-container-window',
+//            'content' => include(new Path(Capsule::getInstance()->systemRoot, $this->app->config->templates, 'NestedItemFilter.php')),
+//            'appendTo' => 'capsule-cms-wrapper',
+//            'hidden' => true,
+//            'minWidth' => 320,
+//            'minHeight' => 240
+//        ));
 
-        $toolbar = $this->app->registry->toolbar;
-        $button = new Button;
-        $toolbar->add($button);
-        $button->caption = 'New';
-        $button->url = $filter($this->mod, 'add');
-        $button->icon = $this->app->config->icons->cms . '/document--plus.png';
+        $toolbar = $this->app->registry->actionMenu;
+        $toolbar->newMenuItem('New', new Url($filter($this->mod, 'add')));
+        $toolbar->newMenuItem(
+            'Delete selected',
+            new Callback('CapsuleCmsDataGrid.getInstance().del()')
+        );
 
-        $button = new Button;
-        $toolbar->add($button);
-        $button->caption = 'Delete selected';
-        $button->icon = $this->app->config->icons->cms . '/cross-script.png';
-        $button->action = 'CapsuleUiDataGrid.getInstance("capsule-ui-datagrid").del()';
-
-        $button = new Button;
-        $toolbar->add($button);
-        $button->caption = I18n::_($variants[$this->filterByContainer]['text']);
-        $button->icon = $this->app->config->icons->cms . '/funnel.png';
-        $button->action = 'CapsuleUiDialog.getInstance("filter-by-container-window").showCenter()';
+//        $button = new Button;
+//        $toolbar->add($button);
+//        $button->caption = I18n::_($variants[$this->filterByContainer]['text']);
+//        $button->icon = $this->app->config->icons->cms . '/funnel.png';
+//        $button->action = 'CapsuleUiDialog.getInstance("filter-by-container-window").showCenter()';
 
         $c = $this->moduleClass;
         $config = $c::config();
-        $title = $config->get('title')?:untitled;
-        $this->ui->title->prepend($title.'::List items');
+        $title = $config->get('title') ?: untitled;
+        $this->ui->title->prepend($title . '::List items');
 
         $p = $this->pagination();
         $items = array();
@@ -139,12 +134,17 @@ class NestedItem extends ReferenceController
         } else {
             $items = $c::pageByContainer($this->filterByContainer, $p->currentPage, $p->itemsPerPage);
         }
-        $data_grid = new DataGrid('capsule-ui-datagrid', $items);
-        $data_grid->baseUrl = $filter($this->mod);
-        $data_grid->p = $p;
-        $this->ui->workplace->append(new \App\Cms\Ui\DataGrid\View($data_grid));
-
-//         $this->ui->wrapper->append($dial_view);
+        $data_grid = new DataGrid(
+            'capsule-ui-datagrid',
+            ($this->moduleClass)::config(),
+            new \ArrayIterator($items)
+        );
+        $data_grid->itemsPerPageVariants = $p->itemsPerPageVariants;
+        $data_grid->pagesNumber = $p->pagesNumber;
+        $data_grid->currentPage = $p->currentPage;
+        $data_grid->itemsPerPage = $p->itemsPerPage;
+        $data_grid->baseUrl = ($this->app->urlFilter)($this->mod);
+        SectionManager::getInstance()->content->append(new DataGridView($data_grid));
     }
 
     /**
@@ -153,23 +153,23 @@ class NestedItem extends ReferenceController
      * @param void
      * @return void
      */
-    protected function filterByContainer() {
+    protected function filterByContainer()
+    {
         $module_class = $this->moduleClass;
         $module_config = $module_class::config();
         $container_class = Fn::cc($module_config->container, Fn::ns($module_class));
         $variants = array_replace($this->filterVariants, $container_class::optionsDataList());
-        $post = Post::getInstance();
-        $env = Env::getInstance();
+        $post = (new Superglobals())->post;
         $key = $this->filterByContainerKey();
         $default = key($variants);
         if (isset($post->{self::FILTER_BY_CONTAINER})) {
             $filter = $post->{self::FILTER_BY_CONTAINER};
             if (array_key_exists($filter, $variants)) {
-                $env->set($key, $filter);
+                $this->env->set($key, $filter);
             }
         }
-        if (!array_key_exists($env->get($key), $variants)) {
-            $env->set($key, $default);
+        if (!array_key_exists($this->env->get($key), $variants)) {
+            $this->env->set($key, $default);
         }
     }
 
@@ -179,7 +179,8 @@ class NestedItem extends ReferenceController
      * @param void
      * @return string
      */
-    protected function filterByContainerKey() {
+    protected function filterByContainerKey()
+    {
         return Fn::concat_ws('::', $this->moduleClass, self::FILTER_BY_CONTAINER);
     }
 
@@ -187,7 +188,8 @@ class NestedItem extends ReferenceController
      * (non-PHPdoc)
      * @see \App\Cms\Controller\ReferenceController::pages()
      */
-    protected function pages($current_items_per_page) {
+    protected function pages($current_items_per_page)
+    {
         $class = $this->moduleClass;
         if (self::ALL === $this->filterByContainer) {
             return $class::pages($current_items_per_page);
@@ -205,13 +207,14 @@ class NestedItem extends ReferenceController
      * @param string $class
      * @return ReturnValue
      */
-    protected function createElement($class) {
+    protected function createElement($class)
+    {
         $item = ($class instanceof DataModel) ? $class : new $class;
-        $this->filterByContainer = Env::getInstance()->get($this->filterByContainerKey());
+        $this->filterByContainer = $this->env->get($this->filterByContainerKey());
         if (Filter::digit($this->filterByContainer)) $item->containerId = $this->filterByContainer;
         $config = $class::config();
         $properties = $config->properties;
-        $post = Post::getInstance();
+        $post = (new Superglobals())->post;
         $ret = new ReturnValue;
         $ret->item = $item;
         foreach ($properties as $name => $property) {

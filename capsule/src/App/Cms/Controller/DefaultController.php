@@ -131,10 +131,6 @@ class DefaultController extends AbstractController
 
         $content = new Section('content');
         $body->append($content);
-
-//        Error: Instance already exists. Only one instance allowed!
-//        $data_grid = new DataGrid('data-grid', User::config(), new \ArrayIterator(User::all()));
-//        $content->append(new DataGridView($data_grid));
     }
     
     /**
