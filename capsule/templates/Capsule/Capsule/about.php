@@ -22,7 +22,7 @@ ob_start(); ?>
                 <div class="modal-body">
                     <div>
                         <!-- Nav tabs -->
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
                             <li role="presentation" class="active"><a href="#about-program" aria-controls="about-program" role="tab" data-toggle="tab">About</a></li>
                             <li role="presentation"><a href="#about-author" aria-controls="about-author" role="tab" data-toggle="tab">Author</a></li>
                             <li role="presentation"><a href="#about-licence" aria-controls="about-licence" role="tab" data-toggle="tab">Licence</a></li>
