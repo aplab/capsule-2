@@ -408,13 +408,6 @@ function CapsuleCmsDataGrid (container, data)
         f.submit();
     };
 
-    this.showModalDialog = function(selector, options)
-    {
-        CapsuleCms.collapseActionMenu();
-        options = options || {};
-        $(selector).modal(options);
-    };
-    
     var isTouchDevice = function ()
     {
         return 'ontouchstart' in document.documentElement;

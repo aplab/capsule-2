@@ -123,10 +123,13 @@ function AplAccordionMenu(data, append_to)
                     } else {
                         li.prepend(span);
                         if (item.action.type === 'callback') {
-                            span.click(function ()
+                            (function (v)//isolation
                             {
-                                eval(item.action.callback);
-                            });
+                                span.click(function ()
+                                {
+                                    eval(v);
+                                });
+                            })(item.action.callback);
                         }
                         span.append(icon);
                     }

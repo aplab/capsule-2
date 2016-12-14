@@ -216,4 +216,11 @@ $(document).ready(function ()
     // $(function () {
     //     $('[data-toggle="tooltip"]').tooltip()
     // });
+
+    CapsuleCms.showModalDialog = function(selector, options)
+    {
+        CapsuleCms.collapseActionMenu();
+        options = options || {};
+        $(selector).modal(options);
+    };
 });

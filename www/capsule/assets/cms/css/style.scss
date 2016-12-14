@@ -195,3 +195,15 @@ body {
     height: 1px * $i;
   }
 }
+#capsule-about-window {
+  .tab-content {
+    border: 1px solid #ddd;
+    border-top: 0;
+    .tab-pane {
+      padding: 15px;
+      padding-bottom: 5px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+  }
+}

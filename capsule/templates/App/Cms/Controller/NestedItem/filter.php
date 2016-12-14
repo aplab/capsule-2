@@ -28,7 +28,7 @@ ob_start();
             <div class="modal-body">
                 <form method="post" id="apply-filter-by-container-form"
                       action="<?=$filter($this->mod);?>">
-                    
+
                     <select class="form-control" name="<?=self::FILTER_BY_CONTAINER?>">
                         <?php foreach ($variants as $val => $op) : ?>
                             <option<?=!ctype_digit((string)$val)?' class="bold"':''?>

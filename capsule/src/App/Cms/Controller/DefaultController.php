@@ -29,6 +29,7 @@ use App\Cms\Ui\MainMenu\Url;
 use App\Cms\View\ActionMenuView;
 use App\Cms\View\DataGridView;
 use App\Cms\View\MainMenuView;
+use Capsule\Component\Path\ComponentTemplatePath;
 use Capsule\I18n\I18n;
 use App\Cms\Ui\SectionManager;
 use App\Cms\Ui\Section;
@@ -131,6 +132,9 @@ class DefaultController extends AbstractController
 
         $content = new Section('content');
         $body->append($content);
+
+        $path = new ComponentTemplatePath(Capsule::getInstance(), 'about');
+        SectionManager::getInstance()->body->append(include $path);
     }
     
     /**
