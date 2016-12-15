@@ -35,6 +35,9 @@ $(document).ready(function ()
             .addClass('capsule-cms-sidebar-wrapper-expanded')
             .on('click', CapsuleCms.clickOutsideSidebarHandler);
         CapsuleCms.setSidebarOpen(true);
+        if (CapsuleCmsObjectEditor.getInstance !== undefined) {
+            CapsuleCmsObjectEditor.getInstance().fitEditors();
+        }
     };
 
     /**
@@ -44,6 +47,9 @@ $(document).ready(function ()
     {
         $('body').removeClass('capsule-cms-sidebar-wrapper-expanded');
         CapsuleCms.setSidebarOpen(false);
+        if (CapsuleCmsObjectEditor.getInstance !== undefined) {
+            CapsuleCmsObjectEditor.getInstance().fitEditors();
+        }
     };
 
     /**

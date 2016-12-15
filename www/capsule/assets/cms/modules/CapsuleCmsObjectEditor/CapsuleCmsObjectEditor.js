@@ -125,6 +125,10 @@ function CapsuleCmsObjectEditor(container) {
         }
     };
 
+    this.fitEditors = function () {
+        fitEditors();
+    };
+
     if ('undefined' != typeof(CKEDITOR)) {
         CKEDITOR.on('instanceReady', function (ev) {
             var editor = ev.editor;
