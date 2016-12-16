@@ -17,6 +17,7 @@ $prefix = 'capsule-cms-object-editor' ?>
         <select class="form-control"
                 name="<?=$this->property->name?>"
                 id="<?=$prefix?>-element-<?=$this->id?>">
+            <option value="0"></option>
             <?php if ($this->hasValue) : ?>
                 <?php foreach ($this->options as $value => $optn) : ?>
                     <option value="<?=$value?>"<?=(string)$value===(string)$this->value?' selected="selected"':''?>><?=$optn['text']?></option>
