@@ -229,4 +229,10 @@ $(document).ready(function ()
         options = options || {};
         $(selector).modal(options);
     };
+
+    $(window).on('beforeunload', function() {
+        Cookies.set(
+            'capsule-cms-main-menu-scroll-top',
+            $('#capsule-cms-main-menu-wrapper').find('.capsule-ui-scrollable-wrapper').scrollTop());
+    });
 });

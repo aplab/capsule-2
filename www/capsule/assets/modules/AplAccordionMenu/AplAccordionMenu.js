@@ -77,7 +77,7 @@ function AplAccordionMenu(data, append_to)
                     var exclude = append_to.find('.apl-accordion-submenu').has($next);
                     append_to.find('.apl-accordion-submenu').not($next).not(exclude).slideUp().parent().removeClass('open');
                     if ($parent.hasClass('open')) {
-                        Cookies(
+                        Cookies.set(
                             'apl-accordion-menu-' + instanceName,
                             $parent.prop('id'),
                             {
@@ -89,7 +89,7 @@ function AplAccordionMenu(data, append_to)
                     }
                     var closest = $parent.closest('.open');
                     if (closest.length) {
-                        Cookies(
+                        Cookies.set(
                             'apl-accordion-menu-' + instanceName,
                             closest.prop('id'),
                             {
@@ -99,7 +99,7 @@ function AplAccordionMenu(data, append_to)
                         );
                         return;
                     }
-                    Cookies(
+                    Cookies.set(
                         'apl-accordion-menu-' + instanceName,
                         '',
                         {
@@ -149,7 +149,7 @@ function AplAccordionMenu(data, append_to)
 
     var setCurrent = function()
     {
-        var current_id = Cookies('apl-accordion-menu-' + instanceName);
+        var current_id = Cookies.get('apl-accordion-menu-' + instanceName);
         var current = $('#' + current_id);
         if (!current.length) {
             return;
@@ -183,4 +183,5 @@ function AplAccordionMenu(data, append_to)
     }
 
     disableSelection(append_to);
+
 }

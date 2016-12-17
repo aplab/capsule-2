@@ -30,6 +30,8 @@ class MainMenuView
         return <<<JS
 new AplAccordionMenu($this->instance, $('#capsule-cms-main-menu-wrapper'));
 new CapsuleUiScrollable('capsule-cms-main-menu-scrollable', $('#capsule-cms-main-menu-wrapper'));
+$('#capsule-cms-main-menu-wrapper').find('.capsule-ui-scrollable-wrapper').scrollTop(Cookies('capsule-cms-main-menu-scroll-top') || 0);
+
 JS;
     }
 }
