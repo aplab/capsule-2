@@ -32,45 +32,48 @@ use Capsule\I18n\I18n;
 class Tree extends NamedTsUsr
 {
     use \Capsule\Traits\sortOrder;
-    
+
     /**
      * returns the roots
      *
      * @param void
      * @return array
      */
-    public static function roots() {
+    public static function roots()
+    {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
 	            WHERE `parent_id` = 0
                 ORDER BY `sort_order`, ' . $db->bq(static::$key);
         return static::populate($db->query($sql));
     }
-    
+
     /**
      * returns the roots
      *
      * @param void
      * @return array
      */
-    public static function countRoots() {
+    public static function countRoots()
+    {
         $db = Db::getInstance();
         $sql = 'SELECT COUNT(*) FROM `' . self::config()->table->name . '`
 	            WHERE `parent_id` = 0';
         return $db->query($sql)->fetch_one();
     }
-    
+
     /**
      * Возвращает список options для select
-     * 
+     *
      * @param void
      * @return array
      */
-    public static function optionsDataList() {
+    public static function optionsDataList()
+    {
         $class = get_called_class();
         if (!isset(self::$common[$class][__FUNCTION__])) {
             $tmp = $class::tree();
-            array_walk($tmp, function($v, $k) use (& $tmp) {
+            array_walk($tmp, function ($v, $k) use (& $tmp) {
                 $tmp[$k] = array(
                     'value' => $k,
                     'text' => str_repeat('. ', $v->level) . $v->name,
@@ -81,16 +84,17 @@ class Tree extends NamedTsUsr
         }
         return self::$common[$class][__FUNCTION__];
     }
-    
+
     /**
-     * Задает id родителя 
-     * 
+     * Задает id родителя
+     *
      * @param int $v
      * @param string $n
      * @throws \Exception
      * @return self
      */
-    protected function setParentId($v, $n) {
+    protected function setParentId($v, $n)
+    {
         if ($v === $this->get('id')) {
             $msg = I18n::_('It is impossible to move object into itself.');
             throw new \Exception($msg);
@@ -102,14 +106,15 @@ class Tree extends NamedTsUsr
         $this->data[$n] = $v;
         return $this;
     }
-    
+
     /**
      * Проверяет, является ли объект потомком данного объекта
      *
      * @param self $item
      * @return boolean
      */
-    public function isDescendantOf($item) {
+    public function isDescendantOf($item)
+    {
         if (!($item instanceof $this)) {
             return false;
         }
@@ -122,14 +127,15 @@ class Tree extends NamedTsUsr
         }
         return false;
     }
-    
+
     /**
      * Проверяет, является ли объект предком данного объекта
      *
      * @param self $item
      * @return boolean
      */
-    public function isAncestorOf($item) {
+    public function isAncestorOf($item)
+    {
         if (!($item instanceof $this)) {
             return false;
         }
@@ -142,7 +148,7 @@ class Tree extends NamedTsUsr
         }
         return false;
     }
-    
+
     /**
      * Упорядочивает переданные объекты в виде двумерного массива
      * [parent_id][id] = object
@@ -150,11 +156,12 @@ class Tree extends NamedTsUsr
      * @param mixed
      * @return array
      */
-    public static function to2d() {
+    public static function to2d()
+    {
         if (!func_num_args()) return array();
         $tmp = array();
         $a = func_get_args();
-        array_walk_recursive($a, function($v, $k) use (& $tmp) {
+        array_walk_recursive($a, function ($v, $k) use (& $tmp) {
             if ($v instanceof self) {
                 $parent_id = $v->parentId;
                 $id = $v->{static::$key};
@@ -163,28 +170,30 @@ class Tree extends NamedTsUsr
         });
         return $tmp;
     }
-    
+
     /**
      * returns the direct descendants of the object
      *
      * @param void
      * @return array
      */
-    public function children() {
+    public function children()
+    {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
 	            WHERE `parent_id` = ' . $db->qt($this->id) . '
                 ORDER BY `sort_order`, ' . $db->bq(static::$key);
         return static::populate($db->query($sql));
     }
-    
+
     /**
      * Возвращает ветку
      *
      * @param self $from
      * @return array
      */
-    public static function branch(self $from = null) {
+    public static function branch(self $from = null)
+    {
         $tmp = array();
         $children = self::childrenOf($from);
         while ($children) {
@@ -193,14 +202,15 @@ class Tree extends NamedTsUsr
         }
         return $tmp;
     }
-    
+
     /**
      * returns the parent of the object
      *
      * @param void
      * @return self
      */
-    public function parentElement() {
+    public function parentElement()
+    {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
 	            WHERE `id` = ' . $db->qt($this->parentId);
@@ -208,7 +218,7 @@ class Tree extends NamedTsUsr
         // array_shift returns NULL if array is empty
         return array_shift($objects);
     }
-    
+
     /**
      * Возвращает детей
      * Любое количество любых параметров, если без параметров возвращает пустой массив.
@@ -216,22 +226,23 @@ class Tree extends NamedTsUsr
      * @param mixed
      * @return array
      */
-    public static function childrenOf() {
+    public static function childrenOf()
+    {
         if (!func_num_args()) return array();
         $e = new Exceptionizer();
         $in = array();
         $a = func_get_args();
         $db = Db::getInstance();
-        array_walk_recursive($a, function($v, $k) use (& $in, $db) {
+        array_walk_recursive($a, function ($v, $k) use (& $in, $db) {
             if ($v instanceof self) {
                 $v = $v->get(static::$key);
             }
             settype($v, 'string');
-        	if (!$v) {
-        	    $in[0] = 0;
-        	    return;
-        	}
-        	$in[$v] = $db->qt($v);
+            if (!$v) {
+                $in[0] = 0;
+                return;
+            }
+            $in[$v] = $db->qt($v);
         });
         if (empty($in)) return array();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
@@ -239,14 +250,15 @@ class Tree extends NamedTsUsr
                 ORDER BY `sort_order`, ' . $db->bq(static::$key);
         return static::populate($db->query($sql));
     }
-    
+
     /**
      * Возвращает дерево
      *
      * @param void
      * @return array
      */
-    public static function tree() {
+    public static function tree()
+    {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
 	            ORDER BY `parent_id`, `sort_order`, ' . $db->bq(static::$key);
@@ -254,7 +266,7 @@ class Tree extends NamedTsUsr
         $tmp = self::to2d($tmp);
         $ret = array();
         $level = 0;
-        $to_list = function($from_key = 0) use (& $ret, $tmp, & $to_list, & $level) {
+        $to_list = function ($from_key = 0) use (& $ret, $tmp, & $to_list, & $level) {
             if (!isset($tmp[$from_key])) return;
             foreach ($tmp[$from_key] as $k => $v) {
                 $v->level = $level;
@@ -269,28 +281,30 @@ class Tree extends NamedTsUsr
         $to_list(0);
         return $ret;
     }
-    
+
     /**
      * Returns pages number
      *
      * @param number $items_per_page
      * @return array
      */
-    public static function pages($items_per_page = 10) {
+    public static function pages($items_per_page = 10)
+    {
         $c = self::countRoots();
         if (!$c) {
             return array();
         }
         return range(1, ceil($c / $items_per_page));
     }
-    
+
     /**
      * Возвращает страницу ообъектов из связанной таблицы
      *
      * @param int $page_number
      * @param int $items_per_page
      */
-    public static function page($page_number = 1, $items_per_page = 10) {
+    public static function page($page_number = 1, $items_per_page = 10)
+    {
         $db = Db::getInstance();
         $from = $items_per_page * ($page_number - 1);
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
@@ -302,7 +316,7 @@ class Tree extends NamedTsUsr
         $children = $roots;
         $level = 0;
         while ($children) {
-            array_walk($children, function($v, $k) use ($level) {
+            array_walk($children, function ($v, $k) use ($level) {
                 $v->level = $level;
             });
             $tmp += $children;
@@ -312,7 +326,7 @@ class Tree extends NamedTsUsr
         $tmp = static::to2d($tmp);
         $ret = array();
         $level = 0;
-        $to_list = function($from_key = 0) use (& $ret, $tmp, & $to_list, & $level) {
+        $to_list = function ($from_key = 0) use (& $ret, $tmp, & $to_list, & $level) {
             if (!isset($tmp[$from_key])) return;
             foreach ($tmp[$from_key] as $k => $v) {
                 $v->levelCheck = $level;
@@ -327,7 +341,7 @@ class Tree extends NamedTsUsr
         $to_list(0);
         return $ret;
     }
-    
+
     /**
      * Возвращает дерево в виде двумерного массива
      * с проверкой целостности дерева
@@ -335,14 +349,15 @@ class Tree extends NamedTsUsr
      * @param void
      * @return array
      */
-    public static function tree2d() {
+    public static function tree2d()
+    {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
 	            ORDER BY `parent_id`, `sort_order`, ' . $db->bq(static::$key);
         $tmp = static::populate($db->query($sql));
         $tmp = self::to2d($tmp);
         $ret = array();
-        $filter = function($from_key = 0) use (& $filter, & $tmp, & $ret) {
+        $filter = function ($from_key = 0) use (& $filter, & $tmp, & $ret) {
             if (!isset($tmp[$from_key])) return;
             $ret[$from_key] = $tmp[$from_key];
             foreach ($tmp[$from_key] as $k => $v) {
@@ -352,10 +367,10 @@ class Tree extends NamedTsUsr
         $filter();
         return $ret;
     }
-    
+
     /**
      * Восстанавливает элементы, у которых по какой-либо причине не найден
-     * родительский элемент, или возникла петля, циклическая ссылка, переводя 
+     * родительский элемент, или возникла петля, циклическая ссылка, переводя
      * их на нулевой уровень, в результате чего они становятся видны в списке.
      *
      * Возвращает массив ключей таких элементов.
@@ -363,13 +378,14 @@ class Tree extends NamedTsUsr
      * @param void
      * @return int
      */
-    public static function repair() {
+    public static function repair()
+    {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name;
         $all = static::populate($db->query($sql));
         $tmp2d = self::to2d($all);
         $good = array();
-        $filter = function($from_key = 0) use (& $filter, & $tmp2d, & $good) {
+        $filter = function ($from_key = 0) use (& $filter, & $tmp2d, & $good) {
             if (!isset($tmp2d[$from_key])) return;
             foreach ($tmp2d[$from_key] as $k => $v) {
                 $good[$k] = $v;
@@ -381,8 +397,8 @@ class Tree extends NamedTsUsr
         if (empty($corrupted)) return array();
         $in = array();
         $keys = array_keys($corrupted);
-        array_walk($keys, function($v, $k) use (& $in, $db) {
-        	$in[$v] = $db->qt($v);
+        array_walk($keys, function ($v, $k) use (& $in, $db) {
+            $in[$v] = $db->qt($v);
         });
         $sql = 'UPDATE `' . self::config()->table->name . '`
                 SET `parent_id` = 0

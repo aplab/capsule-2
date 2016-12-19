@@ -1,0 +1,96 @@
+$header-height: 65px;
+$footer-height: 65px;
+.capsule-cms-dialog {
+  background: transparent;
+  display: block;
+  z-index: 1000000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  &-backdrop {
+    background: #000;
+    opacity: .5;
+    display: block;
+    z-index: 100;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+  }
+  &-window {
+    background: transparent;
+    display: block;
+    z-index: 200;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+  }
+  &-content {
+    background: #fff;
+    margin: 10px auto;
+    width: auto;
+    height: 100vh;
+    max-width: calc(100vw - 20px);
+    max-height: calc(100vh - 20px);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    position: relative;
+  }
+  @media (min-width: 480px) {
+    &-content {
+      margin: 30px auto;
+      max-width: calc(100vw - 60px);
+      max-height: calc(100vh - 60px);
+      overflow: hidden;
+    }
+  }
+  &-header {
+    height: $header-height;
+    padding: 15px 15px 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: auto;
+    bottom: auto;
+    overflow: hidden;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  &-body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: $header-height;
+    bottom: $footer-height;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  &-footer {
+    height: $footer-height;
+    padding: 15px 15px 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    top: auto;
+    overflow: hidden;
+    border-top: 1px solid #e5e5e5;
+    text-align: right;
+  }
+}

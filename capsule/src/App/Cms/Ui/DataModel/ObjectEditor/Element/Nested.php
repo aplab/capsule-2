@@ -18,10 +18,12 @@
 
 namespace App\Cms\Ui\DataModel\ObjectEditor\Element;
 
+use Capsule\DataModel\Config\Properties\Property;
 use Capsule\DataModel\DataModel;
 use Capsule\Core\Fn;
 use Capsule\DataModel\Config\Properties\FormElement;
 use Capsule\User\Env;
+
 /**
  * Nested.php
  *
@@ -30,9 +32,10 @@ use Capsule\User\Env;
  */
 class Nested extends Element
 {
-    public function __construct(DataModel $object, $name, $settings) {
-        parent::__construct($object, $name, $settings);
-        $bind = Fn::create_classname($this->settings->bind);
+    public function __construct(DataModel $model, Property $property, FormElement $form_element)
+    {
+        parent::__construct($model, $property, $form_element);
+        $bind = Fn::create_classname($this->property->bind);
         $this->data['bind'] = $bind;
         $this->data['options'] = $bind::optionsDataList();
         $has_selected = false;
