@@ -1,6 +1,13 @@
-<?php $level = $cell->item->get('level');
+<?php $level = $this->item->get('level');
 if ($level) : ?>
-<div title="<?=$cell->val?>" class="cell-tree w<?=$cell->col->width?>"><div style="margin-left: <?=18*$level?>px;"><?=$cell->val?></div></div>
+<div title="<?=$this->val?>"
+    <div class="w<?=$this->col->column->width?>"
+         title="<?=hsc($this->item->get($this->col->property->name))?>">
+        <span style="padding-left: <?=18*$level?>px;"><?=hsc($this->item->get($this->col->property->name))?></span>
+    </div>
 <?php else : ?>
-<div title="<?=$cell->val?>" class="cell-tree w<?=$cell->col->width?>"><div><?=$cell->val?></div></div>
+    <div class="w<?=$this->col->column->width?>"
+         title="<?=hsc($this->item->get($this->col->property->name))?>">
+        <?=hsc($this->item->get($this->col->property->name))?>
+    </div>
 <?php endif ?>
