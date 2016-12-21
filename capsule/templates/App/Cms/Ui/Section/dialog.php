@@ -14,7 +14,7 @@
 <div class="capsule-cms-dialog" id="test-dialog">
     <div class="capsule-cms-dialog-backdrop"></div>
     <div class="capsule-cms-dialog-window">
-        <div class="capsule-cms-dialog-content">
+        <div class="capsule-cms-dialog-content capsule-cms-dialog-maximize">
             <div class="capsule-cms-dialog-header">
                 header
             </div>

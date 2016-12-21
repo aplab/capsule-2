@@ -42,21 +42,29 @@ $footer-height: 65px;
   &-content {
     background: #fff;
     margin: 10px auto;
-    width: auto;
-    height: 100vh;
+    //width: 320px;
+    //height: 240px;
     max-width: calc(100vw - 20px);
     max-height: calc(100vh - 20px);
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
     position: relative;
+    overflow: hidden;
+  }
+  &-maximize {
+    width: calc(100vw - 20px);
+    height: calc(100vh - 20px);
   }
   @media (min-width: 480px) {
     &-content {
       margin: 30px auto;
       max-width: calc(100vw - 60px);
       max-height: calc(100vh - 60px);
-      overflow: hidden;
+    }
+    &-maximize {
+      width: calc(100vw - 60px);
+      height: calc(100vh - 60px);
     }
   }
   &-header {
