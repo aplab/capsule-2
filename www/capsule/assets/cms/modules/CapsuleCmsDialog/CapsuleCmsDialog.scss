@@ -51,6 +51,7 @@ $footer-height: 65px;
     border-radius: 6px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
   }
   &-maximize {
     width: calc(100vw - 20px);
