@@ -1,17 +1,53 @@
 /**
  * Created by polyanin on 21.12.2016.
  */
-$(document).ready(function () {
+(function() {
     /**
-     *
      * @constructor
      */
     window.CapsuleCmsDialog = function () {
 
+
     };
+
+    var m = window.CapsuleCmsDialog;
+
     /**
-     * init
+     * z coordinate of window
+     *
+     * @type {number}
      */
+    CapsuleCmsDialog.zIndex = 1000000;
+
+    /**
+     * Instances of window
+     *
+     * @type {Array}
+     */
+    CapsuleCmsDialog.instances = [];
+
+    /**
+     * Returns instance by name or false
+     *
+     * @param instance_name
+     * @returns {*|boolean}
+     */
+    CapsuleCmsDialog.getInstance = function (instance_name) {
+        return this.instances[instance_name] || false;
+    };
+
+    /**
+     * Returns true if instance exists or false
+     *
+     * @param instance_name
+     * @returns {*|boolean}
+     */
+    CapsuleCmsDialog.instanceExists = function (instance_name) {
+        return undefined !== this.instances[instance_name];
+    };
+
+
+
     CapsuleCmsDialog.init = function () {
         CapsuleCmsDialog.instances = $('.capsule-cms-dialog');
         CapsuleCmsDialog.initialZindex = 1000000;
@@ -36,6 +72,4 @@ $(document).ready(function () {
             $(o).hide();
         }
     };
-
-    CapsuleCmsDialog.init();
-});
+})();
