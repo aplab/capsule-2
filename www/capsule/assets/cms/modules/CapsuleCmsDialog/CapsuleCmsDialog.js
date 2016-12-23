@@ -57,6 +57,17 @@ CapsuleCmsDialog.instanceExists = function (instance_name) {
     return undefined !== this.instances[instance_name];
 };
 
+/**
+ * Create element
+ *
+ * @param instance_name
+ * @param options
+ */
+CapsuleCmsDialog.createElement = function(instance_name, options) {
+
+
+};
+
 
 
 CapsuleCmsDialog.init = function () {
