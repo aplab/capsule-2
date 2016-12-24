@@ -4,13 +4,35 @@
 /**
  * @constructor
  */
-CapsuleCmsDialog = function () {
+CapsuleCmsDialog = function (instance_name)
+{
+    if (CapsuleCmsDialog.instanceExists(instance_name)) {
+        throw new Error('Duplicate instance name: "' + instance_name + '"');
+    }
+
+    CapsuleCmsDialog.instances[instance_name] = this;
+
+    /**
+     * parts
+     */
+    var dialog, backdrop, container, content, header, body, footer;
+
+    (function() {
+        dialog = $('#' + instance_name).eq(0);
+        backdrop = dialog.find('.' + CapsuleCmsDialog.prefix + '-backdrop').eq(0);
+        container = dialog.find('.' + CapsuleCmsDialog.prefix + '-container').eq(0);
+        content = container.find('.' + CapsuleCmsDialog.prefix + '-content').eq(0);
+        header = content.find('.' + CapsuleCmsDialog.prefix + '-header').eq(0);
+        body = content.find('.' + CapsuleCmsDialog.prefix + '-body').eq(0);
+        footer = content.find('.' + CapsuleCmsDialog.prefix + '-footer').eq(0);
+    })();
 
     /**
      * show window
      */
-    this.show = function () {
-        this.wrapper.css({
+    this.show = function ()
+    {
+        dialog.css({
             zIndex: ++CapsuleCmsDialog.zIndex
         }).show();
     };
@@ -18,8 +40,9 @@ CapsuleCmsDialog = function () {
     /**
      * hide window
      */
-    this.hide = function () {
-        this.wrapper.hide();
+    this.hide = function ()
+    {
+        dialog.hide();
     };
 };
 
@@ -50,7 +73,8 @@ CapsuleCmsDialog.instances = [];
  * @param instance_name
  * @returns {*|boolean}
  */
-CapsuleCmsDialog.getInstance = function (instance_name) {
+CapsuleCmsDialog.getInstance = function (instance_name)
+{
     return this.instances[instance_name] || false;
 };
 
@@ -60,7 +84,8 @@ CapsuleCmsDialog.getInstance = function (instance_name) {
  * @param instance_name
  * @returns {*|boolean}
  */
-CapsuleCmsDialog.instanceExists = function (instance_name) {
+CapsuleCmsDialog.instanceExists = function (instance_name)
+{
     return undefined !== this.instances[instance_name];
 };
 
@@ -70,12 +95,14 @@ CapsuleCmsDialog.instanceExists = function (instance_name) {
  * @param instance_name
  * @param options
  */
-CapsuleCmsDialog.createElement = function (instance_name, options) {
+CapsuleCmsDialog.createElement = function (instance_name, options)
+{
     if (CapsuleCmsDialog.instanceExists(instance_name)) {
         throw new Error('Duplicate instance name: "' + instance_name + '"');
     }
     options = options || {};
-    var e = function (c) {
+    var e = function (c)
+    {
         c = c || '';
         if (c.length) {
             c = CapsuleCmsDialog.prefix + '-' + c;
@@ -127,6 +154,7 @@ CapsuleCmsDialog.createElement = function (instance_name, options) {
         footer.append(close_button);
     }
     dialog.appendTo($('body'));
+    new CapsuleCmsDialog(instance_name);
     CapsuleCmsDialog.init();
 };
 
@@ -135,20 +163,23 @@ CapsuleCmsDialog.createElement = function (instance_name, options) {
  *
  * @param event
  */
-CapsuleCmsDialog.closeButtonHandler = function (event) {
+CapsuleCmsDialog.closeButtonHandler = function (event)
+{
     $(event.target).closest('.' + CapsuleCmsDialog.prefix).hide();
 };
 
 /**
  * Инициализация окон
  */
-CapsuleCmsDialog.init = function () {
+CapsuleCmsDialog.init = function ()
+{
     $('.capsule-cms-dialog-close').off(
         'click',
         CapsuleCmsDialog.closeButtonHandler
     ).click(CapsuleCmsDialog.closeButtonHandler);
 };
 
-$(document).ready(function () {
+$(document).ready(function ()
+{
     CapsuleCmsDialog.init();
 });

@@ -37,5 +37,14 @@ $class = '';
             height: 400,
             closeButton: $('<button type="button" class="btn btn-default">Close</button>')
         });
+        CapsuleCmsDialog.createElement('test1', {
+            width: 500,
+            height: 300,
+            closeButton: $('<button type="button" class="btn btn-default">Close</button>')
+        });
+        $('#qwer').click(function ()
+        {
+            CapsuleCmsDialog.getInstance('test').show();
+        });
     </script>
 </body>
