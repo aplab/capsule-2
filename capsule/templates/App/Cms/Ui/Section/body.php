@@ -30,5 +30,12 @@ $class = '';
 })();
 ?><body<?=$class?>>
     <?php foreach ($this->{pathinfo(__FILE__, PATHINFO_FILENAME)} as $_){?><?=$_.PHP_EOL;}?>
-    <?php include "dialog.php"; ?>
+    <?php #include "dialog.php"; ?>
+    <script>
+        CapsuleCmsDialog.createElement('test', {
+            width: 400,
+            height: 400,
+            closeButton: $('<button type="button" class="btn btn-default">Close</button>')
+        });
+    </script>
 </body>

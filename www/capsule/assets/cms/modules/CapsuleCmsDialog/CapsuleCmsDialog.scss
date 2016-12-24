@@ -3,7 +3,6 @@ $footer-height: 65px;
 .capsule-cms-dialog {
   background: transparent;
   display: block;
-  z-index: 1000000;
   position: fixed;
   left: 0;
   top: 0;
@@ -26,7 +25,7 @@ $footer-height: 65px;
     height: auto;
     overflow: hidden;
   }
-  &-window {
+  &-container {
     background: transparent;
     display: block;
     z-index: 200;
@@ -57,6 +56,12 @@ $footer-height: 65px;
     width: calc(100vw - 20px);
     height: calc(100vh - 20px);
   }
+  &-maximize-width {
+    width: calc(100vw - 20px);
+  }
+  &-maximize-height {
+    height: calc(100vh - 20px);
+  }
   @media (min-width: 480px) {
     &-content {
       margin: 30px auto;
@@ -65,6 +70,12 @@ $footer-height: 65px;
     }
     &-maximize {
       width: calc(100vw - 60px);
+      height: calc(100vh - 60px);
+    }
+    &-maximize-width {
+      width: calc(100vw - 60px);
+    }
+    &-maximize-height {
       height: calc(100vh - 60px);
     }
   }
@@ -77,8 +88,8 @@ $footer-height: 65px;
     right: 0;
     width: auto;
     bottom: auto;
-    overflow: hidden;
     border-bottom: 1px solid #e5e5e5;
+    text-align: right;
   }
   &-body {
     position: absolute;
