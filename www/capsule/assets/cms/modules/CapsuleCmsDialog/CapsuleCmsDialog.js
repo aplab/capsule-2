@@ -17,6 +17,9 @@ CapsuleCmsDialog = function (instance_name)
      */
     var dialog, backdrop, container, content, header, body, footer;
 
+    /**
+     * retrieve parts
+     */
     (function() {
         dialog = $('#' + instance_name).eq(0);
         backdrop = dialog.find('.' + CapsuleCmsDialog.prefix + '-backdrop').eq(0);
@@ -25,7 +28,80 @@ CapsuleCmsDialog = function (instance_name)
         header = content.find('.' + CapsuleCmsDialog.prefix + '-header').eq(0);
         body = content.find('.' + CapsuleCmsDialog.prefix + '-body').eq(0);
         footer = content.find('.' + CapsuleCmsDialog.prefix + '-footer').eq(0);
+        dialog.css({
+            zIndex: ++CapsuleCmsDialog.zIndex
+        });
     })();
+
+    /**
+     * Returns dialog part
+     *
+     * @returns {*}
+     */
+    this.getDialog = function ()
+    {
+        return dialog;
+    }
+
+    /**
+     * Returns backdrop part
+     *
+     * @returns {*}
+     */
+    this.getBackdrop = function ()
+    {
+        return backdrop;
+    }
+
+    /**
+     * Returns container part
+     *
+     * @returns {*}
+     */
+    this.getContainer = function ()
+    {
+        return container;
+    }
+
+    /**
+     * Returns content part
+     *
+     * @returns {*}
+     */
+    this.getContent = function ()
+    {
+        return content;
+    }
+
+    /**
+     * Returns header part
+     *
+     * @returns {*}
+     */
+    this.getHeader = function ()
+    {
+        return header;
+    }
+
+    /**
+     * Returns body part
+     *
+     * @returns {*}
+     */
+    this.getBody = function ()
+    {
+        return body;
+    }
+
+    /**
+     * Returns footer part
+     *
+     * @returns {*}
+     */
+    this.getFooter = function ()
+    {
+        return footer;
+    }
 
     /**
      * show window
@@ -43,6 +119,15 @@ CapsuleCmsDialog = function (instance_name)
     this.hide = function ()
     {
         dialog.hide();
+    };
+
+    /**
+     * destruct window
+     */
+    this.purge = function()
+    {
+        dialog.remove();
+        delete CapsuleCmsDialog.instances[instance_name];
     };
 };
 
@@ -148,10 +233,11 @@ CapsuleCmsDialog.createElement = function (instance_name, options)
             content.addClass(CapsuleCmsDialog.prefix + '-maximize');
         }
     }
-    if (options.closeButton) {
-        var close_button = $(options.closeButton);
-        close_button.addClass(CapsuleCmsDialog.prefix + '-close');
-        footer.append(close_button);
+    var l = options.button.length;
+    if (l) {
+        for (var i = 0; i < l; i++) {
+            footer.append($(options.button[i]));
+        }
     }
     dialog.appendTo($('body'));
     new CapsuleCmsDialog(instance_name);
@@ -169,17 +255,67 @@ CapsuleCmsDialog.closeButtonHandler = function (event)
 };
 
 /**
+ * Обработчик кнопки уничтожения окна
+ *
+ * @param event
+ */
+CapsuleCmsDialog.purgeButtonHandler = function (event)
+{
+    var dialog = $(event.target).closest('.' + CapsuleCmsDialog.prefix);
+    var id = dialog.prop('id');
+    CapsuleCmsDialog.getInstance(id).purge();
+};
+
+/**
  * Инициализация окон
  */
 CapsuleCmsDialog.init = function ()
 {
-    $('.capsule-cms-dialog-close').off(
-        'click',
-        CapsuleCmsDialog.closeButtonHandler
-    ).click(CapsuleCmsDialog.closeButtonHandler);
+    $('.' + CapsuleCmsDialog.prefix).each(function (i, o)
+    {
+        var o = $(o);
+        var id = o.prop('id');
+        if (!CapsuleCmsDialog.instanceExists(id)) {
+            new CapsuleCmsDialog(id);
+        }
+        
+
+        /**
+         * close handler
+         */
+        o.find('.' + CapsuleCmsDialog.prefix + '-close').off(
+            'click',
+            CapsuleCmsDialog.closeButtonHandler
+        ).click(CapsuleCmsDialog.closeButtonHandler);
+
+        /**
+         * purge handler
+         */
+        o.find('.' + CapsuleCmsDialog.prefix + '-purge').off(
+            'click',
+            CapsuleCmsDialog.purgeButtonHandler
+        ).click(CapsuleCmsDialog.purgeButtonHandler);
+    });
 };
 
+/**
+ * init
+ */
 $(document).ready(function ()
 {
     CapsuleCmsDialog.init();
+    // CapsuleCmsDialog.createElement('test', {
+    //     width: 400,
+    //     height: 400,
+    //     button: [
+    //         $('<button type="button" class="btn btn-success capsule-cms-dialog-close">Close</button>')
+    //     ]
+    // });
+    // CapsuleCmsDialog.createElement('test1', {
+    //     width: 500,
+    //     height: 300,
+    //     button: [
+    //         $('<button type="button" class="btn btn-info capsule-cms-dialog-purge">Close</button>')
+    //     ]
+    // });
 });

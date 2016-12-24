@@ -2,7 +2,7 @@ $header-height: 65px;
 $footer-height: 65px;
 .capsule-cms-dialog {
   background: transparent;
-  display: block;
+  display: none;
   position: fixed;
   left: 0;
   top: 0;
@@ -112,5 +112,8 @@ $footer-height: 65px;
     overflow: hidden;
     border-top: 1px solid #e5e5e5;
     text-align: right;
+  }
+  &-panel {
+    padding: 15px;
   }
 }

@@ -30,21 +30,4 @@ $class = '';
 })();
 ?><body<?=$class?>>
     <?php foreach ($this->{pathinfo(__FILE__, PATHINFO_FILENAME)} as $_){?><?=$_.PHP_EOL;}?>
-    <?php #include "dialog.php"; ?>
-    <script>
-        CapsuleCmsDialog.createElement('test', {
-            width: 400,
-            height: 400,
-            closeButton: $('<button type="button" class="btn btn-default">Close</button>')
-        });
-        CapsuleCmsDialog.createElement('test1', {
-            width: 500,
-            height: 300,
-            closeButton: $('<button type="button" class="btn btn-default">Close</button>')
-        });
-        $('#qwer').click(function ()
-        {
-            CapsuleCmsDialog.getInstance('test').show();
-        });
-    </script>
 </body>

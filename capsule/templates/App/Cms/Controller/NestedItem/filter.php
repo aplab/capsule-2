@@ -18,35 +18,39 @@ $variants = array_replace($this->filterVariants, $container_class::optionsDataLi
 ob_start();
 
 ?>
-<div class="modal fade" tabindex="-1" role="dialog" id="filter-by-container-window">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
+<div class="capsule-cms-dialog" id="filter-by-container-window">
+    <div class="capsule-cms-dialog-backdrop"></div>
+    <div class="capsule-cms-dialog-container">
+        <div class="capsule-cms-dialog-content">
+            <div class="capsule-cms-dialog-header">
+                <h4>Filter</h4>
             </div>
-            <div class="modal-body">
-                <form method="post" id="apply-filter-by-container-form"
-                      action="<?=$filter($this->mod);?>">
+            <div class="capsule-cms-dialog-body">
+                <div class="capsule-cms-dialog-panel">
 
-                    <select class="form-control" name="<?=self::FILTER_BY_CONTAINER?>">
-                        <?php foreach ($variants as $val => $op) : ?>
-                            <option<?=!ctype_digit((string)$val)?' class="bold"':''?>
-                                <?=($val==$this->filterByContainer)?' selected="selected"':''?>
-                                value="<?=$val?>"><?=$op['text']?></option>
-                        <?php endforeach ?>
-                    </select>
+                    <form method="post" id="apply-filter-by-container-form"
+                          action="<?=$filter($this->mod);?>">
+                        <select class="form-control" name="<?=self::FILTER_BY_CONTAINER?>">
+                            <?php foreach ($variants as $val => $op) : ?>
+                                <option<?=!ctype_digit((string)$val)?' class="bold"':''?>
+                                    <?=($val==$this->filterByContainer)?' selected="selected"':''?>
+                                        value="<?=$val?>"><?=$op['text']?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </form>
 
-                </form>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><?=\Capsule\I18n\I18n::_('Cancel')?></button>
-                <button type="button" id="apply-filter-by-container-btn"
-                        class="btn btn-primary">Save changes</button>
+            <div class="capsule-cms-dialog-footer">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" id="apply-filter-by-container-btn"
+                            class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default capsule-cms-dialog-close">Close</button>
+                </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>
 <script>
     $('#apply-filter-by-container-btn').click(function() {
         $('#apply-filter-by-container-form').submit();

@@ -13,6 +13,6 @@
 ?>
 <div id="capsule-cms-content-wrapper">
     <div id="capsule-cms-content">
-        <?php foreach ($this->content as $item) echo $item ?><a href="#" id="qwer">qwer</a>
+        <?php foreach ($this->content as $item) echo $item ?>
     </div>
 </div>

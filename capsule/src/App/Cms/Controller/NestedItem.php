@@ -109,8 +109,7 @@ class NestedItem extends ReferenceController
         );
         $toolbar->newMenuItem(
             'Filter: ' . I18n::_($variants[$this->filterByContainer]['text']),
-            new Callback('CapsuleCms.showModalDialog(\'#filter-by-container-window\', {backdrop: \'static\',
-        keyboard: false})')
+            new Callback('CapsuleCmsDialog.getInstance(\'filter-by-container-window\').show()')
         );
         $c = $this->moduleClass;
         $config = $c::config();
