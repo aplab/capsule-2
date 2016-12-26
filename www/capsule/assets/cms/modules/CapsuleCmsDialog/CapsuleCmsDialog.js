@@ -278,7 +278,7 @@ CapsuleCmsDialog.init = function ()
         if (!CapsuleCmsDialog.instanceExists(id)) {
             new CapsuleCmsDialog(id);
         }
-        
+
 
         /**
          * close handler
