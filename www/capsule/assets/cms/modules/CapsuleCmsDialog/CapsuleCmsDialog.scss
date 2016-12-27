@@ -92,11 +92,13 @@ $footer-height: 65px;
     text-align: right;
   }
   &-body {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: $header-height;
-    bottom: $footer-height;
+    //position: absolute;
+    //left: 0;
+    //right: 0;
+    //top: $header-height;
+    //bottom: $footer-height;
+    padding-top: $header-height;
+    padding-bottom: $footer-height;
     overflow-x: hidden;
     overflow-y: auto;
   }
