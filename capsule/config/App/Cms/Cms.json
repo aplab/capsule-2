@@ -333,7 +333,7 @@
           },
           {
             "caption": "About",
-            "callback": "CapsuleCms.showModalDialog('#capsule-about-window', {backdrop: 'static', keyboard: false})",
+            "callback": "CapsuleCmsDialog.getInstance('capsule-about-window').show()",
             "icon": "fa fa-external-link-square"
           }
         ]

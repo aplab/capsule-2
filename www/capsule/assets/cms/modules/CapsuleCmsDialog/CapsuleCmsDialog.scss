@@ -101,6 +101,9 @@ $footer-height: 65px;
     padding-bottom: $footer-height;
     overflow-x: hidden;
     overflow-y: auto;
+
+    max-width: calc(100vw - 60px);
+    max-height: calc(100vh - 60px);
   }
   &-footer {
     height: $footer-height;

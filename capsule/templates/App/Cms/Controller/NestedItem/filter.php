@@ -42,11 +42,9 @@ ob_start();
                 </div>
             </div>
             <div class="capsule-cms-dialog-footer">
-                <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" id="apply-filter-by-container-btn"
-                            class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-default capsule-cms-dialog-close">Close</button>
-                </div>
+                <button type="button" id="apply-filter-by-container-btn"
+                        class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default capsule-cms-dialog-close">Close</button>
             </div>
         </div>
     </div>
