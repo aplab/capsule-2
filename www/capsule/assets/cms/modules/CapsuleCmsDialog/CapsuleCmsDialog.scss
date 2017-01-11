@@ -41,8 +41,8 @@ $footer-height: 65px;
   &-content {
     background: #fff;
     margin: 10px auto;
-    //width: 320px;
-    //height: 240px;
+    width: 320px;
+    height: 240px;
     max-width: calc(100vw - 20px);
     max-height: calc(100vh - 20px);
     -webkit-border-radius: 6px;
@@ -92,18 +92,11 @@ $footer-height: 65px;
     text-align: right;
   }
   &-body {
-    //position: absolute;
-    //left: 0;
-    //right: 0;
-    //top: $header-height;
-    //bottom: $footer-height;
-    padding-top: $header-height;
-    padding-bottom: $footer-height;
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    max-width: calc(100vw - 60px);
-    max-height: calc(100vh - 60px);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: $header-height;
+    bottom: $footer-height;
   }
   &-footer {
     height: $footer-height;
@@ -117,6 +110,26 @@ $footer-height: 65px;
     overflow: hidden;
     border-top: 1px solid #e5e5e5;
     text-align: right;
+    &-button-2 {
+      display: block;
+      float: right;
+      max-width: 49.95%;
+      overflow: hidden;
+      &:first-child {
+        button {
+          margin-right: 0;
+        }
+      }
+      button {
+        max-width: 100%;
+        display: block;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-right: 10px;
+      }
+    }
   }
   &-panel {
     padding: 15px;
