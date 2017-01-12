@@ -198,19 +198,6 @@
             ]
           },
           {
-            "caption": "nested tree",
-            "items": [
-              {
-                "caption": "container",
-                "url": "treecontainer"
-              },
-              {
-                "caption": "item",
-                "url": "treeitem"
-              }
-            ]
-          },
-          {
             "caption": "Tree",
             "url": "tree"
           },
@@ -365,8 +352,6 @@
     "textblock": "TextBlock",
     "nestedcontainer": "NestedContainer",
     "nesteditem": "NestedItem",
-    "treecontainer": "TreeContainer",
-    "treeitem": "TreeItem",
     "active": "Active",
     "tree": "Tree",
     "flatmenu": "FlatMenu",
