@@ -279,7 +279,6 @@ CapsuleCmsDialog.init = function ()
             new CapsuleCmsDialog(id);
         }
 
-
         /**
          * close handler
          */

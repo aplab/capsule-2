@@ -23,7 +23,23 @@ ob_start();
     <div class="capsule-cms-dialog-container">
         <div class="capsule-cms-dialog-content">
             <div class="capsule-cms-dialog-header">
-                <h4>Filter</h4>
+                <h4 class="modal-title">Filter</h4>
+                <div class="capsule-cms-dialog-header-menu">
+                    <div class="dropdown">
+                        <i class="fa fa-ellipsis-v capsule-cms-dialog-toggle-menu dropdown-toggle"
+                           aria-hidden="true"
+                           id="dropdownMenu1"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+                        <ul class="dropdown-menu dropdown-menu-right"
+                            aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="capsule-cms-dialog-body">
                 <div class="capsule-cms-dialog-panel">
@@ -42,12 +58,17 @@ ob_start();
                 </div>
             </div>
             <div class="capsule-cms-dialog-footer">
-                    <div class="capsule-cms-dialog-footer-button-2">
+                    <div class="capsule-cms-dialog-footer-button-3">
                         <button type="button" id="apply-filter-by-container-btn"
                                 class="btn btn-primary">Save changes</button>
                     </div>
-                    <div class="capsule-cms-dialog-footer-button-2">
-                        <button type="button" class="btn btn-default capsule-cms-dialog-close">Close</button>
+                    <div class="capsule-cms-dialog-footer-button-3">
+                        <button type="button"
+                                class="btn btn-default capsule-cms-dialog-close">Close</button>
+                    </div>
+                    <div class="capsule-cms-dialog-footer-button-3">
+                        <button type="button"
+                                class="btn btn-default capsule-cms-dialog-close">Close</button>
                     </div>
                 </div>
             </div>

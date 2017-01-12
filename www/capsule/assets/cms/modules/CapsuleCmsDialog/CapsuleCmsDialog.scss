@@ -1,4 +1,4 @@
-$header-height: 65px;
+$header-height: 56px;
 $footer-height: 65px;
 .capsule-cms-dialog {
   background: transparent;
@@ -62,7 +62,7 @@ $footer-height: 65px;
   &-maximize-height {
     height: calc(100vh - 20px);
   }
-  @media (min-width: 480px) {
+  @media (min-width: 768px) {
     &-content {
       margin: 30px auto;
       max-width: calc(100vw - 60px);
@@ -89,7 +89,6 @@ $footer-height: 65px;
     width: auto;
     bottom: auto;
     border-bottom: 1px solid #e5e5e5;
-    text-align: right;
   }
   &-body {
     position: absolute;
@@ -110,11 +109,8 @@ $footer-height: 65px;
     overflow: hidden;
     border-top: 1px solid #e5e5e5;
     text-align: right;
-    &-button-2 {
-      display: block;
-      float: right;
-      max-width: 49.95%;
-      overflow: hidden;
+    background: #fff;
+    @mixin b {
       &:first-child {
         button {
           margin-right: 0;
@@ -130,8 +126,63 @@ $footer-height: 65px;
         margin-right: 10px;
       }
     }
+    &-button-1 {
+      display: block;
+      float: right;
+      max-width: 99.95%;
+      overflow: hidden;
+      @include b;
+    }
+    &-button-2 {
+      display: block;
+      float: right;
+      max-width: 49.95%;
+      overflow: hidden;
+      @include b;
+    }
+    &-button-3 {
+      display: block;
+      float: right;
+      max-width: 33.33333333%;
+      overflow: hidden;
+      @include b;
+    }
+    &-button-4 {
+      display: block;
+      float: right;
+      max-width: 24.95%;
+      overflow: hidden;
+      @include b;
+    }
   }
   &-panel {
     padding: 15px;
+  }
+  &-toggle-menu {
+    position: absolute;
+    right: -10px;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    line-height: 36px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    &:before {
+      opacity: 0.2;
+    }
+  }
+  &-header-menu {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 26px;
+    height: 26px;
+    background: #fff;
+  }
+  .dropdown-menu li a {
+    padding-top: 7px;
+    padding-bottom: 7px;
   }
 }
