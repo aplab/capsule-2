@@ -158,6 +158,11 @@ $footer-height: 65px;
   &-panel {
     padding: 15px;
   }
+  &-panel-scroll-y {
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 100%;
+  }
   &-toggle-menu {
     position: absolute;
     right: -10px;

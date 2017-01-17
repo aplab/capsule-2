@@ -68,12 +68,20 @@ $active-color: #1ca8dd;
     overflow: hidden;
     text-align: center;
     line-height: $header-height - 1px;
-    opacity: .4;
-    background: #e3f5fb;
-    color: $active-color;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100 */
+    background: -moz-linear-gradient(left,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+
+    color: #000;
     display: none;
     cursor: pointer;
-    font-size: 32px;
+    font-size: 24px;
+    &:before {
+      opacity: .4;
+    }
   }
   &-arrow-right {
     position: absolute;
@@ -84,12 +92,20 @@ $active-color: #1ca8dd;
     overflow: hidden;
     text-align: center;
     line-height: $header-height - 1px;
-    opacity: .4;
-    background: #e3f5fb;
-    color: $active-color;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0+0,1+100 */
+    background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+
+    color: #000;
     display: none;
     cursor: pointer;
-    font-size: 32px;
+    font-size: 24px;
+    &:before {
+      opacity: .4;
+    }
   }
   &-body {
     position: absolute;

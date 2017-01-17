@@ -16,14 +16,14 @@ ob_start(); ?>
     <div class="capsule-cms-dialog" id="capsule-about-window">
         <div class="capsule-cms-dialog-backdrop"></div>
         <div class="capsule-cms-dialog-container">
-            <div class="capsule-cms-dialog-content">
+            <div class="capsule-cms-dialog-content capsule-cms-dialog-maximize">
                 <div class="capsule-cms-dialog-header">
                     <h4 class="modal-title">About</h4>
                 </div>
                 <div class="capsule-cms-dialog-body">
 
 
-                    <div>
+                    <div class="capsule-cms-dialog-panel-scroll-y">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs nav-justified" role="tablist">
                             <li role="presentation" class="active"><a href="#about-program" aria-controls="about-program" role="tab" data-toggle="tab">About</a></li>

@@ -60,10 +60,10 @@ function CapsuleCmsObjectEditor(container) {
         if (head.width() < tabs_width_sum) {
             arrow_left.show();
             arrow_right.show();
-            tabs_wrapper.css({
-                left: 30,
-                right: 30
-            });
+            // tabs_wrapper.css({
+            //     left: 30,
+            //     right: 30
+            // });
         } else {
             arrow_left.hide();
             arrow_right.hide();
