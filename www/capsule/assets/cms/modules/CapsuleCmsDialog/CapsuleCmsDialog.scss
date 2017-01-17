@@ -41,8 +41,6 @@ $footer-height: 65px;
   &-content {
     background: #fff;
     margin: 10px auto;
-    width: 320px;
-    height: 240px;
     max-width: calc(100vw - 20px);
     max-height: calc(100vh - 20px);
     -webkit-border-radius: 6px;
@@ -96,6 +94,8 @@ $footer-height: 65px;
     right: 0;
     top: $header-height;
     bottom: $footer-height;
+    width: auto;
+    height: auto;
   }
   &-footer {
     height: $footer-height;
@@ -181,8 +181,20 @@ $footer-height: 65px;
     height: 26px;
     background: #fff;
   }
-  .dropdown-menu li a {
-    padding-top: 7px;
-    padding-bottom: 7px;
+  .dropdown-menu {
+    max-height: calc(100vh - 30px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    li {
+      a {
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    .dropdown-menu {
+      max-height: calc(100vh - 70px);
+    }
   }
 }

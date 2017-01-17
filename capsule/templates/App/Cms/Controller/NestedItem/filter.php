@@ -21,9 +21,10 @@ ob_start();
 <div class="capsule-cms-dialog" id="filter-by-container-window">
     <div class="capsule-cms-dialog-backdrop"></div>
     <div class="capsule-cms-dialog-container">
-        <div class="capsule-cms-dialog-content">
+        <div class="capsule-cms-dialog-content capsule-cms-nested-item-filter">
             <div class="capsule-cms-dialog-header">
                 <h4 class="modal-title">Filter</h4>
+                <?php /*
                 <div class="capsule-cms-dialog-header-menu">
                     <div class="dropdown">
                         <i class="fa fa-ellipsis-v capsule-cms-dialog-toggle-menu dropdown-toggle"
@@ -40,10 +41,10 @@ ob_start();
                         </ul>
                     </div>
                 </div>
+                */ ?>
             </div>
             <div class="capsule-cms-dialog-body">
                 <div class="capsule-cms-dialog-panel">
-
                     <form method="post" id="apply-filter-by-container-form"
                           action="<?=$filter($this->mod);?>">
                         <select class="form-control" name="<?=self::FILTER_BY_CONTAINER?>">
@@ -54,21 +55,16 @@ ob_start();
                             <?php endforeach ?>
                         </select>
                     </form>
-
                 </div>
             </div>
             <div class="capsule-cms-dialog-footer">
-                    <div class="capsule-cms-dialog-footer-button-3">
+                    <div class="capsule-cms-dialog-footer-button-2">
                         <button type="button" id="apply-filter-by-container-btn"
-                                class="btn btn-primary">Save changes</button>
+                                class="btn btn-primary"><?=Capsule\I18n\I18n::_('Apply')?></button>
                     </div>
-                    <div class="capsule-cms-dialog-footer-button-3">
+                    <div class="capsule-cms-dialog-footer-button-2">
                         <button type="button"
-                                class="btn btn-default capsule-cms-dialog-close">Close</button>
-                    </div>
-                    <div class="capsule-cms-dialog-footer-button-3">
-                        <button type="button"
-                                class="btn btn-default capsule-cms-dialog-close">Close</button>
+                                class="btn btn-default capsule-cms-dialog-close"><?=Capsule\I18n\I18n::_('Cancel')?></button>
                     </div>
                 </div>
             </div>

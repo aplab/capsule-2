@@ -84,5 +84,7 @@
     "Comment": "Комментарий",
     "Attribute section link": "Привязка атрибутов к разделам",
     "Tab name": "Имя вкладки",
-    "Attribute group": "Группа атрибутов"
+    "Attribute group": "Группа атрибутов",
+    "Cancel": "Отмена",
+    "Apply": "Применить"
 }

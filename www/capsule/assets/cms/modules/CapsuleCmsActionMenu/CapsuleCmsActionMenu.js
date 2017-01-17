@@ -102,6 +102,7 @@ function CapsuleCmsActionMenu(data, append_to)
                             span.click(function ()
                             {
                                 eval(v);
+                                menu.hide();
                             });
                         })(item.action.callback);
                     }
