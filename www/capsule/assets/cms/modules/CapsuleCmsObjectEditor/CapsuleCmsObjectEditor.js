@@ -156,7 +156,8 @@ function CapsuleCmsObjectEditor(container) {
     var editor_config = function () {
         var config = {
             uiColor: '#ffffff',
-            removePlugins: 'about,maximize',
+            // removePlugins: 'about,maximize',
+            removePlugins: 'maximize',
             resize_enabled: false,
             height: 10000,
             removeButtons: 'Cut,Copy,Scayt'
@@ -209,7 +210,8 @@ function CapsuleCmsObjectEditor(container) {
                     name: 'insert',
                     items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']
                 },
-                {name: 'styles', items: ['Styles', 'Format', 'FontSize']}
+                {name: 'styles', items: ['Styles', 'Format', 'FontSize']},
+                {name: 'about', items: ['About']}
             ];
             config.toolbarCanCollapse = false;
             config.toolbarStartupExpanded = true;
