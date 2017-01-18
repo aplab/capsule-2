@@ -131,6 +131,9 @@ $(document).ready(function ()
             $('body').toggleClass('capsule-cms-sidebar-wrapper-pinned')
                 .hasClass('capsule-cms-sidebar-wrapper-pinned')
         );
+        if (CapsuleCmsObjectEditor.getInstance !== undefined) {
+            CapsuleCmsObjectEditor.getInstance().fitEditors();
+        }
         if (CapsuleCms.getSidebarPin()) {
             return;
         }
