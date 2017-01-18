@@ -87,6 +87,13 @@ $footer-height: 65px;
     width: auto;
     bottom: auto;
     border-bottom: 1px solid #e5e5e5;
+    h4 {
+      white-space: nowrap;
+      -ms-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      overflow: hidden;
+    }
   }
   &-body {
     position: absolute;

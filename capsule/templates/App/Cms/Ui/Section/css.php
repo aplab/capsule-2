@@ -28,6 +28,7 @@ $assets
     //->add(new c('/capsule/assets/cms/modules/CapsuleCmsDataGrid/CapsuleCmsDataGridRU.css', true))
     ->add(new c('/capsule/assets/cms/modules/CapsuleCmsObjectEditor/CapsuleCmsObjectEditor.css', true))
     ->add(new c('/capsule/assets/cms/modules/CapsuleCmsDialog/CapsuleCmsDialog.css', true))
+    ->add(new c('/capsule/assets/cms/modules/CapsuleCmsImageUploader/CapsuleCmsImageUploader.css', true))
     ->add(new c('/capsule/assets/cms/css/style.css', true));
 $assets->putCss();
 foreach ($this->css as $item) echo $item;

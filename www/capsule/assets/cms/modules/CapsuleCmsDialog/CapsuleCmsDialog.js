@@ -233,15 +233,21 @@ CapsuleCmsDialog.createElement = function (instance_name, options)
             content.addClass(CapsuleCmsDialog.prefix + '-maximize');
         }
     }
-    var l = options.button.length;
-    if (l) {
-        for (var i = 0; i < l; i++) {
-            footer.append($(options.button[i]));
+    if (options.hasOwnProperty('button')) {
+        var l = options.button.length;
+        if (l) {
+            for (var i = 0; i < l; i++) {
+                footer.append($(options.button[i]));
+            }
         }
     }
+    if (options.hasOwnProperty('title')) {
+        header.append($('<h4 class="modal-title">' + options.title + '</h4>'));
+    }
     dialog.appendTo($('body'));
-    new CapsuleCmsDialog(instance_name);
+    var o = new CapsuleCmsDialog(instance_name);
     CapsuleCmsDialog.init();
+    return o;
 };
 
 /**

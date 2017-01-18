@@ -23,20 +23,19 @@
         "icon": "glyphicon glyphicon-search",
         "items": [
           {
-            "caption": "Upload image",
-            "url": "uploadimage",
+            "caption": "Images",
             "items": [
               {
-                "caption": "Popup",
-                "callback": "window.open('/admin/uploadimage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
-              },
-              {
-                "caption": "Open in new tab",
-                "callback": "window.open('/admin/uploadimage/', '_blank')"
+                "caption": "Upload image",
+                "callback": "CapsuleCmsImageUploader.getInstance().showWindow()"
               },
               {
                 "caption": "View history",
-                "callback": "window.open('/admin/uploadimagehistory/', '_blank')"
+                "callback": "alert('open history')"
+              },
+              {
+                "caption": "Favorites",
+                "callback": "alert('show favorites only')"
               }
             ]
           }
