@@ -13,6 +13,10 @@ function CapsuleCmsImageUploader()
 
     var prefix = '.capsule-cms-image-uploader-';
 
+    var file_input = $('<input type="file" multiple="multiple">').css({
+        display: 'none'
+    });
+
     var w;
 
     this.showWindow = function ()
@@ -35,6 +39,16 @@ function CapsuleCmsImageUploader()
         var btn_browse = $('<button type="button" id="apply-filter-by-container-btn" class="btn btn-success">Browse</button>');
         btn_wrapper_3.append(btn_browse);
         w.show();
+        btn_browse.click(function ()
+        {
+            $('body').append(file_input);
+            file_input.click();
+        });
+        btn_cancel.click(function ()
+        {
+            w.purge();
+            file_input.detach();
+        });
     }
 }
 
