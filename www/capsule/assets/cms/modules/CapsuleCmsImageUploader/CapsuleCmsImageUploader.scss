@@ -1,0 +1,55 @@
+.capsule-cms-image-uploader {
+  &-list {
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: auto;
+    height: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 15px;
+  }
+  &-item {
+    width: 100%;
+    clear: both;
+    height: 21px;
+    overflow: hidden;
+    color: #000;
+    cursor: default;
+  }
+  &-name {
+    height: 21px;
+    overflow: hidden;
+    width: 50%;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    line-height: 20px;
+    white-space: nowrap;
+    float: left;
+  }
+  &-type {
+    height: 21px;
+    overflow: hidden;
+    width: 19%;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    line-height: 20px;
+    white-space: nowrap;
+    float: left;
+    padding-left: 15px;
+  }
+  &-size {
+    height: 21px;
+    overflow: hidden;
+    width: 30%;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    line-height: 20px;
+    white-space: nowrap;
+    float: left;
+    text-align: right;
+    padding-left: 15px;
+  }
+}
