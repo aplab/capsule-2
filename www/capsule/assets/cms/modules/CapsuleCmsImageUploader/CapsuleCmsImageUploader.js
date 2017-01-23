@@ -235,28 +235,27 @@ function CapsuleCmsImageUploader()
             dataType: 'json',
             xhr: function ()
             {
-                var myXhr = $.ajaxSetup().xhr();
-                if (myXhr.upload) {
-                    myXhr.upload.addEventListener(
-                        'progress',
-                        function (e)
-                        {
-                            if (e.lengthComputable) {
-                                var max = e.total;
-                                var current = e.loaded;
+                // var myXhr = $.ajaxSetup().xhr();
+                var myXhr = $.ajaxSettings.xhr();
+                (myXhr.upload || myXhr).addEventListener(
+                    'progress',
+                    function (e)
+                    {
+                        if (e.lengthComputable) {
+                            var max = e.total;
+                            var current = e.loaded;
 
-                                var Percentage = (current * 100) / max;
-                                console.log(i.toString() + ':' + Percentage);
+                            var Percentage = (current * 100) / max;
+                            console.log(i.toString() + ':' + Percentage);
 
 
-                                if (Percentage >= 100) {
-                                    // process completed
-                                }
+                            if (Percentage >= 100) {
+                                // process completed
                             }
-                        },
-                        false
-                    );
-                }
+                        }
+                    },
+                    false
+                );
                 return myXhr;
             },
             cache: false,
