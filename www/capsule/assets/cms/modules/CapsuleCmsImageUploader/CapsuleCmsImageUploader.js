@@ -189,7 +189,7 @@ function CapsuleCmsImageUploader()
             line.append(type);
 
             var progress = $('<div>');
-            progress.addClass('progress-bar progress-bar-success capsule-cms-image-uploader-progress');
+            progress.addClass('progress-bar progress-bar-info progress-bar-striped active capsule-cms-image-uploader-progress');
             // progress.text('1%');
             line.append(progress);
 
