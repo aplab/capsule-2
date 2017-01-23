@@ -171,7 +171,7 @@ function CapsuleCmsImageUploader()
         for (var i = 0; i < number; i++) {
             var file = o_input.files[i];
             var line = $('<div>');
-            line.addClass('capsule-cms-image-uploader-item');
+            line.addClass('progress capsule-cms-image-uploader-item');
 
             var name = $('<div>');
             name.addClass('capsule-cms-image-uploader-name');
@@ -187,6 +187,11 @@ function CapsuleCmsImageUploader()
             type.addClass('capsule-cms-image-uploader-type');
             type.text(file.type);
             line.append(type);
+
+            var progress = $('<div>');
+            progress.addClass('progress-bar progress-bar-success capsule-cms-image-uploader-progress');
+            // progress.text('1%');
+            line.append(progress);
 
             list.append(line);
         }
@@ -246,8 +251,10 @@ function CapsuleCmsImageUploader()
                             var current = e.loaded;
 
                             var Percentage = (current * 100) / max;
-                            console.log(i.toString() + ':' + Percentage);
-
+                            var progressbar = list.find('.capsule-cms-image-uploader-progress').eq(i);
+                            progressbar.css({
+                                width: Percentage + '%'
+                            });
 
                             if (Percentage >= 100) {
                                 // process completed

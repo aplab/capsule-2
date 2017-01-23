@@ -18,6 +18,9 @@
     overflow: hidden;
     color: #000;
     cursor: default;
+    position: relative;
+    z-index: 100;
+    margin-bottom: 4px;
   }
   &-name {
     height: 21px;
@@ -28,6 +31,9 @@
     line-height: 20px;
     white-space: nowrap;
     float: left;
+    position: relative;
+    z-index: 100;
+    padding: 0 3px;
   }
   &-type {
     height: 21px;
@@ -39,6 +45,8 @@
     white-space: nowrap;
     float: left;
     padding-left: 15px;
+    position: relative;
+    z-index: 100;
   }
   &-size {
     height: 21px;
@@ -51,5 +59,26 @@
     float: left;
     text-align: right;
     padding-left: 15px;
+    position: relative;
+    z-index: 100;
+  }
+  &-progress {
+    position: absolute;
+    overflow: hidden;
+    width: 0%;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    line-height: 20px;
+    white-space: nowrap;
+    text-align: center;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    bottom: 1px;
+    height: auto;
+    //background: #1ca8dd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
   }
 }
