@@ -47,7 +47,7 @@ function CapsuleCmsImageUploader()
      * @param tag
      * @returns {*|jQuery|HTMLElement}
      */
-    var ce = function(tag)
+    var ce = function (tag)
     {
         tag = tag || 'div';
         return $(document.createElement(tag));
@@ -56,7 +56,7 @@ function CapsuleCmsImageUploader()
     /**
      * Create dialog window
      */
-    var create_window = function()
+    var create_window = function ()
     {
         dialog_window = CapsuleCmsDialog.createElement(
             'capsule-cms-image-uploader',
@@ -108,7 +108,8 @@ function CapsuleCmsImageUploader()
         });
         $('body').append(file_input);
 
-        file_input.change(function() {
+        file_input.change(function ()
+        {
             handleSelected();
         });
 
@@ -126,6 +127,12 @@ function CapsuleCmsImageUploader()
         {
             CapsuleCmsImageUploader.getInstance().purgeWindow();
         });
+
+        btn_upload.click(function ()
+        {
+            uploadFiles();
+        });
+
         file_input.click();
     };
 
@@ -144,7 +151,7 @@ function CapsuleCmsImageUploader()
      *
      * @access public
      */
-    this.purgeWindow = function()
+    this.purgeWindow = function ()
     {
         dialog_window.purge();
         file_input.remove();
@@ -153,7 +160,7 @@ function CapsuleCmsImageUploader()
     /**
      * Onchange (file input)
      */
-    var handleSelected = function()
+    var handleSelected = function ()
     {
         var o_input = file_input[0];
         var number = o_input.files.length;
@@ -161,7 +168,7 @@ function CapsuleCmsImageUploader()
             return;
         }
         list.empty();
-        for (var i = 0; i < number; i ++) {
+        for (var i = 0; i < number; i++) {
             var file = o_input.files[i];
             var line = $('<div>');
             line.addClass('capsule-cms-image-uploader-item');
@@ -187,25 +194,27 @@ function CapsuleCmsImageUploader()
 
     var process_running = 0;
 
-    var uploadFiles = function() {
-        var o_input = input[0];
+    var uploadFiles = function ()
+    {
+        var o_input = file_input[0];
         var number = o_input.files.length;
         if (!number) {
             input.click();
             return;
         }
-        for (var i = 0; i < number; i ++) {
+        for (var i = 0; i < number; i++) {
             uploadFile(i);
         }
-        input.wrap('<form>').closest('form').get(0).reset();
-        input.unwrap();
-        button_browse.hide();
-        button_clear.hide();
-        button_upload.hide();
+        file_input.wrap('<form>').closest('form').get(0).reset();
+        file_input.unwrap();
+        btn_browse.hide();
+        btn_clear.hide();
+        btn_upload.hide();
     };
 
-    var uploadFile = function(i) {
-        var o_input = input[0];
+    var uploadFile = function (i)
+    {
+        var o_input = file_input[0];
         var line = list.children().eq(i);
         line.addClass('capsule-cms-file-uploader-progress');
         var file = o_input.files[i];
@@ -214,7 +223,7 @@ function CapsuleCmsImageUploader()
         form_data.append('cmd', 'uploadPhoto');
         form_data.append('file', file);
 
-        process_running ++;
+        process_running++;
 
         $.ajax({
             url: '/ajax/',
@@ -224,7 +233,35 @@ function CapsuleCmsImageUploader()
             contentType: false,
             processData: false,
             dataType: 'json',
-            success: function(data) {
+            xhr: function ()
+            {
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    myXhr.upload.addEventListener(
+                        'progress',
+                        function (e)
+                        {
+                            if (e.lengthComputable) {
+                                var max = e.total;
+                                var current = e.loaded;
+
+                                var Percentage = (current * 100) / max;
+                                console.log(i.toString() + ':' + Percentage);
+
+
+                                if (Percentage >= 100) {
+                                    // process completed
+                                }
+                            }
+                        },
+                        false
+                    );
+                }
+                return myXhr;
+            },
+            cache: false,
+            success: function (data)
+            {
                 var current_line = line;
                 if (data.status === 'ok') {
                     current_line.removeClass('capsule-cms-file-uploader-progress');
@@ -234,16 +271,17 @@ function CapsuleCmsImageUploader()
                     current_line.addClass('capsule-cms-file-uploader-fail');
                     current_line.attr('title', data.message);
                 }
-                process_running --;
+                process_running--;
                 if (process_running < 1) {
                     button_done.show();
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error)
+            {
                 var current_line = line;
                 current_line.removeClass('capsule-cms-file-uploader-progress');
                 current_line.addClass('capsule-cms-file-uploader-fail');
-                process_running --;
+                process_running--;
                 if (process_running < 1) {
                     button_done.show();
                 }
