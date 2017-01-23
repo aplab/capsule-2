@@ -235,7 +235,7 @@ function CapsuleCmsImageUploader()
             dataType: 'json',
             xhr: function ()
             {
-                var myXhr = $.ajaxSettings.xhr();
+                var myXhr = $.ajaxSetup().xhr();
                 if (myXhr.upload) {
                     myXhr.upload.addEventListener(
                         'progress',
