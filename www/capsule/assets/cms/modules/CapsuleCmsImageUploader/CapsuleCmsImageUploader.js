@@ -16,7 +16,7 @@ function CapsuleCmsImageUploader()
      *
      * @type {string}
      */
-    var prefix = 'capsule-cms-image-uploader-';
+    var class_prefix = 'capsule-cms-image-uploader-';
 
     /**
      * Button wrapper class
@@ -24,12 +24,19 @@ function CapsuleCmsImageUploader()
      * @see CapsuleCmsDialog
      * @type {string}
      */
-    var btn_wrapper_class = 'capsule-cms-dialog-footer-button-3';
+    var button_wrapper_class_prefix = 'capsule-cms-dialog-footer-button-';
 
     /**
      * var CapsuleCmsDialog
      */
     var dialog_window;
+
+    /**
+     * Dialog window exists flag
+     *
+     * @type {boolean}
+     */
+    var dialog_window_exists = false;
 
     /**
      * file input
@@ -40,6 +47,28 @@ function CapsuleCmsImageUploader()
      * Selected files list
      */
     var list;
+
+    /**
+     * Button browse
+     */
+    var button_browse, button_browse_wrapper;
+
+    /**
+     * button upload
+     */
+    var button_upload, button_upload_wrapper;
+
+    /**
+     * button cancel
+     */
+    var button_cancel, button_cancel_wrapper;
+
+    /**
+     * button done
+     */
+    var button_done, button_done_wrapper;
+
+    var button_group, button_group_done;
 
     /**
      * Create element wrapper
@@ -54,51 +83,12 @@ function CapsuleCmsImageUploader()
     };
 
     /**
-     * Create dialog window
+     * init file input
+     *
+     * @type {*}
      */
-    var create_window = function ()
+    var init_file_input = function ()
     {
-        dialog_window = CapsuleCmsDialog.createElement(
-            'capsule-cms-image-uploader',
-            {
-                maximxze: 1,
-                title: 'Upload images'
-            }
-        );
-        var footer = dialog_window.getFooter();
-
-        var btn_wrapper_1 = ce();
-        btn_wrapper_1.addClass(btn_wrapper_class);
-        footer.append(btn_wrapper_1);
-
-        var btn_wrapper_2 = ce();
-        btn_wrapper_2.addClass(btn_wrapper_class);
-        footer.append(btn_wrapper_2);
-
-        var btn_wrapper_3 = ce();
-        btn_wrapper_3.addClass(btn_wrapper_class);
-        footer.append(btn_wrapper_3);
-
-        var btn_cancel = ce('button');
-        btn_cancel.prop({
-            type: 'button'
-        }).addClass('btn btn-default').text('Cancel');
-        btn_wrapper_1.append(btn_cancel);
-
-        var btn_upload = ce('button');
-        btn_upload.prop({
-            type: 'button'
-        }).addClass('btn btn-warning').text('Upload');
-        btn_wrapper_2.append(btn_upload);
-
-        var btn_browse = ce('button');
-        btn_browse.prop({
-            type: 'button'
-        }).addClass('btn btn-success').text('Browse');
-        btn_wrapper_3.append(btn_browse);
-
-        dialog_window.show();
-
         file_input = ce('input');
         file_input.prop({
             type: 'file',
@@ -112,29 +102,112 @@ function CapsuleCmsImageUploader()
         {
             handleSelected();
         });
+    };
+
+    /**
+     * Clear file input
+     */
+    var clear_file_input = function ()
+    {
+        file_input.wrap('<form>').closest('form').get(0).reset();
+        file_input.unwrap();
+    };
+
+    /**
+     * Create dialog window
+     */
+    var create_window = function ()
+    {
+        dialog_window = CapsuleCmsDialog.createElement(
+            'capsule-cms-image-uploader',
+            {
+                maximxze: 1,
+                title: 'Upload images',
+                width: 640
+            }
+        );
+        var footer = dialog_window.getFooter();
+
+        button_group = ce();
+        button_group_done = ce();
+        footer.append(button_group_done);
+        footer.append(button_group);
+
+        button_cancel_wrapper = ce();
+        button_cancel_wrapper.addClass(button_wrapper_class_prefix + '3');
+        button_group.append(button_cancel_wrapper);
+
+        button_upload_wrapper = ce();
+        button_upload_wrapper.addClass(button_wrapper_class_prefix + '3');
+        button_group.append(button_upload_wrapper);
+
+        button_browse_wrapper = ce();
+        button_browse_wrapper.addClass(button_wrapper_class_prefix + '3');
+        button_group.append(button_browse_wrapper);
+
+        button_done_wrapper = ce();
+        button_done_wrapper.addClass(button_wrapper_class_prefix + '1');
+        button_group_done.append(button_done_wrapper);
+
+        button_cancel = ce('button');
+        button_cancel.prop({
+            type: 'button'
+        }).addClass('btn btn-default').text('Cancel');
+        button_cancel_wrapper.append(button_cancel);
+
+        button_upload = ce('button');
+        button_upload.prop({
+            type: 'button'
+        }).addClass('btn btn-warning').text('Upload');
+        button_upload_wrapper.append(button_upload);
+
+        button_browse = ce('button');
+        button_browse.prop({
+            type: 'button'
+        }).addClass('btn btn-success').text('Browse');
+        button_browse_wrapper.append(button_browse);
+
+        button_done = ce('button');
+        button_done.prop({
+            type: 'button'
+        }).addClass('btn btn-success').text('Done');
+        button_done_wrapper.append(button_done);
 
         list = ce();
-        list.addClass(prefix + 'list');
+        list.addClass(class_prefix + 'list');
 
         dialog_window.getBody().append(list);
 
-        btn_browse.click(function ()
+        button_browse.click(function ()
         {
             file_input.click();
         });
 
-        btn_cancel.click(function ()
+        button_cancel.click(function ()
         {
             CapsuleCmsImageUploader.getInstance().purgeWindow();
         });
 
-        btn_upload.click(function ()
+        button_done.click(function ()
+        {
+            if (process_running) {
+                return;
+            }
+            CapsuleCmsImageUploader.getInstance().purgeWindow();
+        });
+
+        button_upload.click(function ()
         {
             uploadFiles();
         });
 
-        file_input.click();
+        button_group.show();
+        button_group_done.hide();
+        dialog_window_exists = true;
     };
+
+    create_window();
+    init_file_input();
 
     /**
      * Show window
@@ -143,7 +216,11 @@ function CapsuleCmsImageUploader()
      */
     this.showWindow = function ()
     {
-        create_window();
+        button_group.show();
+        button_group_done.hide();
+        list.empty();
+        dialog_window.show();
+        file_input.click();
     };
 
     /**
@@ -153,9 +230,16 @@ function CapsuleCmsImageUploader()
      */
     this.purgeWindow = function ()
     {
-        dialog_window.purge();
-        file_input.remove();
+        dialog_window.hide();
+        clear_file_input();
     };
+
+    /**
+     * Visuslisation objects
+     *
+     * @type {Array}
+     */
+    var items = [];
 
     /**
      * Onchange (file input)
@@ -168,68 +252,93 @@ function CapsuleCmsImageUploader()
             return;
         }
         list.empty();
+        items = [];
         for (var i = 0; i < number; i++) {
             var file = o_input.files[i];
-            var line = $('<div>');
-            line.addClass('progress capsule-cms-image-uploader-item');
+            var item = ce();
+            items[i] = {
+                item: item
+            };
+            item.addClass(class_prefix + 'item');
+            var metadata = ce();
+            metadata.addClass(class_prefix + 'metadata');
+            item.append(metadata);
+            items[i].metadata = metadata;
 
-            var name = $('<div>');
-            name.addClass('capsule-cms-image-uploader-name');
+            var name = ce();
+            name.addClass(class_prefix + 'name');
             name.text(file.name);
-            line.append(name);
+            metadata.append(name);
+            items[i].name = name;
 
-            var size = $('<div>');
-            size.addClass('capsule-cms-image-uploader-size');
+            var size = ce();
+            size.addClass(class_prefix + 'size');
             size.text(file.size);
-            line.append(size);
+            metadata.append(size);
+            items[i].size = size;
 
-            var type = $('<div>');
-            type.addClass('capsule-cms-image-uploader-type');
+            var type = ce();
+            type.addClass(class_prefix + 'type');
             type.text(file.type);
-            line.append(type);
+            metadata.append(type);
+            items[i].type = type;
 
-            var progress = $('<div>');
-            progress.addClass('progress-bar progress-bar-info progress-bar-striped active capsule-cms-image-uploader-progress');
-            // progress.text('1%');
-            line.append(progress);
+            var progress = ce();
+            progress.addClass('progress ' + class_prefix + 'progress');
+            item.append(progress);
+            items[i].progress = progress;
 
-            list.append(line);
+            var progress_bar = ce();
+            progress_bar.addClass(class_prefix + 'progress-bar progress-bar progress-bar-info progress-bar-striped active');
+            progress.append(progress_bar);
+            items[i].progress_bar = progress_bar;
+
+            var status = ce();
+            status.addClass(class_prefix + 'status');
+            item.append(status);
+            status.text('Waiting for upload');
+            items[i].status = status;
+
+            list.append(item);
         }
     };
 
+    /**
+     * Number of running uploads
+     *
+     * @type {number}
+     */
     var process_running = 0;
 
+    /**
+     * Upload
+     */
     var uploadFiles = function ()
     {
         var o_input = file_input[0];
         var number = o_input.files.length;
         if (!number) {
-            input.click();
+            file_input.click();
             return;
         }
         for (var i = 0; i < number; i++) {
             uploadFile(i);
         }
-        file_input.wrap('<form>').closest('form').get(0).reset();
-        file_input.unwrap();
-        btn_browse.hide();
-        btn_clear.hide();
-        btn_upload.hide();
+        button_group.hide();
+        button_group_done.show();
     };
 
     var uploadFile = function (i)
     {
         var o_input = file_input[0];
-        var line = list.children().eq(i);
-        line.addClass('capsule-cms-file-uploader-progress');
+        var item = items[i];
+        item.status.hide();
+        item.progress.show();
         var file = o_input.files[i];
         var form_data = new FormData();
-
         form_data.append('cmd', 'uploadPhoto');
         form_data.append('file', file);
-
         process_running++;
-
         $.ajax({
             url: '/ajax/',
             data: form_data,
@@ -249,15 +358,12 @@ function CapsuleCmsImageUploader()
                         if (e.lengthComputable) {
                             var max = e.total;
                             var current = e.loaded;
-
-                            var Percentage = (current * 100) / max;
-                            var progressbar = list.find('.capsule-cms-image-uploader-progress').eq(i);
-                            progressbar.css({
-                                width: Percentage + '%'
-                            });
-
-                            if (Percentage >= 100) {
-                                // process completed
+                            var percentage = (current * 100) / max;
+                            item.progress_bar.css({
+                                width: percentage + '%'
+                            }).text(parseInt(percentage, 10) + '%');
+                            if (percentage >= 100) {
+                                item.progress_bar.removeClass('active');
                             }
                         }
                     },
@@ -268,29 +374,36 @@ function CapsuleCmsImageUploader()
             cache: false,
             success: function (data)
             {
-                var current_line = line;
-                if (data.status === 'ok') {
-                    current_line.removeClass('capsule-cms-file-uploader-progress');
-                    current_line.addClass('capsule-cms-file-uploader-success');
-                } else {
-                    current_line.removeClass('capsule-cms-file-uploader-progress');
-                    current_line.addClass('capsule-cms-file-uploader-fail');
-                    current_line.attr('title', data.message);
-                }
-                process_running--;
-                if (process_running < 1) {
-                    button_done.show();
-                }
+                setTimeout(function ()
+                {
+                    if (data.status === 'ok') {
+                        item.progress.hide();
+                        item.status.show().addClass(class_prefix + 'success').text('ok');
+                    } else {
+                        item.progress.hide();
+                        item.status.show().addClass(class_prefix + 'fail').text(data.message);
+                    }
+                    process_running--;
+                    if (process_running < 1) {
+                        button_group_done.show();
+                    }
+                }, 500);
             },
             error: function (xhr, status, error)
             {
-                var current_line = line;
-                current_line.removeClass('capsule-cms-file-uploader-progress');
-                current_line.addClass('capsule-cms-file-uploader-fail');
-                process_running--;
-                if (process_running < 1) {
-                    button_done.show();
-                }
+                setTimeout(function ()
+                {
+                    console.log(error);
+                    item.progress.hide();
+                    item.status.show().addClass(class_prefix + 'fail').text(error);
+                    item.item.prop({
+                        title: error
+                    });
+                    process_running--;
+                    if (process_running < 1) {
+                        button_group_done.show();
+                    }
+                }, 500);
             }
         });
     };

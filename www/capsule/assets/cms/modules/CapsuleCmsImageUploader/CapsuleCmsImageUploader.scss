@@ -14,14 +14,18 @@
   &-item {
     width: 100%;
     clear: both;
-    height: 21px;
+    overflow: hidden;
+    cursor: default;
+    position: relative;
+    margin-bottom: 15px;
+  }
+  &-metadata {
+    width: 100%;
+    clear: both;
     overflow: hidden;
     color: #000;
     cursor: default;
-    position: relative;
-    z-index: 100;
-    margin-bottom: 4px;
-    text-shadow: 0 1px 0 #fff;
+    height: 21px;
   }
   &-name {
     height: 21px;
@@ -29,12 +33,10 @@
     width: 50%;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    line-height: 18px;
+    line-height: 19px;
     white-space: nowrap;
     float: left;
     position: relative;
-    z-index: 100;
-    padding: 0 3px;
   }
   &-type {
     height: 21px;
@@ -42,12 +44,11 @@
     width: 19%;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    line-height: 18px;
+    line-height: 19px;
     white-space: nowrap;
     float: left;
     padding-left: 15px;
     position: relative;
-    z-index: 100;
   }
   &-size {
     height: 21px;
@@ -55,32 +56,48 @@
     width: 30%;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    line-height: 18px;
+    line-height: 19px;
     white-space: nowrap;
     float: left;
     text-align: right;
     padding-left: 15px;
     position: relative;
-    z-index: 100;
   }
   &-progress {
-    position: absolute;
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+    color: #000;
+    cursor: default;
+    height: 21px;
+    margin-bottom: 0;
+    display: none;
+  }
+  &-progress-bar {
     overflow: hidden;
     width: 0%;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    line-height: 18px;
+    line-height: 19px;
     white-space: nowrap;
     text-align: center;
-    z-index: 10;
-    left: 0;
-    top: 0;
-    bottom: 1px;
-    height: auto;
-    //background: #1ca8dd;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    opacity: 0.8;
+    //opacity: 0.8;
+  }
+  &-status {
+    height: 21px;
+    overflow: hidden;
+    width: 99.6%;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    line-height: 19px;
+    white-space: nowrap;
+    float: left;
+    position: relative;
+  }
+  &-success {
+    color: #090;
+  }
+  &-fail {
+    color: #d00;
   }
 }
