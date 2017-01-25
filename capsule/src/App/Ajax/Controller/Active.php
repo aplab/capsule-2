@@ -22,6 +22,7 @@ use App\Ajax\Controller\Controller;
 use Capsule\Superglobals\Request;
 use Capsule\Model\IdBased;
 use Capsule\User\Auth;
+
 /**
  * Active.php
  *
@@ -30,17 +31,30 @@ use Capsule\User\Auth;
  */
 class Active extends Controller
 {
-    protected function toggleActive() {
-        if (!Auth::getInstance()->currentUser) return;
+    protected function toggleActive()
+    {
+        if (!Auth::getInstance()->currentUser) {
+            return;
+        }
         $r = Request::getInstance();
         $class = $r->gets('class');
         $id = $r->gets('id');
-        if (!$class) return;
-        if (!$id) return;
-        if (!is_subclass_of($class, IdBased::class)) return;
+        if (!$class) {
+            return;
+        }
+        if (!$id) {
+            return;
+        }
+        if (!is_subclass_of($class, IdBased::class)) {
+            return;
+        }
         $o = $class::getElementById($id);
-        if (!$o) return;
-        if (!isset($o->active)) return;
+        if (!$o) {
+            return;
+        }
+        if (!isset($o->active)) {
+            return;
+        }
         $o->active = !$o->active;
         $o->store();
         print json_encode(array(

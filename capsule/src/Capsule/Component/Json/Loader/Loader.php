@@ -47,10 +47,13 @@ class Loader
     /**
      * Loader constructor.
      * @param $path
-     * @throws \Exception
+     * @param \Closure $prefilter
+     * @param \Closure $postfilter
      */
-    public function __construct($path)
+    public function __construct($path, \Closure $prefilter = null, \Closure $postfilter = null)
     {
+        $this->prefilter = $prefilter;
+        $this->postfilter = $postfilter;
         $this->path = $path;
     }
 
@@ -62,14 +65,14 @@ class Loader
     {
         $json = file_get_contents($this->path);
         if (is_callable($this->prefilter)) {
-            $json = $this->prefilter($json);
+            $json = ($this->prefilter)($json);
         }
         $data = json_decode($json, true, 512, $this->options);
         if (JSON_ERROR_NONE !== json_last_error()) {
             throw new Exception(json_last_error_msg());
         }
         if (is_callable($this->postfilter)) {
-            $data = $this->postfilter($data);
+            $data = ($this->postfilter)($data);
         }
         return $data;
     }

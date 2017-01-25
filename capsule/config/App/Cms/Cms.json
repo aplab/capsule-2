@@ -23,21 +23,19 @@
         "icon": "glyphicon glyphicon-search",
         "items": [
           {
-            "caption": "Images",
-            "items": [
-              {
-                "caption": "Upload image",
-                "callback": "CapsuleCmsImageUploader.getInstance().showWindow()"
-              },
-              {
-                "caption": "View history",
-                "callback": "alert('open history')"
-              },
-              {
-                "caption": "Favorites",
-                "callback": "alert('show favorites only')"
-              }
-            ]
+            "caption": "Upload image",
+            "callback": "CapsuleCmsImageUploader.getInstance().showWindow()",
+            "icon": "glyphicon glyphicon-picture"
+          },
+          {
+            "caption": "Image upload history",
+            "callback": "alert('open history')",
+            "icon": "glyphicon glyphicon-list-alt"
+          },
+          {
+            "caption": "Favorite images",
+            "callback": "alert('show favorites only')",
+            "icon": "glyphicon glyphicon-star"
           }
         ]
       },

@@ -68,6 +68,11 @@ function CapsuleCmsImageUploader()
      */
     var button_done, button_done_wrapper;
 
+    /**
+     * button more
+     */
+    var button_more, button_more_wrapper;
+
     var button_group, button_group_done;
 
     /**
@@ -146,8 +151,12 @@ function CapsuleCmsImageUploader()
         button_group.append(button_browse_wrapper);
 
         button_done_wrapper = ce();
-        button_done_wrapper.addClass(button_wrapper_class_prefix + '1');
+        button_done_wrapper.addClass(button_wrapper_class_prefix + '2');
         button_group_done.append(button_done_wrapper);
+
+        button_more_wrapper = ce();
+        button_more_wrapper.addClass(button_wrapper_class_prefix + '2');
+        button_group_done.append(button_more_wrapper);
 
         button_cancel = ce('button');
         button_cancel.prop({
@@ -173,6 +182,12 @@ function CapsuleCmsImageUploader()
         }).addClass('btn btn-success').text('Done');
         button_done_wrapper.append(button_done);
 
+        button_more = ce('button');
+        button_more.prop({
+            type: 'button'
+        }).addClass('btn btn-default').text('More');
+        button_more_wrapper.append(button_more);
+
         list = ce();
         list.addClass(class_prefix + 'list');
 
@@ -194,6 +209,15 @@ function CapsuleCmsImageUploader()
                 return;
             }
             CapsuleCmsImageUploader.getInstance().purgeWindow();
+        });
+
+        button_more.click(function ()
+        {
+            if (process_running) {
+                return;
+            }
+            CapsuleCmsImageUploader.getInstance().purgeWindow();
+            CapsuleCmsImageUploader.getInstance().showWindow();
         });
 
         button_upload.click(function ()
@@ -336,11 +360,10 @@ function CapsuleCmsImageUploader()
         item.progress.show();
         var file = o_input.files[i];
         var form_data = new FormData();
-        form_data.append('cmd', 'uploadPhoto');
         form_data.append('file', file);
         process_running++;
         $.ajax({
-            url: '/ajax/',
+            url: '/ajax/uploadImage/',
             data: form_data,
             type: 'POST',
             // THIS MUST BE DONE FOR FILE UPLOADING
@@ -378,7 +401,7 @@ function CapsuleCmsImageUploader()
                 {
                     if (data.status === 'ok') {
                         item.progress.hide();
-                        item.status.show().addClass(class_prefix + 'success').text('ok');
+                        item.status.show().addClass(class_prefix + 'success').text('Ok');
                     } else {
                         item.progress.hide();
                         item.status.show().addClass(class_prefix + 'fail').text(data.message);

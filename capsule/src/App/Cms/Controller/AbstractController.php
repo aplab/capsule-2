@@ -30,11 +30,13 @@ use Capsule\User\Env\Env;
  */
 abstract class AbstractController extends a
 {
-    protected function __construct() {
+    protected function __construct()
+    {
         $this->_init();
     }
-    
-    protected function _init() {
+
+    protected function _init()
+    {
         $this->app = Cms::getInstance();
         $this->base = $this->app->base;
         $this->mod = $this->app->mod;
@@ -47,28 +49,28 @@ abstract class AbstractController extends a
      * @var Cms
      */
     protected $app;
-    
+
     /**
      * Base
      *
      * @var string
      */
     protected $base;
-    
+
     /**
      * mode or module
      *
      * @var string
      */
     protected $mod;
-    
+
     /**
      * Команда
      *
      * @var string
      */
     protected $cmd;
-    
+
     /**
      * Параметры
      *

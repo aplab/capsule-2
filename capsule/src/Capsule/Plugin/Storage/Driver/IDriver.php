@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | Copyright (c) 2006-2014                                                   |
 // +---------------------------------------------------------------------------+
-// | 14.06.2014 7:59:03 YEKT 2014                                              |
+// | 26.07.2014 17:43:36 YEKT 2014                                              |
 // | Класс - type_description_here                                             |
 // +---------------------------------------------------------------------------+
 // | Author: Alexander Polyanin <polyanin@gmail.com>                           |
@@ -16,39 +16,25 @@
  * @package Capsule
  */
 
-namespace App\Ajax\Controller;
-
-use Capsule\Controller\IController;
-use App\Ajax\Ajax;
+namespace Capsule\Plugin\Storage\Driver;
 
 /**
- * Controller.php
+ * IDriver.php
  *
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
-abstract class Controller implements IController
+interface IDriver
 {
-    protected $cmd;
-
-    public function __construct()
-    {
-        $cmd = Ajax::getInstance()->cmd;
-        $exclude = array(
-            'handle',
-            __FUNCTION__
-        );
-        $methods = array_diff(get_class_methods($this), $exclude);
-        if (in_array($cmd, $methods)) {
-            $this->cmd = $cmd;
-        }
-    }
-
-    public function handle()
-    {
-        $cmd = $this->cmd;
-        if ($cmd) {
-            $this->$cmd();
-        }
-    }
+    /**
+     * Добавляет файл в хранилище.
+     * $source_absolute_path - место, откуда взять файл.
+     * 
+     * @param string $source_absolute_path
+     * @param string $extension
+     * @return string
+     */
+    function addFile($source_absolute_path, $extension = null);
+    
+    function delFile($filename);
 }
