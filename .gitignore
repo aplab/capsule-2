@@ -2,7 +2,7 @@
 /.idea/
 /fd
 
-/www/capsule/storage/files
+/www/capsule/storage/
 !readme
 
 capsule/cache/
