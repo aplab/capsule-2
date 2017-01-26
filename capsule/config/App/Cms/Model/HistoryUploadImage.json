@@ -37,6 +37,17 @@
                 "max": 255
             }
         },
+        "thumbnail": {
+            "title": "Путь",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            }
+        },
         "storage": {
             "title": "Хранилище",
             "description": "",
@@ -62,6 +73,12 @@
                 "type": "VARCHAR",
                 "length": 255,
                 "comment": "Путь",
+                "default": ""
+            },
+            "thumbnail": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Preview",
                 "default": ""
             },
             "storage": {

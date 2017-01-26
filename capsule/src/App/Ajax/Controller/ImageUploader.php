@@ -17,6 +17,7 @@ namespace App\Ajax\Controller;
 use App\Cms\Model\HistoryUploadImage;
 use Capsule\File\Upload\Msg;
 use Capsule\Plugin\Storage\Storage;
+use Capsule\Tools\Tools;
 use Capsule\User\Auth;
 
 /**
@@ -25,7 +26,18 @@ use Capsule\User\Auth;
  */
 class ImageUploader extends Controller
 {
+    /**
+     *
+     */
     const FILES_VAR_NAME = 'file';
+
+    const IMAGE_WIDTH_LIMIT = 1024;
+    const IMAGE_HEIGHT_LIMIT = 1024;
+    const THUMBNAIL_WIDTH_LIMIT = 320;
+    const THUMBNAIL_HEIGHT_LIMIT = 320;
+
+    const JPEG_QUALITY = 75;
+    const THUMBNAIL_JPEG_QUALITY = 59;
 
     /**
      *
@@ -138,14 +150,13 @@ class ImageUploader extends Controller
         imagealphablending($image, false);
         imagesavealpha($image, true);
 
-        $max_width = 1024;
-        $max_height = 1024;
-        $new_size = self::calcResize($width, $height, $max_width, $max_height);
+        $new_size = self::calcResize(
+            $width,
+            $height,
+            static::IMAGE_WIDTH_LIMIT,
+            static::IMAGE_HEIGHT_LIMIT
+        );
         if ($new_size['width'] != $width || $new_size['height'] != $height) {
-//            if (php_sapi_name() == "cli") {
-//                echo Cs::_('resize image: ' . $width . 'x' . $height . ' to ' .
-//                        $new_size['width'] . 'x' . $new_size['height'], 'blue', 'yellow') . PHP_EOL;
-//            }
             $new_image = imagecreatetruecolor($new_size['width'], $new_size['height']);
             $white = imagecolorallocate($new_image, 255, 255, 255);
             imagefilledrectangle($new_image, 0, 0, $new_size['width'], $new_size['height'], $white);
@@ -165,13 +176,19 @@ class ImageUploader extends Controller
             'extension' => $extension
         );
 
+        try {
+            $thumbnail = $this->makeThumbnail($image);
+            $image['thumbnail'] = $thumbnail['url'];
+        } catch (\Throwable $exception) {
+            $image['thumbnail'] = '';
+        }
         $tmp_handle = tmpfile();
         $meta = stream_get_meta_data($tmp_handle);
         $path = $meta['uri'];
 
         switch ($image['extension']) {
             case 'jpg':
-                $result = imagejpeg($image['image'], $path);
+                $result = imagejpeg($image['image'], $path, static::JPEG_QUALITY);
                 break;
             case 'gif':
                 $result = imagegif($image['image'], $path);
@@ -268,5 +285,69 @@ class ImageUploader extends Controller
             }
         }
         throw new \Exception('unable to calc resize');
+    }
+
+    /**
+     * @param array $image_data
+     * @return bool|string
+     * @throws \Exception
+     */
+    private function makeThumbnail(array $image_data)
+    {
+        $width = $image_data['width'];
+        $height = $image_data['height'];
+        $src = $image_data['image'];
+        $mime = $image_data['mime'];
+        $name = $image_data['name'];
+        $extension = $image_data['extension'];
+        $new_size = self::calcResize(
+            $width,
+            $height,
+            static::THUMBNAIL_WIDTH_LIMIT,
+            static::THUMBNAIL_HEIGHT_LIMIT
+        );
+        if ($new_size['width'] != $width || $new_size['height'] != $height) {
+            $new_image = imagecreatetruecolor($new_size['width'], $new_size['height']);
+            $white = imagecolorallocate($new_image, 255, 255, 255);
+            imagefilledrectangle($new_image, 0, 0, $new_size['width'], $new_size['height'], $white);
+            imagecopyresampled($new_image, $src, 0, 0, 0, 0, $new_size['width'], $new_size['height'], $width, $height);
+            $image = $new_image;
+            $width = $new_size['width'];
+            $height = $new_size['height'];
+        }
+
+        $image = array(
+            'image' => $image,
+            'width' => $width,
+            'height' => $height,
+            'mime' => $mime,
+            'name' => $name,
+            'extension' => $extension
+        );
+
+        $tmp_handle = tmpfile();
+        $meta = stream_get_meta_data($tmp_handle);
+        $path = $meta['uri'];
+
+        switch ($image['extension']) {
+            case 'jpg':
+                $result = imagejpeg($image['image'], $path, static::THUMBNAIL_JPEG_QUALITY);
+                break;
+            case 'gif':
+                $result = imagegif($image['image'], $path);
+                break;
+            default:
+                $result = imagepng($image['image'], $path, 9);
+                break;
+        }
+        if (!$result) {
+            throw new \Exception('Unable to create image');
+        }
+        try {
+            $result = Storage::getInstance()->addFile($path, $image['extension']);
+        } catch (\Exception $e) {
+            throw new \Exception('Unable to store image: ' . $e->getMessage() . '[' . $e->getLine() . ']');
+        }
+        return $result;
     }
 }

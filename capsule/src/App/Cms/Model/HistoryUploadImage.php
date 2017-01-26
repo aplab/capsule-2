@@ -20,6 +20,7 @@ namespace App\Cms\Model;
 
 use Capsule\Unit\NamedTsUsr;
 use Capsule\Db\Db;
+
 /**
  * HistoryUploadImage.php
  *
@@ -29,31 +30,26 @@ use Capsule\Db\Db;
 class HistoryUploadImage extends NamedTsUsr
 {
     /**
-     * Сколько записей истории хранить
-     * 
-     * @var int
-     */
-    const LIMIT = 1000;
-    
-    /**
      * Добавляет или убирает избранное
-     * 
+     *
      * @param boolean $value
      * @return void
      */
-    protected function setFavorites($value) {
+    protected function setFavorites($value)
+    {
         $this->data['favorites'] = $value ? 1 : 0;
     }
-    
+
     /**
      * Удаляет записи истории с таким же значением пути, но с другими id.
      * Возвращает количество удаленных записей.
      * Не удаляет из избранного
-     * 
+     *
      * @param self $item
      * @return int
      */
-    public static function deleteSamePath(self $item) {
+    public static function deleteSamePath(self $item)
+    {
         $db = Db::getInstance();
         $sql = 'DELETE FROM ' . $db->bq(self::config()->table->name) . '
                 WHERE `path` = ' . $db->qt($item->get('path', '')) . '
@@ -63,51 +59,29 @@ class HistoryUploadImage extends NamedTsUsr
         $db->query($sql);
         return $db->affected_rows;
     }
-    
-    /**
-     * Сборщик мусора. Удаляет записи если записей больше лимита.
-     * Не удаляет избранное.
-     * Возвращает количество удаленных записей. 
-     * 
-     * @param void
-     * @return int
-     */
-    public static function gcCollect() {
-        $db = Db::getInstance();
-        $sql = 'DELETE FROM ' . $db->bq(self::config()->table->name) . '
-                WHERE `favorites` = 0
-                AND `id` < (
-                    SELECT `id` FROM (
-                        SELECT `id` FROM ' . $db->bq(self::config()->table->name) . '
-                        WHERE `favorites` = 0
-                        ORDER BY `id` DESC
-                        LIMIT ' . self::LIMIT - 1 . ', 1
-                    ) AS `t`
-                )';
-        $db->query($sql);
-        return $db->affected_rows;
-    }
-    
+
     /**
      * Возвращает историю
-     * 
+     *
      * @param void
      * @return \Capsule\Db\Result
      */
-    public static function history() {
+    public static function history()
+    {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM ' . $db->bq(self::config()->table->name) . '
                 ORDER BY `favorites` DESC, `id` DESC';
-        return $db->query($sql); 
+        return $db->query($sql);
     }
-    
+
     /**
      * Возвращает избранное
      *
      * @param void
      * @return \Capsule\Db\Result
      */
-    public static function favorites() {
+    public static function favorites()
+    {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM ' . $db->bq(self::config()->table->name) . '
                 WHERE `favorites` = 1
