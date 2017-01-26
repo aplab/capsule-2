@@ -18,8 +18,10 @@
 
 namespace App\Cms\Model;
 
+use Capsule\Db\Result;
 use Capsule\Unit\NamedTsUsr;
 use Capsule\Db\Db;
+use Respect\Validation\Validator;
 
 /**
  * HistoryUploadImage.php
@@ -63,14 +65,19 @@ class HistoryUploadImage extends NamedTsUsr
     /**
      * Возвращает историю
      *
-     * @param void
-     * @return \Capsule\Db\Result
+     * @param int $offset
+     * @param int $rows
+     * @return Result
+     * @internal param $void
      */
-    public static function history()
+    public static function history($offset = 0, $rows = 10)
     {
+        Validator::digit()->check($offset);
+        Validator::digit()->check($rows);
         $db = Db::getInstance();
         $sql = 'SELECT * FROM ' . $db->bq(self::config()->table->name) . '
-                ORDER BY `favorites` DESC, `id` DESC';
+                ORDER BY `favorites` DESC, `id` DESC
+                LIMIT ' . $offset . ', ' . $rows;
         return $db->query($sql);
     }
 
@@ -78,7 +85,7 @@ class HistoryUploadImage extends NamedTsUsr
      * Возвращает избранное
      *
      * @param void
-     * @return \Capsule\Db\Result
+     * @return Result
      */
     public static function favorites()
     {
