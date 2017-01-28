@@ -29,7 +29,7 @@
           },
           {
             "caption": "Image upload history",
-            "callback": "alert('open history')",
+            "callback": "CapsuleCmsImageHistory.getInstance().showWindow()",
             "icon": "glyphicon glyphicon-list-alt"
           },
           {
