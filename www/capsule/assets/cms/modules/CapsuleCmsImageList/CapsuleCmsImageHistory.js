@@ -190,9 +190,9 @@ function CapsuleCmsImageHistory()
                     var comment = ce().addClass(class_prefix + 'button ' +
                         class_prefix + 'comment glyphicon glyphicon-pencil');
                     buttons.append(comment);
-                    // var open = ce().addClass(class_prefix + 'button ' +
-                    //      class_prefix + 'open glyphicon glyphicon-search');
-                    // buttons.append(open);
+                    var link = ce().addClass(class_prefix + 'button ' +
+                        class_prefix + 'link glyphicon glyphicon-link');
+                    buttons.append(link);
                     var drop = ce().addClass(class_prefix + 'button ' +
                         class_prefix + 'drop glyphicon glyphicon-remove');
                     buttons.append(drop);

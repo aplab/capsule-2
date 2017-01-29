@@ -135,7 +135,7 @@
     text-shadow: 0 0 5px white;
   }
   &-fav {
-    left: 25%;
+    left: 20%;
   }
   &-fav.selected {
     //color: gold;
@@ -143,17 +143,17 @@
     text-shadow: 0 0 5px white;
   }
   &-comment {
-    left: 50%;
+    left: 40%;
   }
   &-comment.selected {
     text-shadow: 0 0 5px white;
     color: #fff;
   }
-  //&-open {
-  //  left: 60%;
-  //}
+  &-link {
+    left: 60%;
+  }
   &-drop {
     //color: rgba(255, 0, 0, 0.8);
-    left: 75%;
+    left: 80%;
   }
 }
