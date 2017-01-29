@@ -192,6 +192,7 @@ function CapsuleCmsImageHistory()
                     buttons.append(comment);
                     var link = ce().addClass(class_prefix + 'button ' +
                         class_prefix + 'link glyphicon glyphicon-link');
+                    link.attr('data-clipboard-text', o.path);
                     buttons.append(link);
                     var drop = ce().addClass(class_prefix + 'button ' +
                         class_prefix + 'drop glyphicon glyphicon-remove');
@@ -213,7 +214,12 @@ function CapsuleCmsImageHistory()
                     {
                         renameItem(this);
                     });
-                }
+                    link.click(function ()
+                    {
+                         copyLink(this);
+                    });
+                };
+                new Clipboard('.' + class_prefix + 'button.' + class_prefix + 'link.glyphicon.glyphicon-link');
             },
             'json'
         );
@@ -274,6 +280,16 @@ function CapsuleCmsImageHistory()
         $(o).addClass('selected');
         prompt('Enter new name:');
         $(o).removeClass('selected');
+    }
+
+    var copyLink = function (o)
+    {
+        o = $(o);
+        o.addClass('selected');
+        setTimeout(function ()
+        {
+            o.removeClass('selected');
+        }, 300);
     }
 }
 

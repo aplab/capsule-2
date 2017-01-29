@@ -152,6 +152,10 @@
   &-link {
     left: 60%;
   }
+  &-link.selected {
+    text-shadow: 0 0 5px white;
+    color: #fff;
+  }
   &-drop {
     //color: rgba(255, 0, 0, 0.8);
     left: 80%;
