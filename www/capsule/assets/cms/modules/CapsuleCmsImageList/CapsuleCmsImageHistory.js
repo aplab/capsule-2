@@ -211,7 +211,7 @@ function CapsuleCmsImageHistory()
                     });
                     comment.click(function ()
                     {
-                        prompt('Enter new name:');
+                        renameItem(this);
                     });
                 }
             },
@@ -268,6 +268,13 @@ function CapsuleCmsImageHistory()
             'json'
         );
     };
+
+    var renameItem = function (o)
+    {
+        $(o).addClass('selected');
+        prompt('Enter new name:');
+        $(o).removeClass('selected');
+    }
 }
 
 /**

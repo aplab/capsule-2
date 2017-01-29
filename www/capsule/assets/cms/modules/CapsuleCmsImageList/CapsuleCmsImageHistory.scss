@@ -119,6 +119,7 @@
     font-size: 16px;
     color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
+    transition: all 0.2s ease 0s;
   }
   @media (min-width: 180px) {
     &-button {
@@ -130,15 +131,21 @@
   }
   &-select.selected {
     color: #43ff2e;
+    text-shadow: 0 0 5px white;
   }
   &-fav {
     left: 25%;
   }
   &-fav.selected {
     color: gold;
+    text-shadow: 0 0 5px white;
   }
   &-comment {
     left: 50%;
+  }
+  &-comment.selected {
+    text-shadow: 0 0 5px white;
+    color: #fff;
   }
   //&-open {
   //  left: 60%;
