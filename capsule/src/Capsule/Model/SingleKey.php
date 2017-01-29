@@ -294,4 +294,43 @@ abstract class SingleKey extends DataModel
                 LIMIT ' . $db->es($from) . ', ' . $db->es($items_per_page);
         return static::populate($db->query($sql));
     }
+
+    /**
+     * Возвращает данные в виде объектов
+     *
+     * @param Result $result
+     * @return \Generator|void
+     */
+    protected static function generate(Result $result)
+    {
+        $class = get_called_class();
+        $data = $result->fetch_assoc();
+        if ($data) {
+            $properties = Inflector::getInstance()->getAssociatedProperties(array_keys($data));
+            $has_key = array_key_exists(static::$key, $data);
+        } else {
+            return;
+        }
+        if ($has_key) {
+            while ($data) {
+                $key = $data[static::$key];
+                if (isset(self::$cache[$class][$key])) {
+                    $ret = self::$cache[$class][$key];
+                } else {
+                    $o = new $class;
+                    $o->data = array_combine($properties, $data);
+                    $ret = self::$cache[$class][$key] = $o;
+                }
+                yield $ret;
+                $data = $result->fetch_assoc();
+            }
+        } else {
+            while ($data) {
+                $o = new $class;
+                $o->data = array_combine($properties, $data);
+                yield $o;
+                $data = $result->fetch_assoc();
+            }
+        }
+    }
 }

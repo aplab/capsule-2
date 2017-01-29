@@ -29,7 +29,7 @@ use Respect\Validation\Validator;
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
-class HistoryUploadImage extends NamedTsUsr
+class HistoryUploadImage extends NamedTsUsr implements \JsonSerializable
 {
     /**
      * Добавляет или убирает избранное
@@ -67,8 +67,7 @@ class HistoryUploadImage extends NamedTsUsr
      *
      * @param int $offset
      * @param int $rows
-     * @return Result
-     * @internal param $void
+     * @return \Generator|void
      */
     public static function history($offset = 0, $rows = 10)
     {
@@ -78,7 +77,7 @@ class HistoryUploadImage extends NamedTsUsr
         $sql = 'SELECT * FROM ' . $db->bq(self::config()->table->name) . '
                 ORDER BY `favorites` DESC, `id` DESC
                 LIMIT ' . $offset . ', ' . $rows;
-        return $db->query($sql);
+        return self::generate($db->query($sql));
     }
 
     /**
@@ -94,5 +93,10 @@ class HistoryUploadImage extends NamedTsUsr
                 WHERE `favorites` = 1
                 ORDER BY `id` DESC';
         return $db->query($sql);
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->data;
     }
 }

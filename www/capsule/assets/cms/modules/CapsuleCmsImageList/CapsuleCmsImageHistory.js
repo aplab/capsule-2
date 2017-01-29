@@ -73,7 +73,7 @@ function CapsuleCmsImageHistory()
     var create_window = function ()
     {
         dialog_window = CapsuleCmsDialog.createElement(
-            'capsule-cms-image-uploader',
+            'capsule-cms-image-history',
             {
                 maximxze: 1,
                 title: 'Browse history'
@@ -124,8 +124,6 @@ function CapsuleCmsImageHistory()
         dialog_window_exists = true;
     };
 
-    create_window();
-
     /**
      * Show window
      *
@@ -135,6 +133,7 @@ function CapsuleCmsImageHistory()
     {
         list.empty();
         dialog_window.show();
+        loadData();
     };
 
     /**
@@ -154,8 +153,121 @@ function CapsuleCmsImageHistory()
      */
     var items = [];
 
+    var loadData = function ()
+    {
+        $.get(
+            '/ajax/historyUploadImage/listItems/', {}, function (data, status, jqXHR)
+            {
+                for (var i = 0; i < data.length; i++) {
+                    var o = data[i];
+                    var item = ce();
+                    item.addClass(class_prefix + 'item');
+                    list.append(item);
+                    var img = ce();
+                    img.addClass(class_prefix + 'image');
+                    img.css({
+                        backgroundImage: 'url("' + (o.thumbnail.length ? o.thumbnail : o.path) + '")'
+                    });
+                    var title = ce().addClass(class_prefix + 'title').text(o.name);
+                    var metadata = ce().addClass(class_prefix + 'metadata').text(o.width + 'x' + o.height);
+                    item.append(img);
+                    item.append(title);
+                    item.append(metadata);
+                    var buttons = ce().addClass(class_prefix + 'buttons');
+                    buttons.data({
+                        itemId: o.id
+                    });
+                    item.append(buttons);
+                    var select = ce().addClass(class_prefix + 'button ' +
+                        class_prefix + 'select glyphicon glyphicon-ok');
+                    buttons.append(select);
+                    var fav = ce().addClass(class_prefix + 'button ' +
+                        class_prefix + 'fav glyphicon glyphicon-star');
+                    if (1 == o.favorites) {
+                        fav.addClass('selected');
+                    }
+                    buttons.append(fav);
+                    var comment = ce().addClass(class_prefix + 'button ' +
+                        class_prefix + 'comment glyphicon glyphicon-pencil');
+                    buttons.append(comment);
+                    // var open = ce().addClass(class_prefix + 'button ' +
+                    //      class_prefix + 'open glyphicon glyphicon-search');
+                    // buttons.append(open);
+                    var drop = ce().addClass(class_prefix + 'button ' +
+                        class_prefix + 'drop glyphicon glyphicon-remove');
+                    buttons.append(drop);
 
+                    select.click(function ()
+                    {
+                        $(this).toggleClass('selected');
+                    });
+                    fav.click(function ()
+                    {
+                        favItem(this);
+                    });
+                    drop.click(function ()
+                    {
+                        dropItem(this);
+                    });
+                    comment.click(function ()
+                    {
+                        prompt('Enter new name:');
+                    });
+                }
+            },
+            'json'
+        );
+    };
 
+    create_window();
+    
+    var dropItem = function (o)
+    {
+        if (!confirm('You really want to drop item?')) {
+            return;
+        }
+        var id = $(o).parent().data('itemId');
+        $.post(
+            '/ajax/historyUploadImage/dropItem/' + id + '/', {},
+            function (data, status, jqXHR)
+            {
+                if (!data.hasOwnProperty('status')) {
+                    return;
+                }
+                if ('ok' === data.status) {
+                    o.closest('.' + class_prefix + 'item').remove();
+                }
+            },
+            'json'
+        );
+    };
+
+    var favItem = function (o)
+    {
+        if ($(o).hasClass('selected')) {
+            if (!confirm('Unstar image?')) {
+                return;
+            }
+        } else {
+            // if (!confirm('Add image to favorites?')) {
+            //     return;
+            // }
+        }
+        var id = $(o).parent().data('itemId');
+        $.post(
+            '/ajax/historyUploadImage/favItem/' + id + '/', {},
+            function (data, status, jqXHR)
+            {
+                if (!data.hasOwnProperty('status')) {
+                    return;
+                }
+                if ('ok' === data.status) {
+                    $(o).toggleClass('selected');
+                }
+            },
+            'json'
+        );
+    };
 }
 
 /**
