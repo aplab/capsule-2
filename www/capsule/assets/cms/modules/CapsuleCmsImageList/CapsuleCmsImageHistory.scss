@@ -117,7 +117,7 @@
     text-align: center;
     overflow: hidden;
     font-size: 16px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     transition: all 0.2s ease 0s;
   }
@@ -130,14 +130,16 @@
     left: 0;
   }
   &-select.selected {
-    color: #43ff2e;
+    //color: #43ff2e;
+    color: #fff;
     text-shadow: 0 0 5px white;
   }
   &-fav {
     left: 25%;
   }
   &-fav.selected {
-    color: gold;
+    //color: gold;
+    color: #fff;
     text-shadow: 0 0 5px white;
   }
   &-comment {
@@ -151,7 +153,7 @@
   //  left: 60%;
   //}
   &-drop {
-    color: rgba(255, 0, 0, 0.8);
+    //color: rgba(255, 0, 0, 0.8);
     left: 75%;
   }
 }
