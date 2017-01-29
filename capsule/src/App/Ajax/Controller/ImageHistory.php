@@ -88,7 +88,7 @@ class ImageHistory extends Controller
         if (!$o) {
             return;
         }
-        $o->favorites = 1;
+        $o->favorites = !$o->favorites;
         $o->store();
         print json_encode(new class() {
             var $status = 'ok';
