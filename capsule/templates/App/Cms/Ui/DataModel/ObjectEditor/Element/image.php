@@ -14,10 +14,24 @@ $prefix = 'capsule-cms-object-editor' ?>
 <div class="<?=$prefix?>-element">
     <label class="<?=$prefix?>-label" for="<?=$prefix?>-element-<?=$this->id?>"><?=$this->property->name?></label>
     <div class="<?=$prefix?>-value">
-        <input type="text" class="form-control" placeholder=""
-               autocorrect="off" autocapitalize="none" autocomplete="off"
-               name="<?=$this->property->name?>"
-               id="<?=$prefix?>-element-<?=$this->id?>"
-               value="<?=\Capsule\Component\Utf8String::hsc($this->value)?>">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder=""
+                   autocorrect="off" autocapitalize="none" autocomplete="off"
+                   name="<?=$this->property->name?>"
+                   id="<?=$prefix?>-element-<?=$this->id?>"
+                   value="<?=\Capsule\Component\Utf8String::hsc($this->value)?>">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="fa fa-upload"></span>
+                </button>
+                <button class="btn btn-default" type="button">
+                    <span class="fa fa-star"></span>
+                </button>
+                <button class="btn btn-default" type="button">
+                    <span class="fa fa-history"></span>
+                </button>
+            </span>
+        </div>
+        <div class="thumbnail"><img src="https://avatars2.githubusercontent.com/u/4007240?v=3&s=460" alt=""></div>
     </div>
 </div>

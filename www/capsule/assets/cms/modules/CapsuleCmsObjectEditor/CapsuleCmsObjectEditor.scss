@@ -153,6 +153,15 @@ $active-color: #1ca8dd;
     textarea {
       resize: vertical;
     }
+    .thumbnail {
+      margin-bottom: 0;
+      margin-top: 15px;
+      max-width: 192px;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+    }
   }
   &-element:after {
     clear: both;
