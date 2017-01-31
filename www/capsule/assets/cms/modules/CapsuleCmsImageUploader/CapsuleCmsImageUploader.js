@@ -238,8 +238,10 @@ function CapsuleCmsImageUploader()
      *
      * @access public
      */
-    this.showWindow = function ()
+    this.showWindow = function (param)
     {
+        param = param || {};
+        console.log(param);
         button_group.show();
         button_group_done.hide();
         list.empty();

@@ -83,15 +83,19 @@ class HistoryUploadImage extends NamedTsUsr implements \JsonSerializable
     /**
      * Возвращает избранное
      *
-     * @param void
+     * @param int $offset
+     * @param int $rows
      * @return Result
      */
-    public static function favorites()
+    public static function favorites($offset = 0, $rows = 10)
     {
+        Validator::digit()->check($offset);
+        Validator::digit()->check($rows);
         $db = Db::getInstance();
         $sql = 'SELECT * FROM ' . $db->bq(self::config()->table->name) . '
                 WHERE `favorites` = 1
-                ORDER BY `id` DESC';
+                ORDER BY `id` DESC
+                LIMIT ' . $offset . ', ' . $rows;
         return $db->query($sql);
     }
 

@@ -34,7 +34,7 @@
           },
           {
             "caption": "Favorite images",
-            "callback": "alert('show favorites only')",
+            "callback": "CapsuleCmsImageHistory.getInstance().showWindow({favorites: true})",
             "icon": "glyphicon glyphicon-star"
           }
         ]

@@ -61,6 +61,13 @@ function CapsuleCmsImageHistory()
     var button_group;
 
     /**
+     * load favorites only
+     *
+     * @type {boolean}
+     */
+    var favorites = false;
+
+    /**
      * Create element wrapper
      *
      * @param tag
@@ -139,8 +146,18 @@ function CapsuleCmsImageHistory()
      *
      * @access public
      */
-    this.showWindow = function ()
+    this.showWindow = function (param)
     {
+        param = param || {};
+        try {
+            if (param.hasOwnProperty('favorites') && param.favorites) {
+                favorites = true;
+            } else {
+                favorites = false;
+            }
+        } catch (err) {
+            favorites = false;
+        }
         list_items.empty();
         dialog_window.show();
         last_scroll_value = 0;
@@ -201,8 +218,12 @@ function CapsuleCmsImageHistory()
             return;
         }
         load_in_progress = true;
+        var url = '/ajax/historyUploadImage/listItems/' + load_offset + '/';
+        if (favorites) {
+            url = '/ajax/historyUploadImage/listFavorites/' + load_offset + '/';
+        }
         $.get(
-            '/ajax/historyUploadImage/listItems/' + load_offset + '/', {}, function (data, status, jqXHR)
+            url, {}, function (data, status, jqXHR)
             {
                 for (var i = 0; i < data.length; i++) {
                     if (i == load_limit) {

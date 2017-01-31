@@ -43,6 +43,21 @@ class ImageHistory extends Controller
     }
 
     /**
+     *
+     */
+    protected function listFavorites()
+    {
+        print '[';
+        foreach (HistoryUploadImage::favorites($this->_from(), static::LIST_ITEMS_LIMIT + 3) as $k => $item) {
+            if ($k) {
+                print ',' . PHP_EOL;
+            }
+            print json_encode($item);
+        }
+        print ']';
+    }
+
+    /**
      * @return int|mixed
      */
     private function _from()
