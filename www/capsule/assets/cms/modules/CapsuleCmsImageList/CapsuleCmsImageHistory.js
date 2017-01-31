@@ -44,6 +44,11 @@ function CapsuleCmsImageHistory()
     var list;
 
     /**
+     * Files items wrapper
+     */
+    var list_items;
+
+    /**
      * button cancel
      */
     var button_cancel, button_cancel_wrapper;
@@ -109,6 +114,11 @@ function CapsuleCmsImageHistory()
 
         dialog_window.getBody().append(list);
 
+        list_items = ce();
+        list_items.addClass(class_prefix + 'list-items clearfix');
+
+        list.append(list_items);
+
         button_cancel.click(function ()
         {
             CapsuleCmsImageHistory.getInstance().purgeWindow();
@@ -131,8 +141,10 @@ function CapsuleCmsImageHistory()
      */
     this.showWindow = function ()
     {
-        list.empty();
+        list_items.empty();
         dialog_window.show();
+        last_scroll_value = 0;
+        load_offset = 0;
         loadData();
     };
 
@@ -153,16 +165,53 @@ function CapsuleCmsImageHistory()
      */
     var items = [];
 
+    /**
+     *
+     * @type {number}
+     */
+    var load_offset = 0;
+
+    /**
+     * Must be equal ImageHistory::LIST_ITEMS_LIMIT
+     *
+     * @type {number}
+     */
+    var load_limit = 20;
+
+    /**
+     * Load in progress
+     *
+     * @type {boolean}
+     */
+    var load_in_progress = false;
+
+    /**
+     * List items last scroll value
+     *
+     * @type {number}
+     */
+    var last_scroll_value = 0;
+
+    /**
+     * load data
+     */
     var loadData = function ()
     {
+        if (load_in_progress) {
+            return;
+        }
+        load_in_progress = true;
         $.get(
-            '/ajax/historyUploadImage/listItems/', {}, function (data, status, jqXHR)
+            '/ajax/historyUploadImage/listItems/' + load_offset + '/', {}, function (data, status, jqXHR)
             {
                 for (var i = 0; i < data.length; i++) {
+                    if (i == load_limit) {
+                        break;
+                    }
                     var o = data[i];
                     var item = ce();
                     item.addClass(class_prefix + 'item');
-                    list.append(item);
+                    list_items.append(item);
                     var img = ce();
                     img.addClass(class_prefix + 'image');
                     img.css({
@@ -219,13 +268,37 @@ function CapsuleCmsImageHistory()
                          copyLink(this);
                     });
                 };
+                load_offset += i;
                 new Clipboard('.' + class_prefix + 'button.' + class_prefix + 'link.glyphicon.glyphicon-link');
+                load_in_progress = false;
             },
             'json'
         );
     };
 
     create_window();
+
+    /**
+     * neverending load
+     */
+    setInterval(function ()
+    {
+        var scroll = list.scrollTop();
+        if (scroll <= last_scroll_value) {
+            return;
+        }
+        last_scroll_value = scroll;
+        if (scroll < 1) {
+            return;
+        }
+        var list_height = list.height();
+        var list_items_height = list_items.height();
+        var diff = list_items_height - list_height;
+        if ((diff - scroll) < 20) {
+            loadData();
+        }
+
+    }, 1000);
     
     var dropItem = function (o)
     {

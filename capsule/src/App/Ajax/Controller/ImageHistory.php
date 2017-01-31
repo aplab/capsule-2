@@ -25,13 +25,15 @@ use Respect\Validation\Validator;
  */
 class ImageHistory extends Controller
 {
+    const LIST_ITEMS_LIMIT = 20;
+
     /**
      *
      */
     protected function listItems()
     {
         print '[';
-        foreach (HistoryUploadImage::history($this->_from(), 500) as $k => $item) {
+        foreach (HistoryUploadImage::history($this->_from(), static::LIST_ITEMS_LIMIT + 3) as $k => $item) {
             if ($k) {
                 print ',' . PHP_EOL;
             }
