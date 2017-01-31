@@ -11,7 +11,7 @@
  * Time: 3:22
  */
 $prefix = 'capsule-cms-object-editor' ?>
-<div class="<?=$prefix?>-element">
+<div class="<?=$prefix?>-element <?=$prefix?>-element-image">
     <label class="<?=$prefix?>-label" for="<?=$prefix?>-element-<?=$this->id?>"><?=$this->property->name?></label>
     <div class="<?=$prefix?>-value">
         <div class="input-group">

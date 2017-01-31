@@ -273,4 +273,27 @@ function CapsuleCmsObjectEditor(container) {
     setTimeout(function () {
         body.find(':password').val('');
     }, 10);
+
+    body.find('.capsule-cms-object-editor-element-image').each(function (i, o)
+    {
+        o = $(o);
+        var input = o.find('input').eq(0);
+        var btn_upload = o.find('.fa-upload').closest('button');
+        btn_upload.click(function ()
+        {
+            CapsuleCmsImageUploader.getInstance().showWindow();
+        });
+        var btn_history = o.find('.fa-history').closest('button');
+        btn_history.click(function ()
+        {
+            CapsuleCmsImageHistory.getInstance().showWindow();
+        });
+        var btn_favorites = o.find('.fa-star').closest('button');
+        btn_favorites.click(function ()
+        {
+            CapsuleCmsImageHistory.getInstance().showWindow({
+                favorites: true
+            });
+        });
+    });
 }
