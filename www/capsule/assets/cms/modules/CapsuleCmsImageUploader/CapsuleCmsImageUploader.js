@@ -209,6 +209,7 @@ function CapsuleCmsImageUploader()
                 return;
             }
             CapsuleCmsImageUploader.getInstance().purgeWindow();
+            CapsuleCmsImageHistory.getInstance().showWindow();
         });
 
         button_more.click(function ()
@@ -354,6 +355,11 @@ function CapsuleCmsImageUploader()
         button_group_done.show();
     };
 
+    /**
+     * Upload one file
+     *
+     * @param i
+     */
     var uploadFile = function (i)
     {
         var o_input = file_input[0];

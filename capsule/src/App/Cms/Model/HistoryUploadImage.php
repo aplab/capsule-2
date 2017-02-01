@@ -75,6 +75,7 @@ class HistoryUploadImage extends NamedTsUsr implements \JsonSerializable
         Validator::digit()->check($rows);
         $db = Db::getInstance();
         $sql = 'SELECT * FROM ' . $db->bq(self::config()->table->name) . '
+                WHERE `favorites` = 0
                 ORDER BY `favorites` DESC, `id` DESC
                 LIMIT ' . $offset . ', ' . $rows;
         return self::generate($db->query($sql));

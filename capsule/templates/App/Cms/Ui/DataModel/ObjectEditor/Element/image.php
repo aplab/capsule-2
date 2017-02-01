@@ -32,6 +32,6 @@ $prefix = 'capsule-cms-object-editor' ?>
                 </button>
             </span>
         </div>
-        <div class="thumbnail"><img src="https://avatars2.githubusercontent.com/u/4007240?v=3&s=460" alt=""></div>
+        <div class="thumbnail"><div class="preview"></div></div>
     </div>
 </div>

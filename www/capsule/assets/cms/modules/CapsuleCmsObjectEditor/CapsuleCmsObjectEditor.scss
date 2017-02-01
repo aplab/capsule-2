@@ -158,8 +158,11 @@ $active-color: #1ca8dd;
       margin-top: 15px;
       max-width: 192px;
       overflow: hidden;
-      img {
-        width: 100%;
+      .preview {
+        padding-top: 100%;
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
       }
     }
   }

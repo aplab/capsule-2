@@ -12,6 +12,14 @@ function CapsuleCmsImageHistory()
     }
 
     /**
+     * Before done
+     */
+    this.beforeDone = function ()
+    {
+        console.log('before done callback');
+    };
+
+    /**
      * Class prefix
      *
      * @type {string}
@@ -133,10 +141,12 @@ function CapsuleCmsImageHistory()
 
         button_done.click(function ()
         {
+            var o = CapsuleCmsImageHistory.getInstance();
+            if (typeof o.beforeDone === 'function') {
+                o.beforeDone();
+            }
             CapsuleCmsImageHistory.getInstance().purgeWindow();
         });
-
-
         button_group.show();
         dialog_window_exists = true;
     };
@@ -231,6 +241,7 @@ function CapsuleCmsImageHistory()
                     }
                     var o = data[i];
                     var item = ce();
+                    item.data(o);
                     item.addClass(class_prefix + 'item');
                     list_items.append(item);
                     var img = ce();
@@ -320,7 +331,12 @@ function CapsuleCmsImageHistory()
         }
 
     }, 1000);
-    
+
+    /**
+     * Drop item handler
+     *
+     * @param o
+     */
     var dropItem = function (o)
     {
         if (!confirm('You really want to drop item?')) {
@@ -376,6 +392,11 @@ function CapsuleCmsImageHistory()
         $(o).removeClass('selected');
     }
 
+    /**
+     * Copy link handler
+     *
+     * @param o
+     */
     var copyLink = function (o)
     {
         o = $(o);
@@ -385,6 +406,20 @@ function CapsuleCmsImageHistory()
             o.removeClass('selected');
         }, 300);
     }
+
+    /**
+     * Returns selected items
+     */
+    this.getSelectedItems = function()
+    {
+        var obj = list_items.find('.capsule-cms-image-history-item').has('.capsule-cms-image-history-select.selected');
+        var ret = [];
+        obj.each(function (i, o)
+        {
+            ret[i] = $(o).data();
+        });
+        return ret;
+    };
 }
 
 /**

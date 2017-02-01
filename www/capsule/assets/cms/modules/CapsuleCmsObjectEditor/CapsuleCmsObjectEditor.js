@@ -278,15 +278,38 @@ function CapsuleCmsObjectEditor(container) {
     {
         o = $(o);
         var input = o.find('input').eq(0);
+        var previewer = o.find('.preview');
         var btn_upload = o.find('.fa-upload').closest('button');
         btn_upload.click(function ()
         {
             CapsuleCmsImageUploader.getInstance().showWindow();
+            CapsuleCmsImageHistory.getInstance().beforeDone = function ()
+            {
+                var items = CapsuleCmsImageHistory.getInstance().getSelectedItems();
+                if (!items.length) {
+                    return;
+                }
+                input.val(items[0].path);
+                previewer.css({
+                    backgroundImage: 'url("' + input.val() + '")'
+                });
+            };
         });
         var btn_history = o.find('.fa-history').closest('button');
         btn_history.click(function ()
         {
             CapsuleCmsImageHistory.getInstance().showWindow();
+            CapsuleCmsImageHistory.getInstance().beforeDone = function ()
+            {
+                var items = CapsuleCmsImageHistory.getInstance().getSelectedItems();
+                if (!items.length) {
+                    return;
+                }
+                input.val(items[0].path);
+                previewer.css({
+                    backgroundImage: 'url("' + input.val() + '")'
+                });
+            };
         });
         var btn_favorites = o.find('.fa-star').closest('button');
         btn_favorites.click(function ()
@@ -294,6 +317,34 @@ function CapsuleCmsObjectEditor(container) {
             CapsuleCmsImageHistory.getInstance().showWindow({
                 favorites: true
             });
+            CapsuleCmsImageHistory.getInstance().beforeDone = function ()
+            {
+                var items = CapsuleCmsImageHistory.getInstance().getSelectedItems();
+                if (!items.length) {
+                    return;
+                }
+                input.val(items[0].path);
+                previewer.css({
+                    backgroundImage: 'url("' + input.val() + '")'
+                });
+            };
+        });
+
+        previewer.css({
+            backgroundImage: 'url("' + input.val() + '")'
+        });
+        var previewer_timeout;
+        input.change(function ()
+        {
+            if (previewer_timeout) {
+                clearTimeout(previewer_timeout);
+            }
+            previewer_timeout = setTimeout(function ()
+            {
+                previewer.css({
+                    backgroundImage: 'url("' + input.val() + '")'
+                });
+            }, 400);
         });
     });
 }
