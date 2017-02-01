@@ -193,7 +193,7 @@ function CapsuleCmsImageHistory()
      *
      * @type {number}
      */
-    var load_limit = 20;
+    var load_limit = 100;
 
     /**
      * Load in progress

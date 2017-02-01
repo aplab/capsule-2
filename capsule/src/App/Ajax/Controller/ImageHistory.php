@@ -25,7 +25,7 @@ use Respect\Validation\Validator;
  */
 class ImageHistory extends Controller
 {
-    const LIST_ITEMS_LIMIT = 20;
+    const LIST_ITEMS_LIMIT = 100;
 
     /**
      *
