@@ -154,8 +154,13 @@ class DefaultController extends AbstractController
             if ($config->get('disabled')) continue;
             $action = null;
             $url = $config->get('url');
+            $target = $config->get('target');
             if ($url) {
-                $action = new Url($filter($url));
+                if (preg_match('/^[a-zA-Z0-9]+:\\/\\//', $url)) {
+                    $action = new Url($url, $target);
+                } else {
+                    $action = new Url($filter($url), $target);
+                }
             }
             $callback = $config->get('callback');
             if ($callback) {
@@ -184,8 +189,13 @@ class DefaultController extends AbstractController
             if ($config->get('disabled')) continue;
             $action = null;
             $url = $config->get('url');
+            $target = $config->get('target');
             if ($url) {
-                $action = new Url($filter($url));
+                if (preg_match('/^[a-zA-Z0-9]+:\\/\\//', $url)) {
+                    $action = new Url($url, $target);
+                } else {
+                    $action = new Url($filter($url), $target);
+                }
             }
             $callback = $config->get('callback');
             if ($callback) {

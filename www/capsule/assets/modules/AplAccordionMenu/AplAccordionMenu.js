@@ -118,6 +118,9 @@ function AplAccordionMenu(data, append_to)
                         var a = $('<a>');
                         a.text(item.caption);
                         a.prop('href', item.action.url);
+                        if (item.action.hasOwnProperty('target')) {
+                            a.prop('target', item.action.target);
+                        }
                         li.append(a);
                         a.append(icon);
                     } else {
