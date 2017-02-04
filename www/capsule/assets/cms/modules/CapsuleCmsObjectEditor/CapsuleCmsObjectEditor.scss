@@ -279,4 +279,13 @@ $active-color: #1ca8dd;
   &-datetime input {
     background-color: #fff!important;
   }
+  //workaround, hack remove it into future
+  .capsule-cms-object-editor-input-color {
+    padding: 0 10px;
+  }
+  @supports (-moz-transform: translate(0, 0)) {
+    .capsule-cms-object-editor-input-color {
+      padding: 6px 12px!important;
+    }
+  }
 }

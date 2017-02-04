@@ -283,10 +283,31 @@
         ]
       },
       {
+        "caption": "System",
+        "help": "System",
+        "icon": "fa fa-cog",
+        "items": [
+          {
+            "caption": "Duplicate",
+            "callback": "window.open(location.href, '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')",
+            "icon": "fa fa-copy"
+          },
+          {
+            "caption": "New",
+            "callback": "window.open('/admin/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+          }
+        ]
+      },
+      {
         "caption": "Settings",
         "help": "Settings",
         "icon": "fa fa-cogs",
         "items": [
+          {
+            "caption": "Desktop icons",
+            "url": "desktop-icons",
+            "icon": "fa fa-th"
+          },
           {
             "caption": "Preferences",
             "url": "preferences",
@@ -368,6 +389,7 @@
     "attribute-section-link": "Catalog.AttributeSectionLink",
     "attribute": "Catalog.Attribute",
     "attributegroup": "Catalog.AttributeGroup",
+    "desktop-icons": "DesktopIcon",
     "#usrcatalog": "------------------------------------------------------",
     "usrsection": "Usr.Catalog.Section",
     "usrunit": "Usr.Catalog.Unit",

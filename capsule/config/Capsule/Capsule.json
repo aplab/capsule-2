@@ -11,5 +11,11 @@
     "admin": "\\App\\Cms\\Cms",
     "ajax": "\\App\\Ajax\\Ajax",
     "/": "\\App\\Website\\Website"
+  },
+  "plugin": {
+    "IconList": {
+      "#": "Relative path to font-awesome.css",
+      "faRelativePath": "/capsule/vendor/bower_components/font-awesome/css/font-awesome.css"
+    }
   }
 }
