@@ -18,6 +18,12 @@
     "help": "Конфигурация главного меню",
     "items": [
       {
+        "caption": "Home",
+        "help": "Home",
+        "icon": "fa fa-home",
+        "url": "/admin/"
+      },
+      {
         "caption": "File",
         "help": "File",
         "icon": "glyphicon glyphicon-search",

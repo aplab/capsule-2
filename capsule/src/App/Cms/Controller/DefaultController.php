@@ -69,6 +69,10 @@ class DefaultController extends AbstractController
         $this->initActionMenu();
         $this->ui->onload->append(new MainMenuView($this->app->registry->mainMenu));
         $this->ui->onload->append(new ActionMenuView($this->app->registry->actionMenu));
+
+        $path = new ComponentTemplatePath(Cms::getInstance(), 'desktop');
+        SectionManager::getInstance()->content->append(include $path);
+
         echo $this->ui->html;
     }
     
@@ -115,7 +119,7 @@ class DefaultController extends AbstractController
         
         $title = clone $section;
         $title->id = 'title';
-        $title->append('Capsule ' . Capsule::getInstance()->config->version);
+        $title->append(' Capsule ' . Capsule::getInstance()->config->version);
         $head->append($title);
         
         $body = clone $section;
@@ -224,6 +228,10 @@ class DefaultController extends AbstractController
         $menu->newMenuItem(
             'Toggle fullscreen',
             new \App\Cms\Ui\ActionMenu\Callback('CapsuleCms.collapseActionMenu();screenfull.toggle();')
+        );
+        $menu->newMenuItem(
+            'Link to this page',
+            new \App\Cms\Ui\ActionMenu\Callback('CapsuleCms.createDesktopIcon();')
         );
     }
 }

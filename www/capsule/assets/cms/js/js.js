@@ -238,4 +238,88 @@ $(document).ready(function ()
             'capsule-cms-main-menu-scroll-top',
             $('#capsule-cms-main-menu-wrapper').find('.capsule-ui-scrollable-wrapper').scrollTop());
     });
+
+    CapsuleCms.createDesktopIcon = function ()
+    {
+        var url = location.href.replace(/^.*?\/admin\//,'/admin/');
+        var form = $('<form>');
+        form.prop({
+            method: 'POST',
+            action: '/admin/desktop-icons/add/',
+            target: '_blank'
+        });
+        var input_url = $('<input>');
+        input_url.prop({
+            type: 'hidden',
+            name: 'url',
+            value: url
+        });
+        form.append(input_url);
+
+        var input_name = $('<input>');
+        input_name.prop({
+            type: 'hidden',
+            name: 'name',
+            value: document.title
+        });
+        form.append(input_name);
+
+        var input_icon = $('<input>');
+        input_icon.prop({
+            type: 'hidden',
+            name: 'icon',
+            value: ''
+        });
+        form.append(input_icon);
+
+        var input_color = $('<input>');
+        input_color.prop({
+            type: 'hidden',
+            name: 'color',
+            value: ''
+        });
+        form.append(input_color);
+
+        var input_id = $('<input>');
+        input_id.prop({
+            type: 'hidden',
+            name: 'id',
+            value: ''
+        });
+        form.append(input_id);
+
+        var input_created = $('<input>');
+        input_created.prop({
+            type: 'hidden',
+            name: 'created',
+            value: ''
+        });
+        form.append(input_created);
+
+        var input_lastModified = $('<input>');
+        input_lastModified.prop({
+            type: 'hidden',
+            name: 'lastModified',
+            value: ''
+        });
+        form.append(input_lastModified);
+
+        var input_createdBy = $('<input>');
+        input_createdBy.prop({
+            type: 'hidden',
+            name: 'createdBy',
+            value: ''
+        });
+        form.append(input_createdBy);
+
+        var input_lastModifiedBy = $('<input>');
+        input_lastModifiedBy.prop({
+            type: 'hidden',
+            name: 'lastModifiedBy',
+            value: ''
+        });
+        form.append(input_lastModifiedBy);
+        $('body').append(form);
+        form.submit();
+    };
 });

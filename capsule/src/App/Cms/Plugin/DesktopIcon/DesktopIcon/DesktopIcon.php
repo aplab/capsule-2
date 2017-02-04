@@ -14,9 +14,13 @@
 namespace App\Cms\Plugin\DesktopIcon\DesktopIcon;
 
 
+use Capsule\Capsule;
 use Capsule\Unit\NamedTsUsr;
 
 class DesktopIcon extends NamedTsUsr
 {
-
+    protected function setName($v, $k)
+    {
+        $this->data[$k] = str_replace(' Capsule ' . Capsule::getInstance()->config->version, '', $v);
+    }
 }

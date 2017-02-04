@@ -5,7 +5,7 @@
     "SEO": 5000,
     "Additional": 1000000000
   },
-  "title": "Именованный юнит ts usr",
+  "title": "Desktop icons",
   "description": "",
   "help": "",
   "comment": "",
@@ -163,16 +163,17 @@
       },
       "column": {
         "c1": {
-          "width": 200,
+          "width": 50,
           "order": 2000,
-          "type": "Text"
+          "type": "Icon"
         }
       },
       "formElement": {
         "f1": {
-          "type": "Text",
+          "type": "Icon",
           "order": 2000,
-          "tab": "General"
+          "tab": "General",
+          "default": ""
         }
       }
     },
