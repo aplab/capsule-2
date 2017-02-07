@@ -46,8 +46,9 @@ if (!$user) {
 
 
     <?php
-
-    \App\Cms\Plugin\DesktopIcon\DesktopIcon\DesktopIcon::_configSetEditMode();
+\App\Cms\Component\Seo\Basic::_createConfigFile();
+\Capsule\Tools\Tools::dump(\App\Cms\Component\Seo\Basic::_configLocation());
+    \App\Cms\Component\Seo\Basic::_configSetEditMode();
 
 
 

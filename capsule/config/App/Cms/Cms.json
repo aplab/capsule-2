@@ -400,6 +400,7 @@
     "attribute": "Catalog.Attribute",
     "attributegroup": "Catalog.AttributeGroup",
     "desktop-icons": "DesktopIcon",
+    "seo-friendly": "Component.Seo.Basic",
     "#usrcatalog": "------------------------------------------------------",
     "usrsection": "Usr.Catalog.Section",
     "usrunit": "Usr.Catalog.Unit",

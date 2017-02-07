@@ -12,7 +12,7 @@
  */
 $prefix = 'capsule-cms-object-editor' ?>
 <div class="<?=$prefix?>-element">
-    <label class="<?=$prefix?>-label" for="<?=$prefix?>-element-<?=$this->id?>"><?=$this->property->name?></label>
+    <label class="<?=$prefix?>-label" for="<?=$prefix?>-element-<?=$this->id?>"><?=$this->property->title?></label>
     <div class="<?=$prefix?>-value">
         <textarea class="form-control" rows="6"
                   name="<?=$this->property->name?>"
