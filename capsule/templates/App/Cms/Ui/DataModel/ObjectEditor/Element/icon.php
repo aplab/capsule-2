@@ -13,8 +13,8 @@
 $prefix = 'capsule-cms-object-editor' ?>
 <div class="<?=$prefix?>-element">
     <label class="<?=$prefix?>-label" for="<?=$prefix?>-element-<?=$this->id?>"><?=$this->property->name?></label>
-    <div class="<?=$prefix?>-value">
-        <select class="form-control capsule-cms-object-editor-select-icon"
+    <div class="<?=$prefix?>-value capsule-cms-object-editor-select-icon">
+        <select class="form-control"
                 name="<?=$this->property->name?>"
                 id="<?=$prefix?>-element-<?=$this->id?>">
             <option value="0"></option>

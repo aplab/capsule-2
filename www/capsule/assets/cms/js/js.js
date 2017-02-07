@@ -322,4 +322,13 @@ $(document).ready(function ()
         $('body').append(form);
         form.submit();
     };
+
+    var $select = $('.capsule-cms-object-editor-select-icon select').selectize();
+    for (var i = 0; i < $select.length; i++) {
+        var selectize = $select[i].selectize;
+
+    };
+    $('.capsule-cms-object-editor-select-icon input').prop({
+        readonly: true
+    });
 });

@@ -23,6 +23,7 @@ $assets
     ->add(new j('/capsule/vendor/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'))
     ->add(new j('/capsule/vendor/bower_components/jquery-ui/jquery-ui.min.js'))
     ->add(new j('/capsule/vendor/bower_components/js-cookie/src/js.cookie.js'))
+    ->add(new j('/capsule/vendor/bower_components/selectize/dist/js/standalone/selectize.min.js'))
     ->add(new j('/capsule/assets/modules/AplAccordionMenu/AplAccordionMenu.js', true))
     ->add(new j('/capsule/assets/modules/Scrollable/CapsuleUiScrollable.js', true))
     ->add(new j('/capsule/assets/cms/modules/CapsuleCmsActionMenu/CapsuleCmsActionMenu.js', true))

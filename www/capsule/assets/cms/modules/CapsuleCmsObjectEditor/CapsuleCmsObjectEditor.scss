@@ -288,10 +288,14 @@ $active-color: #1ca8dd;
       padding: 6px 12px!important;
     }
   }
-  .capsule-cms-object-editor-select-icon {
-    font-family: 'FontAwesome', "Open Sans", sans-serif !important;
-    option {
-      font-family: 'FontAwesome', "Open Sans", sans-serif !important;
-    }
+}
+.capsule-cms-object-editor-select-icon {
+  height: 34px;
+  font-family: "FontAwesome", "Open Sans", sans-serif !important;
+  //-webkit-appearance: none;
+  //-moz-appearance: none;
+  //appearance: none;
+  * {
+    font-family: "FontAwesome", "Open Sans", sans-serif !important;
   }
 }

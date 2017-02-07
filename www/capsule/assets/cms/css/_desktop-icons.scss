@@ -1,0 +1,87 @@
+.capsule-cms-desktop-icons {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  overflow: auto;
+}
+.capsule-cms-desktop-icons-list {
+  clear: both;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1vh 0;
+}
+.capsule-cms-desktop-icon {
+  display: block;
+  outline-style: none;
+  width: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  min-height: 120px;
+  &:after {
+    padding-top: 100%;
+    content: '';
+    display: block;
+  }
+}
+.capsule-cms-desktop-icon-img {
+  line-height: 80px;
+  position: absolute;
+  font-size: 48px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  color: #fff;
+  //text-shadow: 0 1px 2px rgba(0,0,0,0.075);
+  i {
+    padding: 5px;
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.176);
+  }
+}
+.capsule-cms-desktop-icon-text {
+  color: #333;
+  text-decoration: none;
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  line-height: 20px;
+  height: 40px;
+  padding: 0 7px;
+  //text-shadow: 0 1px 2px rgba(0,0,0,0.075);
+}
+@media (min-width: (640px/6)*2) {
+  .capsule-cms-desktop-icon {
+    width: (100%/2);
+  }
+}
+@media (min-width: (640px/6)*3) {
+  .capsule-cms-desktop-icon {
+    width: (100%/3);
+  }
+}
+@media (min-width: (640px/6)*4) {
+  .capsule-cms-desktop-icon {
+    width: (100%/4);
+  }
+}
+@media (min-width: (640px/6)*5) {
+  .capsule-cms-desktop-icon {
+    width: (100%/5);
+  }
+}
+@media (min-width: 640px) {
+  .capsule-cms-desktop-icon {
+    width: (100%/6);
+  }
+}
+

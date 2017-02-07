@@ -22,6 +22,7 @@
     "ckeditor": "#full/4.6.2",
     "screenfull": "^3.0.2",
     "eonasdan-bootstrap-datetimepicker": "^4.17.43",
-    "clipboard": "^1.5.16"
+    "clipboard": "^1.5.16",
+    "selectize": "selectize/selectize.js#^0.12.4"
   }
 }

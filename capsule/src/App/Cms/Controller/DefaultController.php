@@ -230,7 +230,7 @@ class DefaultController extends AbstractController
             new \App\Cms\Ui\ActionMenu\Callback('CapsuleCms.collapseActionMenu();screenfull.toggle();')
         );
         $menu->newMenuItem(
-            'Link to this page',
+            'Create shortcut to this page',
             new \App\Cms\Ui\ActionMenu\Callback('CapsuleCms.createDesktopIcon();')
         );
     }
