@@ -160,7 +160,7 @@ function AplAccordionMenu(data, append_to)
         current = current.eq(0);
         current.addClass('open').children('.apl-accordion-submenu').show();
         append_to.find('.apl-accordion-submenu').has(current).show().parent().addClass('open');
-    }
+    };
 
     setCurrent();
 

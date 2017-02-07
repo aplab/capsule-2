@@ -338,6 +338,18 @@
                 "url": "bindtsusr"
               }
             ]
+          },
+          {
+            "caption": "Components",
+            "help": "Components",
+            "icon": "fa fa-microchip",
+            "items": [
+              {
+                "caption": "Seo-friendly",
+                "url": "seo-friendly",
+                "icon": "fa fa-search"
+              }
+            ]
           }
         ]
       }

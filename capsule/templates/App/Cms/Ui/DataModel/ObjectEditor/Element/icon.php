@@ -26,8 +26,8 @@ $prefix = 'capsule-cms-object-editor' ?>
                 <?php endforeach ?>
             <?php else : ?>
                 <?php foreach ($this->options as $optn) : ?>
-                    <?php $value = '' ?>
-                    <?php $text = '2' ?>
+                    <?php $value = 'fa ' . $optn->class ?>
+                    <?php $text = preg_replace('/^\\\/', '&#x', $optn->unicode) . ';' . ' ' . $optn->name ?>
                     <option value="<?=$value?>"<?=(string)$value===(string)$this->default?' selected="selected"':''?>><?=$text?></option>
                 <?php endforeach ?>
             <?php endif ?>

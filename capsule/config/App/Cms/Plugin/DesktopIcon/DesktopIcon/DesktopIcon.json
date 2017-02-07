@@ -201,6 +201,31 @@
           "tab": "General"
         }
       }
+    },
+    "background": {
+      "title": "Background",
+      "description": "",
+      "help": "",
+      "comment": "",
+      "label": "",
+      "validator": {
+        "type": "StringLength",
+        "max": 255
+      },
+      "column": {
+        "c1": {
+          "width": 200,
+          "order": 2000,
+          "type": "Text"
+        }
+      },
+      "formElement": {
+        "f1": {
+          "type": "Color",
+          "order": 2000,
+          "tab": "General"
+        }
+      }
     }
   },
   "table": {
@@ -250,7 +275,14 @@
       "color": {
         "type": "VARCHAR",
         "length": 255,
-        "comment": "Color or icon"
+        "comment": "Color of icon",
+        "default": "#000000"
+      },
+      "background": {
+        "type": "VARCHAR",
+        "length": 255,
+        "comment": "Background color of icon",
+        "default": "#ffffff"
       }
     },
     "indexes": {

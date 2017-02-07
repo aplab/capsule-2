@@ -17,7 +17,7 @@ ob_start() ?>
         <?php foreach ($items as $item) : ?>
             <a class="capsule-cms-desktop-icon" href="<?=$item->url?>">
                 <div class="capsule-cms-desktop-icon-img">
-                    <i style="background: <?=$item->color?>;" class="<?=$item->icon?>"></i>
+                    <i style="background: <?=$item->background?>; color: <?=$item->color?>;" class="<?=$item->icon?>"></i>
                 </div>
                 <div class="capsule-cms-desktop-icon-text">
                     <?=$item->name?>

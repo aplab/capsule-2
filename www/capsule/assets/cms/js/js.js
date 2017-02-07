@@ -268,7 +268,7 @@ $(document).ready(function ()
         input_icon.prop({
             type: 'hidden',
             name: 'icon',
-            value: ''
+            value: 'fa fa-puzzle-piece'
         });
         form.append(input_icon);
 
@@ -276,9 +276,17 @@ $(document).ready(function ()
         input_color.prop({
             type: 'hidden',
             name: 'color',
-            value: ''
+            value: '#ffffff'
         });
         form.append(input_color);
+
+        var input_background = $('<input>');
+        input_background.prop({
+            type: 'hidden',
+            name: 'background',
+            value: '#000000'
+        });
+        form.append(input_background);
 
         var input_id = $('<input>');
         input_id.prop({
