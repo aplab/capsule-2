@@ -48,205 +48,17 @@
       {
         "caption": "Site",
         "help": "Site",
-        "icon": "fa fa-puzzle-piece",
+        "icon": "fa fa-pencil-square",
         "items": [
           {
-            "caption": "Manage",
-            "url": "/admin/"
-          },
-          {
             "caption": "Go to website",
-            "url": "/"
+            "url": "/",
+            "icon": "fa fa-external-link-square"
           },
           {
             "caption": "Exit",
             "url": "/admin/logout/",
-            "icon": "fa fa-power-off"
-          }
-        ]
-      },
-      {
-        "caption": "Modules",
-        "help": "Modules",
-        "items": [
-          {
-            "caption": "Catalog",
-            "items": [
-              {
-                "caption": "Product",
-                "url": "product"
-              },
-              {
-                "caption": "Section",
-                "url": "section"
-              },
-              {
-                "caption": "Attribute",
-                "url": "attribute"
-              },
-              {
-                "caption": "Attribute group",
-                "url": "attributegroup"
-              },
-              {
-                "caption": "Единица измерения",
-                "url": "unit"
-              },
-              {
-                "caption": "Attribute Section Link",
-                "url": "attribute-section-link"
-              }
-            ]
-          },
-          {
-            "caption": "Usr Catalog",
-            "items": [
-              {
-                "caption": "Product",
-                "url": "usrproduct"
-              },
-              {
-                "caption": "Section",
-                "url": "usrsection"
-              },
-              {
-                "caption": "Attribute",
-                "url": "usrattribute"
-              },
-              {
-                "caption": "Attribute group",
-                "url": "usrattributegroup"
-              },
-              {
-                "caption": "Единица измерения",
-                "url": "usrunit"
-              },
-              {
-                "caption": "Attribute Section Link",
-                "url": "usrattribute-section-link"
-              }
-            ]
-          },
-          {
-            "caption": "Text blocks",
-            "url": "textblock"
-          },
-          {
-            "caption": "Dev log",
-            "url": "devlog"
-          },
-          {
-            "caption": "Flat menu",
-            "url": "flatmenu",
-            "items": [
-              {
-                "caption": "Menu",
-                "url": "flatmenu"
-              },
-              {
-                "caption": "Punct",
-                "url": "flatmenupunct"
-              }
-            ]
-          },
-          {
-            "caption": "Tree menu",
-            "url": "treemenu",
-            "items": [
-              {
-                "caption": "Menu",
-                "url": "treemenu"
-              },
-              {
-                "caption": "Punct",
-                "url": "treemenupunct"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "caption": "References",
-        "help": "References",
-        "items": [
-          {
-            "caption": "Named",
-            "url": "named"
-          },
-          {
-            "caption": "Imaged",
-            "url": "imaged"
-          },
-          {
-            "caption": "Description",
-            "url": "description"
-          }
-        ]
-      },
-      {
-        "caption": "Units",
-        "help": "Units",
-        "items": [
-          {
-            "caption": "nested",
-            "items": [
-              {
-                "caption": "container",
-                "url": "nestedcontainer"
-              },
-              {
-                "caption": "item",
-                "url": "nesteditem"
-              }
-            ]
-          },
-          {
-            "caption": "Tree",
-            "url": "tree"
-          },
-          {
-            "caption": "Active",
-            "url": "active"
-          },
-          {
-            "caption": "Rich text",
-            "url": "richtext"
-          },
-          {
-            "caption": "dated",
-            "url": "dated"
-          },
-          {
-            "caption": "dated advanced",
-            "url": "datedadvanced"
-          },
-          {
-            "caption": "unit with timestamp",
-            "url": "unitts"
-          },
-          {
-            "caption": "unit with user",
-            "url": "unitusr"
-          },
-          {
-            "caption": "unit with user & ts",
-            "url": "unittsusr"
-          },
-          {
-            "caption": "named with user & ts",
-            "url": "namedtsusr"
-          },
-          {
-            "caption": "titled with user & ts",
-            "url": "titledtsusr"
-          },
-          {
-            "caption": "token with user & ts",
-            "url": "tokentsusr"
-          },
-          {
-            "caption": "bind with user & ts",
-            "url": "bindtsusr"
+            "icon": "fa fa-sign-out"
           }
         ]
       },
@@ -284,22 +96,7 @@
           },
           {
             "caption": "New",
-            "callback": "window.open('/admin/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
-          }
-        ]
-      },
-      {
-        "caption": "System",
-        "help": "System",
-        "icon": "fa fa-cog",
-        "items": [
-          {
-            "caption": "Duplicate",
-            "callback": "window.open(location.href, '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')",
-            "icon": "fa fa-copy"
-          },
-          {
-            "caption": "New",
+            "icon": "fa fa-window-restore",
             "callback": "window.open('/admin/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
           }
         ]
@@ -346,6 +143,201 @@
             "caption": "About",
             "callback": "CapsuleCmsDialog.getInstance('capsule-about-window').show()",
             "icon": "fa fa-external-link-square"
+          }
+        ]
+      },
+      {
+        "caption": "Development (remove from prod.)",
+        "help": "Development",
+        "icon": "fa fa-wrench text-success",
+        "items": [
+          {
+            "caption": "Modules",
+            "help": "Modules",
+            "icon": "fa fa-puzzle-piece",
+            "items": [
+              {
+                "caption": "Catalog",
+                "items": [
+                  {
+                    "caption": "Product",
+                    "url": "product"
+                  },
+                  {
+                    "caption": "Section",
+                    "url": "section"
+                  },
+                  {
+                    "caption": "Attribute",
+                    "url": "attribute"
+                  },
+                  {
+                    "caption": "Attribute group",
+                    "url": "attributegroup"
+                  },
+                  {
+                    "caption": "Единица измерения",
+                    "url": "unit"
+                  },
+                  {
+                    "caption": "Attribute Section Link",
+                    "url": "attribute-section-link"
+                  }
+                ]
+              },
+              {
+                "caption": "Usr Catalog",
+                "items": [
+                  {
+                    "caption": "Product",
+                    "url": "usrproduct"
+                  },
+                  {
+                    "caption": "Section",
+                    "url": "usrsection"
+                  },
+                  {
+                    "caption": "Attribute",
+                    "url": "usrattribute"
+                  },
+                  {
+                    "caption": "Attribute group",
+                    "url": "usrattributegroup"
+                  },
+                  {
+                    "caption": "Единица измерения",
+                    "url": "usrunit"
+                  },
+                  {
+                    "caption": "Attribute Section Link",
+                    "url": "usrattribute-section-link"
+                  }
+                ]
+              },
+              {
+                "caption": "Text blocks",
+                "url": "textblock"
+              },
+              {
+                "caption": "Dev log",
+                "url": "devlog"
+              },
+              {
+                "caption": "Flat menu",
+                "url": "flatmenu",
+                "items": [
+                  {
+                    "caption": "Menu",
+                    "url": "flatmenu"
+                  },
+                  {
+                    "caption": "Punct",
+                    "url": "flatmenupunct"
+                  }
+                ]
+              },
+              {
+                "caption": "Tree menu",
+                "url": "treemenu",
+                "items": [
+                  {
+                    "caption": "Menu",
+                    "url": "treemenu"
+                  },
+                  {
+                    "caption": "Punct",
+                    "url": "treemenupunct"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "caption": "References",
+            "help": "References",
+            "icon": "fa fa-puzzle-piece",
+            "items": [
+              {
+                "caption": "Named",
+                "url": "named"
+              },
+              {
+                "caption": "Imaged",
+                "url": "imaged"
+              },
+              {
+                "caption": "Description",
+                "url": "description"
+              }
+            ]
+          },
+          {
+            "caption": "Units",
+            "help": "Units",
+            "icon": "fa fa-puzzle-piece",
+            "items": [
+              {
+                "caption": "nested",
+                "items": [
+                  {
+                    "caption": "container",
+                    "url": "nestedcontainer"
+                  },
+                  {
+                    "caption": "item",
+                    "url": "nesteditem"
+                  }
+                ]
+              },
+              {
+                "caption": "Tree",
+                "url": "tree"
+              },
+              {
+                "caption": "Active",
+                "url": "active"
+              },
+              {
+                "caption": "Rich text",
+                "url": "richtext"
+              },
+              {
+                "caption": "dated",
+                "url": "dated"
+              },
+              {
+                "caption": "dated advanced",
+                "url": "datedadvanced"
+              },
+              {
+                "caption": "unit with timestamp",
+                "url": "unitts"
+              },
+              {
+                "caption": "unit with user",
+                "url": "unitusr"
+              },
+              {
+                "caption": "unit with user & ts",
+                "url": "unittsusr"
+              },
+              {
+                "caption": "named with user & ts",
+                "url": "namedtsusr"
+              },
+              {
+                "caption": "titled with user & ts",
+                "url": "titledtsusr"
+              },
+              {
+                "caption": "token with user & ts",
+                "url": "tokentsusr"
+              },
+              {
+                "caption": "bind with user & ts",
+                "url": "bindtsusr"
+              }
+            ]
           }
         ]
       }
