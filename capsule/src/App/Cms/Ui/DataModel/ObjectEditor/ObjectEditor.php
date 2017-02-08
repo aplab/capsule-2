@@ -81,7 +81,6 @@ class ObjectEditor
         if ($setter) {
             return $this->$setter($value, $name);
         }
-        echo 'setter ';
         $this->data[$name] = $value;
         return $this;
     }

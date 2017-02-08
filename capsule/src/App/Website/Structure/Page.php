@@ -19,9 +19,9 @@
 namespace App\Website\Structure;
 
 use App\Website\Website;
-use Capsule\Common\Path;
-use Capsule\Capsule;
 use App\Website\Cache;
+use Capsule\Component\Path\Path;
+
 /**
  * Page.php
  *

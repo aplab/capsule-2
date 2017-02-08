@@ -198,6 +198,17 @@ $border-color: #ddd;
       .cell-icon {
         text-align: center;
       }
+      > div.i {
+        //padding: 0;
+        background: #F9F9F9 center center no-repeat;
+        background-size: cover;
+        //background-clip: content-box;
+      }
+    }
+    > div.fat-row {
+      > div {
+        min-height: 64px;
+      }
     }
     > div:hover {
       background-color: rgba(0, 0, 0, 0.075);

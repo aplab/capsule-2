@@ -95,7 +95,7 @@ abstract class ReferenceController extends DefaultController
     /**
      *
      */
-    protected function listItems()
+    protected function listItems(array $param = [])
     {
         $p = $this->pagination();
         $filter = $this->app->urlFilter;
@@ -119,6 +119,7 @@ abstract class ReferenceController extends DefaultController
         $data_grid->currentPage = $p->currentPage;
         $data_grid->itemsPerPage = $p->itemsPerPage;
         $data_grid->baseUrl = ($this->app->urlFilter)($this->mod);
+        $data_grid->extraParam = $param;
         SectionManager::getInstance()->content->append(new DataGridView($data_grid));
     }
 

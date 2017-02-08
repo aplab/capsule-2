@@ -55,7 +55,7 @@
             </div>
             <div id="footer" class="page-section">
                 <div id="f-col-one">
-                    <a href="/log/">Журнал</a>
+<!--                    <a href="/log/">Журнал</a>-->
                 </div>
                 <div id="f-counters">
                     <div id="counter-li">

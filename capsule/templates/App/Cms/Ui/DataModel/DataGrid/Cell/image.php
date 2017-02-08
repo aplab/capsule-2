@@ -1,0 +1,2 @@
+<div class="w<?=$this->col->column->width?> i" style="background-image: url('<?=hsc($this->item->get($this->col->property->name))?>');"
+     title="<?=hsc($this->item->get($this->col->property->name))?>"></div>

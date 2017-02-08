@@ -14,6 +14,13 @@ $columns = $this->instance->columns;
 use Capsule\I18n\I18n as _;
 use Capsule\Component\Utf8String as str;
 $cell_id_counter = 0;
+$extra_param = $this->instance->extraParam;
+$row_class = '';
+if (is_array($extra_param)) {
+    if (isset($extra_param['row_class'])) {
+        $row_class = ' ' . $extra_param['row_class'];
+    }
+}
 ?>
 <!--data grid-->
 <div class="capsule-cms-data-grid"
@@ -59,7 +66,7 @@ $cell_id_counter = 0;
                             ]);
                         }
                         ?>
-                        <div class="wExt" data-pk="<?=str::hsc($data_pk)?>">
+                        <div class="wExt<?=$row_class?>" data-pk="<?=str::hsc($data_pk)?>">
                             <?php foreach ($columns as $column) : ?>
                                 <?php $column->cell->item = $item ?>
                                 <?php $column->cell->id = $cell_id_counter++ ?>
