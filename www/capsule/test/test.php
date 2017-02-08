@@ -46,9 +46,9 @@ if (!$user) {
 
 
     <?php
-\App\Cms\Component\Seo\Basic::_createConfigFile();
-\Capsule\Tools\Tools::dump(\App\Cms\Component\Seo\Basic::_configLocation());
-    \App\Cms\Component\Seo\Basic::_configSetEditMode();
+\App\Cms\Component\Seo\Active::_createConfigFile();
+\Capsule\Tools\Tools::dump(\App\Cms\Component\Seo\Active::_configLocation());
+    \App\Cms\Component\Seo\Active::_configSetEditMode();
 
 
 

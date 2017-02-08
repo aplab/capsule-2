@@ -7,14 +7,8 @@
   "controllerDefaultNs": "App/Ajax/Controller",
   "#": "путь: контроллер_который_обрабарывает",
   "module": {
-    "toggleActive": "Active",
-    "loadNested": "Nested",
-    "uploadSingleImage": "UploadImage",
-    "toggleFavoritesImage": "UploadImage",
-    "addToFavoritesImage": "UploadImage",
-    "commentImage": "UploadImage",
-    "deleteImage": "UploadImage",
     "uploadImage": "ImageUploader",
-    "historyUploadImage": "ImageHistory"
+    "historyUploadImage": "ImageHistory",
+    "editProperty": "PropertyEditor"
   }
 }

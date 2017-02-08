@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | Copyright (c) 2006-2014                                                   |
 // +---------------------------------------------------------------------------+
-// | 14.06.2014 7:59:03 YEKT 2014                                              |
+// | 08.03.2014 3:32:18 YEKT 2014                                              |
 // | Класс - type_description_here                                             |
 // +---------------------------------------------------------------------------+
 // | Author: Alexander Polyanin <polyanin@gmail.com>                           |
@@ -16,43 +16,18 @@
  * @package Capsule
  */
 
-namespace App\Ajax\Controller;
-
-use Capsule\Controller\IController;
-use App\Ajax\Ajax;
-use Capsule\User\Auth;
+namespace App\Cms\Controller\Component\Seo;
 
 /**
- * Controller.php
+ * Named.php
  *
  * @package Capsule
  * @author Alexander Polyanin <polyanin@gmail.com>
  */
-abstract class Controller implements IController
+class Named extends Basic
 {
-    protected $cmd;
 
-    public function __construct()
-    {
-        $cmd = Ajax::getInstance()->cmd;
-        $exclude = array(
-            'handle',
-            __FUNCTION__
-        );
-        $methods = array_diff(get_class_methods($this), $exclude);
-        if (in_array($cmd, $methods)) {
-            $this->cmd = $cmd;
-        }
-    }
+    protected $moduleClass = '\\App\\Cms\\Component\\Seo\\Named';
 
-    public function handle()
-    {
-        if (!Auth::getInstance()->user()) {
-            return;
-        }
-        $cmd = $this->cmd;
-        if ($cmd) {
-            $this->$cmd();
-        }
-    }
+    
 }

@@ -1,0 +1,42 @@
+{
+    "properties": {
+        "active": {
+            "title": "Active",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c1": {
+                    "width": 32,
+                    "order": 3000,
+                    "type": "Active"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Flag",
+                    "order": 3000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "active": {
+                "type": "tinyint",
+                "length": 1,
+                "unsigned": true,
+                "comment": "activity"
+            }
+        },
+        "indexes": {
+            "active": {
+                "fields": {
+                    "active": []
+                }
+            }
+        }
+    }
+}

@@ -348,6 +348,21 @@
                 "caption": "Seo-friendly",
                 "url": "seo-friendly",
                 "icon": "fa fa-search"
+              },
+              {
+                "caption": "Seo-active",
+                "url": "seo-active",
+                "icon": "fa fa-search"
+              },
+              {
+                "caption": "Seo-named",
+                "url": "seo-named",
+                "icon": "fa fa-search"
+              },
+              {
+                "caption": "Seo-named-active",
+                "url": "seo-named-active",
+                "icon": "fa fa-search"
               }
             ]
           }
@@ -401,6 +416,9 @@
     "attributegroup": "Catalog.AttributeGroup",
     "desktop-icons": "DesktopIcon",
     "seo-friendly": "Component.Seo.Basic",
+    "seo-active": "Component.Seo.Active",
+    "seo-named": "Component.Seo.Named",
+    "seo-named-active": "Component.Seo.NamedActive",
     "#usrcatalog": "------------------------------------------------------",
     "usrsection": "Usr.Catalog.Section",
     "usrunit": "Usr.Catalog.Unit",

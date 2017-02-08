@@ -408,8 +408,50 @@ function CapsuleCmsDataGrid (container, data)
         f.submit();
     };
 
+    /**
+     * Touch device detector
+     *
+     * @returns {boolean}
+     */
     var isTouchDevice = function ()
     {
         return 'ontouchstart' in document.documentElement;
     };
+
+    data.find(':checkbox').change(function() {
+        var o = $(this);
+        var value = o.prop('checked') ? 1 : 0;
+        var name = o.prop('name');
+        var data_class = o.data('class');
+        if (data_class == undefined) {
+            return;
+        }
+        var pk = o.closest('.wExt').data('pk');
+        if (pk == undefined) {
+            return;
+        }
+        var post_data = {
+            pk: pk,
+            name: name,
+            value: value,
+            class: data_class
+        };
+        var url = '/ajax/' + '/editProperty/';
+        url = url.replace(/\/{2,}/, '/');
+        $.post(
+            url,
+            post_data,
+            function (data)
+            {
+                try {
+                    if ('ok' == data.status) {
+                        o.prop('checked', value);
+                    }
+                } catch (e) {
+                    alert ('error: ' + e.message);
+                }
+            },
+            'json'
+        );
+    });
 }
