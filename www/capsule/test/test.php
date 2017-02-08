@@ -46,9 +46,12 @@ if (!$user) {
 
 
     <?php
-\App\Cms\Component\Seo\Active::_createConfigFile();
-\Capsule\Tools\Tools::dump(\App\Cms\Component\Seo\Active::_configLocation());
-    \App\Cms\Component\Seo\Active::_configSetEditMode();
+
+    \App\Cms\Component\Preferences::_configApply();
+
+//    \Capsule\Tools\Tools::dump(\Capsule\Unit\NamedTsUsr::_configDataJson());
+
+
 
 
 

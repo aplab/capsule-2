@@ -345,24 +345,27 @@
             "icon": "fa fa-microchip",
             "items": [
               {
-                "caption": "Seo-friendly",
-                "url": "seo-friendly",
-                "icon": "fa fa-search"
-              },
-              {
-                "caption": "Seo-active",
-                "url": "seo-active",
-                "icon": "fa fa-search"
-              },
-              {
-                "caption": "Seo-named",
-                "url": "seo-named",
-                "icon": "fa fa-search"
-              },
-              {
-                "caption": "Seo-named-active",
-                "url": "seo-named-active",
-                "icon": "fa fa-search"
+                "caption": "Seo",
+                "help": "Seo",
+                "icon": "fa fa-search",
+                "items": [
+                  {
+                    "caption": "Seo-friendly",
+                    "url": "seo-friendly"
+                  },
+                  {
+                    "caption": "Seo-active",
+                    "url": "seo-active"
+                  },
+                  {
+                    "caption": "Seo-named",
+                    "url": "seo-named"
+                  },
+                  {
+                    "caption": "Seo-named-active",
+                    "url": "seo-named-active"
+                  }
+                ]
               }
             ]
           }
@@ -419,6 +422,7 @@
     "seo-active": "Component.Seo.Active",
     "seo-named": "Component.Seo.Named",
     "seo-named-active": "Component.Seo.NamedActive",
+    "preferences": "Component.Preferences",
     "#usrcatalog": "------------------------------------------------------",
     "usrsection": "Usr.Catalog.Section",
     "usrunit": "Usr.Catalog.Unit",

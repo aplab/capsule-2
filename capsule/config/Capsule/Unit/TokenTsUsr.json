@@ -38,9 +38,7 @@
         "indexes": {
             "token": {
                 "fields": {
-                    "token": [
-                        
-                    ]
+                    "token": []
                 }
             }
         }

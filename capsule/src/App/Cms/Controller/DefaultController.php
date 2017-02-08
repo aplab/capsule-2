@@ -20,22 +20,18 @@ namespace App\Cms\Controller;
 
 use App\Cms\Cms;
 use App\Cms\Ui\ActionMenu\ActionMenu;
-use App\Cms\Ui\DataModel\DataGrid\DataGrid;
 use App\Cms\Ui\MainMenu\Callback;
 use App\Cms\Ui\MainMenu\Icon;
 use App\Cms\Ui\MainMenu\MainMenu;
 use App\Cms\Ui\MainMenu\MenuItem;
 use App\Cms\Ui\MainMenu\Url;
 use App\Cms\View\ActionMenuView;
-use App\Cms\View\DataGridView;
 use App\Cms\View\MainMenuView;
 use Capsule\Component\Path\ComponentTemplatePath;
 use Capsule\I18n\I18n;
 use App\Cms\Ui\SectionManager;
 use App\Cms\Ui\Section;
 use Capsule\Capsule;
-use Capsule\Tools\Tools;
-use Capsule\User\User;
 
 /**
  * DefaultController.php
