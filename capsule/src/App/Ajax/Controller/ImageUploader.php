@@ -14,11 +14,14 @@
 namespace App\Ajax\Controller;
 
 
+use App\Ajax\Ajax;
+use App\Cms\Component\PhotoGallery\Photo;
 use App\Cms\Model\HistoryUploadImage;
 use Capsule\File\Upload\Msg;
 use Capsule\Plugin\Storage\Storage;
 use Capsule\Tools\Tools;
 use Capsule\User\Auth;
+use Respect\Validation\Validator;
 
 /**
  * Class ImageUploader
@@ -216,6 +219,16 @@ class ImageUploader extends Controller
         $history->storage = Storage::getInstanceName(Storage::getInstance());
         HistoryUploadImage::deleteSamePath($history);
         $history->store();
+        if ('Gallery' === Ajax::getInstance()->cmd) {
+            $param = Ajax::getInstance()->param;
+            $container_id = array_shift($param);
+            if (Validator::digit()->validate($container_id)) {
+                $p = new Photo();
+                $p->image = $history->url;
+                $p->containerId = $container_id;
+                $p->store();
+            }
+        }
     }
 
     /**

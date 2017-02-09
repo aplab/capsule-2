@@ -99,7 +99,7 @@ class NestedItem extends ReferenceController
         $this->filterByContainer();
         $this->filterByContainer = $this->env->get($this->filterByContainerKey());
 
-        $path = new ComponentTemplatePath($this, 'filter');
+        $path = new ComponentTemplatePath(__CLASS__, 'filter');
         SectionManager::getInstance()->body->append(include $path);
         $toolbar = $this->app->registry->actionMenu;
         $toolbar->newMenuItem('New', new Url($filter($this->mod, 'add')));
@@ -136,6 +136,7 @@ class NestedItem extends ReferenceController
         $data_grid->currentPage = $p->currentPage;
         $data_grid->itemsPerPage = $p->itemsPerPage;
         $data_grid->baseUrl = ($this->app->urlFilter)($this->mod);
+        $data_grid->extraParam = $param;
         SectionManager::getInstance()->content->append(new DataGridView($data_grid));
     }
 

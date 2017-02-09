@@ -1,0 +1,175 @@
+{
+    "tabOrder": {
+        "General": 1000,
+        "Photo": 3000,
+        "SEO": 5000,
+        "Additional": 1000000000
+    },
+    "title": "Photo gallery",
+    "description": "",
+    "help": "",
+    "comment": "",
+    "name": "Photo gallery",
+    "label": "",
+    "properties": {
+        "id": {
+            "title": "ID",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c2": {
+                    "width": 120,
+                    "order": 1000,
+                    "type": "Id",
+                    "edit": true,
+                    "del": true
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Label",
+                    "order": 1000000,
+                    "tab": "Additional"
+                }
+            }
+        },
+        "createdBy": {
+            "title": "created by",
+            "formElement": {
+                "f1": {
+                    "type": "User",
+                    "order": 300000000,
+                    "tab": "Additional"
+                }
+            },
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "order": 300000000,
+                    "type": "User"
+                }
+            }
+        },
+        "lastModifiedBy": {
+            "title": "last modified by",
+            "formElement": {
+                "f1": {
+                    "type": "User",
+                    "order": 400000000,
+                    "tab": "Additional"
+                }
+            },
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "order": 400000000,
+                    "type": "User"
+                }
+            }
+        },
+        "created": {
+            "title": "created",
+            "column": {
+                "c1": {
+                    "width": 160,
+                    "order": 100000000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Label",
+                    "order": 100000000,
+                    "tab": "Additional"
+                }
+            }
+        },
+        "lastModified": {
+            "title": "last modified",
+            "column": {
+                "c1": {
+                    "width": 160,
+                    "order": 200000000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Label",
+                    "order": 200000000,
+                    "tab": "Additional"
+                }
+            }
+        },
+        "name": {
+            "title": "Name",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 2000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "id": {
+                "type": "bigint",
+                "unsigned": true,
+                "autoIncrement": true,
+                "comment": "Уникальный идентификатор"
+            },
+            "created_by": {
+                "type": "smallint",
+                "unsigned": true,
+                "default": 0
+            },
+            "last_modified_by": {
+                "type": "smallint",
+                "unsigned": true,
+                "default": 0
+            },
+            "created": {
+                "type": "datetime",
+                "default": "CURRENT_TIMESTAMP",
+                "comment": "created"
+            },
+            "last_modified": {
+                "type": "datetime",
+                "default": "CURRENT_TIMESTAMP",
+                "onUpdate": "CURRENT_TIMESTAMP",
+                "comment": "last modified"
+            },
+            "name": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Наименование"
+            }
+        },
+        "indexes": {
+            "primaryKey": {
+                "type": "primaryKey",
+                "fields": {
+                    "id": []
+                }
+            }
+        },
+        "#": "inherit"
+    }
+}

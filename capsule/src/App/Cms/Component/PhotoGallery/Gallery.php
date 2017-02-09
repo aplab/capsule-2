@@ -11,11 +11,10 @@
  * Time: 23:56
  */
 
-namespace App\Cms\Component;
+namespace App\Cms\Component\PhotoGallery;
 
+use Capsule\Unit\Nested\Container;
 
-use App\Cms\Component\Seo\NamedActive;
-
-class PhotoGallery extends NamedActive
+class Gallery extends Container
 {
 }

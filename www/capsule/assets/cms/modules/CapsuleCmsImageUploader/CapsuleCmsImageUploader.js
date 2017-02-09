@@ -11,6 +11,8 @@ function CapsuleCmsImageUploader()
         CapsuleCmsImageUploader.instance = this;
     }
 
+    var url = '/ajax/uploadImage/';
+
     /**
      * Class prefix
      *
@@ -208,8 +210,7 @@ function CapsuleCmsImageUploader()
             if (process_running) {
                 return;
             }
-            CapsuleCmsImageUploader.getInstance().purgeWindow();
-            CapsuleCmsImageHistory.getInstance().showWindow();
+            CapsuleCmsImageUploader.getInstance().done();
         });
 
         button_more.click(function ()
@@ -259,6 +260,23 @@ function CapsuleCmsImageUploader()
     {
         dialog_window.hide();
         clear_file_input();
+    };
+
+    /**
+     * Set url
+     *
+     * @param value
+     */
+    this.setUrl = function (value)
+    {
+        url = value;
+        return this;
+    };
+
+    this.done = function ()
+    {
+        CapsuleCmsImageUploader.getInstance().purgeWindow();
+        CapsuleCmsImageHistory.getInstance().showWindow();
     };
 
     /**
@@ -371,7 +389,7 @@ function CapsuleCmsImageUploader()
         form_data.append('file', file);
         process_running++;
         $.ajax({
-            url: '/ajax/uploadImage/',
+            url: url,
             data: form_data,
             type: 'POST',
             // THIS MUST BE DONE FOR FILE UPLOADING

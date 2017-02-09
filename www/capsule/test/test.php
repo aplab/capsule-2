@@ -47,19 +47,15 @@ if (!$user) {
 
     <?php
 
-    \App\Cms\Component\Preferences::_configApply();
 
-//    \Capsule\Tools\Tools::dump(\Capsule\Unit\NamedTsUsr::_configDataJson());
-
-
+    \App\Cms\Component\PhotoGallery\Photo::_configSetEditMode();
+    \App\Cms\Component\PhotoGallery\Gallery::_configSetEditMode();
 
 
 
-//    $i = \Capsule\Plugin\IconList\IconList::getInstance()->getIterator();
-//
-//    foreach ($i as $item) {
-//        \Capsule\Tools\Tools::dump($item->name);
-//    }
+
+
+
 
 
 
