@@ -29,13 +29,13 @@ class TreeItem extends NestedItem
 {
     protected $moduleClass = 'Capsule\\Unit\\Nested\\Tree\\Item';
     
-    protected function listItems() {
+    protected function listItems(array $param = []) {
         $class = $this->moduleClass;
         $err = $class::repair();
         if ($err) {
             $msg = 'Corrupted elements detected number: ' . $err;
             $this->ui->alert->append(I18n::_($msg));
         }
-        parent::listItems();
+        parent::listItems($param = []);
     }
 }

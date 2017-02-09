@@ -29,7 +29,7 @@ class Tree extends ReferenceController
 {
     protected $moduleClass = 'Capsule\\Unit\\Tree';
     
-    protected function listItems() {
+    protected function listItems(array $param = []) {
         $class = $this->moduleClass;
         $err = $class::repair();
         if (sizeof($err)) {

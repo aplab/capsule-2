@@ -86,7 +86,7 @@ class NestedItem extends ReferenceController
         )
     );
 
-    protected function listItems()
+    protected function listItems(array $param = [])
     {
         $filter = $this->app->urlFilter;
         $module_class = $this->moduleClass;
