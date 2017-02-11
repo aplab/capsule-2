@@ -220,25 +220,23 @@ $(document).ready(function ()
 
     CapsuleCms.init();
 
+    /**
+     * Fix safari behavior
+     */
     window.viewportUnitsBuggyfill.init();
 
-    // $(function () {
-    //     $('[data-toggle="tooltip"]').tooltip()
-    // });
-
-    CapsuleCms.showModalDialog = function(selector, options)
-    {
-        CapsuleCms.collapseActionMenu();
-        options = options || {};
-        $(selector).modal(options);
-    };
-
+    /**
+     * Saving main menu position
+     */
     $(window).on('beforeunload', function() {
         Cookies.set(
             'capsule-cms-main-menu-scroll-top',
             $('#capsule-cms-main-menu-wrapper').find('.capsule-ui-scrollable-wrapper').scrollTop());
     });
 
+    /**
+     * Create desktop icon handler
+     */
     CapsuleCms.createDesktopIcon = function ()
     {
         var url = location.href.replace(/^.*?\/admin\//,'/admin/');
@@ -333,10 +331,27 @@ $(document).ready(function ()
 
     var $select = $('.capsule-cms-object-editor-select-icon select').selectize();
     for (var i = 0; i < $select.length; i++) {
-        var selectize = $select[i].selectize;
+        // set some options
+        //var selectize = $select[i].selectize;
 
-    };
+    }
     $('.capsule-cms-object-editor-select-icon input').prop({
         readonly: true
     });
+
+    /**
+     * Show image uploader
+     */
+    CapsuleCms.showImageUploader = function ()
+    {
+        var uploader = CapsuleCmsFileUploader.getInstance();
+        uploader.setTitle('Upload images only');
+        uploader.setUrl('/ajax/uploadImage/');
+        uploader.done = function ()
+        {
+            CapsuleCmsFileUploader.getInstance().purgeWindow();
+            CapsuleCmsImageHistory.getInstance().showWindow();
+        };
+        uploader.showWindow();
+    }
 });

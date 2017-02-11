@@ -50,14 +50,16 @@ class ImageUploader extends Controller
         if (!Auth::getInstance()->user()) {
             return;
         }
-        $this->receive();
+        $url = $this->receive();
         print json_encode([
-            'status' => 'ok'
+            'status' => 'ok',
+            'url' => $url
         ]);
     }
 
     /**
-     *
+     * @return string
+     * @throws \Exception
      */
     protected function receive()
     {
@@ -229,6 +231,7 @@ class ImageUploader extends Controller
                 $p->store();
             }
         }
+        return $image['url'];
     }
 
     /**

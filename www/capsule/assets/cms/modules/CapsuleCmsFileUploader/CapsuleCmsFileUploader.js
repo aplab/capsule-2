@@ -243,7 +243,6 @@ function CapsuleCmsFileUploader()
     this.showWindow = function (param)
     {
         param = param || {};
-        console.log(param);
         button_group.show();
         button_group_done.hide();
         list.empty();
@@ -273,6 +272,19 @@ function CapsuleCmsFileUploader()
         return this;
     };
 
+    /**
+     * Set title
+     *
+     * @param title
+     */
+    this.setTitle = function(title)
+    {
+        dialog_window.setTitle(title);
+    };
+
+    /**
+     * Done button handler
+     */
     this.done = function ()
     {
         CapsuleCmsFileUploader.getInstance().purgeWindow();
@@ -428,6 +440,13 @@ function CapsuleCmsFileUploader()
                     if (data.status === 'ok') {
                         item.progress.hide();
                         item.status.show().addClass(class_prefix + 'success').text('Ok');
+                        var clipb = $('<span class="capsule-cms-file-uploader-clipboard">');
+                        clipb.attr('data-clipboard-text', data.url);
+                        clipb.text(item.name.text());
+                        clipb.prepend('<i class="fa fa-link"> ');
+                        item.name.empty();
+                        item.name.append(clipb);
+                        var c = new Clipboard(clipb.get(0));
                     } else {
                         item.progress.hide();
                         item.status.show().addClass(class_prefix + 'fail').text(data.message);

@@ -41,7 +41,7 @@ CapsuleCmsDialog = function (instance_name)
     this.getDialog = function ()
     {
         return dialog;
-    }
+    };
 
     /**
      * Returns backdrop part
@@ -51,7 +51,7 @@ CapsuleCmsDialog = function (instance_name)
     this.getBackdrop = function ()
     {
         return backdrop;
-    }
+    };
 
     /**
      * Returns container part
@@ -61,7 +61,7 @@ CapsuleCmsDialog = function (instance_name)
     this.getContainer = function ()
     {
         return container;
-    }
+    };
 
     /**
      * Returns content part
@@ -71,7 +71,7 @@ CapsuleCmsDialog = function (instance_name)
     this.getContent = function ()
     {
         return content;
-    }
+    };
 
     /**
      * Returns header part
@@ -81,7 +81,7 @@ CapsuleCmsDialog = function (instance_name)
     this.getHeader = function ()
     {
         return header;
-    }
+    };
 
     /**
      * Returns body part
@@ -91,7 +91,7 @@ CapsuleCmsDialog = function (instance_name)
     this.getBody = function ()
     {
         return body;
-    }
+    };
 
     /**
      * Returns footer part
@@ -101,7 +101,13 @@ CapsuleCmsDialog = function (instance_name)
     this.getFooter = function ()
     {
         return footer;
-    }
+    };
+
+    this.setTitle = function (title)
+    {
+        var h = this.getHeader();
+        h.find('h4.modal-title').text(title);
+    };
 
     /**
      * show window
@@ -223,7 +229,7 @@ CapsuleCmsDialog.createElement = function (instance_name, options)
             });
         } else if (options.width) {
             content.css({
-                width: options.width,
+                width: options.width
             }).addClass(CapsuleCmsDialog.prefix + '-maximize-height');
         } else if (options.height) {
             content.css({
@@ -279,7 +285,7 @@ CapsuleCmsDialog.init = function ()
 {
     $('.' + CapsuleCmsDialog.prefix).each(function (i, o)
     {
-        var o = $(o);
+        o = $(o);
         var id = o.prop('id');
         if (!CapsuleCmsDialog.instanceExists(id)) {
             new CapsuleCmsDialog(id);

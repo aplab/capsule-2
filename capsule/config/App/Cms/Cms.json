@@ -30,7 +30,7 @@
                 "items": [
                     {
                         "caption": "Upload image",
-                        "callback": "CapsuleCmsFileUploader.getInstance().showWindow()",
+                        "callback": "CapsuleCms.showImageUploader()",
                         "icon": "glyphicon glyphicon-picture"
                     },
                     {

@@ -101,4 +101,8 @@
   &-fail {
     color: #d00;
   }
+  &-clipboard {
+    border-bottom: 1px #333 dashed;
+    cursor: pointer;
+  }
 }

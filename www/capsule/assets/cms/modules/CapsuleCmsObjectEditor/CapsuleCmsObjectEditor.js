@@ -41,6 +41,9 @@ function CapsuleCmsObjectEditor(container) {
     var tabs_scroll = [];
     var tabs_width_sum = 0;
 
+    /**
+     * Initialization
+     */
     var init = function () {
         tabs.find(prefix + 'tab').each(function (i, o) {
             tabs_width[i] = $(o).outerWidth();
@@ -56,6 +59,9 @@ function CapsuleCmsObjectEditor(container) {
         });
     };
 
+    /**
+     * Width initialization
+     */
     var initWidth = function () {
         if (head.width() < tabs_width_sum) {
             arrow_left.show();
@@ -74,6 +80,9 @@ function CapsuleCmsObjectEditor(container) {
         }
     };
 
+    /**
+     * Window resize handler
+     */
     $(window).resize(function () {
         initWidth();
     });
@@ -90,9 +99,16 @@ function CapsuleCmsObjectEditor(container) {
             .eq(index).addClass(class_prefix + 'panel-active');
     });
 
+    /**
+     * Left arrow click handler
+     */
     arrow_left.click(function () {
         tabs_wrapper.scrollLeft(tabs_wrapper.scrollLeft() - 50);
     });
+
+    /**
+     * Right arrow click handler
+     */
     arrow_right.click(function () {
         tabs_wrapper.scrollLeft(tabs_wrapper.scrollLeft() + 50);
     });
@@ -100,7 +116,11 @@ function CapsuleCmsObjectEditor(container) {
     init();
     initWidth();
 
-
+    /**
+     * CKEditor initialization
+     *
+     * @param config
+     */
     CKEDITOR.editorConfig = function (config) {
         // Define changes to default configuration here. For example:
         // config.language = 'fr';
@@ -125,10 +145,16 @@ function CapsuleCmsObjectEditor(container) {
         }
     };
 
+    /**
+     * CKEditor size adjust
+     */
     this.fitEditors = function () {
         fitEditors();
     };
 
+    /**
+     * Init CKEditors
+     */
     if ('undefined' != typeof(CKEDITOR)) {
         CKEDITOR.on('instanceReady', function (ev) {
             var editor = ev.editor;
@@ -146,6 +172,11 @@ function CapsuleCmsObjectEditor(container) {
         });
     }
 
+    /**
+     * Workaround for small devices
+     *
+     * @returns {boolean}
+     */
     var is_small = function () {
         var width = $(window).width();
         var height = $(window).height();
@@ -153,6 +184,11 @@ function CapsuleCmsObjectEditor(container) {
         return width <= threshold && height <= threshold;
     };
 
+    /**
+     * Editor configuration
+     *
+     * @returns {{uiColor: string, removePlugins: string, resize_enabled: boolean, height: number, removeButtons: string}}
+     */
     var editor_config = function () {
         var config = {
             uiColor: '#ffffff',
@@ -219,10 +255,16 @@ function CapsuleCmsObjectEditor(container) {
         return config;
     };
 
+    /**
+     * Save handler
+     */
     this.save = function () {
         body.children('form').eq(0).submit();
     };
 
+    /**
+     * Save and exit handler
+     */
     this.saveAndExit = function () {
         var e = document.createElement('input');
         $(e).attr({
@@ -234,6 +276,9 @@ function CapsuleCmsObjectEditor(container) {
         this.save();
     }
 
+    /**
+     * Save and add new handler
+     */
     this.saveAndAdd = function () {
         var e = document.createElement('input');
         $(e).attr({
@@ -245,6 +290,9 @@ function CapsuleCmsObjectEditor(container) {
         this.save();
     }
 
+    /**
+     * Save as new handler
+     */
     this.saveAsNew = function () {
         var e = document.createElement('input');
         $(e).attr({
@@ -256,8 +304,14 @@ function CapsuleCmsObjectEditor(container) {
         this.save();
     }
 
+    /**
+     * Wrap textarea
+     */
     $('textarea' + prefix + 'ckeditor').ckeditor(editor_config());
 
+    /**
+     * Datetimepicker configuration
+     */
     $(prefix + 'datetime').datetimepicker({
         format: 'YYYY-MM-DD HH:mm:ss',
         ignoreReadonly: true,
@@ -274,6 +328,9 @@ function CapsuleCmsObjectEditor(container) {
         body.find(':password').val('');
     }, 10);
 
+    /**
+     * Input image plugin
+     */
     body.find('.capsule-cms-object-editor-element-image').each(function (i, o)
     {
         o = $(o);
@@ -282,7 +339,15 @@ function CapsuleCmsObjectEditor(container) {
         var btn_upload = o.find('.fa-upload').closest('button');
         btn_upload.click(function ()
         {
-            CapsuleCmsFileUploader.getInstance().showWindow();
+            var uploader = CapsuleCmsFileUploader.getInstance();
+            uploader.setTitle('Upload images only');
+            uploader.setUrl('/ajax/uploadImage/');
+            uploader.done = function ()
+            {
+                CapsuleCmsFileUploader.getInstance().purgeWindow();
+                CapsuleCmsImageHistory.getInstance().showWindow();
+            };
+            uploader.showWindow();
             CapsuleCmsImageHistory.getInstance().beforeDone = function ()
             {
                 var items = CapsuleCmsImageHistory.getInstance().getSelectedItems();
