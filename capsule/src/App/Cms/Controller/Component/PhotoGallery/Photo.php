@@ -39,7 +39,7 @@ class Photo extends NestedItem
         $toolbar = $this->app->registry->actionMenu;
         $container = $this->env->get($this->filterByContainerKey());
         if (Validator::digit()->validate($container)) {
-            $toolbar->newMenuItem('Batch', new Callback('CapsuleCmsImageUploader.getInstance().done=function(){location.reload();};CapsuleCmsImageUploader.getInstance().setUrl("/ajax/uploadImage/Gallery/' . $container . '/").showWindow();'));
+            $toolbar->newMenuItem('Batch', new Callback('CapsuleCmsFileUploader.getInstance().done=function(){location.reload();};CapsuleCmsFileUploader.getInstance().setUrl("/ajax/uploadImage/Gallery/' . $container . '/").showWindow();'));
         }
     }
 }

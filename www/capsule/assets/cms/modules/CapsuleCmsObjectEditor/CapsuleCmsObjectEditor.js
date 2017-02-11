@@ -282,7 +282,7 @@ function CapsuleCmsObjectEditor(container) {
         var btn_upload = o.find('.fa-upload').closest('button');
         btn_upload.click(function ()
         {
-            CapsuleCmsImageUploader.getInstance().showWindow();
+            CapsuleCmsFileUploader.getInstance().showWindow();
             CapsuleCmsImageHistory.getInstance().beforeDone = function ()
             {
                 var items = CapsuleCmsImageHistory.getInstance().getSelectedItems();

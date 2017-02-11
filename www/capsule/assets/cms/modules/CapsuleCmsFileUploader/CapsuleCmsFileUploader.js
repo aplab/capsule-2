@@ -1,14 +1,14 @@
 /**
  * Created by polyanin on 19.01.2017.
  */
-function CapsuleCmsImageUploader()
+function CapsuleCmsFileUploader()
 {
-    if (CapsuleCmsImageUploader.hasOwnProperty('instance')) {
+    if (CapsuleCmsFileUploader.hasOwnProperty('instance')) {
         var m = 'Instance already exists. Only one instance allowed!';
         console.log(m);
         throw new Error(m);
     } else {
-        CapsuleCmsImageUploader.instance = this;
+        CapsuleCmsFileUploader.instance = this;
     }
 
     var url = '/ajax/uploadImage/';
@@ -18,7 +18,7 @@ function CapsuleCmsImageUploader()
      *
      * @type {string}
      */
-    var class_prefix = 'capsule-cms-image-uploader-';
+    var class_prefix = 'capsule-cms-file-uploader-';
 
     /**
      * Button wrapper class
@@ -126,10 +126,10 @@ function CapsuleCmsImageUploader()
     var create_window = function ()
     {
         dialog_window = CapsuleCmsDialog.createElement(
-            'capsule-cms-image-uploader',
+            'capsule-cms-file-uploader',
             {
                 maximxze: 1,
-                title: 'Upload images',
+                title: 'Upload files',
                 width: 640
             }
         );
@@ -202,7 +202,7 @@ function CapsuleCmsImageUploader()
 
         button_cancel.click(function ()
         {
-            CapsuleCmsImageUploader.getInstance().purgeWindow();
+            CapsuleCmsFileUploader.getInstance().purgeWindow();
         });
 
         button_done.click(function ()
@@ -210,7 +210,7 @@ function CapsuleCmsImageUploader()
             if (process_running) {
                 return;
             }
-            CapsuleCmsImageUploader.getInstance().done();
+            CapsuleCmsFileUploader.getInstance().done();
         });
 
         button_more.click(function ()
@@ -218,8 +218,8 @@ function CapsuleCmsImageUploader()
             if (process_running) {
                 return;
             }
-            CapsuleCmsImageUploader.getInstance().purgeWindow();
-            CapsuleCmsImageUploader.getInstance().showWindow();
+            CapsuleCmsFileUploader.getInstance().purgeWindow();
+            CapsuleCmsFileUploader.getInstance().showWindow();
         });
 
         button_upload.click(function ()
@@ -275,7 +275,7 @@ function CapsuleCmsImageUploader()
 
     this.done = function ()
     {
-        CapsuleCmsImageUploader.getInstance().purgeWindow();
+        CapsuleCmsFileUploader.getInstance().purgeWindow();
         CapsuleCmsImageHistory.getInstance().showWindow();
     };
 
@@ -461,10 +461,10 @@ function CapsuleCmsImageUploader()
 /**
  * Static method
  */
-CapsuleCmsImageUploader.getInstance = function ()
+CapsuleCmsFileUploader.getInstance = function ()
 {
-    if (CapsuleCmsImageUploader.hasOwnProperty('instance')) {
-        return CapsuleCmsImageUploader.instance;
+    if (CapsuleCmsFileUploader.hasOwnProperty('instance')) {
+        return CapsuleCmsFileUploader.instance;
     }
-    return new CapsuleCmsImageUploader();
+    return new CapsuleCmsFileUploader();
 };

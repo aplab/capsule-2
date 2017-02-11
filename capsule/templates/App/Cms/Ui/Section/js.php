@@ -35,7 +35,7 @@ $assets
     ->add(new j('/capsule/vendor/bower_components/screenfull/dist/screenfull.min.js'))
     ->add(new j('/capsule/vendor/bower_components/clipboard/dist/clipboard.min.js'))
     ->add(new j('/capsule/assets/cms/modules/CapsuleCmsDialog/CapsuleCmsDialog.js', true))
-    ->add(new j('/capsule/assets/cms/modules/CapsuleCmsImageUploader/CapsuleCmsImageUploader.js', true))
+    ->add(new j('/capsule/assets/cms/modules/CapsuleCmsFileUploader/CapsuleCmsFileUploader.js', true))
     ->add(new j('/capsule/assets/cms/modules/CapsuleCmsImageList/CapsuleCmsImageHistory.js', true))
     ->add(new j('/capsule/assets/cms/js/js.js', true));
 $assets->putJs();
