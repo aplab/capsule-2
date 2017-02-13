@@ -454,4 +454,17 @@ function CapsuleCmsDataGrid (container, data)
             'json'
         );
     });
+
+    this.batchAddFilesPlugin = function ()
+    {
+        var uploader = CapsuleCmsFileUploader.getInstance();
+        uploader.setTitle('Upload files');
+        uploader.setUrl('/ajax/uploadFile/');
+        uploader.done = function ()
+        {
+            uploader.purgeWindow();
+            location = location;
+        };
+        uploader.showWindow();
+    };
 }

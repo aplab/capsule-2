@@ -8,6 +8,7 @@
   "#": "путь: контроллер_который_обрабарывает",
   "module": {
     "uploadImage": "ImageUploader",
+    "uploadFile": "FileUploader",
     "historyUploadImage": "ImageHistory",
     "editProperty": "PropertyEditor"
   }

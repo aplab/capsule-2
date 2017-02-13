@@ -42,6 +42,11 @@
                         "caption": "Favorite images",
                         "callback": "CapsuleCmsImageHistory.getInstance().showWindow({favorites: true})",
                         "icon": "glyphicon glyphicon-star"
+                    },
+                    {
+                        "caption": "User files",
+                        "url": "/userfiles/",
+                        "icon": "glyphicon glyphicon-file"
                     }
                 ]
             },
@@ -440,6 +445,7 @@
         "preferences": "Component.Preferences",
         "photo-gallery": "Component.PhotoGallery.Gallery",
         "photo-gallery-item": "Component.PhotoGallery.Photo",
+        "userfiles": "Plugin.UserFiles",
         "#usrcatalog": "------------------------------------------------------",
         "usrsection": "Usr.Catalog.Section",
         "usrunit": "Usr.Catalog.Unit",
