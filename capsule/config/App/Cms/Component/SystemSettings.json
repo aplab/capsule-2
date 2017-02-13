@@ -1,0 +1,11 @@
+{
+    "title": "System settings",
+    "name": "System settings",
+    "table": [],
+    "defaults": {
+        "DESKTOP_CSS": {
+            "name": "Desktop CSS",
+            "value": "background: #393F4C;"
+        }
+    }
+}

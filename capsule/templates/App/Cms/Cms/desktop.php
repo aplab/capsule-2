@@ -11,8 +11,17 @@
  * Time: 14:58
  */
 $items = \App\Cms\Plugin\DesktopIcon\DesktopIcon\DesktopIcon::all();
+$settings = \App\Cms\Component\SystemSettings::elementsByToken('DESKTOP_CSS');
+$value = [];
+foreach ($settings as $setting) {
+    $value[] = $setting->value;
+}
+$value = trim(join(' ', $value));
+if ($value) {
+    $value = ' style="' . $value . '"';
+}
 ob_start() ?>
-<div class="capsule-cms-desktop-icons">
+<div class="capsule-cms-desktop-icons"<?=$value?>>
     <div class="capsule-cms-desktop-icons-list">
         <?php foreach ($items as $item) : ?>
             <a class="capsule-cms-desktop-icon" href="<?=$item->url?>">
