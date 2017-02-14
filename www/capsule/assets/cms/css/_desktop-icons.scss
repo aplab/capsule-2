@@ -26,11 +26,13 @@
   overflow: hidden;
   position: relative;
   min-height: 120px;
+  max-height: 140px;
   &:after {
     padding-top: 100%;
     content: '';
     display: block;
   }
+  opacity: .9;
 }
 .capsule-cms-desktop-icon-img {
   line-height: 80px;
@@ -50,6 +52,9 @@
     //text-shadow: 0 -1px 0 rgba(0,0,0,.2);
     text-shadow: 0 1px 0 #fff, 0 -1px 0 rgba(0,0,0,.2);
   }
+}
+.shadow {
+  text-shadow: 0 1px 0 rgba(0,0,0,.5), 0 -1px 0 rgba(0,0,0,.5), 1px 0 0 rgba(0,0,0,.5), -1px 0 0 rgba(0,0,0,.5) !important;
 }
 .capsule-cms-desktop-icon-text {
   color: #333;

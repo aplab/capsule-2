@@ -47,9 +47,9 @@ if (!$user) {
 
     <?php
 
+    \Capsule\Tools\Tools::dump(\Pkg\Product\Product::_configLocation());
+    \Capsule\Tools\Tools::dump(\Pkg\Product\Product::_configDataJson());
 
-    \App\Cms\Component\PhotoGallery\Photo::_configSetEditMode();
-    \App\Cms\Component\PhotoGallery\Gallery::_configSetEditMode();
 
 
 

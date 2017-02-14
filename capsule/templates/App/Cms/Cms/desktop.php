@@ -20,13 +20,23 @@ $value = trim(join(' ', $value));
 if ($value) {
     $value = ' style="' . $value . '"';
 }
+$settings = \App\Cms\Component\SystemSettings::elementsByToken('DESKTOP_ICONS_DISABLE_COLORS');
+$settings = array_shift($settings);
+$c = 0;
+if ($settings) {
+    $c = $settings->value;
+}
 ob_start() ?>
 <div class="capsule-cms-desktop-icons"<?=$value?>>
     <div class="capsule-cms-desktop-icons-list">
         <?php foreach ($items as $item) : ?>
             <a class="capsule-cms-desktop-icon" href="<?=$item->url?>">
                 <div class="capsule-cms-desktop-icon-img">
-                    <i style="background: <?=$item->background?>; color: <?=$item->color?>;" class="<?=$item->icon?>"></i>
+                    <?php if ($c) : ?>
+                        <i class="<?=$item->icon?> shadow"></i>
+                    <?php else : ?>
+                        <i style="background: <?=$item->background?>; color: <?=$item->color?>;" class="<?=$item->icon?>"></i>
+                    <?php endif ?>
                 </div>
                 <div class="capsule-cms-desktop-icon-text">
                     <?=$item->name?>
