@@ -27,12 +27,12 @@ trait DataModelConfigLocationNear
     {
         $c = get_called_class();
         $f = __FUNCTION__;
-        if (!isset(self::$common[$c][$f])) {
+        if (!isset(static::$common[$c][$f])) {
             $r = new \ReflectionClass($c);
-            self::$common[$c][$f] = new Path(
+            static::$common[$c][$f] = new Path(
                 dirname($r->getFileName()),
                 $r->getShortName() . '.json');
         }
-        return self::$common[$c][$f];
+        return static::$common[$c][$f];
     }
 }

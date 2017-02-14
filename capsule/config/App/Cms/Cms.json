@@ -68,6 +68,28 @@
                 ]
             },
             {
+                "caption": "Pkg",
+                "help": "Pkg",
+                "icon": "fa fa-th-large",
+                "items": [
+                    {
+                        "caption": "Product catalog",
+                        "items": [
+                            {
+                                "caption": "Product",
+                                "url": "pkg-product",
+                                "icon": "fa fa-id-card"
+                            },
+                            {
+                                "caption": "Section",
+                                "url": "pkg-section",
+                                "icon": "fa fa-th-list"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
                 "disabled": true,
                 "caption": "Tools",
                 "help": "Tools",
@@ -459,6 +481,9 @@
         "usrattribute-section-link": "Usr.Catalog.AttributeSectionLink",
         "usrattribute": "Usr.Catalog.Attribute",
         "usrattributegroup": "Usr.Catalog.AttributeGroup",
-        "cpuser": "/Cp.CpUser.CpController"
+        "cpuser": "/Cp.CpUser.CpController",
+        "#Pkg": "------------------------------------------------------",
+        "pkg-product": ".Pkg.Product.Controller.ProductController",
+        "pkg-section": ".Pkg.Product.Controller.SectionController"
     }
 }

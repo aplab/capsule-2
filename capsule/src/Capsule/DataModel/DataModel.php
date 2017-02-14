@@ -226,7 +226,7 @@ abstract class DataModel
         $c = get_called_class();
         $f = __FUNCTION__;
         if (!isset(self::$common[$c][$f])) {
-            self::$common[$c][$f] = self::_buildConfigData();
+            self::$common[$c][$f] = static::_buildConfigData();
         }
         return self::$common[$c][$f];
     }
@@ -241,7 +241,7 @@ abstract class DataModel
         $class = get_called_class();
 
         $default_associated_table = Inflector::getInstance()->getAssociatedTable($class);
-        $fragment = self::_configDataFragment();// загрузить фрагмент
+        $fragment = static::_configDataFragment();// загрузить фрагмент
         if (isset($fragment['table'])) {// есть секция table, значит работает с таблицей
             if (!isset($fragment['table']['name'])) {// имя не задано, ставим значение по умолчанию
                 $fragment['table']['name'] = $default_associated_table;
@@ -270,7 +270,7 @@ abstract class DataModel
             // Если в фрагменте были не переопределенные параметры, они удалились.
             // Если получившийся в результате фрагмент изменился по сравнению с исходным, сохранить его.
             // Перезапись файла
-            self::_saveConfigFragment($diff);
+            static::_saveConfigFragment($diff);
         }
 
         if (isset($diff['table'])) {
@@ -311,7 +311,7 @@ abstract class DataModel
             throw new Exception(json_last_error_msg());
         }
 
-        $path = self::_configLocation();
+        $path = static::_configLocation();
         self::_createConfigFile();
         if (false === file_put_contents($path, $json, LOCK_EX)) {
             $msg = 'Unable to make configuration file: ' . $path;
@@ -395,7 +395,7 @@ abstract class DataModel
         $class = $class ?: get_called_class();
         if (!isset(self::$common[$class][__FUNCTION__])) {
             $opt = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
-            self::$common[$class][__FUNCTION__] = json_encode(self::_configData($class), $opt);
+            self::$common[$class][__FUNCTION__] = json_encode(static::_configData($class), $opt);
             if (JSON_ERROR_NONE !== json_last_error()) {
                 throw new Exception(json_last_error_msg());
             }
@@ -416,7 +416,7 @@ abstract class DataModel
         if (JSON_ERROR_NONE !== json_last_error()) {
             throw new Exception(json_last_error_msg());
         }
-        $path = self::_configLocation();
+        $path = static::_configLocation();
         if (false === file_put_contents($path, $json, LOCK_EX)) {
             $msg = 'Unable to write diff config fragment';
             throw new Exception($msg);
@@ -437,7 +437,7 @@ abstract class DataModel
     protected static function _loadConfigDataFragment($class = null)
     {
         $class = $class ?: get_called_class();
-        $path = self::_configLocation($class);
+        $path = static::_configLocation($class);
         if (!file_exists($path)) {
             self::_createConfigFile();
             return array();
@@ -505,7 +505,7 @@ abstract class DataModel
      */
     public static function _createConfigFile()
     {
-        $path = self::_configLocation();
+        $path = static::_configLocation();
         if (file_exists($path)) {
             return true;
         }

@@ -47,8 +47,9 @@ if (!$user) {
 
     <?php
 
-    \Capsule\Tools\Tools::dump(\Pkg\Product\Product::_configLocation());
+//    \Capsule\Tools\Tools::dump(\Pkg\Product\Product::_configLocation());
     \Capsule\Tools\Tools::dump(\Pkg\Product\Product::_configDataJson());
+
 
 
 
