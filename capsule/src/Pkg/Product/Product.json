@@ -145,6 +145,174 @@
                     "tab": "General"
                 }
             }
+        },
+        "photoSetId": {
+            "title": "Photo set id",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "bind": ".App.Cms.Component.PhotoGallery.Gallery",
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 2000,
+                    "type": "Bind"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Bind",
+                    "order": 1000000,
+                    "tab": "General"
+                }
+            }
+        },
+        "htmlTitle": {
+            "title": "HTML Title",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 400,
+                    "order": 2000000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 2000000,
+                    "tab": "SEO"
+                }
+            }
+        },
+        "metaDescription": {
+            "title": "meta description",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 16777215
+            },
+            "column": {
+                "c1": {
+                    "width": 400,
+                    "order": 3000000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Textarea",
+                    "order": 3000000,
+                    "tab": "SEO"
+                }
+            }
+        },
+        "metaKeywords": {
+            "title": "meta keywords",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 16777215
+            },
+            "column": {
+                "c1": {
+                    "width": 400,
+                    "order": 4000000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "TextareaDouble",
+                    "order": 4000000,
+                    "tab": "SEO"
+                }
+            }
+        },
+        "active": {
+            "title": "Active",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c1": {
+                    "width": 32,
+                    "order": 3000,
+                    "type": "Active"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Flag",
+                    "order": 3000,
+                    "tab": "General"
+                }
+            }
+        },
+        "name": {
+            "title": "Name",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 400,
+                    "order": 2000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        },
+        "price": {
+            "title": "Price",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 400,
+                    "order": 2000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 2010,
+                    "tab": "General"
+                }
+            }
         }
     },
     "table": {
@@ -187,6 +355,41 @@
                 "unsigned": true,
                 "comment": "Порядок сортировки",
                 "default": 0
+            },
+            "photo_set_id": {
+                "type": "bigint",
+                "unsigned": true,
+                "comment": "Уникальный идентификатор связанного объекта",
+                "default": 0
+            },
+            "html_title": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "config.properties.htmlTitle.title"
+            },
+            "meta_description": {
+                "type": "mediumtext",
+                "comment": "config.properties.metaDescription.title"
+            },
+            "meta_keywords": {
+                "type": "mediumtext",
+                "comment": "config.properties.metaKeywords.title"
+            },
+            "active": {
+                "type": "tinyint",
+                "length": 1,
+                "unsigned": true,
+                "comment": "activity"
+            },
+            "name": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Наименование"
+            },
+            "price": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Config.properties.name.name"
             }
         },
         "indexes": {
@@ -217,6 +420,18 @@
             "sort_order": {
                 "fields": {
                     "sort_order": []
+                }
+            },
+            "photo_set_id": {
+                "fields": {
+                    "photo_set_id": [
+
+                    ]
+                }
+            },
+            "active": {
+                "fields": {
+                    "active": []
                 }
             }
         }
