@@ -9,5 +9,7 @@ This is a development preview - do not use it in production!
 
 http://www.capsule2.aplab.ru/admin/
 
+demo login, pass:
+
 root capsule2
 
