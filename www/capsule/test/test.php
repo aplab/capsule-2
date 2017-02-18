@@ -47,8 +47,7 @@ if (!$user) {
 
     <?php
 
-//    \Capsule\Tools\Tools::dump(\Pkg\Product\Product::_configLocation());
-    \Capsule\Tools\Tools::dump(\App\Cms\Component\Seo\NamedActive::_configSetEditMode());
+    \Capsule\Tools\Tools::dump(\Pkg\Product\Tree\Product::_configApply());
 
 
 

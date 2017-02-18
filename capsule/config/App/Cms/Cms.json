@@ -74,6 +74,7 @@
                 "items": [
                     {
                         "caption": "Product catalog",
+                        "icon": "fa fa-list-alt",
                         "items": [
                             {
                                 "caption": "Product",
@@ -83,6 +84,22 @@
                             {
                                 "caption": "Section",
                                 "url": "pkg-section",
+                                "icon": "fa fa-th-list"
+                            }
+                        ]
+                    },
+                    {
+                        "caption": "Product tree catalog",
+                        "icon": "fa fa-tree",
+                        "items": [
+                            {
+                                "caption": "Product tree",
+                                "url": "pkg-product-tree",
+                                "icon": "fa fa-id-card"
+                            },
+                            {
+                                "caption": "Section tree",
+                                "url": "pkg-section-tree",
                                 "icon": "fa fa-th-list"
                             }
                         ]
@@ -484,6 +501,8 @@
         "cpuser": "/Cp.CpUser.CpController",
         "#Pkg": "------------------------------------------------------",
         "pkg-product": ".Pkg.Product.Controller.ProductController",
-        "pkg-section": ".Pkg.Product.Controller.SectionController"
+        "pkg-section": ".Pkg.Product.Controller.SectionController",
+        "pkg-product-tree": ".Pkg.Product.Tree.Controller.ProductController",
+        "pkg-section-tree": ".Pkg.Product.Tree.Controller.SectionController"
     }
 }
