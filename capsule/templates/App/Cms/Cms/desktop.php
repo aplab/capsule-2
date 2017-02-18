@@ -38,7 +38,7 @@ ob_start() ?>
                         <i style="background: <?=$item->background?>; color: <?=$item->color?>;" class="<?=$item->icon?>"></i>
                     <?php endif ?>
                 </div>
-                <div class="capsule-cms-desktop-icon-text">
+                <div title="<?=$item->name?>" class="capsule-cms-desktop-icon-text">
                     <?=$item->name?>
                 </div>
             </a>
