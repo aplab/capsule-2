@@ -466,8 +466,6 @@
         "tree": "Tree",
         "flatmenu": "FlatMenu",
         "flatmenupunct": "FlatMenuPunct",
-        "treemenu": "TreeMenu",
-        "treemenupunct": "TreeMenuPunct",
         "devlog": "DevLog",
         "storage": "Storage",
         "files": "Files",
