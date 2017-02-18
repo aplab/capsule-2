@@ -284,20 +284,6 @@
                                         "url": "flatmenupunct"
                                     }
                                 ]
-                            },
-                            {
-                                "caption": "Tree menu",
-                                "url": "treemenu",
-                                "items": [
-                                    {
-                                        "caption": "Menu",
-                                        "url": "treemenu"
-                                    },
-                                    {
-                                        "caption": "Punct",
-                                        "url": "treemenupunct"
-                                    }
-                                ]
                             }
                         ]
                     },

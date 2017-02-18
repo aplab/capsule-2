@@ -11,12 +11,22 @@
  * Time: 1:24
  */
 
-namespace Pkg\Product\Controller;
+namespace Pkg\Product\Tree\Controller;
 
 
 use App\Cms\Controller\NestedContainer;
 
 class SectionController extends NestedContainer
 {
-    protected $moduleClass = 'Pkg\\Product\\Section';
+    protected function listItems(array $param = []) {
+        $class = $this->moduleClass;
+        $err = $class::repair();
+        if (sizeof($err)) {
+            $msg = 'Corrupted elements detected: ' . join(', ', $err);
+            $this->ui->alert->append(I18n::_($msg));
+        }
+        parent::listItems();
+    }
+
+    protected $moduleClass = 'Pkg\\Product\\Tree\\Section';
 }

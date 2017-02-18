@@ -14,9 +14,10 @@
 namespace Pkg\Product\Tree;
 
 
+use Capsule\Unit\Tree;
 use Pkg\DataModelConfigLocationNear;
 
-class Section extends Tr
+class Section extends Tree
 {
     use DataModelConfigLocationNear;
 }
