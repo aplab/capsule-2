@@ -399,6 +399,10 @@
                                     {
                                         "caption": "Seo-named-active",
                                         "url": "seo-named-active"
+                                    },
+                                    {
+                                        "caption": "Seo-text-block",
+                                        "url": "seo-text-block"
                                     }
                                 ]
                             },
@@ -470,6 +474,7 @@
         "seo-active": "Component.Seo.Active",
         "seo-named": "Component.Seo.Named",
         "seo-named-active": "Component.Seo.NamedActive",
+        "seo-text-block": "Component.Seo.TextBlock",
         "preferences": "Component.Preferences",
         "system-settings": "Component.SystemSettings",
         "photo-gallery": "Component.PhotoGallery.Gallery",
