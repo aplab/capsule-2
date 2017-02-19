@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0.3 Stable",
+  "version": "2.0.3 Stable",
   "timezoneId": "Asia/Yekaterinburg",
   "#": "clean hostname only, without protocol, slashes etc",
   "host": "www.capsule2.aplab.ru",
