@@ -3,13 +3,15 @@
         "General": 1000,
         "Photo": 3000,
         "SEO": 5000,
-        "Additional": 1000000000
+        "Additional": 1000000000,
+        "Text 1": 2000,
+        "Text 2": 2100
     },
-    "title": "SEO-friendly component basic",
+    "title": "Post",
     "description": "",
     "help": "",
     "comment": "",
-    "name": "SEO-friendly component basic",
+    "name": "Post",
     "label": "",
     "properties": {
         "id": {
@@ -192,7 +194,7 @@
             "formElement": {
                 "f1": {
                     "type": "Flag",
-                    "order": 3000,
+                    "order": 10000,
                     "tab": "General"
                 }
             }
@@ -235,14 +237,14 @@
             "column": {
                 "c1": {
                     "width": 400,
-                    "order": 2000,
+                    "order": 3000,
                     "type": "Text"
                 }
             },
             "formElement": {
                 "f1": {
                     "type": "Text",
-                    "order": 2000,
+                    "order": 3000,
                     "tab": "General"
                 }
             }

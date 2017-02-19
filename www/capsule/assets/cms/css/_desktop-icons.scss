@@ -32,7 +32,8 @@
     content: '';
     display: block;
   }
-  opacity: .9;
+  opacity: .1;
+  transition: all 200ms;
 }
 .capsule-cms-desktop-icon-img {
   line-height: 80px;

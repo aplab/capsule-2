@@ -354,4 +354,8 @@ $(document).ready(function ()
         };
         uploader.showWindow();
     }
+
+    $('.capsule-cms-desktop-icon').css({
+        opacity: .8
+    });
 });
