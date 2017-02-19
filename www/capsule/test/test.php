@@ -47,7 +47,7 @@ if (!$user) {
 
     <?php
 
-    \Capsule\Tools\Tools::dump(\App\Cms\Component\Seo\TextBlock::_configSetEditMode());
+    \Capsule\Tools\Tools::dump(\Pkg\Post\Post::_configSetEditMode());
 
 
 

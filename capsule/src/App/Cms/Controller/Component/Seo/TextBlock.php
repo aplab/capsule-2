@@ -27,7 +27,7 @@ namespace App\Cms\Controller\Component\Seo;
 class TextBlock extends Active
 {
 
-    protected $moduleClass = '\\App\\Cms\\Component\\Seo\\TextBlock';
+    protected $moduleClass = '.App.Cms.Component.Seo.TextBlock';
 
     
 }
