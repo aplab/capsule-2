@@ -47,7 +47,21 @@ if (!$user) {
 
     <?php
 
-    \Capsule\Tools\Tools::dump(\Pkg\Post\Post::_configSetEditMode());
+//    \Capsule\Tools\Tools::dump(\Pkg\Post\Post::_configSetEditMode());
+    $src_path = new \Capsule\Component\Path\Path(
+        \Capsule\Capsule::getInstance()->systemRoot,
+        \Capsule\Capsule::DIR_CONFIG
+    );
+    $dst_path = new \Capsule\Component\Path\Path(
+        \Capsule\Capsule::getInstance()->systemRoot,
+        \Capsule\Capsule::DIR_SRC
+    );
+    $Directory = new RecursiveDirectoryIterator($src_path);
+    $Iterator = new RecursiveIteratorIterator($Directory);
+    $Regex = new RegexIterator($Iterator, '/^.+\.json$/i', RecursiveRegexIterator::GET_MATCH);
+    foreach ($Regex as $item) {
+        \Capsule\Tools\Tools::dump($item);
+    }
 
 
 
