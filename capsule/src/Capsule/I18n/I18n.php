@@ -17,6 +17,7 @@
 namespace Capsule\I18n;
 
 use Capsule\Component\Json\Loader\Loader;
+use Capsule\Component\Path\ComponentConfigPath;
 use Capsule\Component\Path\Path;
 use Capsule\Component\Utf8String;
 use Capsule\Core\Singleton;
@@ -62,11 +63,7 @@ class I18n extends Singleton
      */
     protected function __construct()
     {
-        $path = new Path(
-            Capsule::getInstance()->systemRoot,
-            Capsule::DIR_CONFIG,
-            Fn::get_namespace($this)
-        );
+        $path = new ComponentConfigPath(get_class($this));
         if (!is_scalar(self::$lang)) {
             return;
         }

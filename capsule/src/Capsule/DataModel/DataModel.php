@@ -488,10 +488,10 @@ abstract class DataModel
         $c = get_called_class();
         $f = __FUNCTION__;
         if (!isset(self::$common[$c][$f])) {
-            self::$common[$c][$f] = new Path(
-                Capsule::getInstance()->systemRoot,
-                Capsule::DIR_CONFIG,
-                $c . '.json');
+            $r = new \ReflectionClass($c);
+            static::$common[$c][$f] = new Path(
+                dirname($r->getFileName()),
+                $r->getShortName() . '.json');
         }
         return self::$common[$c][$f];
     }

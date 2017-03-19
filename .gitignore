@@ -5,7 +5,9 @@
 /www/capsule/storage/
 !readme
 
-capsule/cache/
+capsule/var/cache/
+!.gitkeep
 
 /capsule/vendor/
 /www/capsule/vendor/bower_components/
+capsule/var/cache/Capsule/

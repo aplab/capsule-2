@@ -19,6 +19,7 @@
 namespace App\Website\Structure;
 
 use Capsule\Component\Json\Loader\Loader;
+use Capsule\Component\Path\ComponentConfigPath;
 use Capsule\Component\Path\Path;
 use Capsule\Core\Singleton;
 use Capsule\Capsule;
@@ -132,10 +133,7 @@ class Structure extends Singleton
      */
     protected function _load() {
         $class = get_class($this);
-        $path = new Path(
-            Capsule::getInstance()->systemRoot,
-            Capsule::DIR_CONFIG,
-            $class . '.json');
+        $path = new ComponentConfigPath($class);
         $loader = new Loader($path);
         return $loader->loadToArray();
     }

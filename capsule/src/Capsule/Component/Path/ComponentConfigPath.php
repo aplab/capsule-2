@@ -32,10 +32,10 @@ class ComponentConfigPath extends Path
         if (is_object($class)) {
             $class = get_class($class);
         }
+        $r = new \ReflectionClass($class);
         parent::__construct(
-            Capsule::getInstance()->systemRoot,
-            Capsule::DIR_CONFIG,
-            $class . '.' . ltrim(static::DEFAULT_EXTENSION, '.')
+            dirname($r->getFileName()),
+            $r->getShortName() . '.' . ltrim(static::DEFAULT_EXTENSION, '.')
         );
     }
 

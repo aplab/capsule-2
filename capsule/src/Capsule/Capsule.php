@@ -39,10 +39,10 @@ class Capsule implements \Serializable
      *
      * @var string
      */
-    const DIR_CACHE = 'cache';
+    const DIR_CACHE = 'var/cache';
     const DIR_CONFIG = 'config';
-    const DIR_CRON = 'cron';
-    const DIR_SCRIPTS = 'scripts';
+    const DIR_CRON = 'bin/cron';
+    const DIR_SCRIPTS = 'bin/scripts';
     const DIR_SRC = 'src';
     const DIR_TEMPLATES = 'templates';
     const DIR_VENDOR = 'vendor';
