@@ -1,0 +1,51 @@
+{
+    "title": "ID-based module",
+    "description": "",
+    "help": "",
+    "comment": "",
+    "name": "ID-based module",
+    "label": "",
+    "properties": {
+        "id": {
+            "title": "ID",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c2": {
+                    "width": 120,
+                    "order": 1000,
+                    "type": "Id",
+                    "edit": true,
+                    "del": true
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Label",
+                    "order": 1000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "id": {
+                "type": "bigint",
+                "unsigned": true,
+                "autoIncrement": true,
+                "comment": "Уникальный идентификатор"
+            }
+        },
+        "indexes": {
+            "primaryKey": {
+                "type": "primaryKey",
+                "fields": {
+                    "id": []
+                }
+            }
+        }
+    }
+}

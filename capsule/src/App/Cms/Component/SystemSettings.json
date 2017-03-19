@@ -1,0 +1,15 @@
+{
+    "title": "System settings",
+    "name": "System settings",
+    "table": [],
+    "defaults": {
+        "DESKTOP_CSS": {
+            "name": "Desktop CSS",
+            "value": "background: #393F4C;"
+        },
+        "DESKTOP_ICONS_DISABLE_COLORS": {
+            "name": "Desktop icons disable colors",
+            "value": "0"
+        }
+    }
+}

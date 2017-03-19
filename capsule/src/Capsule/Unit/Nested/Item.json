@@ -1,0 +1,92 @@
+{
+    "title": "nested item",
+    "container": "/Capsule/Unit/Nested/Container",
+    "properties": {
+        "containerId": {
+            "title": "container",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "bind": "config.container",
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 3000,
+                    "type": "Bind"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Bind",
+                    "order": 1000000,
+                    "tab": "General",
+                    "#": "Это просто ключ, откуда из окружения (Env) брать значение по умолчанию",
+                    "default": "defaultContainerId"
+                }
+            }
+        },
+        "sortOrder": {
+            "title": "sort order",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c1": {
+                    "width": 80,
+                    "type": "Rtext",
+                    "order": 10000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 1001000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "container_id": {
+                "type": "bigint",
+                "unsigned": true,
+                "comment": "Уникальный идентификатор контейнера",
+                "default": 0
+            },
+            "sort_order": {
+                "type": "int",
+                "unsigned": true,
+                "comment": "Порядок сортировки",
+                "default": 0
+            }
+        },
+        "indexes": {
+            "container_id": {
+                "fields": {
+                    "container_id": []
+                }
+            },
+            "containerid_sortorder": {
+                "fields": {
+                    "container_id": [],
+                    "sort_order": []
+                }
+            },
+            "containerid_sortorder_id": {
+                "fields": {
+                    "container_id": [],
+                    "sort_order": [],
+                    "id": []
+                }
+            },
+            "sort_order": {
+                "fields": {
+                    "sort_order": []
+                }
+            }
+        }
+    }
+}

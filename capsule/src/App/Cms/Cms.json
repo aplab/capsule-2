@@ -1,0 +1,503 @@
+{
+    "#": "Так пишутся комментарии",
+    "baseUrl": "/admin/",
+    "cmd": "admin",
+    "allowInstall": true,
+    "installCommand": "install",
+    "logoutCommand": "logout",
+    "defaultItemsPerPage": 100,
+    "itemsPerPageVariants": [
+        10,
+        50,
+        100,
+        200,
+        500
+    ],
+    "comment": "Main menu configuration",
+    "mainMenu": {
+        "help": "Конфигурация главного меню",
+        "items": [
+            {
+                "caption": "Home",
+                "help": "Home",
+                "icon": "fa fa-home",
+                "url": "/admin/"
+            },
+            {
+                "caption": "File",
+                "help": "File",
+                "icon": "glyphicon glyphicon-search",
+                "items": [
+                    {
+                        "caption": "Upload image",
+                        "callback": "CapsuleCms.showImageUploader()",
+                        "icon": "glyphicon glyphicon-picture"
+                    },
+                    {
+                        "caption": "Image upload history",
+                        "callback": "CapsuleCmsImageHistory.getInstance().showWindow()",
+                        "icon": "glyphicon glyphicon-list-alt"
+                    },
+                    {
+                        "caption": "Favorite images",
+                        "callback": "CapsuleCmsImageHistory.getInstance().showWindow({favorites: true})",
+                        "icon": "glyphicon glyphicon-star"
+                    },
+                    {
+                        "caption": "User files",
+                        "url": "/userfiles/",
+                        "icon": "glyphicon glyphicon-file"
+                    }
+                ]
+            },
+            {
+                "caption": "Site",
+                "help": "Site",
+                "icon": "fa fa-pencil-square",
+                "items": [
+                    {
+                        "caption": "Go to website",
+                        "url": "/",
+                        "icon": "fa fa-external-link-square"
+                    },
+                    {
+                        "caption": "Exit",
+                        "url": "/admin/logout/",
+                        "icon": "fa fa-sign-out"
+                    }
+                ]
+            },
+            {
+                "caption": "Pkg",
+                "help": "Pkg",
+                "icon": "fa fa-th-large",
+                "items": [
+                    {
+                        "caption": "Product catalog",
+                        "icon": "fa fa-list-alt",
+                        "items": [
+                            {
+                                "caption": "Product",
+                                "url": "pkg-product",
+                                "icon": "fa fa-id-card"
+                            },
+                            {
+                                "caption": "Section",
+                                "url": "pkg-section",
+                                "icon": "fa fa-th-list"
+                            }
+                        ]
+                    },
+                    {
+                        "caption": "Product tree catalog",
+                        "icon": "fa fa-tree",
+                        "items": [
+                            {
+                                "caption": "Product tree",
+                                "url": "pkg-product-tree",
+                                "icon": "fa fa-id-card"
+                            },
+                            {
+                                "caption": "Section tree",
+                                "url": "pkg-section-tree",
+                                "icon": "fa fa-th-list"
+                            }
+                        ]
+                    },
+                    {
+                        "caption": "Post",
+                        "url": "post",
+                        "icon": "fa fa-file-text"
+                    }
+                ]
+            },
+            {
+                "disabled": true,
+                "caption": "Tools",
+                "help": "Tools",
+                "items": [
+                    {
+                        "caption": "Storage",
+                        "url": "storage",
+                        "items": [
+                            {
+                                "caption": "Popup",
+                                "callback": "window.open('/admin/storage/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+                            }
+                        ]
+                    },
+                    {
+                        "disabled": false,
+                        "caption": "Files",
+                        "url": "files"
+                    }
+                ]
+            },
+            {
+                "caption": "Window",
+                "help": "Window",
+                "icon": "fa fa-window-maximize",
+                "items": [
+                    {
+                        "caption": "Duplicate",
+                        "callback": "window.open(location.href, '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')",
+                        "icon": "fa fa-copy"
+                    },
+                    {
+                        "caption": "New",
+                        "icon": "fa fa-window-restore",
+                        "callback": "window.open('/admin/', '', 'width=800, height=600, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=yes, resizable=yes')"
+                    }
+                ]
+            },
+            {
+                "caption": "Settings",
+                "help": "Settings",
+                "icon": "fa fa-cogs",
+                "items": [
+                    {
+                        "caption": "Desktop icons",
+                        "url": "desktop-icons",
+                        "icon": "fa fa-th"
+                    },
+                    {
+                        "caption": "Preferences",
+                        "url": "preferences",
+                        "icon": "fa fa-list"
+                    },
+                    {
+                        "caption": "System settings",
+                        "url": "system-settings",
+                        "icon": "fa fa-cog"
+                    },
+                    {
+                        "caption": "User management",
+                        "url": "user",
+                        "icon": "fa fa-users"
+                    },
+                    {
+                        "caption": "Restart",
+                        "url": "install",
+                        "icon": "fa fa-refresh text-danger"
+                    }
+                ]
+            },
+            {
+                "caption": "Help",
+                "help": "Help",
+                "icon": "fa fa-life-ring",
+                "items": [
+                    {
+                        "caption": "Help",
+                        "url": "http://www.aplab.ru/",
+                        "target": "_blank",
+                        "icon": "fa fa-life-ring"
+                    },
+                    {
+                        "caption": "About",
+                        "callback": "CapsuleCmsDialog.getInstance('capsule-about-window').show()",
+                        "icon": "fa fa-external-link-square"
+                    }
+                ]
+            },
+            {
+                "caption": "Development (remove from prod.)",
+                "help": "Development",
+                "icon": "fa fa-wrench text-success",
+                "items": [
+                    {
+                        "caption": "Modules",
+                        "help": "Modules",
+                        "icon": "fa fa-puzzle-piece",
+                        "items": [
+                            {
+                                "caption": "Catalog",
+                                "items": [
+                                    {
+                                        "caption": "Product",
+                                        "url": "product"
+                                    },
+                                    {
+                                        "caption": "Section",
+                                        "url": "section"
+                                    },
+                                    {
+                                        "caption": "Attribute",
+                                        "url": "attribute"
+                                    },
+                                    {
+                                        "caption": "Attribute group",
+                                        "url": "attributegroup"
+                                    },
+                                    {
+                                        "caption": "Единица измерения",
+                                        "url": "unit"
+                                    },
+                                    {
+                                        "caption": "Attribute Section Link",
+                                        "url": "attribute-section-link"
+                                    }
+                                ]
+                            },
+                            {
+                                "caption": "Usr Catalog",
+                                "items": [
+                                    {
+                                        "caption": "Product",
+                                        "url": "usrproduct"
+                                    },
+                                    {
+                                        "caption": "Section",
+                                        "url": "usrsection"
+                                    },
+                                    {
+                                        "caption": "Attribute",
+                                        "url": "usrattribute"
+                                    },
+                                    {
+                                        "caption": "Attribute group",
+                                        "url": "usrattributegroup"
+                                    },
+                                    {
+                                        "caption": "Единица измерения",
+                                        "url": "usrunit"
+                                    },
+                                    {
+                                        "caption": "Attribute Section Link",
+                                        "url": "usrattribute-section-link"
+                                    }
+                                ]
+                            },
+                            {
+                                "caption": "Text blocks",
+                                "url": "textblock"
+                            },
+                            {
+                                "caption": "Dev log",
+                                "url": "devlog"
+                            },
+                            {
+                                "caption": "Flat menu",
+                                "url": "flatmenu",
+                                "items": [
+                                    {
+                                        "caption": "Menu",
+                                        "url": "flatmenu"
+                                    },
+                                    {
+                                        "caption": "Punct",
+                                        "url": "flatmenupunct"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "caption": "References",
+                        "help": "References",
+                        "icon": "fa fa-puzzle-piece",
+                        "items": [
+                            {
+                                "caption": "Named",
+                                "url": "named"
+                            },
+                            {
+                                "caption": "Imaged",
+                                "url": "imaged"
+                            },
+                            {
+                                "caption": "Description",
+                                "url": "description"
+                            }
+                        ]
+                    },
+                    {
+                        "caption": "Units",
+                        "help": "Units",
+                        "icon": "fa fa-puzzle-piece",
+                        "items": [
+                            {
+                                "caption": "nested",
+                                "items": [
+                                    {
+                                        "caption": "container",
+                                        "url": "nestedcontainer"
+                                    },
+                                    {
+                                        "caption": "item",
+                                        "url": "nesteditem"
+                                    }
+                                ]
+                            },
+                            {
+                                "caption": "Tree",
+                                "url": "tree"
+                            },
+                            {
+                                "caption": "Active",
+                                "url": "active"
+                            },
+                            {
+                                "caption": "Rich text",
+                                "url": "richtext"
+                            },
+                            {
+                                "caption": "dated",
+                                "url": "dated"
+                            },
+                            {
+                                "caption": "dated advanced",
+                                "url": "datedadvanced"
+                            },
+                            {
+                                "caption": "unit with timestamp",
+                                "url": "unitts"
+                            },
+                            {
+                                "caption": "unit with user",
+                                "url": "unitusr"
+                            },
+                            {
+                                "caption": "unit with user & ts",
+                                "url": "unittsusr"
+                            },
+                            {
+                                "caption": "named with user & ts",
+                                "url": "namedtsusr"
+                            },
+                            {
+                                "caption": "titled with user & ts",
+                                "url": "titledtsusr"
+                            },
+                            {
+                                "caption": "token with user & ts",
+                                "url": "tokentsusr"
+                            },
+                            {
+                                "caption": "bind with user & ts",
+                                "url": "bindtsusr"
+                            }
+                        ]
+                    },
+                    {
+                        "caption": "Components",
+                        "help": "Components",
+                        "icon": "fa fa-microchip",
+                        "items": [
+                            {
+                                "caption": "Seo",
+                                "help": "Seo",
+                                "icon": "fa fa-search",
+                                "items": [
+                                    {
+                                        "caption": "Seo-friendly",
+                                        "url": "seo-friendly"
+                                    },
+                                    {
+                                        "caption": "Seo-active",
+                                        "url": "seo-active"
+                                    },
+                                    {
+                                        "caption": "Seo-named",
+                                        "url": "seo-named"
+                                    },
+                                    {
+                                        "caption": "Seo-named-active",
+                                        "url": "seo-named-active"
+                                    },
+                                    {
+                                        "caption": "Seo-text-block",
+                                        "url": "seo-text-block"
+                                    }
+                                ]
+                            },
+                            {
+                                "caption": "Photo gallery",
+                                "help": "Photo gallery",
+                                "icon": "fa fa-picture-o",
+                                "items": [
+                                    {
+                                        "caption": "Gallery",
+                                        "url": "photo-gallery"
+                                    },
+                                    {
+                                        "caption": "Photo",
+                                        "url": "photo-gallery-item"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "controller": {
+        "defaultNamespace": "App/Cms/Controller"
+    },
+    "#": "Module configuration",
+    "#": "команда админки : какой вызвать контроллер",
+    "#": "Пространства имен разделять символом / или \\ (обратный слэш удваивать)",
+    "#": "Пространства имен без ведущего разделителя в начале строки будут пытаться подключить из текущего контекста",
+    "module": {
+        "user": "UserController",
+        "named": "Named",
+        "description": "Description",
+        "imaged": "Imaged",
+        "richtext": "Richtext",
+        "dated": "Dated",
+        "datedadvanced": "DatedAdvanced",
+        "unitts": "UnitTs",
+        "unitusr": "UnitUsr",
+        "unittsusr": "UnitTsUsr",
+        "namedtsusr": "NamedTsUsr",
+        "titledtsusr": "TitledTsUsr",
+        "tokentsusr": "TokenTsUsr",
+        "bindtsusr": "BindTsUsr",
+        "textblock": "TextBlock",
+        "nestedcontainer": "NestedContainer",
+        "nesteditem": "NestedItem",
+        "active": "Active",
+        "tree": "Tree",
+        "flatmenu": "FlatMenu",
+        "flatmenupunct": "FlatMenuPunct",
+        "devlog": "DevLog",
+        "storage": "Storage",
+        "files": "Files",
+        "uploadimage": "Upload.Image.Upload",
+        "uploadimagehistory": "Upload.Image.History",
+        "uploadimagefavorites": "Upload.Image.Favorites",
+        "#catalog": "---------------------------------------------------------",
+        "section": "Catalog.Section",
+        "unit": "Catalog.Unit",
+        "product": "Catalog.Product",
+        "attribute-section-link": "Catalog.AttributeSectionLink",
+        "attribute": "Catalog.Attribute",
+        "attributegroup": "Catalog.AttributeGroup",
+        "desktop-icons": "DesktopIcon",
+        "seo-friendly": "Component.Seo.Basic",
+        "seo-active": "Component.Seo.Active",
+        "seo-named": "Component.Seo.Named",
+        "seo-named-active": "Component.Seo.NamedActive",
+        "seo-text-block": "Component.Seo.TextBlock",
+        "preferences": "Component.Preferences",
+        "system-settings": "Component.SystemSettings",
+        "photo-gallery": "Component.PhotoGallery.Gallery",
+        "photo-gallery-item": "Component.PhotoGallery.Photo",
+        "userfiles": "Plugin.UserFiles",
+        "#usrcatalog": "------------------------------------------------------",
+        "usrsection": "Usr.Catalog.Section",
+        "usrunit": "Usr.Catalog.Unit",
+        "usrproduct": "Usr.Catalog.Product",
+        "usrattribute-section-link": "Usr.Catalog.AttributeSectionLink",
+        "usrattribute": "Usr.Catalog.Attribute",
+        "usrattributegroup": "Usr.Catalog.AttributeGroup",
+        "cpuser": "/Cp.CpUser.CpController",
+        "#Pkg": "------------------------------------------------------",
+        "pkg-product": ".Pkg.Product.Controller.ProductController",
+        "pkg-section": ".Pkg.Product.Controller.SectionController",
+        "pkg-product-tree": ".Pkg.Product.Tree.Controller.ProductController",
+        "pkg-section-tree": ".Pkg.Product.Tree.Controller.SectionController",
+        "post": ".Pkg.Post.PostController"
+    }
+}

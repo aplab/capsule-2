@@ -60,7 +60,15 @@ if (!$user) {
     $Iterator = new RecursiveIteratorIterator($Directory);
     $Regex = new RegexIterator($Iterator, '/^.+\.json$/i', RecursiveRegexIterator::GET_MATCH);
     foreach ($Regex as $item) {
-        \Capsule\Tools\Tools::dump($item);
+        $o = new class{};
+        $o->src = $item[0];
+        $o->dst = str_replace('/capsule/config/', '/capsule/src/', $o->src);
+        $copy = copy($o->src, $o->dst);
+        if (!$copy) {
+            die('ERROR');
+        }
+        \Capsule\Tools\Tools::dump($copy);
+        \Capsule\Tools\Tools::dump($o);
     }
 
 

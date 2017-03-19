@@ -1,0 +1,136 @@
+{
+    "title": "Desktop icons",
+    "properties": {
+        "url": {
+            "title": "Url",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 2000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        },
+        "icon": {
+            "title": "Icon",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 50,
+                    "order": 2000,
+                    "type": "Icon"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Icon",
+                    "order": 2000,
+                    "tab": "General",
+                    "default": ""
+                }
+            }
+        },
+        "color": {
+            "title": "Color",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 2000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Color",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        },
+        "background": {
+            "title": "Background",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 2000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Color",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "name": {
+                "comment": "Name"
+            },
+            "url": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Page URL"
+            },
+            "icon": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Icon fontawesome"
+            },
+            "color": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Color of icon",
+                "default": "#000000"
+            },
+            "background": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Background color of icon",
+                "default": "#ffffff"
+            }
+        },
+        "name": "cms_desktop_icon"
+    }
+}

@@ -1,0 +1,122 @@
+{
+    "properties": {
+        "image": {
+            "title": "Изображение",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Image",
+                    "order": 2100,
+                    "tab": "General"
+                }
+            }
+        },
+        "htmlTitle": {
+            "title": "Html title",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 4100,
+                    "tab": "SEO"
+                }
+            }
+        },
+        "text": {
+            "title": "Text",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 16777215
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Ckeditor",
+                    "order": 3000,
+                    "tab": "Text"
+                }
+            }
+        },
+        "metaDescription": {
+            "title": "Meta description",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 65535
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Textarea",
+                    "order": 4100,
+                    "tab": "SEO"
+                }
+            }
+        },
+        "metaKeywords": {
+            "title": "Meta keywords",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 65535
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Textarea",
+                    "order": 4200,
+                    "tab": "SEO"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "image": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Изображение",
+                "default": ""
+            },
+            "html_title": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "config.properties.htmlTitle.title",
+                "default": ""
+            },
+            "meta_description": {
+                "type": "text",
+                "comment": "config.properties.metaDescription.title"
+            },
+            "meta_keywords": {
+                "type": "text",
+                "comment": "config.properties.metaKeywords.title"
+            },
+            "text": {
+                "type": "text",
+                "comment": "text"
+            }
+        }
+    }
+}

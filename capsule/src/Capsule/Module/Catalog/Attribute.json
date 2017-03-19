@@ -1,0 +1,228 @@
+{
+    "title": "Атрибут",
+    "properties": {
+        "containerId": {
+            "title": "Attribute group"
+        },
+        "name": {
+            "title": "Name",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 2000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        },
+        "token": {
+            "title": "Token",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 10000000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 10000000,
+                    "tab": "Additional"
+                }
+            }
+        },
+        "type": {
+            "title": "Type",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Variants",
+                    "variants": {
+                        "": "",
+                        "string": "String",
+                        "text": "Text",
+                        "integer": "Integer"
+                    },
+                    "default": "string",
+                    "order": 4100,
+                    "tab": "General"
+                }
+            }
+        },
+        "unitId": {
+            "title": "Единица измерения",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "bind": "Unit",
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 2500,
+                    "type": "Bind"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Bind",
+                    "order": 4000,
+                    "tab": "General"
+                }
+            }
+        },
+        "label": {
+            "title": "Label",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 6000,
+                    "tab": "General"
+                }
+            }
+        },
+        "description": {
+            "title": "Description",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 65535
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Textarea",
+                    "order": 6100,
+                    "tab": "General"
+                }
+            }
+        },
+        "comment": {
+            "title": "Comment",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 65535
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Textarea",
+                    "order": 6200,
+                    "tab": "General"
+                }
+            }
+        },
+        "help": {
+            "title": "Help",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 65535
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Textarea",
+                    "order": 6300,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "name": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Наименование"
+            },
+            "token": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Token"
+            },
+            "type": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "config.properties.type.title",
+                "default": ""
+            },
+            "unit_id": {
+                "type": "bigint",
+                "unsigned": true,
+                "comment": "config.properties.unitId.title",
+                "default": 0
+            },
+            "description": {
+                "type": "text",
+                "comment": "config.properties.description.title"
+            },
+            "help": {
+                "type": "text",
+                "comment": "config.properties.help.title"
+            },
+            "comment": {
+                "type": "text",
+                "comment": "config.properties.comment.title"
+            },
+            "label": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "config.properties.label.title"
+            }
+        },
+        "indexes": {
+            "token": {
+                "fields": {
+                    "token": []
+                }
+            }
+        }
+    },
+    "container": "AttributeGroup"
+}

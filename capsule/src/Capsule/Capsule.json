@@ -1,0 +1,21 @@
+{
+  "version": "2.0.3 Stable",
+  "timezoneId": "Asia/Yekaterinburg",
+  "#": "clean hostname only, without protocol, slashes etc",
+  "host": "www.capsule2.aplab.ru",
+  "defaultUser": {
+    "login": "root",
+    "password": "capsule2"
+  },
+  "app": {
+    "admin": "\\App\\Cms\\Cms",
+    "ajax": "\\App\\Ajax\\Ajax",
+    "/": "\\App\\Website\\Website"
+  },
+  "plugin": {
+    "IconList": {
+      "#": "Relative path to font-awesome.css",
+      "faRelativePath": "/capsule/vendor/bower_components/font-awesome/css/font-awesome.css"
+    }
+  }
+}

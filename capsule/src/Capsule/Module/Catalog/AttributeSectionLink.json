@@ -1,0 +1,69 @@
+{
+    "title": "Значение атрибута",
+    "properties": {
+        "containerId": {
+            "title": "Section",
+            "formElement": {
+                "f1": {
+                    "default": "__CLASS__::sectionId"
+                }
+            }
+        },
+        "attributeId": {
+            "title": "Атрибут",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "bind": "Attribute",
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 2400,
+                    "type": "Bind"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Bind",
+                    "order": 2300,
+                    "tab": "General"
+                }
+            }
+        },
+        "tabName": {
+            "title": "Tab name",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 1002000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "attribute_id": {
+                "type": "bigint",
+                "unsigned": true,
+                "comment": "config.properties.attributeId.title",
+                "default": 0
+            },
+            "tab_name": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "config.properties.tab.title"
+            }
+        }
+    },
+    "container": "Section"
+}

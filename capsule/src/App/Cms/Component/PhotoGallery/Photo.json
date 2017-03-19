@@ -1,0 +1,42 @@
+{
+    "title": "photo",
+    "name": "photo",
+    "properties": {
+        "image": {
+            "title": "Изображение",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 64,
+                    "order": 2000,
+                    "type": "Image"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Image",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "image": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "Изображение",
+                "default": ""
+            }
+        }
+    },
+    "container": "/App/Cms/Component/PhotoGallery/Gallery"
+}

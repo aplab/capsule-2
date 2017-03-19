@@ -1,0 +1,95 @@
+{
+    "title": "Tree Ts Usr",
+    "properties": {
+        "name": {
+            "column": {
+                "c1": {
+                    "width": 400,
+                    "type": "Tree"
+                }
+            }
+        },
+        "parentId": {
+            "title": "parent",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "formElement": {
+                "f1": {
+                    "type": "Tree",
+                    "order": 1000000,
+                    "tab": "General"
+                }
+            }
+        },
+        "sortOrder": {
+            "title": "sort order",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c1": {
+                    "width": 80,
+                    "type": "Rtext",
+                    "order": 10000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 1001000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "parent_id": {
+                "type": "bigint",
+                "unsigned": true,
+                "comment": "Уникальный идентификатор объекта родителя",
+                "default": 0
+            },
+            "sort_order": {
+                "type": "int",
+                "unsigned": true,
+                "comment": "Порядок сортировки",
+                "default": 0
+            }
+        },
+        "indexes": {
+            "parentid": {
+                "fields": {
+                    "parent_id": []
+                }
+            },
+            "sortorder": {
+                "fields": {
+                    "sort_order": []
+                }
+            },
+            "parentid_id": {
+                "fields": {
+                    "parent_id": [],
+                    "id": []
+                }
+            },
+            "parentid_sortorder_id": {
+                "fields": {
+                    "parent_id": [],
+                    "sort_order": [],
+                    "id": []
+                }
+            },
+            "sortorder_id": {
+                "fields": {
+                    "sort_order": [],
+                    "id": []
+                }
+            }
+        }
+    }
+}
