@@ -28,63 +28,69 @@ abstract class Element
 {
     /**
      * ID key
-     * 
+     *
      * @var string
      */
     const ID = 'id';
-    
+
     /**
      * Explicit conversion to a string
-     * 
+     *
      * @param void
      * @return void
      */
     abstract public function toString();
-    
+
     /**
      * Internal data
      *
      * @var array
      */
     protected $data;
-    
+
     /**
      * Disable create object directly from outside
      *
      * @param void
      * @return self
      */
-    protected function __construct(array $data) {
+    protected function __construct(array $data)
+    {
         $this->data = $data;
         $this->_init($data);
     }
-    
+
     /**
      * stub
      *
      * @param void
      * @return void
      */
-    protected function _init(array $data) {}
-    
+    protected function _init(array $data)
+    {
+    }
+
     /**
      * Getter
      *
      * @param string $name
      * @return Ambigous <NULL, multitype:>
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         return array_key_exists($name, $this->data) ? $this->data[$name] : null;
     }
-    
+
     /**
      * Setter
      *
      * @param string $name
-     * @param unknown $value
+     * @param mixed $value
+     * @return $this
      * @throws \Exception
      */
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         $setter = 'set' . ucfirst($name);
         if (in_array($setter, get_class_methods($this))) {
             $this->$setter($value, $name);

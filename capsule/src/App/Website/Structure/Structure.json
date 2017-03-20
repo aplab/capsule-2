@@ -1,18 +1,19 @@
 {
-    "/" : {
+    "/": {
         "cache": 5,
-        "title" : "Главная страница",
-        "template" : "page/index.php",
-        "active" : true,
-        "description" : "",
-        "keywords" : "",
-        "area" : {
-            "left_col" : {
-                "title" : "untitled area",
-                "unit" : [
+        "title": "Главная страница",
+        "template": "page/index.php",
+        "active": true,
+        "description": "",
+        "keywords": "",
+        "area": {
+            "left_col": {
+                "title": "untitled area",
+                "unit": [
                     {
-                        "moduleId" : "1",
-                        "controller" : "TextBlock",
+                        "moduleId": "1",
+                        "controller": "TextBlock",
+                        "action": "test_action",
                         "cache": 5,
                         "template": "text-block/wide_text_block_big_text.php"
                     }
@@ -20,24 +21,24 @@
             }
         }
     },
-    "log" : {
+    "log": {
         "cache": 0,
-        "title" : "Журнал разработки",
-        "template" : "page/index.php",
+        "title": "Журнал разработки",
+        "template": "page/index.php",
         "paramNum": {
             "max": 1
         },
-        "active" : true,
-        "description" : "",
-        "keywords" : "",
-        "area" : {
-            "left_col" : {
+        "active": true,
+        "description": "",
+        "keywords": "",
+        "area": {
+            "left_col": {
                 "#": "пример прямого переопределения контента, отключение области",
                 "#content": "ololo",
-                "title" : "untitled area",
-                "unit" : [
+                "title": "untitled area",
+                "unit": [
                     {
-                        "controller" : "/Usr/Aplab/Controller/DevLog/Common",
+                        "controller": "/Usr/Aplab/Controller/DevLog/Common",
                         "cache": 0,
                         "template": {
                             "list": "dev-log/list.php",
@@ -48,10 +49,10 @@
             }
         }
     },
-    "log/index" : {
+    "log/index": {
         "cache": 0,
-        "title" : "Журнал разработки",
-        "template" : "page/index.php",
+        "title": "Журнал разработки",
+        "template": "page/index.php",
         "#": "Какое количество параметров может быть у страницы",
         "#": "Если этой секции нет, то вообще не должно быть параметров",
         "#": "Если заранее не известно, сколько параметров, то не задавать max",
@@ -59,15 +60,15 @@
             "min": 1,
             "max": 1
         },
-        "active" : true,
-        "description" : "",
-        "keywords" : "",
-        "area" : {
-            "left_col" : {
-                "title" : "untitled area",
-                "unit" : [
+        "active": true,
+        "description": "",
+        "keywords": "",
+        "area": {
+            "left_col": {
+                "title": "untitled area",
+                "unit": [
                     {
-                        "controller" : "/Usr/Aplab/Controller/DevLog/Index",
+                        "controller": "/Usr/Aplab/Controller/DevLog/Index",
                         "cache": 0,
                         "template": "dev-log/list.php",
                         "#": "Порядок сборки в рамках текущей страницы",

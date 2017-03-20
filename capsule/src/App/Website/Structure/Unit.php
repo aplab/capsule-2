@@ -21,6 +21,7 @@ namespace App\Website\Structure;
 use Capsule\Core\Fn;
 use App\Website\Cache;
 use App\Website\Website;
+
 /**
  * Unit.php
  *
@@ -35,46 +36,50 @@ class Unit extends Element
      * @param void
      * @return string
      */
-	public function toString() {
-	    return $this->content;
-	}
-	
-	/**
-	 * Подготавливает контент страницы.
-	 * Заранее, т.к. внутри контента может происходить обработка зависимостей.
-	 *
-	 * @param void
-	 * @return void
-	 */
-	public function prepare() {
-	    if (!array_key_exists('content', $this->data)) {
-	        if ($this->cache) {
-	            $id = Fn::concat_ws('=>#', $this->pageId, $this->areaId, $this->id);
-	            $cache = Cache::getInstance();
-	            $content = $cache->get($id);
-	            if (is_null($content)) {
-	                $content = $this->_build();
-	                $cache->set($id, $content, $this->cache);
-	            }
-	            $this->data['content'] = $content;
-	        } else {
-	            $this->data['content'] = $this->_build();
-	        }
-	    }
-	}
-	
-	/**
-	 * Собирает и возвращает контент страницы
-	 *
-	 * @param void
-	 * @return string
-	 */
-	protected function _build() {
-	    $namespace = Website::getInstance()->config->controller->defaultNamespace;
-	    $controller_classname = Fn::create_classname($this->controller, $namespace);
-	    $controller = new $controller_classname($this);
-	    ob_start(); // буферизация
-	    $controller->handle();
-	    return ob_get_clean();
-	}
+    public function toString()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Подготавливает контент страницы.
+     * Заранее, т.к. внутри контента может происходить обработка зависимостей.
+     *
+     * @param void
+     * @return void
+     */
+    public function prepare()
+    {
+        if (!array_key_exists('content', $this->data)) {
+            if ($this->cache) {
+                $id = Fn::concat_ws('=>#', $this->pageId, $this->areaId, $this->id);
+                $cache = Cache::getInstance();
+                $content = $cache->get($id);
+                if (is_null($content)) {
+                    $content = $this->_build();
+                    $cache->set($id, $content, $this->cache);
+                }
+                $this->data['content'] = $content;
+            } else {
+                $this->data['content'] = $this->_build();
+            }
+        }
+    }
+
+    /**
+     * Собирает и возвращает контент страницы
+     *
+     * @param void
+     * @return string
+     */
+    protected function _build()
+    {
+        $namespace = Website::getInstance()->config->controller->defaultNamespace;
+        $controller_classname = Fn::create_classname($this->controller, $namespace);
+        $controller = new $controller_classname($this);
+        $action = $this->action ?? 'handle';
+        ob_start(); // буферизация
+        $controller->$action();
+        return ob_get_clean();
+    }
 }
