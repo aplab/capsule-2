@@ -39,4 +39,9 @@ class TextBlock extends UnitController
         TplVar::getInstance()->o = $object;
         include $template;
     }
+
+    public function test_action()
+    {
+        print 'method::' . __METHOD__;
+    }
 }
