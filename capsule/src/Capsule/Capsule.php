@@ -44,7 +44,7 @@ class Capsule implements \Serializable
     const DIR_CRON = 'bin/cron';
     const DIR_SCRIPTS = 'bin/scripts';
     const DIR_SRC = 'src';
-    const DIR_TEMPLATES = 'templates';
+    const DIR_TEMPLATES = 'view';
     const DIR_VENDOR = 'vendor';
 
     /**

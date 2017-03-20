@@ -49,7 +49,11 @@ class Website extends App
         $this->data['page'] = Router::getInstance()->getPage();
         $this->data['path'] = Router::getInstance()->getPath();
         $this->data['cache'] = Cache::getInstance();
-        $this->data['tplpath'] = new Path(Capsule::getInstance()->systemRoot, $this->config->path->templates);
+        $this->data['tplpath'] = new Path(
+            Capsule::getInstance()->systemRoot,
+            Capsule::DIR_TEMPLATES,
+            $this->config->path->templates
+        );
     }
     
     /**

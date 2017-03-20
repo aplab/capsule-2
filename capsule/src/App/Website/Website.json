@@ -3,7 +3,7 @@
         "baseUrl": "/admin/"
     },
     "path": {
-        "templates": "/templates/aplab.ru"
+        "templates": "aplab.ru"
     },
     "controller": {
         "defaultNamespace": "App/Website/Controller"
