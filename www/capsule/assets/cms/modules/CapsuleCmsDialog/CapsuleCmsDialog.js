@@ -278,6 +278,21 @@ CapsuleCmsDialog.purgeButtonHandler = function (event)
     CapsuleCmsDialog.getInstance(id).purge();
 };
 
+CapsuleCmsDialog.resizeendTimeout = setTimeout(function ()
+{
+
+}, 200);
+
+CapsuleCmsDialog.resizeend = function ()
+{
+    clearTimeout(CapsuleCmsDialog.resizeendTimeout);
+    CapsuleCmsDialog.resizeendTimeout = setTimeout(function ()
+    {
+        CapsuleCmsDialog.adjustHeightWorkaround();
+        console.log('CapsuleCmsDialog.resizeend');
+    }, 200);
+};
+
 /**
  * Инициализация окон
  */
@@ -306,8 +321,52 @@ CapsuleCmsDialog.init = function ()
             'click',
             CapsuleCmsDialog.purgeButtonHandler
         ).click(CapsuleCmsDialog.purgeButtonHandler);
+
+        $(window).off('resize', CapsuleCmsDialog.resizeend).on('resize', CapsuleCmsDialog.resizeend);
+        CapsuleCmsDialog.adjustHeightWorkaround();
     });
 };
+
+CapsuleCmsDialog.adjustHeightWorkaround = function ()
+{
+    var element = $('<div class="' + CapsuleCmsDialog.prefix + '-adjust-height-workaround">');
+    $('body').append(element);
+    var element_height = element.height();
+    element.remove();
+    var window_height = window.innerHeight;
+    var diff = element_height - window_height;
+    if (diff < 1) {
+        return;
+    }
+    var window_width = window.innerWidth;
+    if (window_width < 768) {
+        $('.' + CapsuleCmsDialog.prefix + '-content').css({
+            maxHeight: 'calc(100vh - ' + (20 + diff) + 'px)'
+        });
+        $('.' + CapsuleCmsDialog.prefix + '-maximize').css({
+            height: 'calc(100vh - ' + (20 + diff) + 'px)'
+        });
+        $('.' + CapsuleCmsDialog.prefix + '-maximize-height').css({
+            height: 'calc(100vh - ' + (20 + diff) + 'px)'
+        });
+        $('.' + CapsuleCmsDialog.prefix + ' .dropdown-menu').css({
+            maxHeight: 'calc(100vh - ' + (30 + diff) + 'px)'
+        });
+        return;
+    }
+    $('.' + CapsuleCmsDialog.prefix + '-content').css({
+        maxHeight: 'calc(100vh - ' + (60 + diff) + 'px)'
+    });
+    $('.' + CapsuleCmsDialog.prefix + '-maximize').css({
+        height: 'calc(100vh - ' + (60 + diff) + 'px)'
+    });
+    $('.' + CapsuleCmsDialog.prefix + '-maximize-height').css({
+        height: 'calc(100vh - ' + (60 + diff) + 'px)'
+    });
+    $('.' + CapsuleCmsDialog.prefix + ' .dropdown-menu').css({
+        maxHeight: 'calc(100vh - ' + (70 + diff) + 'px)'
+    });
+}
 
 /**
  * init

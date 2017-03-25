@@ -11,6 +11,13 @@ $footer-height: 65px;
   width: auto;
   height: auto;
   overflow: hidden;
+  &-adjust-height-workaround {
+    position: fixed;
+    overflow: hidden;
+    opacity: 0;
+    width: 0;
+    height: 100vh;
+  }
   &-backdrop {
     background: #000;
     opacity: .5;
