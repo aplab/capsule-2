@@ -1,0 +1,1 @@
+certbot certonly --webroot -w /home/polyanin/polyanin/project/v2.aplab.ru/site/www -d aplab.ru -d www.aplab.ru
