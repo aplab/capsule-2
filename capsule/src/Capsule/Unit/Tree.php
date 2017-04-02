@@ -18,7 +18,6 @@
 
 namespace Capsule\Unit;
 
-use Capsule\Unit\NamedTsUsr;
 use Capsule\Db\Db;
 use PHP\Exceptionizer\Exceptionizer;
 use Capsule\I18n\I18n;
@@ -43,7 +42,7 @@ class Tree extends NamedTsUsr
     {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
-	            WHERE `parent_id` = 0
+                WHERE `parent_id` = 0
                 ORDER BY `sort_order`, ' . $db->bq(static::$key);
         return static::populate($db->query($sql));
     }
@@ -58,7 +57,7 @@ class Tree extends NamedTsUsr
     {
         $db = Db::getInstance();
         $sql = 'SELECT COUNT(*) FROM `' . self::config()->table->name . '`
-	            WHERE `parent_id` = 0';
+                WHERE `parent_id` = 0';
         return $db->query($sql)->fetch_one();
     }
 
@@ -181,7 +180,7 @@ class Tree extends NamedTsUsr
     {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
-	            WHERE `parent_id` = ' . $db->qt($this->id) . '
+                WHERE `parent_id` = ' . $db->qt($this->id) . '
                 ORDER BY `sort_order`, ' . $db->bq(static::$key);
         return static::populate($db->query($sql));
     }
@@ -213,7 +212,7 @@ class Tree extends NamedTsUsr
     {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
-	            WHERE `id` = ' . $db->qt($this->parentId);
+                WHERE `id` = ' . $db->qt($this->parentId);
         $objects = self::populate($db->query($sql));
         // array_shift returns NULL if array is empty
         return array_shift($objects);
@@ -246,7 +245,7 @@ class Tree extends NamedTsUsr
         });
         if (empty($in)) return array();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
-	            WHERE `parent_id` IN (' . join(', ', $in) . ')
+                WHERE `parent_id` IN (' . join(', ', $in) . ')
                 ORDER BY `sort_order`, ' . $db->bq(static::$key);
         return static::populate($db->query($sql));
     }
@@ -261,7 +260,7 @@ class Tree extends NamedTsUsr
     {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
-	            ORDER BY `parent_id`, `sort_order`, ' . $db->bq(static::$key);
+                ORDER BY `parent_id`, `sort_order`, ' . $db->bq(static::$key);
         $tmp = static::populate($db->query($sql));
         $tmp = self::to2d($tmp);
         $ret = array();
@@ -353,12 +352,14 @@ class Tree extends NamedTsUsr
     {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `' . self::config()->table->name . '`
-	            ORDER BY `parent_id`, `sort_order`, ' . $db->bq(static::$key);
+                ORDER BY `parent_id`, `sort_order`, ' . $db->bq(static::$key);
         $tmp = static::populate($db->query($sql));
         $tmp = self::to2d($tmp);
         $ret = array();
         $filter = function ($from_key = 0) use (& $filter, & $tmp, & $ret) {
-            if (!isset($tmp[$from_key])) return;
+            if (!isset($tmp[$from_key])) {
+                return;
+            }
             $ret[$from_key] = $tmp[$from_key];
             foreach ($tmp[$from_key] as $k => $v) {
                 if (isset($tmp[$k])) $filter($k);

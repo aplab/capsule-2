@@ -34,10 +34,17 @@ if (is_array($extra_param)) {
             <div class="capsule-cms-data-grid-header">
                 <div class="capsule-cms-data-grid-header-row wExt">
                     <?php foreach ($columns as $column) : ?>
-                        <div class="w<?= $column->column->width ?>"
-                             title="<?= _::_($column->property->title) ?>">
-                            <?= _::_($column->property->title) ?>
-                        </div>
+                        <?php if ($column->column->title) : ?>
+                            <div class="w<?= $column->column->width ?>"
+                                 title="<?= _::_($column->column->title) ?>">
+                                <?= _::_($column->column->title) ?>
+                            </div>
+                        <?php else : ?>
+                            <div class="w<?= $column->column->width ?>"
+                                 title="<?= _::_($column->property->title) ?>">
+                                <?= _::_($column->property->title) ?>
+                            </div>
+                        <?php endif ?>
                     <?php endforeach ?>
                 </div>
             </div>

@@ -5,8 +5,8 @@
         "name": {
             "column": {
                 "c1": {
-                    "width": 200,
-                    "type": "Text"
+                    "width": 400,
+                    "type": "Tree"
                 }
             }
         },

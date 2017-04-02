@@ -108,6 +108,11 @@
                         "caption": "Post",
                         "url": "post",
                         "icon": "fa fa-file-text"
+                    },
+                    {
+                        "caption": "Comment",
+                        "url": "comment",
+                        "icon": "fa fa-comments"
                     }
                 ]
             },
@@ -498,6 +503,7 @@
         "pkg-section": ".Pkg.Product.Controller.SectionController",
         "pkg-product-tree": ".Pkg.Product.Tree.Controller.ProductController",
         "pkg-section-tree": ".Pkg.Product.Tree.Controller.SectionController",
-        "post": ".Pkg.Post.PostController"
+        "post": ".Pkg.Post.PostController",
+        "comment": ".Pkg.Comment.CommentController"
     }
 }

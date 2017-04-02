@@ -1,0 +1,358 @@
+{
+    "tabOrder": {
+        "General": 1000,
+        "Photo": 3000,
+        "SEO": 5000,
+        "Additional": 1000000000
+    },
+    "title": "Unit Ts Usr",
+    "description": "",
+    "help": "",
+    "comment": "",
+    "name": "Comment",
+    "label": "",
+    "properties": {
+        "id": {
+            "title": "ID",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c2": {
+                    "width": 120,
+                    "order": 1000,
+                    "type": "Id",
+                    "edit": true,
+                    "del": true
+                },
+                "c3": {
+                    "width": 120,
+                    "order": 1500,
+                    "type": "Level",
+                    "title": "Level"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Label",
+                    "order": 1000000,
+                    "tab": "Additional"
+                },
+                "f2": {
+                    "type": "Label",
+                    "order": 1000,
+                    "tab": "General"
+                }
+            }
+        },
+        "createdBy": {
+            "title": "created by",
+            "formElement": {
+                "f1": {
+                    "type": "User",
+                    "order": 300000000,
+                    "tab": "Additional"
+                }
+            },
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "order": 300000000,
+                    "type": "User"
+                }
+            }
+        },
+        "lastModifiedBy": {
+            "title": "last modified by",
+            "formElement": {
+                "f1": {
+                    "type": "User",
+                    "order": 400000000,
+                    "tab": "Additional"
+                }
+            },
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "order": 400000000,
+                    "type": "User"
+                }
+            }
+        },
+        "created": {
+            "title": "created",
+            "column": {
+                "c1": {
+                    "width": 160,
+                    "order": 100000000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Label",
+                    "order": 100000000,
+                    "tab": "Additional"
+                }
+            }
+        },
+        "lastModified": {
+            "title": "last modified",
+            "column": {
+                "c1": {
+                    "width": 160,
+                    "order": 200000000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Label",
+                    "order": 200000000,
+                    "tab": "Additional"
+                }
+            }
+        },
+        "active": {
+            "title": "Active",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c1": {
+                    "width": 32,
+                    "order": 6000,
+                    "type": "Active"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Flag",
+                    "order": 6000,
+                    "tab": "General"
+                }
+            }
+        },
+        "text": {
+            "title": "Text",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 16777215
+            },
+            "column": {
+                "c1": {
+                    "width": 600,
+                    "order": 7000,
+                    "type": "TextPreview"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Ckeditor",
+                    "order": 2000,
+                    "tab": "Text"
+                }
+            }
+        },
+        "parentId": {
+            "title": "parent ID",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "type": "Rtext",
+                    "order": 2000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 2000,
+                    "tab": "General"
+                }
+            }
+        },
+        "userId": {
+            "title": "user ID",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "type": "Rtext",
+                    "order": 3000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 3000,
+                    "tab": "General"
+                }
+            }
+        },
+        "objectId": {
+            "title": "object ID",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c1": {
+                    "width": 120,
+                    "type": "Rtext",
+                    "order": 4000
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 4000,
+                    "tab": "General"
+                }
+            }
+        },
+        "objectClass": {
+            "title": "object class",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 400,
+                    "order": 5000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 5000,
+                    "tab": "General"
+                }
+            }
+        }
+    },
+    "table": {
+        "columns": {
+            "id": {
+                "type": "bigint",
+                "unsigned": true,
+                "autoIncrement": true,
+                "comment": "Уникальный идентификатор"
+            },
+            "created_by": {
+                "type": "smallint",
+                "unsigned": true,
+                "default": 0
+            },
+            "last_modified_by": {
+                "type": "smallint",
+                "unsigned": true,
+                "default": 0
+            },
+            "created": {
+                "type": "datetime",
+                "default": "CURRENT_TIMESTAMP",
+                "comment": "created"
+            },
+            "last_modified": {
+                "type": "datetime",
+                "default": "CURRENT_TIMESTAMP",
+                "onUpdate": "CURRENT_TIMESTAMP",
+                "comment": "last modified"
+            },
+            "active": {
+                "type": "tinyint",
+                "length": 1,
+                "unsigned": true,
+                "comment": "activity",
+                "default": 1
+            },
+            "text": {
+                "type": "mediumtext"
+            },
+            "parent_id": {
+                "type": "bigint",
+                "unsigned": true,
+                "comment": "config.properties.parentId.title",
+                "default": 0
+            },
+            "user_id": {
+                "type": "bigint",
+                "unsigned": true,
+                "comment": "config.properties.userId.title",
+                "default": 0
+            },
+            "object_id": {
+                "type": "bigint",
+                "unsigned": true,
+                "comment": "config.properties.objectId.title",
+                "default": 0
+            },
+            "object_class": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "config.properties.objectClass.title"
+            }
+        },
+        "indexes": {
+            "primaryKey": {
+                "type": "primaryKey",
+                "fields": {
+                    "id": []
+                }
+            },
+            "object_id__object_class": {
+                "fields": {
+                    "object_id": [],
+                    "object_class": []
+                }
+            },
+            "object_id__object_class__created__id": {
+                "fields": {
+                    "object_id": [],
+                    "object_class": [],
+                    "created": []
+                }
+            },
+            "object_id__object_class__parent_id": {
+                "fields": {
+                    "object_id": [],
+                    "object_class": [],
+                    "parent_id": []
+                }
+            },
+            "created": {
+                "fields": {
+                    "created": []
+                }
+            },
+            "active": {
+                "fields": {
+                    "active": []
+                }
+            },
+            "parent_id": {
+                "fields": {
+                    "parent_id": []
+                }
+            }
+        },
+        "name": "capsule_unit_unit_ts_usr"
+    }
+}
