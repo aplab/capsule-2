@@ -128,7 +128,7 @@
             "formElement": {
                 "f1": {
                     "type": "Flag",
-                    "order": 6000,
+                    "order": 8000,
                     "tab": "General"
                 }
             }
@@ -145,7 +145,7 @@
             },
             "column": {
                 "c1": {
-                    "width": 600,
+                    "width": 400,
                     "order": 7000,
                     "type": "TextPreview"
                 }
@@ -233,7 +233,7 @@
             },
             "column": {
                 "c1": {
-                    "width": 400,
+                    "width": 300,
                     "order": 5000,
                     "type": "Text"
                 }
@@ -242,6 +242,77 @@
                 "f1": {
                     "type": "Text",
                     "order": 5000,
+                    "tab": "General"
+                }
+            }
+        },
+        "name": {
+            "title": "name",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 8000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 6000,
+                    "tab": "General"
+                }
+            }
+        },
+        "email": {
+            "title": "email",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "validator": {
+                "type": "StringLength",
+                "max": 255
+            },
+            "column": {
+                "c1": {
+                    "width": 200,
+                    "order": 9000,
+                    "type": "Text"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Text",
+                    "order": 7000,
+                    "tab": "General"
+                }
+            }
+        },
+        "showEmail": {
+            "title": "show email",
+            "description": "",
+            "help": "",
+            "comment": "",
+            "label": "",
+            "column": {
+                "c1": {
+                    "width": 32,
+                    "order": 10000,
+                    "type": "Active"
+                }
+            },
+            "formElement": {
+                "f1": {
+                    "type": "Flag",
+                    "order": 9000,
                     "tab": "General"
                 }
             }
@@ -308,6 +379,22 @@
                 "type": "VARCHAR",
                 "length": 255,
                 "comment": "config.properties.objectClass.title"
+            },
+            "name": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "config.properties.name.title"
+            },
+            "email": {
+                "type": "VARCHAR",
+                "length": 255,
+                "comment": "config.properties.email.title"
+            },
+            "show_email": {
+                "type": "tinyint",
+                "length": 1,
+                "unsigned": true,
+                "comment": "config.properties.showEmail.title"
             }
         },
         "indexes": {
